@@ -3,6 +3,14 @@ using System.Collections;
 
 public class MinionsSpawnWait : MonoBehaviour
 {
+    /*                    Minion Spawn Wait
+    *  This script will manage how the minions are checked in the scene
+    */
+
+
+
+    // Declarations
+    // -------------
     // A variable for determining if the minions cleared the scene
     private bool minionsClearedScene;
     // A variable for determining if there exists a timeout of the current scene
@@ -10,12 +18,15 @@ public class MinionsSpawnWait : MonoBehaviour
     private bool timeExpired;
 
 
-	// Use this for initialization
-	void Start ()
+
+
+    // Use this for initialization
+    void Start()
     {
         minionsClearedScene = false;
         timeExpired = false;
-	}
+    } // End of Start
+
 
 
     // For debuging; accessible through other scripts if needed.
@@ -26,7 +37,7 @@ public class MinionsSpawnWait : MonoBehaviour
             Debug.Log("There is Minions in this scene!!! OMGOMG");
         else
             Debug.Log("There is /NO/ minions in the scene!!!  YA!!!");
-    }
+    } // End of DebugCheckMinion
 
 
 
@@ -34,19 +45,21 @@ public class MinionsSpawnWait : MonoBehaviour
     // Check the scene and find any minions within the scene
     public bool CheckMinions()
     {
+        // Find 'any' GameObject that has the tag 'Minion' attached to it.
         if (GameObject.FindGameObjectWithTag("Minion") == null)
             // If there is no minions in the scene
             return false;
         else
             // There is minions in the scene
             return true;
-    }
+    } // End of CheckMinions
 
 
 
+    // Unused at the moment
     public IEnumerator WaitForMinionsToClear(int waitTime)
     {
-        yield return new WaitForSeconds (waitTime);
-    }
+        yield return new WaitForSeconds(waitTime);
+    } // End of WaitForMinionsToClear
 
 }
