@@ -1,0 +1,37 @@
+# Using Ignore List from:
+#  http://unity3diy.blogspot.com/2014/06/using-git-with-3d-games-source-control_8.html
+# =============== 
+# Unity generated
+# ===============
+Temp/
+Library/
+
+
+
+# =====================================
+# Visual Studio / MonoDevelop generated
+# =====================================
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+
+
+
+# ============
+# OS generated
+# ============
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
