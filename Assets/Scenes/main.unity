@@ -2791,6 +2791,7 @@ MonoBehaviour:
   MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
   spawnRate: 20.7999992
   finalDestroyer: {fileID: 63528817}
+  gameState: {fileID: 1430447472}
 --- !u!1 &1198669441
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,6 +3292,7 @@ GameObject:
   - 4: {fileID: 1430447469}
   - 114: {fileID: 1430447470}
   - 114: {fileID: 1430447471}
+  - 114: {fileID: 1430447472}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -3316,7 +3318,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430447468}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed3355969d1b1944d95aae38efced41c, type: 3}
   m_Name: 
@@ -3334,7 +3336,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreBox: {fileID: 1868065507}
+--- !u!114 &1430447472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430447468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd030c519367924d8ffbc4db71ad7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   winLoseText: {fileID: 1398285122}
+  score: {fileID: 1430447471}
+  scoreCorrectMax: 10
+  scoreIncorrectMax: 5
+  audio: {fileID: 0}
+  failSound: {fileID: 0}
+  finalDestroyer: {fileID: 63528817}
 --- !u!1 &1462125636
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,6 +3509,7 @@ MonoBehaviour:
   MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
   spawnRate: 8.19999981
   finalDestroyer: {fileID: 63528817}
+  gameState: {fileID: 1430447472}
 --- !u!1 &1701443684
 GameObject:
   m_ObjectHideFlags: 0
@@ -4358,8 +4378,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -.485641599, y: -23.8218517, z: -17.2537022}
+  m_LocalRotation: {x: -.0526754633, y: .0643611327, z: .00340212835, w: .996529698}
+  m_LocalPosition: {x: -.975306392, y: -8.52062511, z: -29.2884121}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
@@ -4406,6 +4426,7 @@ MonoBehaviour:
   MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
   spawnRate: 2.70000005
   finalDestroyer: {fileID: 63528817}
+  gameState: {fileID: 1430447472}
 --- !u!1 &2066281924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,8 +4481,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: .0840871185, y: .0537866056, z: .00454551587, w: -.994995356}
-  m_LocalPosition: {x: .656906843, y: -7.77192211, z: -32.1744537}
+  m_LocalRotation: {x: -.0526754633, y: .0643611327, z: .00340212835, w: .996529698}
+  m_LocalPosition: {x: -.975306392, y: -8.52062511, z: -29.2884121}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}

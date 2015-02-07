@@ -17,21 +17,7 @@ public class Score : MonoBehaviour
             private int scoreIncorrect;
         // References
             public Text scoreBox; // Directly link to the score box gameobject
-		//David > public reference to the winLoseTextbox added to the scene_________________________________________________DAVID
-			public Text winLoseText;
     // -------------
-
-	//Beginning of things added By David
-	void Update()
-	{
-		if (scoreIncorrect >= 5)//______________________________________________________________________________________________DAVID
-		{
-			winLoseText.text = "You Fail!";
-		}	else if (scoreCorrect >= 10)
-			{
-				winLoseText.text = "You Win!";
-			}
-	}//____________________________________________________________________________________________________DAVID
 
 
 
@@ -49,8 +35,16 @@ public class Score : MonoBehaviour
     private void UpdateScoreCorrect ()
     {
         scoreCorrect++;
-        scoreBox.text = "SCORE: " + scoreCorrect.ToString();
+        UpdateScoreDisplay(); // Update the score display   
     } // End of UpdateScore
+
+
+
+    // This function will only merely update the score canvas string that is being displayed in the scene as a HUD
+    private void UpdateScoreDisplay()
+    {
+        scoreBox.text = "SCORE: " + scoreCorrect.ToString();
+    } // End of UpdateScoreDisplay
 
 
 
@@ -93,4 +87,23 @@ public class Score : MonoBehaviour
     {
         get { return scoreIncorrect; }
     } // End of ScoreIncorrect
+
+
+
+    // Reset Score function
+    private void ThrashScores()
+    {
+        // This function - will thrash the current scores
+        scoreCorrect = 0;
+        scoreIncorrect = 0;
+        UpdateScoreDisplay();
+    } // End of ThrashScore
+
+
+
+    // Access reset score function; as the function is set to 'private'
+    public void AccessThrashScores()
+    {
+        ThrashScores();
+    } // End of AccessThrashScores
 }

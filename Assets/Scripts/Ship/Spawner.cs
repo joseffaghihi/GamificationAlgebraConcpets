@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public GameObject MinionPrefab;
     public float spawnRate;
     public FinalDestroyer finalDestroyer;
+    public GameState gameState;
     // ----
 
 
@@ -23,7 +24,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (finalDestroyer.ActivateSpawner == true)
+        if (finalDestroyer.ActivateSpawner == true && gameState.ActivateSpawner == true)
         {
             if (Time.time >= nextSpawn)
             {
