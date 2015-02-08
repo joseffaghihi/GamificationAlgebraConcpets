@@ -33,19 +33,26 @@ public class ComponentActivation : MonoBehaviour
 	{
 		if(other.tag == "Ladder")
 		{
+            //id = gameObject.GetComponent<CreatureIdentity>();
+            //Debug.Log("Hit Ladder: " + id.Number.ToString());
+            // ----
             isClimbing = true;
             isWalking = false;
 		}	
         else if (other.tag == "ForwardEnabler")
 		{
-            id = gameObject.GetComponent<CreatureIdentity>();
-            Debug.Log("Hit: " + id.Number.ToString());
+            //id = gameObject.GetComponent<CreatureIdentity>();
+            //Debug.Log("Hit Forward Enabler: " + id.Number.ToString());
+            // ----
             isClimbing = false;
             isWalking = true;
 		} 
         else if (other.tag == "exit")
 		{
-			//exit code
+            //id = gameObject.GetComponent<CreatureIdentity>();
+            //Debug.Log("Hit Exit: " + id.Number.ToString());
+            // ----
+			// exit code
 		}
 	}
 
