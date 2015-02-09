@@ -518,10 +518,10 @@ MonoBehaviour:
   climbSpeed: 10.21
   walkSpeed: 4.28000021
   force: 1000
-  screechOne: {fileID: 0}
-  screechTwo: {fileID: 0}
-  screechThree: {fileID: 0}
-  screechFour: {fileID: 0}
+  screechOne: {fileID: 8300000, guid: b5529d376c7634b3fa848356badbdc94, type: 3}
+  screechTwo: {fileID: 8300000, guid: 51780b707269d431780048e4120df00a, type: 3}
+  screechThree: {fileID: 8300000, guid: 6982f0c4fd47f4e31987402aa0262158, type: 3}
+  screechFour: {fileID: 8300000, guid: f231ac78516a546d5a78aa8f10489d0b, type: 3}
 --- !u!114 &11461500
 MonoBehaviour:
   m_ObjectHideFlags: 1
