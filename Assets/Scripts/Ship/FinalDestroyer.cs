@@ -21,6 +21,7 @@ public class FinalDestroyer : MonoBehaviour
 	public AudioClip failSound;
 	public AudioClip successSound;
 	public AudioClip gameOverSound;
+	private Animator letterBoxController;
 
 
     // ReadOnly Accessor; should the spawners be activated?
@@ -36,6 +37,7 @@ public class FinalDestroyer : MonoBehaviour
     {
         activateSpawner = true;
         lockCheckFunction = false;
+		letterBoxController = letterBox.GetComponent<Animator>();
     } // End of Start
 
 
@@ -47,8 +49,10 @@ public class FinalDestroyer : MonoBehaviour
         {
             CreatureIdentity id = other.gameObject.GetComponent<CreatureIdentity>();
 
-            if (GetNumber() == id.Number)
+            if (GetNumber() == id.Number){
                 CorrectAnswer();
+				letterBoxController.SetTrigger ("LetterChange");
+			}
             else
                 IncorrectAnswer();
         }

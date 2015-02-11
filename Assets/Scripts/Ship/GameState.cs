@@ -141,7 +141,7 @@ public class GameState : MonoBehaviour
             winLoseText.text = "You Won!";
         else
         {
-            winLoseText.text = "You Failed!";
+            winLoseText.text = "Try Again!";
             //audio.clip = failSound;
             //audio.Play();
             //audio.loop = false;
