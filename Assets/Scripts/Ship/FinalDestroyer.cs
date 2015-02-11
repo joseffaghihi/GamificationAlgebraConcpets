@@ -17,6 +17,10 @@ public class FinalDestroyer : MonoBehaviour
     public int waitTimer = 5;
     // Lock the function from executing; work around gross hack
     private bool lockCheckFunction;
+	public AudioSource gameSounds;
+	public AudioClip failSound;
+	public AudioClip successSound;
+	public AudioClip gameOverSound;
 
 
     // ReadOnly Accessor; should the spawners be activated?
@@ -25,7 +29,6 @@ public class FinalDestroyer : MonoBehaviour
         // thanks to Bob for giving me the idea in his previous code.
         get { return activateSpawner; }
     } // End of ActivateSpawner
-
 
 
     // Initialize the declarations
@@ -75,6 +78,11 @@ public class FinalDestroyer : MonoBehaviour
     // When the player has the right answer, this function will house the algorithm
     private void CorrectAnswer()
     {
+		// Plays the 'successSound' if the right minion goes through________________________DAVID
+		audio.clip = successSound;
+		audio.Play ();
+		// ----
+
         // Update the score
         score.AccessUpdateScoreCorrect();
         // ----
@@ -122,6 +130,12 @@ public class FinalDestroyer : MonoBehaviour
     private void IncorrectAnswer()
     {
         score.AccessUpdateScoreIncorrect();
+
+		// Plays the 'failSound' if the wrong minion goes through________________________DAVID
+		audio.clip = failSound;
+		audio.Play ();
+		// ----
+
     } // End of IncorrectAnswer
 
 

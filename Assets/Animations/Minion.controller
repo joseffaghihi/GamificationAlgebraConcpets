@@ -8,13 +8,19 @@ AnimatorController:
   m_Name: Minion
   serializedVersion: 2
   m_AnimatorParameters:
-  - m_Name: IsClimbing
-    m_Type: 4
+  - m_Name: Walk
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsFlicked
+  - m_Name: Climb
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: isFlicked
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -45,7 +51,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsClimbing
+    m_ConditionEvent: Climb
     m_EventTreshold: 0
     m_ExitTime: 8
   m_Atomic: 1
@@ -64,8 +70,8 @@ Transition:
   m_TransitionDuration: .375
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsClimbing
+  - m_ConditionMode: 1
+    m_ConditionEvent: Walk
     m_EventTreshold: 0
     m_ExitTime: 4.69999981
   m_Atomic: 1
@@ -85,7 +91,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsFlicked
+    m_ConditionEvent: isFlicked
     m_EventTreshold: 0
     m_ExitTime: .625
   m_Atomic: 1

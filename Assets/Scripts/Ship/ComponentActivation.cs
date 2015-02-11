@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ComponentActivation : MonoBehaviour 
 {
@@ -15,6 +16,11 @@ public class ComponentActivation : MonoBehaviour
     public AudioClip screechTwo;
     public AudioClip screechThree;
     public AudioClip screechFour;
+	public AudioClip screechFive;
+	public AudioClip screechSix;
+	public AudioClip celebrationOne;
+	public AudioClip celebrationTwo;
+
     private Animator minionAnim;
     private CapsuleCollider capsuleCollider;
 	
@@ -38,6 +44,7 @@ public class ComponentActivation : MonoBehaviour
             // ----
             isClimbing = true;
             isWalking = false;
+			minionAnim.SetTrigger ("Climb");
 		}	
         else if (other.tag == "ForwardEnabler")
 		{
@@ -46,6 +53,7 @@ public class ComponentActivation : MonoBehaviour
             // ----
             isClimbing = false;
             isWalking = true;
+			minionAnim.SetTrigger ("Walk");
 		} 
         else if (other.tag == "exit")
 		{
@@ -80,19 +88,35 @@ public class ComponentActivation : MonoBehaviour
 
     void OnMouseDown()
     {
+		// Created a method for all of these below______________________DAVID
+		/*
         rigidbody.useGravity = true;
         rigidbody.isKinematic = false;
         rigidbody.AddForce(forceDirection * force);
         Debug.Log("Clicked!");
         Destroy(gameObject, 1f);
-        minionAnim.SetBool ("IsFlicked", true);
+        minionAnim.SetBool ("isFlicked", true);
 		Destroy(capsuleCollider);
+		*/
+		Flick ();
 		MinionSqueal();
     }
 
+	public void Flick()
+	{
+		rigidbody.useGravity = true;
+		rigidbody.isKinematic = false;
+		isClimbing = false;
+		rigidbody.AddForce(forceDirection * force);
+		Debug.Log("Clicked!");
+		Destroy(gameObject, 1f);
+		minionAnim.SetBool ("isFlicked", true);
+		Destroy(capsuleCollider);
+	}
+
     public void MinionSqueal()
 	{	
-        int sound = Random.Range (1, 4);
+        int sound = Random.Range (1, 7);
 		switch (sound)
 		{
 		case 1:
@@ -106,6 +130,14 @@ public class ComponentActivation : MonoBehaviour
 		case 3:
 			audio.clip = screechThree;
 			print("Audio 3 was played.");
+			break;
+		case 5: 
+			audio.clip = screechFive;
+			print ("Audio five was played.");
+			break;
+		case 6:
+			audio.clip = screechSix;
+			print("Audio six was played.");
 			break;
 		default:
 			audio.clip = screechFour;
