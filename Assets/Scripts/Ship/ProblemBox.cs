@@ -43,7 +43,7 @@ public class ProblemBox : MonoBehaviour {
         B = GetRandomNumber();
         C = GetRandomNumber();
 
-        problemBox.text = A.ToString() + "x+" + B.ToString() + "x+" + C.ToString();
+        problemBox.text = A.ToString() + "x +" + B.ToString() + "x+" + C.ToString();
     }
 
     public int GetRandomNumber()

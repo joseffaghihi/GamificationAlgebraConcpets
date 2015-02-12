@@ -32,7 +32,7 @@ public class ComponentActivation : MonoBehaviour
 
 	void Start()
 	{
-        forceDirection = new Vector3(1f, 0.3f, 0);
+        forceDirection = new Vector3(1f, 1f, 0);
 	}
 	
 	void OnTriggerEnter(Collider other)
