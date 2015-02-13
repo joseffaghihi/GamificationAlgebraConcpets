@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ForwardDriver_2 : MonoBehaviour 
-{
+{	/*
     public GameObject exit;
     public float speed = 1.0f;
 	
@@ -12,4 +12,5 @@ public class ForwardDriver_2 : MonoBehaviour
 		transform.LookAt (exit.transform.position);
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 	}
+	*/
 }
