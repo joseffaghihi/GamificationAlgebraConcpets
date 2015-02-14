@@ -113,8 +113,7 @@ public class FinalDestroyer : MonoBehaviour
 
 
         // Timer to unlock the 'Lock Check Function' variable
-        StartCoroutine(WaitTimer(10));
-        //lockCheckFunction = false;
+        StartCoroutine(WaitTimer(waitTimer));
     } // End of CorrectAnswer
 
 
