@@ -58,6 +58,7 @@ public class Spawner : MonoBehaviour
     {
         // spawn the Minion
         Instantiate(MinionPrefab, gameObject.transform.position, Quaternion.identity);
+
         // Determine the next time to summon a new minion creature
         CalcNextSpawnTime();
     }

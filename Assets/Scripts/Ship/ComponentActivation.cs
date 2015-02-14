@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class ComponentActivation : MonoBehaviour 
 {
-    public float climbSpeed = 10.21f;
-    public float walkSpeed = 6.0f;
+    private float climbSpeed;
+    private float walkSpeed;
     public float force = 1000f;
     private bool isClimbing = false;
     private bool isWalking = true;
@@ -33,6 +33,8 @@ public class ComponentActivation : MonoBehaviour
 	void Start()
 	{
         forceDirection = new Vector3(1f, 1f, 0);
+        climbSpeed = Random.Range(9.89f, 13.12f);
+        walkSpeed = Random.Range(3.98f, 6.5f);
 	}
 	
 	void OnTriggerEnter(Collider other)
@@ -62,6 +64,14 @@ public class ComponentActivation : MonoBehaviour
             // ----
 			// exit code
 		}
+        else if (other.tag == "Minion")
+        {
+            // Temp Debug Messages [NG]
+            Debug.Log("Hit with minion detected");
+        }
+
+        // Temp Debug Messages [NG]
+        Debug.Log("Minion has hit tag: " + other.tag);
 	}
 
     void Walk()
