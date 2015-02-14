@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ComponentActivation : MonoBehaviour 
 {
     public float climbSpeed = 10.21f;
-    public float walkSpeed = 4.28f;
+    public float walkSpeed = 6.0f;
     public float force = 1000f;
     private bool isClimbing = false;
     private bool isWalking = true;

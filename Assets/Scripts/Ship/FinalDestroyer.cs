@@ -9,6 +9,7 @@ public class FinalDestroyer : MonoBehaviour
     public LetterBox letterbox;
     public MinionsSpawnWait minionSpawnWait;
     public Text letterBox;
+	public Text whatIsText;
     public Score score;
     //public Text scoreBox;
     // Toggle the minion spawners
@@ -52,6 +53,7 @@ public class FinalDestroyer : MonoBehaviour
             if (GetNumber() == id.Number){
                 CorrectAnswer();
 				letterBoxController.SetTrigger ("LetterChange");
+				whatIsText.animation.Play ();
 			}
             else
                 IncorrectAnswer();
