@@ -526,8 +526,8 @@ SkinnedMeshRenderer:
   - 0
   m_RootBone: {fileID: 743361522}
   m_AABB:
-    m_Center: {x: -12.9153671, y: 1.11021423, z: 1.35116577}
-    m_Extent: {x: 49.8534317, y: 33.1713638, z: 60.4775848}
+    m_Center: {x: -12.915369, y: 1.11021423, z: 1.35116768}
+    m_Extent: {x: 49.8534317, y: 33.1713638, z: 60.4775772}
   m_DirtyAABB: 0
 --- !u!1 &132088187
 GameObject:
@@ -3005,7 +3005,7 @@ GameObject:
   - 61: {fileID: 1750759273}
   - 23: {fileID: 1750759275}
   m_Layer: 5
-  m_Name: ABorC_Textbox
+  m_Name: Letter_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4856,8 +4856,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.157030851, y: .675529003, z: .150571823, w: .704506934}
-  m_LocalPosition: {x: -7.37393904, y: -6.16310644, z: -16.2311821}
+  m_LocalRotation: {x: .177253753, y: .285329342, z: .0537833162, w: -.940359354}
+  m_LocalPosition: {x: 32.0080719, y: -27.0007973, z: -57.323761}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
