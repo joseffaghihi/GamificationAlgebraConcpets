@@ -4,12 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
-  - enabled: 1
-    path: Assets/Scenes/Scales.unity
-  - enabled: 1
-    path: Assets/Scenes/Ship.unity
-  - enabled: 1
-    path: Assets/Scenes/Union_Prototype.unity
+  m_Scenes: []

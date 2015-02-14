@@ -54,15 +54,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   problemBox: {fileID: 0}
   letterbox: {fileID: 0}
-  minionSpawnWait: {fileID: 0}
   letterBox: {fileID: 0}
-  score: {fileID: 0}
-  activateSpawner: 0
-  waitTimer: 5
-  gameSounds: {fileID: 0}
+  scoreBox: {fileID: 0}
+  winLoseText: {fileID: 0}
+  audio: {fileID: 0}
   failSound: {fileID: 0}
-  successSound: {fileID: 0}
-  gameOverSound: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
