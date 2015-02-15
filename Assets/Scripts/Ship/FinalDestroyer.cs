@@ -13,7 +13,7 @@ public class FinalDestroyer : MonoBehaviour
      *  Check the minion's self-assigned number and compare against the current quadratic equation index
      *  Manage when the equation should be created
      *  Determining if the answer is correct or incorrect
-     *  Toggle the spawners; given in specific condition
+     *  Toggle the spawner's; given in specific condition
      *  Clear scene of the minions
      */
 
@@ -29,7 +29,7 @@ public class FinalDestroyer : MonoBehaviour
 	    public Text whatIsText;
         public Score score;
         //public Text scoreBox;
-    // Toggle the minion spawners
+    // Toggle the minion spawner's
         public bool activateSpawner;
     // Wait timer for the minion check
         public int waitTimer = 5;
@@ -46,7 +46,7 @@ public class FinalDestroyer : MonoBehaviour
 
 
 
-    // ReadOnly Accessor; should the spawners be activated?
+    // ReadOnly Accessors; should the spawner's be activated?
     public bool ActivateSpawner
     {
         // thanks to Bob for giving me the idea in his previous code.
@@ -58,11 +58,11 @@ public class FinalDestroyer : MonoBehaviour
     // Initialize the declarations
     void Start()
     {
-        // Turn on the spawners
+        // Turn on the spawner's
         activateSpawner = true;
         // Turn off the lock
         lockCheckFunction = false;
-        // Refernece initialization
+        // Reference initialization
 		letterBoxController = letterBox.GetComponent<Animator>();
     } // End of Start
 
@@ -121,7 +121,7 @@ public class FinalDestroyer : MonoBehaviour
         score.AccessUpdateScoreCorrect();
         // ----
 
-        // Stop the spawners
+        // Stop the spawner's
         activateSpawner = false;
 
         // Lock the exit from further comparison
@@ -153,7 +153,7 @@ public class FinalDestroyer : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         // Unlock the function [OnTriggerEvent]
         lockCheckFunction = false;
-        // Resume the minion spawners
+        // Resume the minion spawner's
         activateSpawner = true;
     } // End of WaitTimer
 

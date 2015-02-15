@@ -4,7 +4,7 @@ using System.Collections;
 public class Spawner : MonoBehaviour
 {
         /*                    SPAWNER
-         * This class will simply manage how the spawners are going to summon the minion actors into the scene.
+         * This class will simply manage how the spawner's are going to summon the minion actors into the scene.
          *  
          * GOALS:
          *  Spawn the minions when the spawner is activated

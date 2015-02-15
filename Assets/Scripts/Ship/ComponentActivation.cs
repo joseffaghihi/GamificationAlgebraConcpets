@@ -6,7 +6,7 @@ public class ComponentActivation : MonoBehaviour
 {
 
         /*                      COMPONENT ACTIVATION
-         * Designed for the minions, specifically for actor activity and attirbutes.
+         * Designed for the minions, specifically for actor activity and attributes.
          * 
          * GOALS:
          *  Minion walks forward, depending on the given condition

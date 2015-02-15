@@ -10,7 +10,7 @@ public class ProblemBox : MonoBehaviour
          *  
          * GOALS:
          *  Generate the quadratic equation indexes
-         *  Return a random number that requires the RNG boundry
+         *  Return a random number that requires the RNG boundary
          */
 
 

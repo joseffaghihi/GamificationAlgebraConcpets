@@ -12,7 +12,7 @@ public class GameState : MonoBehaviour
          * Goals:
          *      Determine if the user wins or fails
          *      Any Startup algorithms (help, tutorials, etc)
-         *      Toggles execution of the spawners
+         *      Toggles execution of the spawner's
          */
 
 
@@ -39,7 +39,7 @@ public class GameState : MonoBehaviour
         // Primary Spawner Switch
             private bool activateSpawner = false; // This switch is the primary - game level that will toggle wither the spawner is to be active or not.
         // Normal Game State Activator Switch
-            private bool activateNormalState = true; // When true, this will activate the spawners and reset the score
+            private bool activateNormalState = true; // When true, this will activate the spawner's and reset the score
         // Audio Control References [DC]
             public AudioSource audio;
             public AudioClip failSound;
@@ -126,7 +126,7 @@ public class GameState : MonoBehaviour
         gameStateOver = true;
         gameStateNormal = false;
 
-        // Stop the spawners from further execution
+        // Stop the spawner's from further execution
         activateSpawner = false;
 
 
@@ -150,10 +150,10 @@ public class GameState : MonoBehaviour
 
 
 
-    // This function will allow the spawners to begin their execution, reset the scores, and anything else that must be dealt with before a new game is initialized.
+    // This function will allow the spawner's to begin their execution, reset the scores, and anything else that must be dealt with before a new game is initialized.
     void GameStateActivateNormal()
     {
-        activateSpawner = true; // Turn on the spawners
+        activateSpawner = true; // Turn on the spawner's
         gameStateOver = false; // Disable the 'Game Over' game state
         score.AccessThrashScores(); // Flush the current scores
         winLoseText.text = ""; // Remove any existing text string of wither the player lost or won

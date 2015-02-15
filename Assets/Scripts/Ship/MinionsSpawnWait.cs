@@ -32,7 +32,7 @@ public class MinionsSpawnWait : MonoBehaviour
 
 
 
-    // For debuging; accessible through other scripts if needed.
+    // For debugging; accessible through other scripts if needed.
     public void DebugCheckMinion()
     {
         // Does there exists creatures within the scene that has the 'minion' tag?
