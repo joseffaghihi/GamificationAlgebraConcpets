@@ -44,6 +44,7 @@ public class GameState : MonoBehaviour
         // More references
             public FinalDestroyer finalDestroyer;
             public VoiceOver tutorial;
+            //public SceneMusic music;
     // ----
 
 
@@ -97,6 +98,10 @@ public class GameState : MonoBehaviour
         {
             // Nothing to do
             // The player is still in the tutorial function
+
+
+
+
         }
         else // Run Away Function
         {

@@ -2117,6 +2117,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1312877625}
   - 82: {fileID: 1312877624}
+  - 114: {fileID: 1312877626}
   m_Layer: 0
   m_Name: GameMusic
   m_TagString: Untagged
@@ -2194,6 +2195,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1939987171}
   m_RootOrder: 0
+--- !u!114 &1312877626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1312877623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf507ec97150c9b4d846414490fcb0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: {fileID: 1430447472}
+  volumeNormal: 1
+  volumeTutorial: .100000001
 --- !u!1001 &1358912439
 Prefab:
   m_ObjectHideFlags: 0
@@ -5027,8 +5042,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.31946978, y: -3.72008729, z: -24.6829472}
+  m_LocalRotation: {x: -.0339975432, y: -.104152456, z: .00356239825, w: -.993973732}
+  m_LocalPosition: {x: -1.91016197, y: -3.26759911, z: -26.7114906}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
