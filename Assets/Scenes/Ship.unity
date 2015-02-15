@@ -234,13 +234,95 @@ GameObject:
   m_Component:
   - 4: {fileID: 33354909}
   - 95: {fileID: 33354905}
+  - 82: {fileID: 33354904}
+  - 114: {fileID: 33354903}
   m_Layer: 0
   m_Name: Minion Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!114 &33354903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33354902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9140a4b6abbcfb4db005820c4c629f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voiceOver:
+  - {fileID: 8300000, guid: d2b6683f5db0d624e89ec0f09a611b44, type: 3}
+  - {fileID: 8300000, guid: 06c43208d2a2d824fbfacab176003ded, type: 3}
+  - {fileID: 8300000, guid: 08e205e54de26354e92ee35e5f5ef7ce, type: 3}
+  - {fileID: 8300000, guid: b22f5c7e6bda30e4a82249207179638f, type: 3}
+  - {fileID: 8300000, guid: 63a1c96af146f02499d7775cdb80800f, type: 3}
+  - {fileID: 8300000, guid: d44a6644f6b6cf040bc211a660609be2, type: 3}
+  - {fileID: 8300000, guid: f1264d92bc261514fa2ffa4f1bf75988, type: 3}
+  - {fileID: 8300000, guid: 5ab55075b8b6dc84abf35ead6568224b, type: 3}
+  - {fileID: 8300000, guid: 298a8ee02df36974a9bfa57604dda925, type: 3}
+  - {fileID: 8300000, guid: d04a6f425127e7440ad7cd3827a93732, type: 3}
+--- !u!82 &33354904
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33354902}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &33354905
 Animator:
   serializedVersion: 3
@@ -835,7 +917,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 114, y: -78.5999985}
+  m_AnchoredPosition: {x: 114, y: -80}
   m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &461673501
@@ -864,7 +946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .5, g: .5, b: .5, a: 1}
+  m_Color: {r: .933333337, g: .494117647, b: .596078455, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: dab85a50c3d5fa04a89106a2a59e99d7, type: 3}
     m_FontSize: 65
@@ -1433,7 +1515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sharedMaterial: {fileID: 2100000, guid: 4e1467e748fa74c64b96759b3d9713ae, type: 2}
   waterQuality: 2
-  edgeBlend: 0
+  edgeBlend: 1
 --- !u!114 &871709230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4944,8 +5026,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.31946978, y: -3.72008729, z: -24.6829472}
+  m_LocalRotation: {x: .059838891, y: -.205723286, z: .0126038603, w: .976697683}
+  m_LocalPosition: {x: 8.37264156, y: -5.86033058, z: -37.8779716}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
@@ -5047,8 +5129,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: -.0425405912, y: -.170897931, z: .00738570141, w: -.984342277}
-  m_LocalPosition: {x: -13.7432671, y: -2.01402283, z: -44.1644936}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.31946978, y: -3.72008729, z: -24.6829472}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}
