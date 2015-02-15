@@ -34,8 +34,6 @@ public class GameState : MonoBehaviour
             private bool gameStateNormal = false; // Enable the regular game
             private bool gameStateTutorial = false; // Enable tutorial mode
             private bool gameStateOver = false; // Enable a stop signal; game over
-        // Toggle var for displaying 'Restart $key' after game is over.
-            private bool displayRestartButton = true;
         // Primary Spawner Switch
             private bool activateSpawner = false; // This switch is the primary - game level that will toggle wither the spawner is to be active or not.
         // Normal Game State Activator Switch
@@ -82,7 +80,6 @@ public class GameState : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log("GameState: " + GameStateOver);
         if (gameStateTutorial == false)  // iif (if and only if) we're not running the tutorial mode
         {
             if (gameStateOver == false) // If the game is not over
@@ -95,9 +92,6 @@ public class GameState : MonoBehaviour
                 // Allow the user to restart the game if a key is pressed at this given moment
                 if (Input.GetButtonDown("Restart Game"))
                     GameStateActivateNormal();
-                else
-                    if (displayRestartButton == true)
-                        DisplayRestartGameMsg(); // This function will deal with the restart message.
             } // End of IF: gameStateOver
         }
         else if (gameStateTutorial == true)
@@ -160,9 +154,11 @@ public class GameState : MonoBehaviour
         //      0 = Passed
         //      1 = Failed or Error
         if (grade == false)
-            winLoseText.text = "You Won!";
+            winLoseText.text = "You Won!" + "\n\n" +
+                                "Press 'R' to Restart!";
         else
-            winLoseText.text = "Try Again!";
+            winLoseText.text = "Try Again!" + "\n\n" + 
+                                "Press 'R' to Restart!";
     } // End of GameStateGameOver
 
 
@@ -176,26 +172,7 @@ public class GameState : MonoBehaviour
         winLoseText.text = ""; // Remove any existing text string of wither the player lost or won
         activateNormalState = false; // Turn this off
         gameStateNormal = true;
-        DisplayRestartGameMsg(); // Clear the restart message from the screen
     } // End of GameStateActivateNormal
-
-
-
-    // This function will merely display text after the game is over.
-    void DisplayRestartGameMsg()
-    {
-        if (gameStateNormal == true)
-        {
-            // Remove the text from the screen
-            displayRestartButton = true; // Once the game is completed, enable this flag to show the 'restart' button to reset the game.
-            return;
-        }
-        else
-        {
-            Debug.Log("Game Over\n Press the 'R' key to restart!");
-            displayRestartButton = false; // Only display the message once, not repeatedly to avoid over processing on the registers
-        }
-    } // End of DisplayRestartGameMsg
 
 
 
