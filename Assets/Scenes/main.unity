@@ -1857,10 +1857,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
-  spawnRate: 20.7999992
   finalDestroyer: {fileID: 63528817}
   gameState: {fileID: 1430447472}
+  spawnRate: 20.7999992
+  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!1 &1198669441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +1969,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 6b0d9b279b2414467af7c2266c9604ee, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -2742,10 +2742,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
-  spawnRate: 8.19999981
   finalDestroyer: {fileID: 63528817}
   gameState: {fileID: 1430447472}
+  spawnRate: 8.19999981
+  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!1 &1701443684
 GameObject:
   m_ObjectHideFlags: 0
@@ -4901,10 +4901,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
-  spawnRate: 2.70000005
   finalDestroyer: {fileID: 63528817}
   gameState: {fileID: 1430447472}
+  spawnRate: 2.70000005
+  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!1 &2066281924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4959,8 +4959,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: .137128145, y: .678264558, z: .131013319, w: -.709921598}
-  m_LocalPosition: {x: 16.2894306, y: -10.3946209, z: -16.2588139}
+  m_LocalRotation: {x: .105042331, y: .846866608, z: .182106137, w: -.488487929}
+  m_LocalPosition: {x: 10.22892, y: -9.95693016, z: -7.01289082}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}

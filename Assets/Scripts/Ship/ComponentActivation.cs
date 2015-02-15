@@ -4,6 +4,19 @@ using System.Collections.Generic;
 
 public class ComponentActivation : MonoBehaviour 
 {
+
+        /*                      COMPONENT ACTIVATION
+         * Designed for the minions, specifically for actor activity and attirbutes.
+         * 
+         * GOALS:
+         *  Minion walks forward, depending on the given condition
+         *  Minion climbs ladder, depending on the given condition
+         *  Screech when selected
+         *  Specialized activity when selected (or flicked)
+         */
+
+
+
     // Declarations and Initializations
     // ---------------------------------
     // Speed that is used when the minions are climbing the ladder
@@ -40,6 +53,7 @@ public class ComponentActivation : MonoBehaviour
 	
 
 
+    // Initialization of specialized variables
 	void Awake() 
 	{
         // References
@@ -49,6 +63,7 @@ public class ComponentActivation : MonoBehaviour
 
 
 
+    // This function will be called once the actor has been summoned within the scene
 	void Start()
 	{
         // Force direction that will be used for eliminating the minion

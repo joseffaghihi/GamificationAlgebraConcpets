@@ -4,19 +4,22 @@ using System.Collections;
 public class MinionsSpawnWait : MonoBehaviour
 {
     /*                    Minion Spawn Wait
-    *  This script will manage how the minions are checked in the scene
-    */
+     *  This script will determine if there is any minions still within the scene.
+     *  
+     * GOALS:
+     *  Determine if there is minions in the scene
+     */
 
 
 
     // Declarations
     // -------------
     // A variable for determining if the minions cleared the scene
-    private bool minionsClearedScene;
+        private bool minionsClearedScene;
     // A variable for determining if there exists a timeout of the current scene
-    // This should avoid scene hangups
-    private bool timeExpired;
-
+        // This should avoid scene hangups
+        private bool timeExpired;
+    // ----
 
 
 
@@ -41,7 +44,6 @@ public class MinionsSpawnWait : MonoBehaviour
 
 
 
-
     // Check the scene and find any minions within the scene
     public bool CheckMinions()
     {
@@ -62,4 +64,4 @@ public class MinionsSpawnWait : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
     } // End of WaitForMinionsToClear
 
-}
+} // End of Class

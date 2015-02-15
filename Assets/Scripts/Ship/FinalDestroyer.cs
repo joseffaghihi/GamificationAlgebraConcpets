@@ -4,25 +4,46 @@ using System.Collections;
 
 public class FinalDestroyer : MonoBehaviour
 {
+
+    /*                      FINAL DESTROYER
+     * This class handles with determining if the minion's that collided with the 'exit' actor, is the correct or incorrect answer to the given problem.
+     *  If the answer is correct, this script will handle with the routine algorithm of updating the game state.
+     *  
+     * GOALS:
+     *  Check the minion's self-assigned number and compare against the current quadratic equation index
+     *  Manage when the equation should be created
+     *  Determining if the answer is correct or incorrect
+     *  Toggle the spawners; given in specific condition
+     *  Clear scene of the minions
+     */
+
+
+
+    // Declarations
+    // -------------
     // Link to other scripts
-    public ProblemBox problemBox;
-    public LetterBox letterbox;
-    public MinionsSpawnWait minionSpawnWait;
-    public Text letterBox;
-	public Text whatIsText;
-    public Score score;
-    //public Text scoreBox;
+        public ProblemBox problemBox;
+        public LetterBox letterbox;
+        public MinionsSpawnWait minionSpawnWait;
+        public Text letterBox;
+	    public Text whatIsText;
+        public Score score;
+        //public Text scoreBox;
     // Toggle the minion spawners
-    public bool activateSpawner;
+        public bool activateSpawner;
     // Wait timer for the minion check
-    public int waitTimer = 5;
+        public int waitTimer = 5;
     // Lock the function from executing; work around gross hack
-    private bool lockCheckFunction;
-	public AudioSource gameSounds;
-	public AudioClip failSound;
-	public AudioClip successSound;
-	public AudioClip gameOverSound;
-	private Animator letterBoxController;
+        private bool lockCheckFunction;
+    // Sounds
+	    public AudioSource gameSounds;
+	    public AudioClip failSound;
+	    public AudioClip successSound;
+	    public AudioClip gameOverSound;
+    // Animations
+	    private Animator letterBoxController;
+    // ----
+
 
 
     // ReadOnly Accessor; should the spawners be activated?
@@ -33,11 +54,15 @@ public class FinalDestroyer : MonoBehaviour
     } // End of ActivateSpawner
 
 
+
     // Initialize the declarations
     void Start()
     {
+        // Turn on the spawners
         activateSpawner = true;
+        // Turn off the lock
         lockCheckFunction = false;
+        // Refernece initialization
 		letterBoxController = letterBox.GetComponent<Animator>();
     } // End of Start
 
@@ -48,16 +73,19 @@ public class FinalDestroyer : MonoBehaviour
     {
         if (lockCheckFunction == false)
         {
+            // Fetch the minion's uniquely assigned number; this will be used for comparison.
             CreatureIdentity id = other.gameObject.GetComponent<CreatureIdentity>();
 
+            // If the answer is correct
             if (GetNumber() == id.Number){
                 CorrectAnswer();
 				letterBoxController.SetTrigger ("LetterChange");
 				whatIsText.animation.Play ();
-			}
+			} // End If
             else
+                // Answer is not correct
                 IncorrectAnswer();
-        }
+        } // End Parent-If
 
         // Destroy the game object when they activate this trigger
         Destroy(other.gameObject);
@@ -134,6 +162,7 @@ public class FinalDestroyer : MonoBehaviour
     // When the user has the incorrect answer, this function will manage the routines
     private void IncorrectAnswer()
     {
+        // Update the incorrect score
         score.AccessUpdateScoreIncorrect();
 
 		// Plays the 'failSound' if the wrong minion goes through________________________DAVID
@@ -156,7 +185,7 @@ public class FinalDestroyer : MonoBehaviour
             // Kill them
             for (int i = 0; i < minionsInScene.Length; i++)
                 DestroyObject(minionsInScene[i]);
-        }
+        } // End If
 
     } // End of MinionGenocide
 

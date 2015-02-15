@@ -4,8 +4,13 @@ using System.Collections;
 
 public class Score : MonoBehaviour
 {
+
     /*                            SCORE
      * This class is designed to manage the general score of the game.
+     * 
+     * GOALS:
+     *  Managing the scores
+     *  Returning the score values (when called)
      */
 
 
@@ -106,4 +111,5 @@ public class Score : MonoBehaviour
     {
         ThrashScores();
     } // End of AccessThrashScores
-}
+
+} // End of Class

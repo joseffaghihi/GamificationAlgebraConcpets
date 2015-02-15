@@ -16,6 +16,7 @@ public class GameState : MonoBehaviour
          */
 
 
+
     // Declarations and Initializations
     // ---------------------------------
     // References
@@ -44,7 +45,6 @@ public class GameState : MonoBehaviour
             public AudioClip failSound;
         // More references
             public FinalDestroyer finalDestroyer;
-
     // ----
 
 
@@ -197,4 +197,4 @@ public class GameState : MonoBehaviour
     {
         get { return activateSpawner; }
     } // End of ActivateSpawner
-}
+} // End of Class
