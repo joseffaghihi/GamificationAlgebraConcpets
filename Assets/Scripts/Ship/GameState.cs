@@ -43,7 +43,9 @@ public class GameState : MonoBehaviour
             public AudioClip failSound;
         // More references
             public FinalDestroyer finalDestroyer;
+            public VoiceOver tutorial;
     // ----
+
 
 
 
@@ -69,17 +71,14 @@ public class GameState : MonoBehaviour
 
 
 
-	// Use this for initialization
-	void Start ()
-    {
-	    // CALL TUTORIAL HERE
-	} // End of Start
-
-
 	
 	// Update is called once per frame
 	void Update ()
     {
+        // Check to see if the tutorial mode is active
+        CheckTutorialMode();
+
+        // Check the game state:
         if (gameStateTutorial == false)  // iif (if and only if) we're not running the tutorial mode
         {
             if (gameStateOver == false) // If the game is not over
@@ -191,4 +190,13 @@ public class GameState : MonoBehaviour
     {
         get { return activateSpawner; }
     } // End of ActivateSpawner
+
+
+
+    // Check to see if the Tutorial mode is active at this given time
+    private void CheckTutorialMode()
+    {
+        gameStateTutorial = tutorial.TutorialMode;
+    } // End of CheckTutorialMode
+
 } // End of Class

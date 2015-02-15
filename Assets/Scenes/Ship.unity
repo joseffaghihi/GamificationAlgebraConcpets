@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sharedMaterial: {fileID: 2100000, guid: 4e1467e748fa74c64b96759b3d9713ae, type: 2}
   waterQuality: 2
-  edgeBlend: 1
+  edgeBlend: 0
 --- !u!114 &871709230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2673,6 +2673,7 @@ MonoBehaviour:
   audio: {fileID: 0}
   failSound: {fileID: 0}
   finalDestroyer: {fileID: 63528817}
+  tutorial: {fileID: 33354903}
 --- !u!1 &1462125636
 GameObject:
   m_ObjectHideFlags: 0
@@ -5026,8 +5027,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: .059838891, y: -.205723286, z: .0126038603, w: .976697683}
-  m_LocalPosition: {x: 8.37264156, y: -5.86033058, z: -37.8779716}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.31946978, y: -3.72008729, z: -24.6829472}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
