@@ -28,7 +28,6 @@ public class FinalDestroyer : MonoBehaviour
         public Text letterBox;
 	    public Text whatIsText;
         public Score score;
-        //public Text scoreBox;
     // Toggle the minion spawner's
         public bool activateSpawner;
     // Wait timer for the minion check

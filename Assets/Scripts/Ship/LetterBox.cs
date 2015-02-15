@@ -63,14 +63,6 @@ public class LetterBox : MonoBehaviour
                 letterBox.text = "ZZ";
                 break;
         } // End Switch
-
     } // End of Generate
-	
-
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 } // End of Class

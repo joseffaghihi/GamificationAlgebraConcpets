@@ -140,12 +140,7 @@ public class GameState : MonoBehaviour
         if (grade == false)
             winLoseText.text = "You Won!";
         else
-        {
             winLoseText.text = "Try Again!";
-            //audio.clip = failSound;
-            //audio.Play();
-            //audio.loop = false;
-        }
     } // End of GameStateGameOver
 
 

@@ -18,14 +18,11 @@ public class ProblemBox : MonoBehaviour
     // Declarations
     // -------------
     // Indexes
-        int A;
-        int B;
-        int C;
+        int A, B, C;
     // Reference
         Text problemBox;
     // Random Number Generator (RNG) range [minimum, maximum]
-        public int minValue;
-        public int maxValue;
+        public int minValue, maxValue;
     // ----
 
 

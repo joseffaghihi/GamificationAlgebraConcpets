@@ -78,10 +78,13 @@ public class ComponentActivation : MonoBehaviour
     // When the minions 'hit' with other objects, this function is going to be called.
 	void OnTriggerEnter(Collider other)
 	{
+        // Debug Purposes:
+        //id = gameObject.GetComponent<CreatureIdentity>();
+
         // Ladder collision:
 		if(other.tag == "Ladder")
 		{
-            //id = gameObject.GetComponent<CreatureIdentity>();
+            // Debug Purposes:
             //Debug.Log("Hit Ladder: " + id.Number.ToString());
             // ----
             isClimbing = true;
@@ -92,8 +95,8 @@ public class ComponentActivation : MonoBehaviour
         // Forward Enabler (game object) collision:
         else if (other.tag == "ForwardEnabler")
 		{
-            //id = gameObject.GetComponent<CreatureIdentity>();
-            //Debug.Log("Hit Forward Enabler: " + id.Number.ToString());
+
+            // Debug Purposes:
             // ----
             isClimbing = false;
             isWalking = true;
@@ -103,7 +106,7 @@ public class ComponentActivation : MonoBehaviour
         // Exit collision:
         else if (other.tag == "exit")
 		{
-            //id = gameObject.GetComponent<CreatureIdentity>();
+            // Debug Purposes:
             //Debug.Log("Hit Exit: " + id.Number.ToString());
             // ----
 			// exit code
@@ -117,7 +120,7 @@ public class ComponentActivation : MonoBehaviour
         } // End if (Minion)
 
         // Temp Debug Messages [NG]
-        Debug.Log("Minion has hit tag: " + other.tag);
+        //Debug.Log("Minion has hit tag: " + other.tag);
 
 	} // End of OnTriggerEnter
 
@@ -159,17 +162,9 @@ public class ComponentActivation : MonoBehaviour
     // When the creature has been 'selected', this function will be called
     void OnMouseDown()
     {
-		// Created a method for all of these below______________________DAVID
-		/*
-        rigidbody.useGravity = true;
-        rigidbody.isKinematic = false;
-        rigidbody.AddForce(forceDirection * force);
-        Debug.Log("Clicked!");
-        Destroy(gameObject, 1f);
-        minionAnim.SetBool ("isFlicked", true);
-		Destroy(capsuleCollider);
-		*/
+        // Selected action
 		Flick ();
+        // Play sound
 		MinionSqueal();
     } // End of OnMouseDown
 
