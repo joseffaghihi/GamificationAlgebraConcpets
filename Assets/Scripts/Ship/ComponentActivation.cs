@@ -69,8 +69,8 @@ public class ComponentActivation : MonoBehaviour
         // Force direction that will be used for eliminating the minion
             forceDirection = new Vector3(1f, 1f, 0);
         // Self-Randomize the speed
-            climbSpeed = Random.Range(9.89f, 13.12f);
-            walkSpeed = Random.Range(3.98f, 6.5f); 
+            climbSpeed = Random.Range(3.98f, 6.5f);
+            walkSpeed = Random.Range(9.89f, 13.12f);
 	} // End of Start
 	
 
