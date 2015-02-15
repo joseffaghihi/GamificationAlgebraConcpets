@@ -49,6 +49,27 @@ public class GameState : MonoBehaviour
 
 
 
+    // Accessors; used for returning the value of the game state
+    // Game State: Game Over
+    public bool GameStateOver
+    {
+        get { return gameStateOver; }
+    }
+
+    // Game State: Tutorial Mode
+    public bool GameStateTutorial
+    {
+        get { return gameStateTutorial; }
+    }
+
+    // Game State: Normal Mode
+    public bool GameStateNormal
+    {
+        get { return gameStateNormal; }
+    }
+    // ----
+
+
 
 	// Use this for initialization
 	void Start ()
@@ -61,6 +82,7 @@ public class GameState : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        Debug.Log("GameState: " + GameStateOver);
         if (gameStateTutorial == false)  // iif (if and only if) we're not running the tutorial mode
         {
             if (gameStateOver == false) // If the game is not over

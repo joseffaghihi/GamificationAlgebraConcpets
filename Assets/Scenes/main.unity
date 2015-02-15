@@ -332,6 +332,7 @@ MonoBehaviour:
   letterBox: {fileID: 1750759268}
   whatIsText: {fileID: 2000418826}
   score: {fileID: 1430447471}
+  gameState: {fileID: 1430447472}
   activateSpawner: 0
   waitTimer: 2
   gameSounds: {fileID: 996319882}
@@ -2585,7 +2586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winLoseText: {fileID: 1398285122}
   score: {fileID: 1430447471}
-  scoreCorrectMax: 1
+  scoreCorrectMax: 10
   scoreIncorrectMax: 5
   audio: {fileID: 0}
   failSound: {fileID: 0}
@@ -3067,6 +3068,10 @@ Prefab:
       propertyPath: m_TagString
       value: Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
+      propertyPath: gameState
+      value: 
+      objectReference: {fileID: 1430447472}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
   m_RootGameObject: {fileID: 63528814}

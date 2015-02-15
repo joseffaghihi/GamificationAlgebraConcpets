@@ -28,6 +28,7 @@ public class FinalDestroyer : MonoBehaviour
         public Text letterBox;
 	    public Text whatIsText;
         public Score score;
+        public GameState gameState;
     // Toggle the minion spawner's
         public bool activateSpawner;
     // Wait timer for the minion check
@@ -76,15 +77,13 @@ public class FinalDestroyer : MonoBehaviour
             CreatureIdentity id = other.gameObject.GetComponent<CreatureIdentity>();
 
             // If the answer is correct
-            if (GetNumber() == id.Number){
+            if (GetNumber() == id.Number)
+                // Answer is correct
                 CorrectAnswer();
-				letterBoxController.SetTrigger ("LetterChange");
-				whatIsText.animation.Play ();
-			} // End If
             else
                 // Answer is not correct
                 IncorrectAnswer();
-        } // End Parent-If
+        } // End If
 
         // Destroy the game object when they activate this trigger
         Destroy(other.gameObject);
@@ -133,20 +132,21 @@ public class FinalDestroyer : MonoBehaviour
         // ----
 
 
-        // Generate a new equation
-        problemBox.Generate();
-        letterbox.Generate();
-
+        // Check the game state to see if the game is over or still on going
+        StartCoroutine(waitTimer_GameStateCheck(1));
+        // ----
 
 
         // Timer to unlock the 'Lock Check Function' variable
-        StartCoroutine(WaitTimer(waitTimer));
+        StartCoroutine(WaitTimer(waitTimer + 1));
+        // ----
+
     } // End of CorrectAnswer
 
 
 
     // Once activated; this halts the action within the function before executing anything further.
-    public IEnumerator WaitTimer(int waitTime)
+    private IEnumerator WaitTimer(int waitTime)
     {
         // Waits for $waitTime seconds
         yield return new WaitForSeconds(waitTime);
@@ -155,6 +155,28 @@ public class FinalDestroyer : MonoBehaviour
         // Resume the minion spawner's
         activateSpawner = true;
     } // End of WaitTimer
+
+
+
+    // Pause the script to wait for the game over state to catch up
+    private IEnumerator waitTimer_GameStateCheck(int waitCheck)
+    {
+        yield return new WaitForSeconds(waitCheck);
+
+        // If the game is not over, continue on generating a new equation and the rest of the algorithm
+        if (gameState.GameStateOver == false)
+        {
+            // Generate a new equation
+            problemBox.Generate();
+            letterbox.Generate();
+            // ----
+
+
+            // Notify the user of index update
+            letterBoxController.SetTrigger("LetterChange");
+            whatIsText.animation.Play();
+        } // End If
+    } // End of Pause_GameOverCheck
 
 
 
