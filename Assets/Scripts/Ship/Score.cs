@@ -22,6 +22,7 @@ public class Score : MonoBehaviour
             private int scoreIncorrect;
         // References
             public Text scoreBox; // Directly link to the score box gameobject
+            public Text wrongScoreBox; // Wrong answer score
     // -------------
 
 
@@ -53,10 +54,19 @@ public class Score : MonoBehaviour
 
 
 
+    // This function will update the wrong answer score canvas string that is on the HUD
+    private void UpdateWrongScoreDisplay()
+    {
+        wrongScoreBox.text = "WRONG: " + scoreIncorrect.ToString();
+    } // End of UpdateWrongScoreDisplay
+
+
+
     // Update the incorrect\fail score
     private void UpdateScoreIncorrect ()
     {
         scoreIncorrect++;
+        UpdateWrongScoreDisplay();
     } // End of UpdateScoreIncorrect
 
 
@@ -102,6 +112,7 @@ public class Score : MonoBehaviour
         scoreCorrect = 0;
         scoreIncorrect = 0;
         UpdateScoreDisplay();
+        UpdateWrongScoreDisplay();
     } // End of ThrashScore
 
 
