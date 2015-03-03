@@ -173,10 +173,10 @@ public class ComponentActivation : MonoBehaviour
     // Actions to take place when the minion has been selected
 	public void Flick()
 	{
-		rigidbody.useGravity = true;
-		rigidbody.isKinematic = false;
+		GetComponent<Rigidbody>().useGravity = true;
+		GetComponent<Rigidbody>().isKinematic = false;
 		isClimbing = false;
-		rigidbody.AddForce(forceDirection * force);
+		GetComponent<Rigidbody>().AddForce(forceDirection * force);
 		Debug.Log("Clicked!");
 		Destroy(gameObject, 1f);
 		minionAnim.SetBool ("isFlicked", true);
@@ -192,32 +192,32 @@ public class ComponentActivation : MonoBehaviour
 		switch (sound)
 		{
 		case 1:
-			audio.clip = screechOne;
+			GetComponent<AudioSource>().clip = screechOne;
 			print("Audio 1 was played.");
 			break;
 		case 2:
-			audio.clip = screechTwo;
+			GetComponent<AudioSource>().clip = screechTwo;
 			print("Audio 2 was played.");
 			break;
 		case 3:
-			audio.clip = screechThree;
+			GetComponent<AudioSource>().clip = screechThree;
 			print("Audio 3 was played.");
 			break;
 		case 5: 
-			audio.clip = screechFive;
+			GetComponent<AudioSource>().clip = screechFive;
 			print ("Audio five was played.");
 			break;
 		case 6:
-			audio.clip = screechSix;
+			GetComponent<AudioSource>().clip = screechSix;
 			print("Audio six was played.");
 			break;
 		default:
-			audio.clip = screechFour;
+			GetComponent<AudioSource>().clip = screechFour;
 			print("Audio 4 was played.");
 			break;
 		} // End switch
         
-        audio.Play();
+        GetComponent<AudioSource>().Play();
 
     } // End of MinionSqueal
 

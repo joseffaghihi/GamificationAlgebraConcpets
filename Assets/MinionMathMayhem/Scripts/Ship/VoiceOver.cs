@@ -31,8 +31,8 @@ public class VoiceOver : MonoBehaviour
            // Run tutorial
            if (skip == false)
            {
-               audio.clip = tutorialClip;
-               audio.Play();
+               GetComponent<AudioSource>().clip = tutorialClip;
+               GetComponent<AudioSource>().Play();
                yield return new WaitForSeconds(tutorialClip.length);
            }
            

@@ -111,8 +111,8 @@ public class FinalDestroyer : MonoBehaviour
     private void CorrectAnswer()
     {
 		// Plays the 'successSound' if the right minion goes through________________________DAVID
-		audio.clip = successSound;
-		audio.Play ();
+		GetComponent<AudioSource>().clip = successSound;
+		GetComponent<AudioSource>().Play ();
 		// ----
 
         // Update the score
@@ -174,7 +174,7 @@ public class FinalDestroyer : MonoBehaviour
 
             // Notify the user of index update
             letterBoxController.SetTrigger("LetterChange");
-            whatIsText.animation.Play();
+            whatIsText.GetComponent<Animation>().Play();
         } // End If
     } // End of Pause_GameOverCheck
 
@@ -187,8 +187,8 @@ public class FinalDestroyer : MonoBehaviour
         score.AccessUpdateScoreIncorrect();
 
 		// Plays the 'failSound' if the wrong minion goes through________________________DAVID
-		audio.clip = failSound;
-		audio.Play ();
+		GetComponent<AudioSource>().clip = failSound;
+		GetComponent<AudioSource>().Play ();
 		// ----
 
     } // End of IncorrectAnswer

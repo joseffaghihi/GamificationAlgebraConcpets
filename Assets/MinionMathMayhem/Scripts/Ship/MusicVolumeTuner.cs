@@ -29,10 +29,10 @@ public class MusicVolumeTuner : MonoBehaviour
     {
         if (gameState.GameStateTutorial == false)
             // Standard music volume
-            audio.volume = volumeNormal;
+            GetComponent<AudioSource>().volume = volumeNormal;
         else
             // Tutorial mode music volume
-            audio.volume = volumeTutorial;
+            GetComponent<AudioSource>().volume = volumeTutorial;
 	} // End of Update
 
 } // End Class
