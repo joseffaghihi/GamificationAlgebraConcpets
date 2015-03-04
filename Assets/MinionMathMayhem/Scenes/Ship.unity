@@ -653,6 +653,10 @@ Prefab:
       propertyPath: m_Name
       value: Ladder_02
       objectReference: {fileID: 0}
+    - target: {fileID: 179826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
   m_IsPrefabParent: 0
@@ -758,6 +762,10 @@ Prefab:
     - target: {fileID: 179826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
       propertyPath: m_Name
       value: Ladder_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 179826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
@@ -1296,6 +1304,10 @@ Prefab:
       propertyPath: m_Name
       value: Ladder_03
       objectReference: {fileID: 0}
+    - target: {fileID: 179826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
   m_IsPrefabParent: 0
@@ -1478,7 +1490,6 @@ GameObject:
   - 114: {fileID: 1398625335}
   - 114: {fileID: 1398625334}
   - 222: {fileID: 1398625333}
-  - 114: {fileID: 1398625332}
   m_Layer: 5
   m_Name: User Interface Canvas
   m_TagString: Untagged
@@ -1512,33 +1523,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1398625332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11440238, guid: 89b5805c92c8c4dfc8ff5115afdf0250,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1398625330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 
 --- !u!222 &1398625333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1575,10 +1559,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1024, y: 768}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1653,6 +1637,10 @@ Prefab:
     - target: {fileID: 400000, guid: 92f4e13b1cc5340789cdbe5173c5fe9e, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.40632415
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 92f4e13b1cc5340789cdbe5173c5fe9e, type: 3}
+      propertyPath: m_Name
+      value: Ship
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92f4e13b1cc5340789cdbe5173c5fe9e, type: 3}
