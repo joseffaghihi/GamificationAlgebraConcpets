@@ -7,12 +7,12 @@ PlayerSettings:
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
-  targetGlesGraphics: 1
+  targetGlesGraphics: -1
   targetIOSGraphics: -1
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: asdf
+  productName: GamificationAlgebraConcpets
   cloudProjectId: 
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -80,7 +80,7 @@ PlayerSettings:
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
-  productGUID: af801221654bab5439c4038c46f682b9
+  productGUID: ab92ffcc4098faf42b636840aaebff56
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -194,11 +194,7 @@ PlayerSettings:
   ps4ApplicationParam2: 0
   ps4ApplicationParam3: 0
   ps4ApplicationParam4: 0
-<<<<<<< Updated upstream
   ps4Passcode: frAQBc8Wsa1xVPfvJcrgRYwTiizs2trQ
-=======
-  ps4Passcode: gXsDImawhexS7baVK8C8zV9XVSk0fiVk
->>>>>>> Stashed changes
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -221,7 +217,7 @@ PlayerSettings:
   psp2LiveAreaTrialPath: 
   psp2PatchChangeInfoPath: 
   psp2PatchOriginalPackage: 
-  psp2PackagePassword: 
+  psp2PackagePassword: F69AzBlax3CF3EDNhm3soLBPh71Yexui
   psp2KeystoneFile: 
   psp2DRMType: 0
   psp2StorageType: 0
@@ -252,7 +248,7 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
   scriptingDefineSymbols: {}
-  metroPackageName: asdf
+  metroPackageName: GamificationAlgebraConcpets
   metroPackageLogo: 
   metroPackageLogo140: 
   metroPackageLogo180: 
@@ -263,7 +259,7 @@ PlayerSettings:
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: asdf
+  metroApplicationDescription: GamificationAlgebraConcpets
   metroStoreTileLogo80: 
   metroStoreTileLogo: 
   metroStoreTileLogo140: 
@@ -366,22 +362,16 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   intPropertyNames:
-<<<<<<< Updated upstream
   - Metro::ScriptingBackend
   - WP8::ScriptingBackend
-=======
->>>>>>> Stashed changes
   - WebGL::ScriptingBackend
   - WebGL::audioCompressionFormat
   - WebGL::exceptionSupport
   - WebGL::memorySize
   - iOS::Architecture
   - iOS::ScriptingBackend
-<<<<<<< Updated upstream
   Metro::ScriptingBackend: 2
   WP8::ScriptingBackend: 2
-=======
->>>>>>> Stashed changes
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 0
@@ -390,7 +380,9 @@ PlayerSettings:
   iOS::ScriptingBackend: 0
   boolPropertyNames:
   - WebGL::dataCaching
+  - XboxOne::enus
   WebGL::dataCaching: 0
+  XboxOne::enus: 1
   stringPropertyNames:
   - WebGL::emscriptenArgs
   - WebGL::template

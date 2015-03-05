@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: f82b60324776a2c40b2866265f60fc46
+timeCreated: 1425523104
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: blink
+    100002: Box001
+    100004: Box003
+    100006: Line001
+    100008: ouch
+    100010: Rectangle001
+    100012: Sphere001
+    100014: Sphere002
+    100016: Sphere003
+    100018: Treadmill
+    100020: //RootNode
+    100022: Whoa!
+    100024: wink
+    400000: blink
+    400002: Box001
+    400004: Box003
+    400006: Line001
+    400008: ouch
+    400010: Rectangle001
+    400012: Sphere001
+    400014: Sphere002
+    400016: Sphere003
+    400018: Treadmill
+    400020: //RootNode
+    400022: Whoa!
+    400024: wink
+    2300000: blink
+    2300002: Box001
+    2300004: Box003
+    2300006: ouch
+    2300008: Sphere001
+    2300010: Sphere002
+    2300012: Sphere003
+    2300014: Treadmill
+    2300016: Whoa!
+    2300018: wink
+    3300000: blink
+    3300002: Box001
+    3300004: Box003
+    3300006: ouch
+    3300008: Sphere001
+    3300010: Sphere002
+    3300012: Sphere003
+    3300014: Treadmill
+    3300016: Whoa!
+    3300018: wink
+    4300000: ouch
+    4300002: wink
+    4300004: blink
+    4300006: Whoa!
+    4300008: Box001
+    4300010: Treadmill
+    4300012: Box003
+    4300014: Sphere001
+    4300016: Sphere002
+    4300018: Sphere003
+    7400000: Start
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Start
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: blink
+        weight: 1
+      - path: Box001
+        weight: 1
+      - path: Box003
+        weight: 1
+      - path: Line001
+        weight: 1
+      - path: ouch
+        weight: 1
+      - path: Rectangle001
+        weight: 1
+      - path: Sphere001
+        weight: 1
+      - path: Sphere002
+        weight: 1
+      - path: Sphere003
+        weight: 1
+      - path: Treadmill
+        weight: 1
+      - path: Whoa!
+        weight: 1
+      - path: wink
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
