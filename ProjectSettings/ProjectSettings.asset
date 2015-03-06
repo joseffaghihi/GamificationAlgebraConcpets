@@ -80,11 +80,7 @@ PlayerSettings:
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
-<<<<<<< Updated upstream
-  productGUID: ab92ffcc4098faf42b636840aaebff56
-=======
-  productGUID: a49d6d3dc5dbc437ba01d5afa007e1cd
->>>>>>> Stashed changes
+  productGUID: 95c6346ecbe0949498b4c2de9052dd78
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -198,11 +194,7 @@ PlayerSettings:
   ps4ApplicationParam2: 0
   ps4ApplicationParam3: 0
   ps4ApplicationParam4: 0
-<<<<<<< Updated upstream
-  ps4Passcode: frAQBc8Wsa1xVPfvJcrgRYwTiizs2trQ
-=======
-  ps4Passcode: 5FZagUXw1DXxddou4EyAyNT2IJQceM3o
->>>>>>> Stashed changes
+  ps4Passcode: 2Jx4Vdjs0C3swI0A0wWyqrC7C2YcwUeT
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -225,11 +217,7 @@ PlayerSettings:
   psp2LiveAreaTrialPath: 
   psp2PatchChangeInfoPath: 
   psp2PatchOriginalPackage: 
-<<<<<<< Updated upstream
-  psp2PackagePassword: F69AzBlax3CF3EDNhm3soLBPh71Yexui
-=======
-  psp2PackagePassword: AWOJnlNsG6aoGCKWzTiz66bEa64OOp0w
->>>>>>> Stashed changes
+  psp2PackagePassword: sUNpwlF7vJ0bU6OYVAHciG3mxfc67WD5
   psp2KeystoneFile: 
   psp2DRMType: 0
   psp2StorageType: 0
@@ -374,22 +362,12 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   intPropertyNames:
-<<<<<<< Updated upstream
-  - Metro::ScriptingBackend
-  - WP8::ScriptingBackend
-=======
->>>>>>> Stashed changes
   - WebGL::ScriptingBackend
   - WebGL::audioCompressionFormat
   - WebGL::exceptionSupport
   - WebGL::memorySize
   - iOS::Architecture
   - iOS::ScriptingBackend
-<<<<<<< Updated upstream
-  Metro::ScriptingBackend: 2
-  WP8::ScriptingBackend: 2
-=======
->>>>>>> Stashed changes
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 0
