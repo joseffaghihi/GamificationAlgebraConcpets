@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class OutputAchievements : MonoBehaviour 
+public class OutputAchievements : MonoBehaviour
 {
     //Update Trophy Status when the Trophy Panel is opened
     public void updateTrophy(int trophyID)
