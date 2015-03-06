@@ -3,6 +3,15 @@ using System.Collections;
 
 public class VoiceOver : MonoBehaviour
 {
+   /*                    VOICE OVER TUTORIAL
+    * This script manages the tutorial that is given by the Minion Spirit.
+    *  
+    * GOALS:
+    *  Manage the Minion Spirit's tutorial
+    *  Interrupt tutorial
+    */
+
+
 
     // Declarations and Initializations
     // ---------------------------------
