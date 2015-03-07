@@ -24,8 +24,7 @@ obj/
 *.unityproj
 *.booproj
 # Visual Studio
-UnityVS/
-UnityVS.meta
+Assets/UnityVS/
 
 
 
