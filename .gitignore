@@ -5,7 +5,8 @@
 # ===============
 Temp/
 Library/
-
+Obj/
+UnityGenerated/
 
 
 # =====================================
@@ -22,6 +23,9 @@ obj/
 *.user
 *.unityproj
 *.booproj
+# Visual Studio
+UnityVS/
+UnityVS.meta
 
 
 
