@@ -110,7 +110,7 @@ public class FinalDestroyer : MonoBehaviour
     // When the player has the right answer, this function will house the algorithm
     private void CorrectAnswer()
     {
-		// Plays the 'successSound' if the right minion goes through________________________DAVID
+		// Plays the 'successSound' if the right minion goes through [DC]
 		GetComponent<AudioSource>().clip = successSound;
 		GetComponent<AudioSource>().Play ();
 		// ----
@@ -186,7 +186,7 @@ public class FinalDestroyer : MonoBehaviour
         // Update the incorrect score
         score.AccessUpdateScoreIncorrect();
 
-		// Plays the 'failSound' if the wrong minion goes through________________________DAVID
+		// Plays the 'failSound' if the wrong minion goes through [DC]
 		GetComponent<AudioSource>().clip = failSound;
 		GetComponent<AudioSource>().Play ();
 		// ----
