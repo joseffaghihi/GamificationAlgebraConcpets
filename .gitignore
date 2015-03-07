@@ -1,19 +1,21 @@
-# Using Ignore List from:
+# Using Ignore List from link as initial base:
 #  http://unity3diy.blogspot.com/2014/06/using-git-with-3d-games-source-control_8.html
 # =============== 
 # Unity generated
 # ===============
-Temp/
-Library/
-Obj/
-UnityGenerated/
+/Temp/
+/Library/
+/UnityGenerated/
+/Build/
+sysinfo.txt
+
 
 
 # =====================================
 # Visual Studio / MonoDevelop generated
 # =====================================
-ExportedObj/
-obj/
+/ExportedObj/
+/Obj/
 *.svd
 *.userprefs
 /*.csproj
@@ -23,8 +25,8 @@ obj/
 *.user
 *.unityproj
 *.booproj
-# Visual Studio
-Assets/UnityVS/
+/Assets/UnityVS/
+/Assets/UnityVS.meta
 
 
 
@@ -38,3 +40,4 @@ Assets/UnityVS/
 .Trashes
 ehthumbs.db
 Thumbs.db
+Icon?
