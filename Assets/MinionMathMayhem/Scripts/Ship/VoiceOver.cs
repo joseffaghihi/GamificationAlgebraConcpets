@@ -33,28 +33,27 @@ public class VoiceOver : MonoBehaviour
 
 
 
-   IEnumerator PlayTutorial() // Plays audio for tutorial clips
+    IEnumerator PlayTutorial() // Plays audio for tutorial clips
     {
-       foreach (AudioClip tutorialClip in voiceOver)
-       {
-           // Run tutorial
-           if (skip == false)
-           {
-               GetComponent<AudioSource>().clip = tutorialClip;
-               GetComponent<AudioSource>().Play();
-               yield return new WaitForSeconds(tutorialClip.length);
-           }
-           
-           // Skip tutorial; wait for 2 seconds for prepare time.
-           else
-               yield return new WaitForSeconds(2);
-       } // End foreach
+        foreach (AudioClip tutorialClip in voiceOver)
+        {
+            // Run tutorial
+            if (skip == false)
+            {
+                GetComponent<AudioSource>().clip = tutorialClip;
+                GetComponent<AudioSource>().Play();
 
-       // turn off the tutorial mode
-       tutorialMode = false;
+                // Check to see if the user is skipping the tutorial before issuing a wait.
+                for (int i = 0; i < tutorialClip.length && skip == false; i++)
+                    yield return new WaitForSeconds(1);
+            }
+        } // End foreach
+
+        // turn off the tutorial mode
+        tutorialMode = false;
 
     } // End of PlayTutorial
-
+    
 
 
     // This function, when called by another skip, will toggle the tutorial skip variable.
