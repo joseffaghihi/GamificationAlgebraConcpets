@@ -47,6 +47,8 @@ public class VoiceOver : MonoBehaviour
                 for (int i = 0; i < tutorialClip.length && skip == false; i++)
                     yield return new WaitForSeconds(1);
             }
+            GetComponent<AudioSource>().Stop();
+
         } // End foreach
 
         // turn off the tutorial mode
