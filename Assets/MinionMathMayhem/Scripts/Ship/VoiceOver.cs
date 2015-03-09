@@ -47,6 +47,8 @@ public class VoiceOver : MonoBehaviour
                 for (int i = 0; i < tutorialClip.length && skip == false; i++)
                     yield return new WaitForSeconds(1);
             }
+            
+            // Stop the audio that is currently being played.  This is useful when the skip tutorial has been activated.
             GetComponent<AudioSource>().Stop();
 
         } // End foreach
