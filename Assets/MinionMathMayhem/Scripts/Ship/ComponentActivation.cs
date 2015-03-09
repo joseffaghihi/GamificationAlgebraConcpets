@@ -176,6 +176,7 @@ public class ComponentActivation : MonoBehaviour
 		GetComponent<Rigidbody>().useGravity = true;
 		GetComponent<Rigidbody>().isKinematic = false;
 		isClimbing = false;
+		isWalking = false;
 		GetComponent<Rigidbody>().AddForce(forceDirection * force);
 		Debug.Log("Clicked!");
 		Destroy(gameObject, 1f);

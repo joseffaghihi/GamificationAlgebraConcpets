@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da40891028745b24e93d7d0af010c7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1000
+  force: 3000
   screechOne: {fileID: 8300000, guid: b5529d376c7634b3fa848356badbdc94, type: 3}
   screechTwo: {fileID: 8300000, guid: 51780b707269d431780048e4120df00a, type: 3}
   screechThree: {fileID: 8300000, guid: 6982f0c4fd47f4e31987402aa0262158, type: 3}
