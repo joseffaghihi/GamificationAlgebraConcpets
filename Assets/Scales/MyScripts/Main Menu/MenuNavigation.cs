@@ -27,6 +27,8 @@ public class MenuNavigation : MonoBehaviour
 
     //***All Types of possible Scenes***
     private const string BalancingGame = "Balance";
+	private const string ShipGame = "Ship";
+	private const string TreadmillGame = "Treadmill";
 
     //Keep track of which panel the user is in
     /*
@@ -143,6 +145,18 @@ public class MenuNavigation : MonoBehaviour
     {
         Application.LoadLevel(BalancingGame); //start the balancing game
     }
+
+	//Load Ship Game
+	public void PlayShipGame()
+	{
+		Application.LoadLevel (ShipGame); //Start the ship game
+	}
+
+	//Load Treadmill Game
+	public void PlayTreadmillGame()
+	{
+		Application.LoadLevel(TreadmillGame); //Start the treadmill game
+	}
 
     //Save Game
     public void SaveButton()

@@ -7,7 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scales/MyScenes/Menu.unity
-  - enabled: 1
-    path: Assets/Scales/MyScenes/Balance.unity
   - enabled: 0
+    path: Assets/Scales/MyScenes/Balance.unity
+  - enabled: 1
     path: Assets/MinionMathMayhem/Scenes/Ship.unity
+  - enabled: 1
+    path: Assets/TheTreadmill/Scenes/Treadmill.unity
