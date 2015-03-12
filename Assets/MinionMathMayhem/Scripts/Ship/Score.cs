@@ -49,7 +49,7 @@ public class Score : MonoBehaviour
     // This function will only merely update the score canvas string that is being displayed in the scene as a HUD
     private void UpdateScoreDisplay()
     {
-        scoreBox.text = "SCORE: " + scoreCorrect.ToString();
+        scoreBox.text = "Score: " + scoreCorrect.ToString();
     } // End of UpdateScoreDisplay
 
 
@@ -57,7 +57,7 @@ public class Score : MonoBehaviour
     // This function will update the wrong answer score canvas string that is on the HUD
     private void UpdateWrongScoreDisplay()
     {
-        wrongScoreBox.text = "WRONG: " + scoreIncorrect.ToString();
+        wrongScoreBox.text = "Oopsies: " + scoreIncorrect.ToString();
     } // End of UpdateWrongScoreDisplay
 
 
