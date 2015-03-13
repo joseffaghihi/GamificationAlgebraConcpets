@@ -1480,8 +1480,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1252846938}
   m_LocalRotation: {x: 1.15202333e-07, y: .707106769, z: .707106888, w: -1.15202319e-07}
-  m_LocalPosition: {x: -73.2698898, y: -178.391205, z: 16.2287292}
-  m_LocalScale: {x: 40.771328, y: 61.7978172, z: .595200539}
+  m_LocalPosition: {x: -73.2699966, y: -178.389999, z: 16.2290001}
+  m_LocalScale: {x: 40.771328, y: 61.7978172, z: 1.11861646}
   m_Children: []
   m_Father: {fileID: 1923540374}
   m_RootOrder: 7
@@ -2498,7 +2498,7 @@ Prefab:
     - target: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: whatIsText
       value: 
-      objectReference: {fileID: 2000418826}
+      objectReference: {fileID: 491266297}
     - target: {fileID: 100376, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: m_TagString
       value: Exit
@@ -2507,6 +2507,10 @@ Prefab:
       propertyPath: gameState
       value: 
       objectReference: {fileID: 1430447472}
+    - target: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
+      propertyPath: eventLetterText
+      value: 
+      objectReference: {fileID: 2021063920}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
   m_IsPrefabParent: 0

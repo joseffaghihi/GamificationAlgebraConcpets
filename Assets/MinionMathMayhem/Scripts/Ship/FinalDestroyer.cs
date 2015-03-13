@@ -23,10 +23,12 @@ public class FinalDestroyer : MonoBehaviour
     // -------------
     // Link to other scripts
         public ProblemBox problemBox;
+		public GameObject whatIsText;
+		public GameObject eventLetterText;
         public LetterBox letterbox;
         public MinionsSpawnWait minionSpawnWait;
         public Text letterBox;
-	    public Text whatIsText;
+	    //public Text whatIsText;
         public Score score;
         public GameState gameState;
     // Toggle the minion spawner's
@@ -42,6 +44,7 @@ public class FinalDestroyer : MonoBehaviour
 	    public AudioClip gameOverSound;
     // Animations
 	    private Animator letterBoxController;
+		private Animator eventLetterAnim; //------------------------------will control the animations of the what is 
     // ----
 
 
@@ -54,6 +57,11 @@ public class FinalDestroyer : MonoBehaviour
     } // End of ActivateSpawner
 
 
+
+	void Awake()
+	{
+		eventLetterAnim = whatIsText.GetComponent<Animator>(); // finds the whatis text G.O. and gets the animator.
+	}
 
     // Initialize the declarations
     void Start()
@@ -139,6 +147,8 @@ public class FinalDestroyer : MonoBehaviour
 
         // Timer to unlock the 'Lock Check Function' variable
         StartCoroutine(WaitTimer(waitTimer + 1));
+
+		eventLetterAnim.SetTrigger ("SlideIn");
         // ----
 
     } // End of CorrectAnswer

@@ -15,13 +15,17 @@ public class EventLetterChange : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ThisText = GetComponent<Text>();
-		//referenceText = ;
 		referenceText = GameObject.Find ("Letter_Text");
 		if(referenceText == null)
 		{
 			Debug.Log ("No referenceText object was set.");
 		}
 		referenceTextLetter = referenceText.GetComponent<Text>();
+		//ThisText.text = referenceTextLetter.text;
+	}
+
+	void Update()
+	{
 		ThisText.text = referenceTextLetter.text;
 	}
 }
