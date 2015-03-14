@@ -1,69 +1,50 @@
 fileFormatVersion: 2
-guid: f82b60324776a2c40b2866265f60fc46
-timeCreated: 1425523104
+guid: a4b5c483867a44dc0b813f3cccdac8f6
+timeCreated: 1426355371
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: blink
-    100002: Box001
-    100004: Box003
-    100006: Line001
-    100008: ouch
-    100010: Rectangle001
+    100000: Box001
+    100002: Box003
+    100004: Line001
+    100006: //RootNode
+    100008: Rectangle001
+    100010: Shape001
     100012: Sphere001
     100014: Sphere002
     100016: Sphere003
     100018: Treadmill
-    100020: //RootNode
-    100022: Whoa!
-    100024: wink
-    400000: blink
-    400002: Box001
-    400004: Box003
-    400006: Line001
-    400008: ouch
-    400010: Rectangle001
+    400000: Box001
+    400002: Box003
+    400004: Line001
+    400006: //RootNode
+    400008: Rectangle001
+    400010: Shape001
     400012: Sphere001
     400014: Sphere002
     400016: Sphere003
     400018: Treadmill
-    400020: //RootNode
-    400022: Whoa!
-    400024: wink
-    2300000: blink
-    2300002: Box001
-    2300004: Box003
-    2300006: ouch
-    2300008: Sphere001
-    2300010: Sphere002
-    2300012: Sphere003
-    2300014: Treadmill
-    2300016: Whoa!
-    2300018: wink
-    3300000: blink
-    3300002: Box001
-    3300004: Box003
-    3300006: ouch
-    3300008: Sphere001
-    3300010: Sphere002
-    3300012: Sphere003
-    3300014: Treadmill
-    3300016: Whoa!
-    3300018: wink
-    4300000: ouch
-    4300002: wink
-    4300004: blink
-    4300006: Whoa!
-    4300008: Box001
-    4300010: Treadmill
-    4300012: Box003
-    4300014: Sphere001
-    4300016: Sphere002
-    4300018: Sphere003
-    7400000: Start
+    2300000: Box001
+    2300002: Box003
+    2300004: Sphere001
+    2300006: Sphere002
+    2300008: Sphere003
+    2300010: Treadmill
+    3300000: Box001
+    3300002: Box003
+    3300004: Sphere001
+    3300006: Sphere002
+    3300008: Sphere003
+    3300010: Treadmill
+    4300000: Sphere002
+    4300002: Box003
+    4300004: Sphere001
+    4300006: Sphere003
+    4300008: Treadmill
+    4300010: Box001
+    7400000: Take 001
     9500000: //RootNode
-    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -73,7 +54,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -81,16 +62,16 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Start
+      name: Take 001
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -106,17 +87,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: blink
-        weight: 1
       - path: Box001
         weight: 1
       - path: Box003
         weight: 1
       - path: Line001
         weight: 1
-      - path: ouch
-        weight: 1
       - path: Rectangle001
+        weight: 1
+      - path: Shape001
         weight: 1
       - path: Sphere001
         weight: 1
@@ -125,10 +104,6 @@ ModelImporter:
       - path: Sphere003
         weight: 1
       - path: Treadmill
-        weight: 1
-      - path: Whoa!
-        weight: 1
-      - path: wink
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

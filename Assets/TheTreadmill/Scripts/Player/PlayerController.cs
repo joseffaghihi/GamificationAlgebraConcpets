@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
 			Jump();
 			onGround = false;
 		}   
+
         //Check boundary limits
         GetComponent<Rigidbody>().position = new Vector3
         (
