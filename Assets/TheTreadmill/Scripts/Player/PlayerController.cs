@@ -10,13 +10,16 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour
 {
-    public float runSpeed = 10.0f; //Speed of player
+    //Speed of the player
+    public float forwardSpeed = 10.0f; //Speed of player when going forward
+    public float backSpeed = 15.0f; //Speed of player when going backwards
 	public float jumpSpeed = 10.0f; //Speed of the Jump
 
+    //Tilt of the player
     public float tiltX; //Tilt to side (rotation X)
     public float tiltZ; //Tilt forward/backward (rotation Z)
 
-    public Boundary boundary;
+    public Boundary boundary; //Holds boundaries of player movement area
 
 	bool onGround = true; //Checks to see if the player is on the Ground
 
@@ -28,7 +31,11 @@ public class PlayerController : MonoBehaviour
 
 		//Set Speed accrodingly
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical); //Set player movement
-        GetComponent<Rigidbody>().velocity = movement * runSpeed; //Set player velocity based on the movement and speed
+
+        if(moveVertical < 0) //If running backwards
+            GetComponent<Rigidbody>().velocity = movement * backSpeed; //Set player velocity based on the movement and backwards speed
+        else
+            GetComponent<Rigidbody>().velocity = movement * forwardSpeed; //Set player velocity based on the movement and forward speed
 
 		//Check 'Y' coordinate (to see if player is on the ground)
 		if (GetComponent<Rigidbody>().position.y <= boundary.yMin)
