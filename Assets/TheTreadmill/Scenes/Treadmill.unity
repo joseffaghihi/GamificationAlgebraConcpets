@@ -100,11 +100,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.3899994
+      value: -19.7999992
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -528,7 +528,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lifes Left:
+  m_Text: 'Lives Left:
 
     Speed:'
 --- !u!222 &892346883
@@ -1227,7 +1227,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1661396946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.100000001, y: 3.5, z: 6.5}
+  m_LocalPosition: {x: -.100000001, y: 3.5, z: 4.69999981}
   m_LocalScale: {x: 2.5, y: 2, z: 3}
   m_Children:
   - {fileID: 1320944506}
