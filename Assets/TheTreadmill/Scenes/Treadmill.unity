@@ -100,19 +100,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< HEAD
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
-=======
-      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.7999992
->>>>>>> origin/master
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -331,7 +327,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 209440279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.100000001, y: 3, z: 6.5}
+  m_LocalPosition: {x: -.100000001, y: 1.5, z: 6.5}
   m_LocalScale: {x: 2.5, y: 2, z: 3}
   m_Children:
   - {fileID: 1661396947}
@@ -362,7 +358,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7, y: 3, z: 25}
+  m_Size: {x: 7, y: 1, z: 25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &257573402
 GameObject:
@@ -472,7 +468,7 @@ GameObject:
   - 54: {fileID: 631748158}
   - 75: {fileID: 631748157}
   - 114: {fileID: 631748156}
-  - 135: {fileID: 631748159}
+  - 136: {fileID: 631748159}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -487,7 +483,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 631748154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: -23.3899994}
+  m_LocalPosition: {x: 0, y: 2, z: -23.3899994}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 998202202}
@@ -506,12 +502,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 20
   jumpSpeed: 100
-  tiltX: 1.5
-  tiltZ: 2.5
+  tiltX: 1
+  tiltZ: 1.5
   boundary:
     xMin: -4
     xMax: 4
-    yMin: 6
+    yMin: 2
     yMax: 15
     zMin: -24
     zMax: 24
@@ -522,7 +518,7 @@ ConstantForce:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 631748154}
   m_Enabled: 1
-  m_Force: {x: 0, y: 0, z: 0}
+  m_Force: {x: 0, y: 0, z: -500}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
@@ -541,8 +537,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &631748159
-SphereCollider:
+--- !u!136 &631748159
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -550,9 +546,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: .069454208, y: 1.0300703, z: -.0882340372}
+  m_Radius: .899999976
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.39999998, z: 0}
 --- !u!1 &663381295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,13 +1335,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1661396946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-=======
-  m_LocalPosition: {x: -.100000001, y: 3.5, z: 4.69999981}
-  m_LocalScale: {x: 2.5, y: 2, z: 3}
->>>>>>> origin/master
   m_Children:
   - {fileID: 1320944506}
   - {fileID: 1166523891}
@@ -1447,7 +1439,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1664349627}
   m_LocalRotation: {x: -.194066808, y: -.00677179173, z: .00133958214, w: -.980964065}
-  m_LocalPosition: {x: -.193526447, y: 16.4034233, z: -33.5374069}
+  m_LocalPosition: {x: -.200000003, y: 16.5900002, z: -34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1329388068}
