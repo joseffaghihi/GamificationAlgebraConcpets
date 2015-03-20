@@ -178,7 +178,7 @@ public class FinalDestroyer : MonoBehaviour
         {
             // Generate a new equation
             problemBox.Access_Generate();
-            letterbox.Generate();
+            letterbox.Access_Generate();
             // ----
 
 
