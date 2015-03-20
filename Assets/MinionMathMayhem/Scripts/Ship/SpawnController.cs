@@ -101,11 +101,11 @@ public class SpawnController : MonoBehaviour
     private void CheckReferences()
     {
         if (scriptGameController == null)
-            MissingReferenceError("Minion Actor");
+            MissingReferenceError("Game Controller");
         if (scriptFinalDestroyer == null)
-            MissingReferenceError("Minion Actor");
+            MissingReferenceError("Final Destroyer");
         if (finalDestroyer == null)
-            MissingReferenceError("Minion Actor");
+            MissingReferenceError("Final Destroyer [DEPRECATED]");
 
     } // CheckReferences()
 

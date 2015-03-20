@@ -133,9 +133,9 @@ public class Score : MonoBehaviour
     private void CheckReferences()
     {
         if (scoreBox == null)
-            MissingReferenceError("Score");
+            MissingReferenceError("Score Box [HUD]");
         if (wrongScoreBox == null)
-            MissingReferenceError("Tutorial");
+            MissingReferenceError("Wrong Score Box [HUD]");
     } // CheckReferences()
 
 
