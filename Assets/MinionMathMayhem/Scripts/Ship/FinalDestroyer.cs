@@ -105,11 +105,11 @@ public class FinalDestroyer : MonoBehaviour
         switch (letterBox.text)
         {
             case "A":
-                return problemBox.a;
+                return problemBox.Index_A;
             case "B":
-                return problemBox.b;
+                return problemBox.Index_B;
             default:
-                return problemBox.c;
+                return problemBox.Index_C;
         }
     } // End of GetNumber
 
