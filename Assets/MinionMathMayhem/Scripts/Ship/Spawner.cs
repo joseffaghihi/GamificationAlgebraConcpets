@@ -46,8 +46,10 @@ public class Spawner : MonoBehaviour
     // Spawn the creature
     void SpawnActor()
     {
-        // spawn the minion actor
-        Instantiate(actor, gameObject.transform.position, Quaternion.identity);
+        // Chance; 50% that the actor will spawn
+        if (System.Convert.ToBoolean (UnityEngine.Random.Range ( 0, 2)))
+            // spawn the minion actor
+            Instantiate(actor, gameObject.transform.position, Quaternion.identity);
     } // Spawn()
 
 
