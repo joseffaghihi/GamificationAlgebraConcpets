@@ -106,7 +106,7 @@ public class Score : MonoBehaviour
 
 
     // Reset Score function
-    private void ThrashScores()
+    private void Reset()
     {
         // This function - will thrash the current scores
         scoreCorrect = 0;
@@ -118,9 +118,9 @@ public class Score : MonoBehaviour
 
 
     // Access reset score function; as the function is set to 'private'
-    public void AccessThrashScores()
+    public void AccessReset()
     {
-        ThrashScores();
+        Reset();
     } // End of AccessThrashScores
 
 } // End of Class
