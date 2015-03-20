@@ -1421,10 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalDestroyer: {fileID: 63528817}
-  gameState: {fileID: 1430447472}
-  spawnRate: 20.7999992
-  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
+  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!1 &1252846938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,6 +2073,7 @@ GameObject:
   - 114: {fileID: 1430447470}
   - 114: {fileID: 1430447471}
   - 114: {fileID: 1430447472}
+  - 114: {fileID: 1430447473}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -2101,12 +2099,16 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430447468}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed3355969d1b1944d95aae38efced41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  maxScore: 5
+  maxScoreFail: 5
+  scriptScore: {fileID: 1430447471}
+  scriptTutorial: {fileID: 33354903}
+  objectTutorial: {fileID: 33354902}
 --- !u!114 &1430447471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2126,7 +2128,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430447468}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcd030c519367924d8ffbc4db71ad7c7, type: 3}
   m_Name: 
@@ -2139,6 +2141,21 @@ MonoBehaviour:
   failSound: {fileID: 0}
   finalDestroyer: {fileID: 63528817}
   tutorial: {fileID: 33354903}
+--- !u!114 &1430447473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430447468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a55973fe734044da6a8cb190956af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRate: 60
+  scriptGameController: {fileID: 1430447470}
+  scriptFinalDestroyer: {fileID: 63528817}
+  finalDestroyer: {fileID: 63528817}
 --- !u!1 &1635683666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2377,10 +2394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalDestroyer: {fileID: 63528817}
-  gameState: {fileID: 1430447472}
-  spawnRate: 8.19999981
-  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
+  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!224 &1715427615
 RectTransform:
   m_PrefabParentObject: {fileID: 22415348, guid: 500a1a609963c7d4283a573a8a0530f7,
@@ -4300,10 +4314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalDestroyer: {fileID: 63528817}
-  gameState: {fileID: 1430447472}
-  spawnRate: 2.70000005
-  MinionPrefab: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
+  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!1 &2066281924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4313,6 +4324,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2066281926}
   - 20: {fileID: 2066281925}
+  - 45: {fileID: 2066281927}
   m_Layer: 0
   m_Name: Water4Example (Advanced)ReflectionSceneCamera
   m_TagString: Untagged
@@ -4364,3 +4376,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871709228}
   m_RootOrder: 6
+--- !u!45 &2066281927
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2066281924}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
