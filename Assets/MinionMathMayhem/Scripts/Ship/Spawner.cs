@@ -4,81 +4,68 @@ using System.Collections;
 public class Spawner : MonoBehaviour
 {
         /*                    SPAWNER
-         * This class will simply manage how the spawner's are going to summon the minion actors into the scene.
+         * This class merely listens for a signal from the 'Spawn Controller' to instantiate a minion actor.
          *  
          * GOALS:
-         *  Spawn the minions when the spawner is activated
+         *  Spawn the minion when a signal has been detected.
          */
-
-
 
     // Declarations and Initializations
     // ---------------------------------
-    // Script References
-        public FinalDestroyer finalDestroyer;
-        public GameState gameState;
-    // Time when the next minion should spawn
-        private float nextSpawn;
-    // How many minions are to be spawned within 60 seconds of time
-        public float spawnRate;
-    // Summon actor:
-        public GameObject MinionPrefab;
+        // Minion Actor
+            public GameObject actor;
     // ----
 
 
 
-    // Use this for initialization
-    void Start()
+    // This function is immediately executed once the actor is in the game scene.
+    private void Start()
     {
-        // Determine the spawn rate
-        CalcNextSpawnTime();
-    } // End of Start
+        // First make sure that all the scripts and actors are properly linked
+            CheckReferences();
+    } // Start()
 
 
 
-    // Update is called once per frame
-    void Update()
+    // Signal Listener: Detected
+    private void OnEnable()
     {
-
-        // Check to see if the spawner is activated
-        if (finalDestroyer.ActivateSpawner == true && gameState.ActivateSpawner == true)
-        {
-            // Check to see if it is time to spawn another minion
-            if (Time.time >= nextSpawn)
-            {
-                Spawn();
-            } // End if
-
-        } // End parent-if
-
-    } // End of Update
+        SpawnController.EnableSpawnPoint += SpawnActor;
+    } // OnEnable()
 
 
 
-    // Determine how long the minions will spawn within the given time of 60 seconds.
-    float MinionsASecond()
+    // Signal Listener: Deactivate
+    private void OnDisable()
     {
-        return 60 / spawnRate;
-    } // End of MinionASecond
-
-
-
-    // Determine the new time in which a new minion will be spawned in the scene
-    void CalcNextSpawnTime()
-    {
-        float r = Random.Range(0, 2 * MinionsASecond());
-        nextSpawn = Time.time + r;
-    } // End of CalcNextSpawnTime
+        SpawnController.EnableSpawnPoint -= SpawnActor;
+    } // OnDisable()
 
 
 
     // Spawn the creature
-    void Spawn()
+    void SpawnActor()
     {
-        // spawn the Minion
-        Instantiate(MinionPrefab, gameObject.transform.position, Quaternion.identity);
+        // spawn the minion actor
+        Instantiate(actor, gameObject.transform.position, Quaternion.identity);
+    } // Spawn()
 
-        // Determine the next time to summon a new minion creature
-        CalcNextSpawnTime();
-    }
+
+
+    // This function will check to make sure that all the references has been initialized properly.
+    private void CheckReferences()
+    {
+        if (actor == null)
+            MissingReferenceError("Minion Actor");
+    } // CheckReferences()
+
+
+
+    // When a reference has not been properly initialized, this function will display the message within the console and stop the game.
+    private void MissingReferenceError(string refLink = "UNKNOWN_REFERENCE_NOT_DEFINED")
+    {
+        Debug.LogError("Critical Error: Could not find a reference to [ " + refLink + " ]!");
+        Debug.LogError("  Can not continue further execution until the internal issues has been resolved!");
+        Time.timeScale = 0; // Halt the game
+    } // MissingReferenceError()
 } // End of Class
