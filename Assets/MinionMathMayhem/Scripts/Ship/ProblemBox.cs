@@ -15,77 +15,112 @@ public class ProblemBox : MonoBehaviour
 
 
 
-    // Declarations
-    // -------------
-    // Indexes
-        int A, B, C;
-    // Reference
-        Text problemBox;
-    // Random Number Generator (RNG) range [minimum, maximum]
-        public int minValue, maxValue;
-    // ----
+    // Declarations and Initializations
+    // ---------------------------------
+        // Quadratic Equation Indexes
+            private int index_A,
+                        index_B,
+                        index_C;
+        // Random Number Generator (RNG) range [minimum, maximum]
+            public int minValue,
+                       maxValue;
 
-
-
-    // Accessors; used for returning the value of the index positions
-    // Index: A
-    public int a
-    {
-        get { return A; }
-    }
-
-    // Index: B
-    public int b
-    {
-        get { return B; }
-    }
-
-    // Index: C
-    public int c
-    {
-        get { return C; }
-    }
+        // Accessors and Communication
+            private Text problemBox;
     // ----
 
 
 
 	// Use this for initialization
-    void Awake()
+    private void Awake()
     {
-        // Initialization for References
-        problemBox = GetComponent<Text>();
-    } // End of Awake
+        // Reference initialization
+            problemBox = GetComponent<Text>();
+    } // Awake()
 
 
 
     // This script is called once, after the actor has been placed in the scene
-	void Start ()
+	private void Start ()
     {
         // Initialize the Quadratic Equation indexes
-        Generate();
-	} // End of Start
+            Generate();
+	} // Start()
 
 
 
     // Generate the Quadratic Equation
-    public void Generate()
+    private void Generate()
     {
-        // Update the Indexes
-            A = GetRandomNumber();
-            B = GetRandomNumber();
-            C = GetRandomNumber();
-        // ----
+        // Generate the new equation indexes
+            Generate_Indexes();
+        // Display the new equation
+            Generate_Display();
+    } // Generate()
 
-        // Output the new equation
-        problemBox.text = A.ToString() + "x +" + B.ToString() + "x+" + C.ToString();
-    } // End of Generate
+
+
+    // Generate the Quadratic Equation Indexes
+    private void Generate_Indexes()
+    {
+        index_A = GetRandomNumber();
+        index_B = GetRandomNumber();
+        index_C = GetRandomNumber();
+    } // Generate_Indexes()
+
+
+
+    // Display the Quadratic Equation on the HUD
+    private void Generate_Display()
+    {
+        problemBox.text = index_A.ToString() + "x +" + index_B.ToString() + "x+" + index_C.ToString();
+    } // Generate_Display()
 
 
 
     // Return the range of the 'Random Number Generator' or simply the RNG of the Quadratic Equation.
-    public int GetRandomNumber()
+    private int GetRandomNumber()
     {
         return Random.Range(minValue, maxValue);
-    } // End of GetRandomNumber
+    } // GetRandomNumber()
 
+
+
+    // This function will call the RNG function (which is private) and return the value to the outside class
+    public int Access_GetRandomNumber()
+    {
+        return (GetRandomNumber());
+    } // Access_GetRandomNumber()
+
+
+
+    // This function will call the Quadratic Equation Generator, as it is set to private.
+    public void Access_Generate()
+    {
+        Generate();
+    } // Access_Generate()
+
+
+
+    // Returning Quadratic Equation Index: A
+    public int Index_A
+    {
+        get { return index_A; }
+    } // Index_A
+
+
+
+    // Returning Quadratic Equation Index: B
+    public int Index_B
+    {
+        get { return index_B; }
+    } // Index_B
+
+
+
+    // Returning Quadratic Equation Index: C
+    public int Index_C
+    {
+        get { return index_C; }
+    } // Index_C
 } // End of Class
