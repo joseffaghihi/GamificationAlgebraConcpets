@@ -19,19 +19,20 @@ public class ComponentActivation : MonoBehaviour
 
     // Declarations and Initializations
     // ---------------------------------
-    // Speed that is used when the minions are climbing the ladder
-        private float climbSpeed;
-    // Speed that is used when the minions are walking (or running) forward
-        private float walkSpeed;
-    // Force 'thrust' that is used when the minions have been selected.
-        public float force = 1000f;
-    // Minion actions:
-        private bool isClimbing = false;
-        private bool isWalking = true;
-    // Direction in which the Minions are thrusted
-        private Vector3 forceDirection;
-    // Script reference link
-        private CreatureIdentity id;
+        // Speed that is used when the minions are climbing the ladder
+            private float climbSpeed;
+        // Speed that is used when the minions are walking (or running) forward
+            private float walkSpeed;
+        // Force 'thrust' that is used when the minions have been selected.
+            public float force = 1000f;
+        // Minion actions:
+            private bool isClimbing = false;
+            private bool isWalking = true;
+        // Direction in which the Minions are thrusted
+            private Vector3 forceDirection;
+
+        // Accessors and Communication
+            //private CreatureIdentity id;
 
     // Multimedia
     // --
@@ -54,29 +55,60 @@ public class ComponentActivation : MonoBehaviour
 
 
     // Initialization of specialized variables
-	void Awake() 
+	private void Awake() 
 	{
-        // References
+        // References and Initializations
             minionAnim = GetComponent<Animator>();
             capsuleCollider = GetComponent<CapsuleCollider>();
-	} // End of Awake
+	} // Awake()
 
 
 
     // This function will be called once the actor has been summoned within the scene
-	void Start()
+	private void Start()
 	{
         // Force direction that will be used for eliminating the minion
             forceDirection = new Vector3(1f, 1f, 0);
-        // Self-Randomize the speed
+        // Set the actor's unique attributes.
+            SetAttributes();
+        // Detect the minion's animation and event state
+            StartCoroutine(MinionEventState());
+	} // Start()
+
+
+
+    // Check the actor's current event and state and probably change the animation state and attributes when necessary.
+    private IEnumerator MinionEventState()
+    {
+        while (true) // Never ending loop
+        {
+            // Check to see if the minion needs to walk or climb
+            if (isWalking == !false)
+                Walk();
+            else if (isClimbing == !false)
+                Climb();
+
+            // Brief wait time to ease the CPU
+            yield return new WaitForSeconds(0.01f);
+        } // While
+    } // MinionEventState()
+
+
+
+    // Set the actor's unique attributes
+    private void SetAttributes()
+    {
+        // Climbing speed
             climbSpeed = Random.Range(3.98f, 6.5f);
+
+        // Walking speed
             walkSpeed = Random.Range(9.89f, 13.12f);
-	} // End of Start
-	
+    } // SetAttributes()
+
 
 
     // When the minions 'hit' with other objects, this function is going to be called.
-	void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider other)
 	{
         // Debug Purposes:
         //id = gameObject.GetComponent<CreatureIdentity>();
@@ -116,56 +148,38 @@ public class ComponentActivation : MonoBehaviour
         else if (other.tag == "Minion")
         {
             // Temp Debug Messages [NG]
-            Debug.Log("Hit with minion detected");
+                //Debug.Log("Hit with minion detected");
         } // End if (Minion)
 
         // Temp Debug Messages [NG]
         //Debug.Log("Minion has hit tag: " + other.tag);
-
-	} // End of OnTriggerEnter
+	} // OnTriggerEnter()
 
 
 
     // This function is called when the minions are going to walk.
-    void Walk()
+    private void Walk()
     {
         transform.Translate(new Vector3(0, 0, 1) * walkSpeed * Time.deltaTime);
-    } // End of Walk
+    } // Walk()
 
 
 
     // This functions is called when the minions are going to climb
-    void Climb()
+    private void Climb()
     {
         transform.Translate(new Vector3(0, 1, 0) * climbSpeed * Time.deltaTime);
-    } // End of Climb
+    } // Climb()
     
 
 
-    // Update on every frame
-    void Update()
-    {
-        // Check to see if the minion needs to walk or climb
-        if(isWalking == true)
-        {
-            Walk();
-        }
-        else if (isClimbing == true)
-        {
-            Climb();
-        }
-
-    } // End of Update
-
-
-
     // When the creature has been 'selected', this function will be called
-    void OnMouseDown()
+    private void OnMouseDown()
     {
         // Selected action
-		Flick ();
+		    Flick();
         // Play sound
-		MinionSqueal();
+		    MinionSqueal();
     } // End of OnMouseDown
 
 
@@ -182,15 +196,14 @@ public class ComponentActivation : MonoBehaviour
 		Destroy(gameObject, 1f);
 		minionAnim.SetBool ("isFlicked", true);
 		Destroy(capsuleCollider);
-	} // End of Flick
+	} // Flick()
 
 
 
     // Sounds from the minion when selected
     public void MinionSqueal()
 	{	
-        int sound = Random.Range (1, 7);
-		switch (sound)
+        switch (Random.Range(1, 7))
 		{
 		case 1:
 			GetComponent<AudioSource>().clip = screechOne;
@@ -220,6 +233,5 @@ public class ComponentActivation : MonoBehaviour
         
         GetComponent<AudioSource>().Play();
 
-    } // End of MinionSqueal
-
+    } // MinionSqueal()
 } // End of Class
