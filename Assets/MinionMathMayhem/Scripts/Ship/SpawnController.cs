@@ -3,63 +3,75 @@ using System.Collections;
 
 public class SpawnController : MonoBehaviour
 {
-        /*                    SPAWNER
-         * This class will simply manage how the spawner's are going to summon the minion actors into the scene.
+        /*                    SPAWNER CONTROLLER
+         * This class will simply send a singal to the spawner actors to summon the minion actors into the scene.
          *  
          * GOALS:
-         *  Spawn the minions when the spawner is activated
+         *  Determine the next spawn
+         *  Send spawn signal to the spawners
          */
 
 
 
     // Declarations and Initializations
     // ---------------------------------
-    // Script References
+        // Time when the next minion should spawn
+            private float nextSpawn;
+        // How many minions are to be spawned within 60 seconds of time
+            // Can be manipulated within Unity's Inspector
+            public float spawnRate;
+
+        // Accessors and Communication
+            // GameController
+                public GameController scriptGameController;
+            // Game Event
+                public FinalDestroyer scriptFinalDestroyer;
+            // Spawner Broadcast Event
+                public delegate void ActivateSpawnPoint();
+                public static event ActivateSpawnPoint EnableSpawnPoint;
+        // DEPERCATED
         public FinalDestroyer finalDestroyer;
-        public GameState gameState;
-    // Time when the next minion should spawn
-        private float nextSpawn;
-    // How many minions are to be spawned within 60 seconds of time
-        public float spawnRate;
-    // Summon actor:
-        public GameObject MinionPrefab;
+        //public GameState gameState;
     // ----
 
 
 
-    // Use this for initialization
-    void Start()
+        // This function is immediately executed once the actor is in the game scene.
+    private void Start()
     {
         // Determine the spawn rate
-        CalcNextSpawnTime();
-    } // End of Start
+            CalcNextSpawnTime();
+        // Spawn Control
+            StartCoroutine(SpawnController());
+    } // Start()
 
 
 
-    // Update is called once per frame
-    void Update()
+    // This function is always called on each frame.
+    private IEnumerator SpawnController()
     {
-
-        // Check to see if the spawner is activated
-        if (finalDestroyer.ActivateSpawner == true && gameState.ActivateSpawner == true)
+        while (true) // Never ending
         {
-            // Check to see if it is time to spawn another minion
-            if (Time.time >= nextSpawn)
-            {
-                Spawn();
-            } // End if
+            // ----
+            // Check to see if the spawner is activated
+            if (finalDestroyer.ActivateSpawner == true && scriptGameController.SpawnMinions == !false)
+                // Check to see if it is time to spawn another minion
+                if (Time.time >= nextSpawn)
+                    SpawnSignal();
+            // ----
 
-        } // End parent-if
-
-    } // End of Update
+            // Brief wait time to ease the CPU
+            yield return new WaitForSeconds(0.1f);
+        } // While()
+    } // SpawnController()
 
 
 
     // Determine how long the minions will spawn within the given time of 60 seconds.
-    float MinionsASecond()
+    private float MinionsASecond()
     {
         return 60 / spawnRate;
-    } // End of MinionASecond
+    } // MinionASecond()
 
 
 
@@ -68,19 +80,16 @@ public class SpawnController : MonoBehaviour
     {
         float r = Random.Range(0, 2 * MinionsASecond());
         nextSpawn = Time.time + r;
-    } // End of CalcNextSpawnTime
+    } // CalcNextSpawnTime()
 
 
 
-    // Spawn the creature
-    void Spawn()
+    // Send a signal to spawn the creature
+    void SpawnSignal()
     {
-        // spawn the Minion
-        Instantiate(MinionPrefab, gameObject.transform.position, Quaternion.identity);
-
+        // Broadcast a signal to the spawners to summon a minion.
+            EnableSpawnPoint();
         // Determine the next time to summon a new minion creature
-        CalcNextSpawnTime();
-    }
+            CalcNextSpawnTime();
+    } // SpawnSignal()
 } // End of Class
-
-}
