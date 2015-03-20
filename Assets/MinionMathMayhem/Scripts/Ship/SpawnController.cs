@@ -36,7 +36,7 @@ public class SpawnController : MonoBehaviour
 
 
 
-        // This function is immediately executed once the actor is in the game scene.
+    // This function is immediately executed once the actor is in the game scene.
     private void Start()
     {
         // First make sure that all the scripts and actors are properly linked
