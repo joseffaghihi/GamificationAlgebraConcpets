@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NumberGenerator : MonoBehaviour {
+public class ObstacleGenerator : MonoBehaviour 
+{
+
+    /** 
+     * Generate Obstacles
+     * Place number on each obstacle
+     */
 
 	// Use this for initialization
 	void Start () {
