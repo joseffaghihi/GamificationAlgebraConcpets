@@ -172,7 +172,7 @@ public class GameState : MonoBehaviour
     {
         activateSpawner = true; // Turn on the spawner's
         gameStateOver = false; // Disable the 'Game Over' game state
-        score.AccessThrashScores(); // Flush the current scores
+        score.AccessReset(); // Flush the current scores
         winLoseText.text = ""; // Remove any existing text string of wither the player lost or won
         activateNormalState = false; // Turn this off
         gameStateNormal = true;
