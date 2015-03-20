@@ -42,13 +42,13 @@ public class SpawnController : MonoBehaviour
         // Determine the spawn rate
             CalcNextSpawnTime();
         // Spawn Control
-            StartCoroutine(SpawnController());
+            StartCoroutine(SpawnDriver());
     } // Start()
 
 
 
     // This function is always called on each frame.
-    private IEnumerator SpawnController()
+    private IEnumerator SpawnDriver()
     {
         while (true) // Never ending
         {
