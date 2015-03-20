@@ -17,9 +17,10 @@ public class GameController : MonoBehaviour
     // Declarations and Initializations
     // ---------------------------------
         // How many to win each wave
-        // Can be manipulated within Unity's Inspector
+            // Can be manipulated within Unity's Inspector
             public int maxScore = 10;
         // How many can the user get wrong on each wave
+            // Can be manipulated within Unity's Inspector
             public int maxScoreFail = 5;
         // [GameManager] Determining if the game is still executing or is finished.
             private bool gameOver = false;
