@@ -15,26 +15,30 @@ public class Score : MonoBehaviour
 
 
 
-    // Declarations
-    // -------------
+    // Declarations and Initializations
+    // ---------------------------------
         // Scores
-            private int scoreCorrect;
-            private int scoreIncorrect;
-        // References
-            public Text scoreBox; // Directly link to the score box gameobject
-            public Text wrongScoreBox; // Wrong answer score
-    // -------------
+            private int scoreCorrect = 0;
+            private int scoreIncorrect = 0;
+
+        // Accessors and Communication
+            // HUD: Score box
+                public Text scoreBox;
+            // HUD: Wrong score box
+                public Text wrongScoreBox;
+    // ----
 
 
 
-	// Use this for initialization
-	private void Start ()
+
+    // This function is immediately executed once the actor is in the game scene.
+    private void Start()
     {
-	    // Initialization of the score
-        scoreCorrect = 0;
-        scoreIncorrect = 0;
-	} // End of Start
-	
+        // First make sure that all the scripts and actors are properly linked
+            CheckReferences();
+    } // Start()
+
+
 
 
     // Update the correct score
@@ -42,7 +46,7 @@ public class Score : MonoBehaviour
     {
         scoreCorrect++;
         UpdateScoreDisplay(); // Update the score display   
-    } // End of UpdateScore
+    } // UpdateScore()
 
 
 
@@ -50,7 +54,7 @@ public class Score : MonoBehaviour
     private void UpdateScoreDisplay()
     {
         scoreBox.text = "Score: " + scoreCorrect.ToString();
-    } // End of UpdateScoreDisplay
+    } // UpdateScoreDisplay()
 
 
 
@@ -58,7 +62,7 @@ public class Score : MonoBehaviour
     private void UpdateWrongScoreDisplay()
     {
         wrongScoreBox.text = "Oopsies: " + scoreIncorrect.ToString();
-    } // End of UpdateWrongScoreDisplay
+    } // UpdateWrongScoreDisplay()
 
 
 
@@ -67,41 +71,7 @@ public class Score : MonoBehaviour
     {
         scoreIncorrect++;
         UpdateWrongScoreDisplay();
-    } // End of UpdateScoreIncorrect
-
-
-
-    // Allow outside scripts to access the 'UpdateScoreCorrect' function.
-    public void AccessUpdateScoreCorrect()
-    {
-        // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
-        UpdateScoreCorrect();
-    } // End of AccessUpdateScoreCorrect
-
-
-
-    // Allow outside scripts to access the 'UpdateScoreIncorrect' function.
-    public void AccessUpdateScoreIncorrect()
-    {
-        // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
-        UpdateScoreIncorrect();
-    } // End of AccessUpdateScoreCorrect
-
-
-
-    // Return the correct score value to the calling script.
-    public int ScoreCorrect
-    {
-        get { return scoreCorrect; }
-    } // End of ScoreCorrect
-
-
-
-    // Return the incorrect\fail score value to the calling script.
-    public int ScoreIncorrect
-    {
-        get { return scoreIncorrect; }
-    } // End of ScoreIncorrect
+    } // UpdateScoreIncorrect()
 
 
 
@@ -113,7 +83,25 @@ public class Score : MonoBehaviour
         scoreIncorrect = 0;
         UpdateScoreDisplay();
         UpdateWrongScoreDisplay();
-    } // End of ThrashScore
+    } // ThrashScore()
+
+
+
+    // Allow outside scripts to access the 'UpdateScoreCorrect' function.
+    public void AccessUpdateScoreCorrect()
+    {
+        // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
+        UpdateScoreCorrect();
+    } // AccessUpdateScoreCorrect()
+
+
+
+    // Allow outside scripts to access the 'UpdateScoreIncorrect' function.
+    public void AccessUpdateScoreIncorrect()
+    {
+        // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
+        UpdateScoreIncorrect();
+    } // AccessUpdateScoreCorrect()
 
 
 
@@ -121,6 +109,42 @@ public class Score : MonoBehaviour
     public void AccessReset()
     {
         Reset();
-    } // End of AccessThrashScores
+    } // AccessThrashScores()
 
+
+
+    // Return the correct score value to the calling script.
+    public int ScoreCorrect
+    {
+        get { return scoreCorrect; }
+    } // ScoreCorrect
+
+
+
+    // Return the incorrect\fail score value to the calling script.
+    public int ScoreIncorrect
+    {
+        get { return scoreIncorrect; }
+    } // ScoreIncorrect
+
+
+
+    // This function will check to make sure that all the references has been initialized properly.
+    private void CheckReferences()
+    {
+        if (scoreBox == null)
+            MissingReferenceError("Score");
+        if (wrongScoreBox == null)
+            MissingReferenceError("Tutorial");
+    } // CheckReferences()
+
+
+
+    // When a reference has not been properly initialized, this function will display the message within the console and stop the game.
+    private void MissingReferenceError(string refLink = "UNKNOWN_REFERENCE_NOT_DEFINED")
+    {
+        Debug.LogError("Critical Error: Could not find a reference to [ " + refLink + " ]!");
+        Debug.LogError("  Can not continue further execution until the internal issues has been resolved!");
+        Time.timeScale = 0; // Halt the game
+    } // MissingReferenceError()
 } // End of Class
