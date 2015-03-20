@@ -85,7 +85,7 @@ public class FinalDestroyer : MonoBehaviour
             CreatureIdentity id = other.gameObject.GetComponent<CreatureIdentity>();
 
             // If the answer is correct
-            if (GetNumber() == id.Number)
+            if (GetNumber() == id.MinionNumber)
                 // Answer is correct
                 CorrectAnswer();
             else
