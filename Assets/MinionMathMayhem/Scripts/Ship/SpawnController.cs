@@ -39,6 +39,8 @@ public class SpawnController : MonoBehaviour
         // This function is immediately executed once the actor is in the game scene.
     private void Start()
     {
+        // First make sure that all the scripts and actors are properly linked
+            CheckReferences();
         // Determine the spawn rate
             CalcNextSpawnTime();
         // Spawn Control
@@ -92,4 +94,28 @@ public class SpawnController : MonoBehaviour
         // Determine the next time to summon a new minion creature
             CalcNextSpawnTime();
     } // SpawnSignal()
+
+
+
+    // This function will check to make sure that all the references has been initialized properly.
+    private void CheckReferences()
+    {
+        if (scriptGameController == null)
+            MissingReferenceError("Minion Actor");
+        if (scriptFinalDestroyer == null)
+            MissingReferenceError("Minion Actor");
+        if (finalDestroyer == null)
+            MissingReferenceError("Minion Actor");
+
+    } // CheckReferences()
+
+
+
+    // When a reference has not been properly initialized, this function will display the message within the console and stop the game.
+    private void MissingReferenceError(string refLink = "UNKNOWN_REFERENCE_NOT_DEFINED")
+    {
+        Debug.LogError("Critical Error: Could not find a reference to [ " + refLink + " ]!");
+        Debug.LogError("  Can not continue further execution until the internal issues has been resolved!");
+        Time.timeScale = 0; // Halt the game
+    } // MissingReferenceError()
 } // End of Class
