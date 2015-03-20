@@ -26,7 +26,7 @@ public class CreatureIdentity : MonoBehaviour
     void Awake()
     {
         // Fetch a random number from the Problem Box script.
-        number = problemBox.GetRandomNumber();
+        number = problemBox.Access_GetRandomNumber();
         // Initialization for using the text on the minion's back.
         Text numText = GetComponentInChildren<Text>();
         // Put the self-assigned unique number on the minion's back

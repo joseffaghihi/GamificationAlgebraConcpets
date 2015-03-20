@@ -177,7 +177,7 @@ public class FinalDestroyer : MonoBehaviour
         if (gameState.GameStateOver == false)
         {
             // Generate a new equation
-            problemBox.Generate();
+            problemBox.Access_Generate();
             letterbox.Generate();
             // ----
 
