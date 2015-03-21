@@ -37,15 +37,9 @@ public class ComponentActivation : MonoBehaviour
     // Multimedia
     // --
         // Screeches
-            public AudioClip screechOne;
-            public AudioClip screechTwo;
-            public AudioClip screechThree;
-            public AudioClip screechFour;
-	        public AudioClip screechFive;
-	        public AudioClip screechSix;
+            public AudioClip[] clickedSound;
         // Won
-	        public AudioClip celebrationOne;
-	        public AudioClip celebrationTwo;
+            public AudioClip[] celebrationSound;
 
     // Animations and physics
         private Animator minionAnim;
@@ -200,38 +194,12 @@ public class ComponentActivation : MonoBehaviour
 
 
 
-    // Sounds from the minion when selected
+    // When the Minion actor has been selected, play a sound clip within a array.
     public void MinionSqueal()
-	{	
-        switch (Random.Range(1, 7))
-		{
-		case 1:
-			GetComponent<AudioSource>().clip = screechOne;
-			print("Audio 1 was played.");
-			break;
-		case 2:
-			GetComponent<AudioSource>().clip = screechTwo;
-			print("Audio 2 was played.");
-			break;
-		case 3:
-			GetComponent<AudioSource>().clip = screechThree;
-			print("Audio 3 was played.");
-			break;
-		case 5: 
-			GetComponent<AudioSource>().clip = screechFive;
-			print ("Audio five was played.");
-			break;
-		case 6:
-			GetComponent<AudioSource>().clip = screechSix;
-			print("Audio six was played.");
-			break;
-		default:
-			GetComponent<AudioSource>().clip = screechFour;
-			print("Audio 4 was played.");
-			break;
-		} // End switch
-        
-        GetComponent<AudioSource>().Play();
-
+	{
+        // Select a sound within the array
+            GetComponent<AudioSource>().clip = clickedSound[Random.Range(1, clickedSound.Length)];
+        // Play the sound clip
+            GetComponent<AudioSource>().Play();
     } // MinionSqueal()
 } // End of Class
