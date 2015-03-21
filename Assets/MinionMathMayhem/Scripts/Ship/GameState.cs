@@ -201,7 +201,7 @@ public class GameState : MonoBehaviour
     // Check to see if the Tutorial mode is active at this given time
     private void CheckTutorialMode()
     {
-        gameStateTutorial = tutorial.TutorialMode;
+        //gameStateTutorial = tutorial.TutorialMode;
     } // End of CheckTutorialMode
 
 } // End of Class
