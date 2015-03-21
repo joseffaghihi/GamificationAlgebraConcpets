@@ -1509,7 +1509,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6b0d9b279b2414467af7c2266c9604ee, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -2198,7 +2198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf54ead17495ab44b02b481220149da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorial: {fileID: 33354903}
 --- !u!23 &1635683669
 MeshRenderer:
   m_ObjectHideFlags: 0
