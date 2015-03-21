@@ -103,7 +103,6 @@ public class GameController : MonoBehaviour
         // Execute the Tutorial
             yield return (StartCoroutine(GameExecute_Tutorial()));
         // ----
-            print("Executing...");
         while(true) // This is a never ending loop
         {
             // Fetch the scores and compute the scores
@@ -181,14 +180,14 @@ public class GameController : MonoBehaviour
 
 
 
-    // While 
+    // Continually loop until the tutorial has ended.  This function will be released once the tutorial has ended.
     private IEnumerator GameExecute_Tutorial_ScanSignal()
     {
         while (gameTutorialEnded == false)
         {
             yield return new WaitForSeconds(1f);
         }
-        yield return new WaitForSeconds(10);
+        yield return null;
     } // GameExecute_Tutorial_ScanSignal()
 
 
