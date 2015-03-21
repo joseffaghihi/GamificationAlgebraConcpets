@@ -21,7 +21,7 @@ public class TutorialSkipButton : MonoBehaviour
 
 
     // When the user clicks this object, skip the tutorial.
-    void OnMouseDown()
+    private void OnMouseDown()
     {
         SkipTutorialDemand();
     } // OnMouseDown()
