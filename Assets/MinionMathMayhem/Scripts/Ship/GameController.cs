@@ -30,19 +30,49 @@ public class GameController : MonoBehaviour
             private bool gameOverFail = false;
         // [GameManager] Enables or disables the spawners
             private bool spawnMinions = false;
+        // [GameManager] Tutorial Ended switch
+            private bool gameTutorialEnded = false;
 
         // Accessors and Communication
             // Scores
                 public Score scriptScore;
             // Tutorial
                 public VoiceOver scriptTutorial;
+            // Tutorial State
+                public delegate void TutorialStateEventStart();
+                public static event TutorialStateEventStart TutorialStateStart;
 
         // GameObjects
             // Tutorial
                 public GameObject objectTutorial;
 
 
-    
+
+    // Signal Listener: Detected
+    private void OnEnable()
+    {
+        VoiceOver.TutorialStateEnded += TutorialMode_Ended;
+    } // OnEnable()
+
+
+
+    // Signal Listener: Deactivate
+    private void OnDisable()
+    {
+        VoiceOver.TutorialStateEnded -= TutorialMode_Ended;
+    } // OnDisable()
+
+
+
+    // When the signal has been detected that the tutorial is over, this function will be called.
+    private void TutorialMode_Ended()
+    {
+        // Toggle this variable; this is used to tell the other functions that the tutorial is over.
+            gameTutorialEnded = !gameTutorialEnded;
+    } // TutorialMode_Ended()
+
+
+
     // This function is immediately executed once the actor is in the game scene.
     private void Start()
     {
@@ -71,8 +101,9 @@ public class GameController : MonoBehaviour
     private IEnumerator GameManager()
     {
         // Execute the Tutorial
-            StartCoroutine(GameExecute_Tutorial());
+            yield return (StartCoroutine(GameExecute_Tutorial()));
         // ----
+            print("Executing...");
         while(true) // This is a never ending loop
         {
             // Fetch the scores and compute the scores
@@ -141,8 +172,24 @@ public class GameController : MonoBehaviour
     {
         // Enable the tutorial object
             objectTutorial.SetActive(true);
-        yield return new WaitForSeconds(10);
+        // Send the 'Tutorial Active' signal
+            TutorialStateStart();
+        // Run a signal detector; once the signal has been detected, the tutorial is finished.
+        //    Once the tutorial is finished, the rest of the game can execute.
+            yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
     } // GameExecute_Tutorial()
+
+
+
+    // While 
+    private IEnumerator GameExecute_Tutorial_ScanSignal()
+    {
+        while (gameTutorialEnded == false)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        yield return new WaitForSeconds(10);
+    } // GameExecute_Tutorial_ScanSignal()
 
 
 
