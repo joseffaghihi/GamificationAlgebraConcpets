@@ -30,20 +30,14 @@ public class ComponentActivation : MonoBehaviour
             private bool isWalking = true;
         // Direction in which the Minions are thrusted
             private Vector3 forceDirection;
-
-        // Accessors and Communication
-            //private CreatureIdentity id;
-
-    // Multimedia
-    // --
-        // Screeches
-            public AudioClip[] clickedSound;
-        // Won
-            public AudioClip[] celebrationSound;
-
-    // Animations and physics
-        private Animator minionAnim;
-        private CapsuleCollider capsuleCollider;
+        // Multimedia
+            // Screeches
+                public AudioClip[] clickedSound;
+            // Won
+                public AudioClip[] celebrationSound;
+        // Animations and physics
+            private Animator minionAnim;
+            private CapsuleCollider capsuleCollider;
     // ----
 	
 
