@@ -1382,7 +1382,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &1087691905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,8 +2072,8 @@ GameObject:
   - 4: {fileID: 1430447469}
   - 114: {fileID: 1430447470}
   - 114: {fileID: 1430447471}
-  - 114: {fileID: 1430447472}
   - 114: {fileID: 1430447473}
+  - 114: {fileID: 1430447472}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -2128,19 +2128,23 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430447468}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd030c519367924d8ffbc4db71ad7c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 787595e402c7e16498a7a826785eec23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winLoseText: {fileID: 1398285122}
-  score: {fileID: 1430447471}
-  scoreCorrectMax: 10
-  scoreIncorrectMax: 5
-  audio: {fileID: 0}
+  gameSounds: {fileID: 0}
   failSound: {fileID: 0}
-  finalDestroyer: {fileID: 63528817}
-  tutorial: {fileID: 33354903}
+  successSound: {fileID: 0}
+  gameOverSound: {fileID: 0}
+  letterBox: {fileID: 0}
+  msgWhatIs: {fileID: 0}
+  EventLetterChange: {fileID: 0}
+  scriptFinalDestroyer: {fileID: 0}
+  scriptLetterBox: {fileID: 0}
+  scriptProblemBox: {fileID: 0}
+  scriptScore: {fileID: 0}
+  scriptGameController: {fileID: 0}
 --- !u!114 &1430447473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2154,7 +2158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRate: 60
   scriptGameController: {fileID: 1430447470}
-  scriptFinalDestroyer: {fileID: 63528817}
+  scriptGameEvent: {fileID: 1430447472}
   finalDestroyer: {fileID: 63528817}
 --- !u!1 &1635683666
 GameObject:
@@ -2186,7 +2190,7 @@ Transform:
   m_LocalScale: {x: 3.03046632, y: 1, z: .99999994}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!114 &1635683668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2313,7 +2317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!1 &1692958822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,7 +2483,7 @@ Prefab:
     - target: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: minionSpawnWait
       value: 
-      objectReference: {fileID: 1772704333}
+      objectReference: {fileID: 0}
     - target: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: score
       value: 
@@ -2519,7 +2523,7 @@ Prefab:
     - target: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: gameState
       value: 
-      objectReference: {fileID: 1430447472}
+      objectReference: {fileID: 0}
     - target: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: eventLetterText
       value: 
@@ -2643,45 +2647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58c7007e1837f44fa4e64a72add78da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1772704332
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1772704334}
-  - 114: {fileID: 1772704333}
-  m_Layer: 0
-  m_Name: MinionSpawnWait
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1772704333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1772704332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5face508f1c0c431899548999fe41d1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1772704334
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1772704332}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.9679298, y: 9.98609924, z: 74.1286087}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
 --- !u!1 &1839939937
 GameObject:
   m_ObjectHideFlags: 0
@@ -4268,8 +4233,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: .087172322, y: .899590552, z: .210452542, w: -.372622699}
-  m_LocalPosition: {x: -13.7432318, y: -2.01403046, z: -44.1644745}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.31946978, y: -3.72008729, z: -24.6829472}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
