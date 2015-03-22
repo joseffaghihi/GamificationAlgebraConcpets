@@ -2070,10 +2070,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1430447469}
+  - 114: {fileID: 1430447472}
   - 114: {fileID: 1430447470}
   - 114: {fileID: 1430447471}
   - 114: {fileID: 1430447473}
-  - 114: {fileID: 1430447472}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -4233,8 +4233,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.31946978, y: -3.72008729, z: -24.6829472}
+  m_LocalRotation: {x: .087172322, y: .899590552, z: .210452542, w: -.372622699}
+  m_LocalPosition: {x: 113.165062, y: -85.300705, z: 97.807251}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
