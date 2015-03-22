@@ -151,7 +151,7 @@ public class GameState : MonoBehaviour
 
 
         // Kill the minions in the scene
-        finalDestroyer.AccessMinionGenocide();
+        //finalDestroyer.AccessMinionGenocide();
 
         // If the user won or failed the game, display the message on the screen.
         // Following with the common standards of the CUI:

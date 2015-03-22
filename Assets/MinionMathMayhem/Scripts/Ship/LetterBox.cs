@@ -17,8 +17,10 @@ public class LetterBox : MonoBehaviour
 
     // Declarations and Initializations
     // ---------------------------------
-    // Quadratic Equation Index Address
-        private Text letterBox;
+        // Quadratic Equation Index Address
+            private Text letterBox;
+        // Selected Index
+            private char indexChar;
     // ----
 
 
@@ -50,15 +52,19 @@ public class LetterBox : MonoBehaviour
         {
             case 1:
                 letterBox.text = "A";
+                indexChar = 'A';
                 break;
             case 2:
                 letterBox.text = "B";
+                indexChar = 'B';
                 break;
             case 3:
                 letterBox.text = "C";
+                indexChar = 'C';
                 break;
             default:
                 letterBox.text = "ERR!"; // Display that there is an error in the box [NG]
+                indexChar = 'E';
                 Debug.LogError("!ERROR!: Failed to generate a legal letter for variable [ letterBox.text ]"); // Show that there was an error in the console [NG]
                 break;
         } // Switch
@@ -72,4 +78,10 @@ public class LetterBox : MonoBehaviour
         Generate();
     } // Access_Generate()
 
+
+    // This function will allow other scripts to determine what index is selected.
+    public char Access_SelectedIndex
+    {
+        get { return indexChar; }
+    } // Access_SelectedIndex
 } // End of Class
