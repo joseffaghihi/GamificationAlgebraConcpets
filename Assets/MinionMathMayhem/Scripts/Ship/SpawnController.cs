@@ -25,7 +25,7 @@ public class SpawnController : MonoBehaviour
             // GameController
                 public GameController scriptGameController;
             // Game Event
-                public FinalDestroyer scriptFinalDestroyer;
+                public GameEvent scriptGameEvent;
             // Spawner Broadcast Event
                 public delegate void ActivateSpawnPoint();
                 public static event ActivateSpawnPoint EnableSpawnPoint;
@@ -33,6 +33,7 @@ public class SpawnController : MonoBehaviour
         public FinalDestroyer finalDestroyer;
         //public GameState gameState;
     // ----
+
 
 
 
@@ -56,10 +57,10 @@ public class SpawnController : MonoBehaviour
         {
             // ----
             // Check to see if the spawner is activated
-            if (finalDestroyer.ActivateSpawner == true && scriptGameController.SpawnMinions == !false)
+            if (scriptGameController.SpawnMinions == !false && scriptGameController.SpawnMinions == !false && scriptGameController.GameOver != true)
                 // Check to see if it is time to spawn another minion
-                if (Time.time >= nextSpawn)
-                    SpawnSignal();
+                    if (Time.time >= nextSpawn)
+                        SpawnSignal();
             // ----
 
             // Brief wait time to ease the CPU
@@ -102,11 +103,8 @@ public class SpawnController : MonoBehaviour
     {
         if (scriptGameController == null)
             MissingReferenceError("Game Controller");
-        if (scriptFinalDestroyer == null)
-            MissingReferenceError("Final Destroyer");
-        if (finalDestroyer == null)
-            MissingReferenceError("Final Destroyer [DEPRECATED]");
-
+        if (scriptGameEvent == null)
+            MissingReferenceError("Game Event");
     } // CheckReferences()
 
 

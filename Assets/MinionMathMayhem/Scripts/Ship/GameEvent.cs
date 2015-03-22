@@ -20,6 +20,8 @@ public class GameEvent : MonoBehaviour
 
     // Declarations and Initializations
     // ---------------------------------
+        // Spawner Toggle
+            private bool SpawnMinions;
         // Sounds
             // Game Sounds
                 public AudioSource gameSounds;
@@ -46,14 +48,10 @@ public class GameEvent : MonoBehaviour
                 public LetterBox scriptLetterBox;
             // Quadratic Equation Problem Box
                 public ProblemBox scriptProblemBox;
-            
-
-            // Update the scores
-                public delegate void UpdateScore_Correct();
-                public static event UpdateScore_Correct UpdateScoreCorrect;
-                // --
-                public delegate void UpdateScore_Incorrect();
-                public static event UpdateScore_Incorrect UpdateScoreIncorrect;
+            // Scores
+                public Score scriptScore;
+            // Game Controller
+                public GameController scriptGameController;
     // ----
 
 
@@ -83,7 +81,7 @@ public class GameEvent : MonoBehaviour
     {
         if (scriptFinalDestroyer.ActorIdentity == scriptFinalDestroyer.ActorIdentity)
             // Correct Answer
-            AnswerCorrect();
+            StartCoroutine(AnswerCorrect());
         else
             // Incorrect Answer
             AnswerIncorrect();
@@ -92,18 +90,132 @@ public class GameEvent : MonoBehaviour
 
 
     // When the user has the correct answer, this function will be executed
-    private void AnswerCorrect()
+    private IEnumerator AnswerCorrect()
     {
+        // Play sounds
+            AnswerCorrect_Sounds();
+        // Update the score
+            AnswerCorrect_UpdateScore();
+        // Pause the spawners
+            SpawnerToggleValue();
+        // Murder the minions!
+            MinionGenocide();
+        // Slight pause
+            yield return (WaitTimer(2));
+        // Animations
+            AnswerCorrect_FinalAnimations();
 
+        yield return null;
     } // AnswerCorrect()
+
+
+
+    // When the answer was correct, play some sounds.
+    private void AnswerCorrect_Sounds()
+    {
+        GetComponent<AudioSource>().clip = successSound; 
+        GetComponent<AudioSource>().Play (); 
+    } // AnswerCorrect_Sounds()
+
+
+
+    // When the answer was correct, update the score board
+    private void AnswerCorrect_UpdateScore()
+    {
+        scriptScore.AccessUpdateScoreCorrect();
+    } // AnswerCorrect_UpdateScore()
+
+
+
+    // When the answer was correct, temporarily stop the spawner
+    private void MinionGenocide()
+    {
+        if (MinionGenocide_CheckMinions() != false)
+        {
+            // Fetch all of the minions in one array 
+                GameObject[] minionsInScene = GameObject.FindGameObjectsWithTag("Minion");
+            // Kill them 
+                for (int i = 0; i < minionsInScene.Length; i++)
+                    DestroyObject(minionsInScene[i]);
+        } // if
+
+    } // AnswerCorrect_MinionGenocide()
+
+
+
+    // Check all actors within the scene and find an actor with tag 'Minion'
+    private bool MinionGenocide_CheckMinions()
+    {
+        // Find 'any' GameObject that has the tag 'Minion' attached to it.
+        if (GameObject.FindGameObjectWithTag("Minion") == null)
+            // If there is no minions in the scene
+            return false;
+        else
+            // There is minions in the scene
+            return true;
+    } // MinionGenocide_CheckMinions()
+
+
+
+    // Generate a new quadratic equation
+    private void AnswerCorrect_Generate()
+    {
+        // If the game is not over, generate a new equation
+        if (scriptGameController.GameOver == false)
+        {
+            // Generate a new equation
+                scriptProblemBox.Access_Generate();
+                scriptLetterBox.Access_Generate();
+            // Notify the user of index update
+                letterBoxController.SetTrigger("LetterChange");
+                msgWhatIs.GetComponent<Animation>().Play();
+        } // If
+    } // AnswerCorrect_Generate()
+
+
+
+    // A temporary pause function
+    // This is useful for merely doing a temporary pause or wait within the code execution.
+    private IEnumerator WaitTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+    } // WaitTimer()
+
+
+
+    // Whatis Text Animations
+    private void AnswerCorrect_FinalAnimations()
+    {
+        eventLetterAnim.SetTrigger("SlideIn");
+    } // AnswerCorrect_FinalAnimations()
 
 
 
     // When the user has the incorrect answer, this function will be executed
     private void AnswerIncorrect()
     {
-
+        // Update the score
+            scriptScore.AccessUpdateScoreIncorrect();
+        // Play Sounds
+            AnswerIncorrect_Sounds();
     } // AnswerIncorrect()
+
+
+
+    // When the answer is incorrect, this will play a sound clip.
+    private void AnswerIncorrect_Sounds()
+    {
+        GetComponent<AudioSource>().clip = failSound;
+        GetComponent<AudioSource>().Play();
+    } // AnswerIncorrect_Sounds()
+
+
+
+    // This function is only going to flip the bit of the Spawner value.
+    private void SpawnerToggleValue()
+    {
+        SpawnMinions = !SpawnMinions;
+    } // SpawnerToggleValue()
 
 
 
@@ -126,6 +238,14 @@ public class GameEvent : MonoBehaviour
 
 
 
+    // Return the value of the Spawners behavior; should they be on or off at this time.
+    public bool AccessSpawnMinions
+    {
+        get { return SpawnMinions; }
+    } // AccessSpawnMinions
+
+
+
     // This function will check to make sure that all the references has been initialized properly.
     private void CheckReferences()
     {
@@ -139,6 +259,8 @@ public class GameEvent : MonoBehaviour
             MissingReferenceError("What Is [object]");
         if (EventLetterChange == null)
             MissingReferenceError("Event Letter Change");
+        if (scriptScore == null)
+            MissingReferenceError("Scores");
     } // CheckReferences()
 
 

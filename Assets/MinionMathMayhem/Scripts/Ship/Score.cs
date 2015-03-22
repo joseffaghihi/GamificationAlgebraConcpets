@@ -91,7 +91,7 @@ public class Score : MonoBehaviour
     public void AccessUpdateScoreCorrect()
     {
         // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
-        UpdateScoreCorrect();
+            UpdateScoreCorrect();
     } // AccessUpdateScoreCorrect()
 
 
@@ -100,7 +100,7 @@ public class Score : MonoBehaviour
     public void AccessUpdateScoreIncorrect()
     {
         // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
-        UpdateScoreIncorrect();
+            UpdateScoreIncorrect();
     } // AccessUpdateScoreCorrect()
 
 
