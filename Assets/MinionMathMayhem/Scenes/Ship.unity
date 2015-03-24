@@ -2134,17 +2134,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSounds: {fileID: 0}
-  failSound: {fileID: 0}
-  successSound: {fileID: 0}
-  gameOverSound: {fileID: 0}
-  letterBox: {fileID: 0}
-  msgWhatIs: {fileID: 0}
-  EventLetterChange: {fileID: 0}
+  failSound: {fileID: 8300000, guid: 255a83748e196450ab7e08826f77aa40, type: 3}
+  successSound: {fileID: 8300000, guid: f410804f11a144dce927bd3c179d0608, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 6b2f4111365644f72b2d2c1f949f9103, type: 3}
+  letterBox: {fileID: 1750759268}
+  msgWhatIs: {fileID: 491266297}
+  EventLetterChange: {fileID: 2021063920}
   scriptFinalDestroyer: {fileID: 0}
-  scriptLetterBox: {fileID: 0}
-  scriptProblemBox: {fileID: 0}
-  scriptScore: {fileID: 0}
-  scriptGameController: {fileID: 0}
+  scriptLetterBox: {fileID: 1750759271}
+  scriptProblemBox: {fileID: 1715427619}
+  scriptScore: {fileID: 1430447471}
+  scriptGameController: {fileID: 1430447470}
 --- !u!114 &1430447473
 MonoBehaviour:
   m_ObjectHideFlags: 0
