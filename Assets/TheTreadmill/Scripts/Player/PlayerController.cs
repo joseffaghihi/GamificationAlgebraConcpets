@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
 
 	private bool onGround = true; //Checks to see if the player is on the Ground
 
-    private float maxSpeed = 1000.0f;
-
     void FixedUpdate()
     {
         //Get User Input

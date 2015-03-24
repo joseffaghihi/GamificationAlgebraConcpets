@@ -4,6 +4,7 @@ using System.Collections;
 public class GameControl : MonoBehaviour 
 {
 	public int lives = 3;
+    public int treadmillSpeed = 1;
 
 	// Use this for initialization
 	void Start () 
@@ -12,7 +13,7 @@ public class GameControl : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
 	
 	}
