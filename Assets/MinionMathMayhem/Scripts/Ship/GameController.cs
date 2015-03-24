@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour
@@ -34,10 +35,14 @@ public class GameController : MonoBehaviour
             private bool gameTutorialEnded = false;
 
         // Accessors and Communication
+            // Win/Lose HUD Message
+                public Text textWinOrLose;
             // Scores
                 public Score scriptScore;
             // Tutorial
                 public VoiceOver scriptTutorial;
+            // Game Controller
+                public GameEvent scriptGameEvent;
             // Tutorial State
                 public delegate void TutorialStateEventStart();
                 public static event TutorialStateEventStart TutorialStateStart;
@@ -124,7 +129,7 @@ public class GameController : MonoBehaviour
                     if (spawnMinions == !false)
                         FlipMinionSpawner();
                 }
-                yield return null;
+                //yield return null;
             // ----
         } // while loop
     } // GameManager()
@@ -146,6 +151,8 @@ public class GameController : MonoBehaviour
         {
             // The game is over
                 gameOver = true;
+            // Kill the Minions from the scene
+                scriptGameEvent.Access_MinionGenocide();
             // ----
 
             // Did the user win?
@@ -153,6 +160,7 @@ public class GameController : MonoBehaviour
                 {
                     gameOverWin = true;
                     gameOverFail = false;
+                    GameOver_WinText();
                 } // if
 
             // Did the user lost?
@@ -160,10 +168,34 @@ public class GameController : MonoBehaviour
                 {
                     gameOverWin = false;
                     gameOverFail = true;
+                    GameOver_LostText();
                 } // if
             // ----
         } // if
     } // CheckScores()
+
+
+
+    private void GameOver_WinText()
+    {
+        textWinOrLose.text = "You Won!" + "\n\n" +
+            "Press 'R' to Restart!";
+    } // GameOver_WinText()
+
+
+
+    private void GameOver_LostText()
+    {
+        textWinOrLose.text = "Try again!" + "\n\n" +
+            "Press 'R' to Restart!";
+    } // GameOver_LostText()
+
+
+
+    private void GameOver_ClearText()
+    {
+        textWinOrLose.text = "";
+    } // GameOver_ClearText()
 
 
 
@@ -196,8 +228,14 @@ public class GameController : MonoBehaviour
     // This function is going to reset the game
     private void RestartGame()
     {
-        // flip the gameOver variable
+        // flip the gameOver variables
             gameOver = !gameOver;
+            if (gameOverWin == true)
+                gameOverWin = !gameOverWin;
+            if (gameOverFail == true)
+                gameOverFail = !gameOverFail;
+        // Clear the Game Over text
+            GameOver_ClearText();
         // Reset the scores to null
             scriptScore.AccessReset();
     } // RestartGame()
@@ -245,6 +283,10 @@ public class GameController : MonoBehaviour
             MissingReferenceError("Tutorial");
         if (objectTutorial == null)
             MissingReferenceError("Tutorial Actor");
+        if (scriptGameEvent == null)
+            MissingReferenceError("Game Event");
+        if (textWinOrLose == null)
+            MissingReferenceError("Win Or Lose [Text]");
     } // CheckReferences()
 
 

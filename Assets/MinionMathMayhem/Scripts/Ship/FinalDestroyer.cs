@@ -18,6 +18,10 @@ public class FinalDestroyer : MonoBehaviour
     // ---------------------------------
         // Cached integer from the actor
             private int cacheNumber;
+        // Spawner Broadcast Event
+            // Game Event Broadcast 
+                public delegate void ToggleGameEventSignal();
+                public static event ToggleGameEventSignal GameEventSignal;
     // ----
 
 
@@ -27,6 +31,8 @@ public class FinalDestroyer : MonoBehaviour
     {
         // Fetch the number from the actor
             cacheNumber = RetrieveActorIdentity(actor);
+        // Send a signal to GameEvent to execute
+            GameEventSignal();
         // Destroy the actor
             Destroy(actor.gameObject);
     } // OnTriggerEnter()

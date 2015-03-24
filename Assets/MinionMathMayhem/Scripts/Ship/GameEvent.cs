@@ -52,8 +52,25 @@ public class GameEvent : MonoBehaviour
                 public Score scriptScore;
             // Game Controller
                 public GameController scriptGameController;
-    // ----
+            // ----
 
+
+
+
+
+    // Signal Listener: Detected
+    private void OnEnable()
+    {
+        FinalDestroyer.GameEventSignal += Driver;
+    } // OnEnable()
+
+
+
+    // Signal Listener: Deactivate
+    private void OnDisable()
+    {
+        FinalDestroyer.GameEventSignal -= Driver;
+    } // OnDisable()
 
 
 
@@ -80,7 +97,7 @@ public class GameEvent : MonoBehaviour
     // Consistently check the minion actors that has reached the exit map spot
     private void Driver()
     {
-        if (scriptFinalDestroyer.ActorIdentity == scriptFinalDestroyer.ActorIdentity)
+        if (scriptFinalDestroyer.ActorIdentity == GetQuadraticEquation_Index())
             // Correct Answer
             StartCoroutine(AnswerCorrect());
         else
@@ -103,9 +120,10 @@ public class GameEvent : MonoBehaviour
             MinionGenocide();
         // Slight pause
             yield return (WaitTimer(2));
+        // Generate a new quation
+            AnswerCorrect_Generate();
         // Animations
             AnswerCorrect_FinalAnimations();
-
         yield return null;
     } // AnswerCorrect()
 
@@ -244,6 +262,14 @@ public class GameEvent : MonoBehaviour
     {
         get { return SpawnMinions; }
     } // AccessSpawnMinions
+
+
+
+    // Access the MinionGenocide function as it is a private function; this will allow other scripts to call the desired function.
+    public void Access_MinionGenocide()
+    {
+        MinionGenocide();
+    } // AccessMinionGenocide()
 
 
 
