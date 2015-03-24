@@ -33,8 +33,7 @@ public class GameController : MonoBehaviour
         // [GameManager] Tutorial Ended switch
             private bool gameTutorialEnded = false;
 
-        
-
+        // Accessors and Communication
             // Scores
                 public Score scriptScore;
             // Tutorial
@@ -46,6 +45,7 @@ public class GameController : MonoBehaviour
         // GameObjects
             // Tutorial
                 public GameObject objectTutorial;
+
 
 
 
