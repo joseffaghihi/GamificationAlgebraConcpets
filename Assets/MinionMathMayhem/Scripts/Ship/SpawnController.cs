@@ -29,8 +29,6 @@ public class SpawnController : MonoBehaviour
             // Spawner Broadcast Event
                 public delegate void ActivateSpawnPoint();
                 public static event ActivateSpawnPoint EnableSpawnPoint;
-        // DEPERCATED
-        public FinalDestroyer finalDestroyer;
         //public GameState gameState;
     // ----
 
