@@ -60,8 +60,6 @@ public class GameEvent : MonoBehaviour
     // Specialized initialization
     private void Awake()
     {
-        // First make sure that all the scripts and actors are properly linked
-            CheckReferences();
         // Event Letter Animations
             eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the whatis text G.O. and gets the animator.
     } // Awake()
@@ -73,6 +71,8 @@ public class GameEvent : MonoBehaviour
     {
         // Reference initialization
             letterBoxController = letterBox.GetComponent<Animator>();
+        // First make sure that all the scripts and actors are properly linked
+            CheckReferences();
     } // Start()
     
 
