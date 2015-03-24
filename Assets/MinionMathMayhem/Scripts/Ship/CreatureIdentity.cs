@@ -15,30 +15,42 @@ public class CreatureIdentity : MonoBehaviour
 
 
 
-    // Declarations
-    // -------------
-    private int number;
-    //private Text numText;
-    public ProblemBox problemBox;
-    
+    // Declarations and Initializations
+    // ---------------------------------
+        // This will hold the minion's unique number (or id)
+            private int number;
+        // This variable will hold the component to attach the self-assigned number on it's back.
+            public Text numText;
+
+       // Accessors and Communication
+            // Use the RNG from ProblemBox as contains the boundry limit.
+                public ProblemBox problemBox;
 
 
-    void Awake()
+
+    // Use this for initialization
+    private void Awake()
+    {
+        // Initialize the component
+            numText = GetComponentInChildren<Text>();
+    } // Awake()
+
+
+
+    // This script is called once, after the actor has been placed in the scene
+    private void Start()
     {
         // Fetch a random number from the Problem Box script.
-        number = problemBox.GetRandomNumber();
-        // Initialization for using the text on the minion's back.
-        Text numText = GetComponentInChildren<Text>();
+            number = problemBox.Access_GetRandomNumber();
         // Put the self-assigned unique number on the minion's back
-        numText.text = number.ToString();
-    } // End of Awake
+            numText.text = number.ToString();
+    } // Start()
 
 
 
     // Return the value of the minion's self-assigned number.
-    public int Number
+    public int MinionNumber
     {
         get { return number; }
-    } // End of Number
-
+    } // MinionNumber
 } // End of Class

@@ -11,17 +11,18 @@ public class TutorialSkipButton : MonoBehaviour
      */
 
 
-    // Declarations
-    // -------------
-    // Script References
-        public VoiceOver tutorial;
+    // Declarations and Initializations
+    // ---------------------------------
+    // Accessors and Communication
+        public delegate void SkipTutorial();
+        public static event SkipTutorial SkipTutorialDemand;
     // ----
 
 
 
     // When the user clicks this object, skip the tutorial.
-    void OnMouseDown()
-    { 
-        tutorial.ToggleSkip(true);
-    } // End of OnMouseDown
+    private void OnMouseDown()
+    {
+        SkipTutorialDemand();
+    } // OnMouseDown()
 } // End of Class

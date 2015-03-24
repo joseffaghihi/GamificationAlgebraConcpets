@@ -17,52 +17,71 @@ public class LetterBox : MonoBehaviour
 
     // Declarations and Initializations
     // ---------------------------------
-    // References
-        Text letterBox;
+        // Quadratic Equation Index Address
+            private Text letterBox;
+        // Selected Index
+            private char indexChar;
     // ----
 
 
 
-    void Awake()
+    // Use this for initialization
+    private void Awake()
     {
-        // Initialize the reference
-        letterBox = GetComponent<Text>();
-    } // End of Awake
+        // Reference initialization
+            letterBox = GetComponent<Text>();
+    } // Awake()
 
 
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
     {
-        // Select an index
-        Generate();
-	} // End of Start
+        // Select an index address
+            Generate();
+	} // Start()
 
 
 
     // Select an index of the Quadratic Equation
     //  Example of Indexes: ( Ax^2 + Bx + C )
-    public void Generate()
+    private void Generate()
     {
-        // Randomize variable
-        int r = Random.Range(1, 4);
-
         // Use the randomized var to choose which index to select
-        switch(r)
+        switch (Random.Range(1, 4))
         {
             case 1:
                 letterBox.text = "A";
+                indexChar = 'A';
                 break;
             case 2:
                 letterBox.text = "B";
+                indexChar = 'B';
                 break;
             case 3:
                 letterBox.text = "C";
+                indexChar = 'C';
                 break;
             default:
-                letterBox.text = "ZZ";
+                letterBox.text = "ERR!"; // Display that there is an error in the box [NG]
+                indexChar = 'E';
+                Debug.LogError("!ERROR!: Failed to generate a legal letter for variable [ letterBox.text ]"); // Show that there was an error in the console [NG]
                 break;
-        } // End Switch
-    } // End of Generate
+        } // Switch
+    } // Generate()
 
+
+
+    // This function will call the generater function (which is private).
+    public void Access_Generate()
+    {
+        Generate();
+    } // Access_Generate()
+
+
+    // This function will allow other scripts to determine what index is selected.
+    public char Access_SelectedIndex
+    {
+        get { return indexChar; }
+    } // Access_SelectedIndex
 } // End of Class

@@ -15,24 +15,42 @@ public class MusicVolumeTuner : MonoBehaviour
 
     // Declarations and Initializations
     // ---------------------------------
-    // References
-        public GameState gameState;
-    // Volume Tuner; this can be toggled in the inspector
-        public float volumeNormal = 1.0f;
-    // Volume Tuner; during tutorial mode
-        public float volumeTutorial = 0.5f;
+        // Volume Tuner; this can be toggled in the inspector
+            public float volumeNormal = 1.0f;
+        // Volume Tuner; during tutorial mode
+            public float volumeTutorial = 0.5f;
 
 
 
-	// Update is called once per frame
-	void Update ()
+    // Signal Listener: Detected
+    private void OnEnable()
     {
-        if (gameState.GameStateTutorial == false)
-            // Standard music volume
-            GetComponent<AudioSource>().volume = volumeNormal;
-        else
-            // Tutorial mode music volume
-            GetComponent<AudioSource>().volume = volumeTutorial;
-	} // End of Update
+        GameController.TutorialStateStart += MusicTurner_Reduce;
+        VoiceOver.TutorialStateEnded += MusicTurner_Return;
+    } // OnEnable()
 
+
+
+    // Signal Listener: Deactivate
+    private void OnDisable()
+    {
+        GameController.TutorialStateStart -= MusicTurner_Reduce;
+        VoiceOver.TutorialStateEnded -= MusicTurner_Return;
+    } // OnDisable()
+
+
+
+    // Tutorial is running, reduce the volume of the background music.
+    private void MusicTurner_Reduce()
+    {
+        GetComponent<AudioSource>().volume = volumeTutorial;
+    } // MusicTurner_Reduce()
+
+
+
+    // Tutorial has ended, revert the volume of the background music.
+    private void MusicTurner_Return()
+    {
+        GetComponent<AudioSource>().volume = volumeNormal;
+    } // MusicTurner_Return()
 } // End Class

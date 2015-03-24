@@ -15,66 +15,77 @@ public class VoiceOver : MonoBehaviour
 
     // Declarations and Initializations
     // ---------------------------------
-    public AudioClip[] voiceOver = new AudioClip[10];
-    // This variable triggers the game state of wither or not the tutorial is activated.
-    private bool tutorialMode;
-    // Skip Signal
-    private bool skip = false;
+        // Tutorial Instructions: Voice
+            public AudioClip[] voiceOver = new AudioClip[10];
+        // Tutorial skip signal 
+            public bool tutorialSkip = false;
+
+        // Accessors and Communication
+            // Tutorial State: Fininished
+                public delegate void TutorialStateEventEnded();
+                public static event TutorialStateEventEnded TutorialStateEnded;
     // ----
 
 
 
-	// Use this for initialization
-    void Start()
+
+    // Signal Listener: Detected
+    private void OnEnable()
     {
-        tutorialMode = true; // We're in tutorial mode right now.
-        StartCoroutine(PlayTutorial()); // plays tutorial clips in array only once
-    } // End of Start
+        GameController.TutorialStateStart += EnableTutorial;
+        TutorialSkipButton.SkipTutorialDemand += SkipTutorial;
+    } // OnEnable()
 
 
 
-    IEnumerator PlayTutorial() // Plays audio for tutorial clips
+    // Signal Listener: Deactivate
+    private void OnDisable()
+    {
+        GameController.TutorialStateStart -= EnableTutorial;
+        TutorialSkipButton.SkipTutorialDemand -= SkipTutorial;
+    } // OnDisable()
+
+
+
+    // When the signal has been detected, start the tutorial algorithm.
+    private void EnableTutorial()
+    {
+        StartCoroutine(PlayTutorial());
+    } // EnableTutorial()
+
+
+
+    // When the signal has been detected, flip the bit 
+    private void SkipTutorial()
+    {
+        tutorialSkip = !tutorialSkip;
+    } // SkipTutorial()
+
+
+
+    // Plays the audio clips; tutorial sequence
+    private IEnumerator PlayTutorial()
     {
         foreach (AudioClip tutorialClip in voiceOver)
         {
             // Run tutorial
-            if (skip == false)
+            if (tutorialSkip == false)
             {
                 GetComponent<AudioSource>().clip = tutorialClip;
                 GetComponent<AudioSource>().Play();
 
                 // Check to see if the user is skipping the tutorial before issuing a wait.
-                for (int i = 0; i < tutorialClip.length && skip == false; i++)
+                for (int i = 0; i < tutorialClip.length && tutorialSkip == false; i++)
                     yield return new WaitForSeconds(1);
-            }
+            } // if
             
             // Stop the audio that is currently being played.  This is useful when the skip tutorial has been activated.
             GetComponent<AudioSource>().Stop();
 
-        } // End foreach
+        } // foreach
 
         // turn off the tutorial mode
-        tutorialMode = false;
+        TutorialStateEnded();
 
-    } // End of PlayTutorial
-    
-
-
-    // This function, when called by another skip, will toggle the tutorial skip variable.
-    public void ToggleSkip(bool toggle)
-   {
-       if (toggle == true)
-           skip = true;
-       else
-           skip = false;
-   } // End of ToggleSkip
-
-
-
-    //Accessor; allow scripts to access this function to fetch the variable value of 'Tutorial Mode'
-    public bool TutorialMode
-   {
-       get { return tutorialMode; }
-   }
-    // ----
-}
+    } // PlayTutorial()
+}  // End of Class
