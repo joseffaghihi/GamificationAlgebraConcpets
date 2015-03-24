@@ -2140,7 +2140,7 @@ MonoBehaviour:
   letterBox: {fileID: 1750759268}
   msgWhatIs: {fileID: 491266297}
   EventLetterChange: {fileID: 2021063920}
-  scriptFinalDestroyer: {fileID: 0}
+  scriptFinalDestroyer: {fileID: 63528817}
   scriptLetterBox: {fileID: 1750759271}
   scriptProblemBox: {fileID: 1715427619}
   scriptScore: {fileID: 1430447471}
