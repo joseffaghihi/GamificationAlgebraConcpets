@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameControl : MonoBehaviour 
+public class GameControl 
 {
 	public int lives = 3;
     public int treadmillSpeed = 1;
