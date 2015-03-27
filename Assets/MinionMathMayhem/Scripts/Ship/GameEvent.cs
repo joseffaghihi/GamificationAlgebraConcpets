@@ -33,7 +33,7 @@ public class GameEvent : MonoBehaviour
                 public AudioClip gameOverSound;
         // Animations
             private Animator letterBoxController;
-            private Animator eventLetterAnim; // will control the animations of the 'what is' [DC]
+
         // GameObjects
             // Letter Box Texting UI
                 public Text letterBox;
@@ -53,6 +53,9 @@ public class GameEvent : MonoBehaviour
             // Game Controller
                 public GameController scriptGameController;
             // ----
+			//David's Include_____________________________********************************_____________________________David
+				private WhatIsDisplay whatIsDisplay;
+				private Animator eventLetterAnim;
 
 
 
@@ -90,6 +93,7 @@ public class GameEvent : MonoBehaviour
             letterBoxController = letterBox.GetComponent<Animator>();
         // First make sure that all the scripts and actors are properly linked
             CheckReferences();
+		whatIsDisplay = GetComponent<WhatIsDisplay>();
     } // Start()
     
 
@@ -124,6 +128,8 @@ public class GameEvent : MonoBehaviour
             AnswerCorrect_Generate();
         // Animations
             AnswerCorrect_FinalAnimations();
+		//DavidInclude_______________________________________________________*************DAVID'S INCLUDE ***********_____________
+			whatIsDisplay.NextLetterEventPlay();
         yield return null;
     } // AnswerCorrect()
 
@@ -187,7 +193,7 @@ public class GameEvent : MonoBehaviour
                 scriptLetterBox.Access_Generate();
             // Notify the user of index update
                 letterBoxController.SetTrigger("LetterChange");
-                msgWhatIs.GetComponent<Animation>().Play();
+                //msgWhatIs.GetComponent<Animation>().Play();
         } // If
     } // AnswerCorrect_Generate()
 
