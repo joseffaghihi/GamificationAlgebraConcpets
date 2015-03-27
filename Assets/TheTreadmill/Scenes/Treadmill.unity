@@ -314,7 +314,7 @@ GameObject:
   - 54: {fileID: 209440281}
   - 65: {fileID: 209440282}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TreadmillContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,7 +471,7 @@ GameObject:
   - 136: {fileID: 631748159}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,7 +483,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 631748154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -23.3899994}
+  m_LocalPosition: {x: 0, y: 2, z: -23}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 998202202}
@@ -720,6 +720,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abeca103d01258540b496ee0469edff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &971953486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 971953488}
+  - 114: {fileID: 971953487}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &971953487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 971953486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41790cba77a2c674c9c35ee914884f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacle: {fileID: 100018, guid: a97882396e89dfe4382a4a89f15d9cfe, type: 2}
+  spawnValues: {x: 7, y: 4, z: 25}
+  hazardCount: 10
+  spawnWait: 5
+  startWait: 1
+  waveWait: 4
+--- !u!4 &971953488
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 971953486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &998202201
 GameObject:
   m_PrefabParentObject: {fileID: 100020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
