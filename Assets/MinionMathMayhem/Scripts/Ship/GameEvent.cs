@@ -129,7 +129,7 @@ public class GameEvent : MonoBehaviour
         // Animations
             AnswerCorrect_FinalAnimations();
 		//DavidInclude_______________________________________________________*************DAVID'S INCLUDE ***********_____________
-			whatIsDisplay.NextLetterEventPlay();
+			whatIsDisplay.NextLetterEventPlay(0f);
         yield return null;
     } // AnswerCorrect()
 

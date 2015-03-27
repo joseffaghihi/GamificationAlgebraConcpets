@@ -38,6 +38,7 @@ public class ComponentActivation : MonoBehaviour
         // Animations and physics
             private Animator minionAnim;
             private CapsuleCollider capsuleCollider;
+			private ParticleActivation particleActivation;
     // ----
 	
 
@@ -48,6 +49,7 @@ public class ComponentActivation : MonoBehaviour
         // References and Initializations
             minionAnim = GetComponent<Animator>();
             capsuleCollider = GetComponent<CapsuleCollider>();
+			particleActivation = GetComponent<ParticleActivation>();
 	} // Awake()
 
 
@@ -175,6 +177,7 @@ public class ComponentActivation : MonoBehaviour
     // Actions to take place when the minion has been selected
 	public void Flick()
 	{
+		particleActivation.Emit ();
 		GetComponent<Rigidbody>().useGravity = true;
 		GetComponent<Rigidbody>().isKinematic = false;
 		isClimbing = false;

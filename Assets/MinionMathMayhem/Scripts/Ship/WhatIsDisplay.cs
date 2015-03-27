@@ -24,8 +24,9 @@ public class WhatIsDisplay : MonoBehaviour {
 	}
 
 	// Plays the what is "A, B, or C" animation
-	public void NextLetterEventPlay()
+	public IEnumerator NextLetterEventPlay(float waitTime)
 	{
+		yield return new WaitForSeconds(waitTime);
 		whatIsAnim.SetTrigger("SlideIn");
 		eventLetterAnim.SetTrigger("SlideIn");
 	} // NextLetterEventPlay
