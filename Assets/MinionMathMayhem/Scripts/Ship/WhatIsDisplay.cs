@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WhatIsDisplay : MonoBehaviour {
+public class WhatIsDisplay : MonoBehaviour
+{
 
 	public GameObject whatIsTextbox;
 	public GameObject eventLetterTextbox;
 	private Animator whatIsAnim;
 	private Animator eventLetterAnim;
 
-	void Awake() {
+	void Awake()
+    {
 		whatIsAnim = whatIsTextbox.GetComponent<Animator>();
 		eventLetterAnim = eventLetterTextbox.GetComponent<Animator>();
 	}
