@@ -21,7 +21,6 @@ public class EventLetterChange : MonoBehaviour {
 			Debug.Log ("No referenceText object was set.");
 		}
 		referenceTextLetter = referenceText.GetComponent<Text>();
-		//ThisText.text = referenceTextLetter.text;
 	}
 
 	void Update()
