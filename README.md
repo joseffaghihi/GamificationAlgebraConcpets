@@ -1,2 +1,2 @@
-# GamificationAlgebraConcpets
+# GamificationAlgebraConcepts
 Gamification of Algebra Concepts
