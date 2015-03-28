@@ -747,12 +747,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41790cba77a2c674c9c35ee914884f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 100018, guid: a97882396e89dfe4382a4a89f15d9cfe, type: 2}
+  obstacle: {fileID: 106560, guid: a97882396e89dfe4382a4a89f15d9cfe, type: 2}
   spawnValues: {x: 7, y: 4, z: 25}
   hazardCount: 10
-  spawnWait: 5
-  startWait: 1
-  waveWait: 4
+  spawnWait: 1
+  startWait: 3
+  waveWait: 1
 --- !u!4 &971953488
 Transform:
   m_ObjectHideFlags: 0
