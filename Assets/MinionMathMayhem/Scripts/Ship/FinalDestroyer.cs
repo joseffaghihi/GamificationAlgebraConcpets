@@ -43,7 +43,7 @@ public class FinalDestroyer : MonoBehaviour
     private int RetrieveActorIdentity(Collider actorObject)
     {
         // Fetch the minion's unique script.
-            CreatureIdentity tempData = actorObject.gameObject.GetComponent<CreatureIdentity>();
+            Minion_Identity tempData = actorObject.gameObject.GetComponent<Minion_Identity>();
         // Fetch and return the minion's uniquely assigned number.
              return (tempData.MinionNumber);
     } // RetrieveActorIdentity()

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ComponentActivation : MonoBehaviour 
+public class Minion_Behavior : MonoBehaviour 
 {
 
-        /*                      COMPONENT ACTIVATION
+        /*                      MINION BEHAVIOR
          * Designed for the minions, specifically for actor activity and attributes.
          * 
          * GOALS:

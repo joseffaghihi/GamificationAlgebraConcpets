@@ -2,10 +2,10 @@
 using UnityEngine.UI; // Used for 'text' type
 using System.Collections;
 
-public class CreatureIdentity : MonoBehaviour
+public class Minion_Identity : MonoBehaviour
 {
 
-    /*                      CREATURE IDENTITY
+    /*                      MINION IDENTITY
      * This class is designed for the minion to self generate its own randomized number given by a specific range.
      *  This essentially gives the minion its own unique number that they choose.
      * 
