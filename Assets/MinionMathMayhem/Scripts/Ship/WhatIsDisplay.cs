@@ -13,15 +13,7 @@ public class WhatIsDisplay : MonoBehaviour {
 		eventLetterAnim = eventLetterTextbox.GetComponent<Animator>();
 	}
 
-	// Use this for initialization
-	void Start () {
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	// Plays the what is "A, B, or C" animation
 	public IEnumerator NextLetterEventPlay(float waitTime)
