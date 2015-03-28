@@ -36,7 +36,7 @@ public class GameEvent : MonoBehaviour
 
         // GameObjects
             // Letter Box Texting UI
-                public Text letterBox;
+                public GameObject letterBox;
             // Quadratic Equation Updated; 'What Is' message
                 public GameObject msgWhatIs;
             // Event Letter Change
@@ -93,7 +93,7 @@ public class GameEvent : MonoBehaviour
             letterBoxController = letterBox.GetComponent<Animator>();
         // First make sure that all the scripts and actors are properly linked
             CheckReferences();
-		whatIsDisplay = GetComponent<WhatIsDisplay>();
+			whatIsDisplay = GetComponent<WhatIsDisplay>();
     } // Start()
     
 
@@ -129,7 +129,7 @@ public class GameEvent : MonoBehaviour
         // Animations
             AnswerCorrect_FinalAnimations();
 		//DavidInclude_______________________________________________________*************DAVID'S INCLUDE ***********_____________
-			whatIsDisplay.NextLetterEventPlay(0f);
+			whatIsDisplay.NextLetterEventPlay();
         yield return null;
     } // AnswerCorrect()
 
@@ -192,7 +192,6 @@ public class GameEvent : MonoBehaviour
                 scriptProblemBox.Access_Generate();
                 scriptLetterBox.Access_Generate();
             // Notify the user of index update
-                letterBoxController.SetTrigger("LetterChange");
                 //msgWhatIs.GetComponent<Animation>().Play();
         } // If
     } // AnswerCorrect_Generate()
@@ -214,8 +213,7 @@ public class GameEvent : MonoBehaviour
         // Animations
             AnswerCorrect_FinalAnimations();
         // Notify the user of index update
-            letterBoxController.SetTrigger("LetterChange");
-            whatIsDisplay.NextLetterEventPlay(0f); // [DC] Display the index letter
+            whatIsDisplay.NextLetterEventPlay(); // [DC] Display the index letter
         yield return new WaitForSeconds(2f);
     } // FirstRun_Animations()
 
@@ -238,7 +236,7 @@ public class GameEvent : MonoBehaviour
 
 
 
-    // When the user has the incorrect answer, this function will be executed
+    // When the user has the incorrect answe r, this function will be executed
     private void AnswerIncorrect()
     {
         // Update the score
