@@ -108,6 +108,8 @@ public class GameController : MonoBehaviour
     {
         // Execute the Tutorial
             yield return (StartCoroutine(GameExecute_Tutorial()));
+        // Display the animations and environment settings at the very start of the game
+            scriptGameEvent.Access_FirstRun_Animations();
         // ----
         while(true) // This is a never ending loop
         {

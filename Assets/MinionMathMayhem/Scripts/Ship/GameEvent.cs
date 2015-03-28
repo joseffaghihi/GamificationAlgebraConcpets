@@ -208,6 +208,28 @@ public class GameEvent : MonoBehaviour
 
 
 
+    // When the game starts once the tutorial has finished, this script will run any actions required when the game begins.
+    private IEnumerator FirstRun_Animations()
+    {
+        // Animations
+            AnswerCorrect_FinalAnimations();
+        // Notify the user of index update
+            letterBoxController.SetTrigger("LetterChange");
+            whatIsDisplay.NextLetterEventPlay(0f); // [DC] Display the index letter
+        yield return new WaitForSeconds(2f);
+    } // FirstRun_Animations()
+
+
+
+    // This function will 
+    // This function will kindly access the FirstRun_Animation, due to the protection level.
+    public void Access_FirstRun_Animations()
+    {
+        StartCoroutine(FirstRun_Animations());
+    } // Access_FirstRun_Animations()
+
+
+
     // Whatis Text Animations
     private void AnswerCorrect_FinalAnimations()
     {
