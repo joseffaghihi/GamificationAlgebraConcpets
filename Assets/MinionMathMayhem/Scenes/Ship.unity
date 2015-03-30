@@ -715,7 +715,7 @@ ParticleSystem:
   looping: 1
   prewarm: 1
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
@@ -2653,7 +2653,7 @@ ParticleSystem:
   looping: 1
   prewarm: 1
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
@@ -7457,7 +7457,7 @@ ParticleSystem:
   looping: 1
   prewarm: 1
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
@@ -8643,8 +8643,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
+  m_LocalRotation: {x: .0871723294, y: .899590552, z: .210452557, w: -.372622699}
+  m_LocalPosition: {x: -13.7432308, y: -2.01402974, z: -44.1644745}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}
