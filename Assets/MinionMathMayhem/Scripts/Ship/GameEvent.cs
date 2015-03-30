@@ -91,9 +91,9 @@ public class GameEvent : MonoBehaviour
     {
         // Reference initialization
             letterBoxController = letterBox.GetComponent<Animator>();
+            whatIsDisplay = GetComponent<WhatIsDisplay>();
         // First make sure that all the scripts and actors are properly linked
-            CheckReferences();
-		whatIsDisplay = GetComponent<WhatIsDisplay>();
+            CheckReferences();	
     } // Start()
     
 
@@ -324,6 +324,8 @@ public class GameEvent : MonoBehaviour
             MissingReferenceError("Event Letter Animation");
         if (letterBox == null)
             MissingReferenceError("Letter Box [text]");
+        if (whatIsDisplay == null)
+            MissingReferenceError("What Is Display Object");
     } // CheckReferences()
 
 
