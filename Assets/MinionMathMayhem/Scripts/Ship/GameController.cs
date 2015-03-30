@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
         // GameObjects
             // Tutorial
                 public GameObject objectTutorialMinion;
-                public GameObject objectTutorialSkipObject;
+                public GameObject objectTutorialSkipButton;
 
 
 
@@ -207,7 +207,7 @@ public class GameController : MonoBehaviour
     {
         // Enable the tutorial objects
             objectTutorialMinion.SetActive(true);
-            objectTutorialSkipObject.SetActive(true);
+            objectTutorialSkipButton.SetActive(true);
         // Send the 'Tutorial Active' signal
             TutorialStateStart();
         // Run a signal detector; once the signal has been detected, the tutorial is finished.
@@ -215,7 +215,7 @@ public class GameController : MonoBehaviour
             yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
         // Disable the tutorial objects
             objectTutorialMinion.SetActive(false);
-            objectTutorialSkipObject.SetActive(false);
+            objectTutorialSkipButton.SetActive(false);
     } // GameExecute_Tutorial()
 
 

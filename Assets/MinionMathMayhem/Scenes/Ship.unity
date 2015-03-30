@@ -2566,7 +2566,7 @@ MonoBehaviour:
   scriptTutorial: {fileID: 33354903}
   scriptGameEvent: {fileID: 1430447472}
   objectTutorialMinion: {fileID: 33354902}
-  objectTutorialSkipObject: {fileID: 1635683666}
+  objectTutorialSkipButton: {fileID: 1635683666}
 --- !u!114 &1430447471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2712,7 +2712,7 @@ GameObject:
   - 23: {fileID: 1635683669}
   - 114: {fileID: 1635683668}
   m_Layer: 0
-  m_Name: Skip Button
+  m_Name: Tutorial Skip Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
