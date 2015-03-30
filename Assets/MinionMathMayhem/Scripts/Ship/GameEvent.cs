@@ -52,11 +52,11 @@ public class GameEvent : MonoBehaviour
                 public Score scriptScore;
             // Game Controller
                 public GameController scriptGameController;
+			// What-Is Object
+				private WhatIsDisplay whatIsDisplay; // [DC]
+            // What-Is Index Object
+				private Animator eventLetterAnim; // [DC]
             // ----
-			//David's Include_____________________________********************************_____________________________David
-				private WhatIsDisplay whatIsDisplay;
-				private Animator eventLetterAnim;
-
 
 
 
@@ -129,7 +129,7 @@ public class GameEvent : MonoBehaviour
         // Animations
             AnswerCorrect_FinalAnimations();
 		//DavidInclude_______________________________________________________*************DAVID'S INCLUDE ***********_____________
-			whatIsDisplay.NextLetterEventPlay(0f);
+            whatIsDisplay.Access_NextLetterEventPlay(0f);
         yield return null;
     } // AnswerCorrect()
 
@@ -215,7 +215,7 @@ public class GameEvent : MonoBehaviour
             AnswerCorrect_FinalAnimations();
         // Notify the user of index update
             letterBoxController.SetTrigger("LetterChange");
-            whatIsDisplay.NextLetterEventPlay(0f); // [DC] Display the index letter
+            whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
         yield return new WaitForSeconds(2f);
     } // FirstRun_Animations()
 
