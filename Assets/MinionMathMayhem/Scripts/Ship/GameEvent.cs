@@ -221,7 +221,6 @@ public class GameEvent : MonoBehaviour
 
 
 
-    // This function will 
     // This function will kindly access the FirstRun_Animation, due to the protection level.
     public void Access_FirstRun_Animations()
     {
