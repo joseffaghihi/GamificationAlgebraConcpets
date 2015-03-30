@@ -128,8 +128,8 @@ public class GameEvent : MonoBehaviour
             AnswerCorrect_Generate();
         // Animations
             AnswerCorrect_FinalAnimations();
-		//DavidInclude_______________________________________________________*************DAVID'S INCLUDE ***********_____________
-            whatIsDisplay.Access_NextLetterEventPlay(0f);
+		// Display the 'What-is' messages
+            whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
         yield return null;
     } // AnswerCorrect()
 
