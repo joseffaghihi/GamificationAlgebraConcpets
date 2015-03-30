@@ -49,7 +49,8 @@ public class GameController : MonoBehaviour
 
         // GameObjects
             // Tutorial
-                public GameObject objectTutorial;
+                public GameObject objectTutorialMinion;
+                public GameObject objectTutorialSkipObject;
 
 
 
@@ -204,13 +205,17 @@ public class GameController : MonoBehaviour
     // Run the game tutorial; requires the script reference
     private IEnumerator GameExecute_Tutorial()
     {
-        // Enable the tutorial object
-            objectTutorial.SetActive(true);
+        // Enable the tutorial objects
+            objectTutorialMinion.SetActive(true);
+            objectTutorialSkipObject.SetActive(true);
         // Send the 'Tutorial Active' signal
             TutorialStateStart();
         // Run a signal detector; once the signal has been detected, the tutorial is finished.
         //    Once the tutorial is finished, the rest of the game can execute.
             yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
+        // Disable the tutorial objects
+            objectTutorialMinion.SetActive(false);
+            objectTutorialSkipObject.SetActive(false);
     } // GameExecute_Tutorial()
 
 
@@ -283,7 +288,7 @@ public class GameController : MonoBehaviour
             MissingReferenceError("Score");
         if (scriptTutorial == null)
             MissingReferenceError("Tutorial");
-        if (objectTutorial == null)
+        if (objectTutorialMinion == null)
             MissingReferenceError("Tutorial Actor");
         if (scriptGameEvent == null)
             MissingReferenceError("Game Event");

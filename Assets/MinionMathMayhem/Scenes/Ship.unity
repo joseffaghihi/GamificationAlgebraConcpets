@@ -2565,7 +2565,8 @@ MonoBehaviour:
   scriptScore: {fileID: 1430447471}
   scriptTutorial: {fileID: 33354903}
   scriptGameEvent: {fileID: 1430447472}
-  objectTutorial: {fileID: 33354902}
+  objectTutorialMinion: {fileID: 33354902}
+  objectTutorialSkipObject: {fileID: 1635683666}
 --- !u!114 &1430447471
 MonoBehaviour:
   m_ObjectHideFlags: 0
