@@ -57,7 +57,7 @@ namespace MinionMathMayhem_Ship
             {
                 // ----
                 // Check to see if the spawner is activated
-                if (scriptGameController.SpawnMinions == !false && scriptGameController.SpawnMinions == !false && scriptGameController.GameOver != true)
+                if (scriptGameController.SpawnMinions == !false && scriptGameController.GameOver != true)
                     // Check to see if it is time to spawn another minion
                     if (Time.time >= nextSpawn)
                         SpawnSignal();
