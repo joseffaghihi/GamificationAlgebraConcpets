@@ -244,9 +244,11 @@ namespace MinionMathMayhem_Ship
             if (gameOverFail == true)
                 gameOverFail = !gameOverFail;
             // Clear the Game Over text
-            GameOver_ClearText();
+                GameOver_ClearText();
             // Reset the scores to null
-            scriptScore.AccessReset();
+                scriptScore.AccessReset();
+            // Call the 'What-Is' animation
+                scriptGameEvent.Access_FirstRun_Animations();
         } // RestartGame()
 
 
