@@ -12,7 +12,7 @@ public class GameOverManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameoverImage.SetActive (false);
-		audio.Play ();
+		GetComponent<AudioSource>().Play ();
 		play_death_sound_over = false;
 	}
 	
@@ -20,7 +20,7 @@ public class GameOverManager : MonoBehaviour {
 	void Update () {
 		if(playerHealth.currentHealth <= 0)
 		{
-			audio.Stop ();
+			GetComponent<AudioSource>().Stop ();
 			if(play_death_sound_over == false){
 				SoundEffectsHelper.Instance.MakeDeathShotSound();
 				play_death_sound_over = true;

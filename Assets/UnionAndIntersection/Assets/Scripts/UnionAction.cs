@@ -48,7 +48,7 @@ public class UnionAction : MonoBehaviour {
 
 		if(other.tag == "katana_0")
 		{
-			other.renderer.enabled = false;
+			other.GetComponent<Renderer>().enabled = false;
 			katana0isDestroyed = 1;
 			Debug.Log(other.tag+" is destroyed");
 		
@@ -77,7 +77,7 @@ public class UnionAction : MonoBehaviour {
 				
 				touched2 = true;
 			}
-			other.renderer.enabled = false;
+			other.GetComponent<Renderer>().enabled = false;
 			katana1isDestroyed = 1;
 			Debug.Log(other.tag+" is destroyed");
 			
@@ -106,7 +106,7 @@ public class UnionAction : MonoBehaviour {
 
 				touched2 = true;
 			}
-			other.renderer.enabled = false;
+			other.GetComponent<Renderer>().enabled = false;
 			katana2isDestroyed = 1;
 			Debug.Log(other.tag+" is destroyed");
 			

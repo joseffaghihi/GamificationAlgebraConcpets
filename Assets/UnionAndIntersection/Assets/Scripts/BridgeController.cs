@@ -47,10 +47,11 @@ public class BridgeController : MonoBehaviour {
 			bridge_0_is_built = true;
 			if(play_right_choice_sound_over == false){
 				SoundEffectsHelper.Instance.MakeRightChoiceSound();
+				play_right_choice_sound_over = true;
 				//instantiate the congrates prefab
 				building_effect_instance1 = (GameObject)Instantiate(building_effect,samurai.transform.position,samurai.transform.rotation);
 				building_effect_instance1.transform.parent = building_effect_center.transform;
-				play_right_choice_sound_over = true;
+
 			}
 			myTimer = myTimer - Time.deltaTime;
 			if(myTimer>0){
