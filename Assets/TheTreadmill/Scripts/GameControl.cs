@@ -3,20 +3,10 @@ using System.Collections;
 
 public class GameControl 
 {
-	public int lives = 3;
+	static public int lives = 3;
     public int treadmillSpeed = 1;
 
-	// Use this for initialization
-	void Start () 
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
+    private bool gameWon = false;
 
 	//Subtract a life and check for EndOfGame
 	public void LostLife()
@@ -31,8 +21,19 @@ public class GameControl
 		}
 	}
 	
+    public void GameWon()
+    {
+        gameWon = true;
+        Debug.Log("won");
+    }
+
+    public int GetLives()
+    {
+        return lives;
+    }
+
 	//Check Game State
-	bool isGameOver()
+	private bool isGameOver()
 	{
 		if (lives <= 0)
 			return true;

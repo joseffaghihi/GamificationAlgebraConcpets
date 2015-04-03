@@ -14,7 +14,7 @@ public class BoardDisplay : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        GetComponent<Text>().text = "Lives Left: " + gameController.lives  +
+        GetComponent<Text>().text = "Lives Left: " + gameController.GetLives()  +
                                     "\nSpeed: " + gameController.treadmillSpeed;
 	}
 }
