@@ -29,6 +29,7 @@ public class MenuNavigation : MonoBehaviour
     private const string BalancingGame = "Balance";
 	private const string ShipGame = "Ship";
 	private const string TreadmillGame = "Treadmill";
+    private const string UnionGame = "UnionAlgorithmScene";
 
     //Keep track of which panel the user is in
     /*
@@ -157,6 +158,12 @@ public class MenuNavigation : MonoBehaviour
 	{
 		Application.LoadLevel(TreadmillGame); //Start the treadmill game
 	}
+
+    //Load Union Game
+    public void PlayUnionGame()
+    {
+        Application.LoadLevel(UnionGame); //Start the union game
+    }
 
     //Save Game
     public void SaveButton()
