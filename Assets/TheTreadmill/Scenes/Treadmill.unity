@@ -602,6 +602,10 @@ Prefab:
       propertyPath: max
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 117458, guid: 7fe9c8d7d26996f4dbef10f3bcb12801, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7fe9c8d7d26996f4dbef10f3bcb12801, type: 2}
   m_IsPrefabParent: 0
@@ -912,7 +916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &998202201
 GameObject:
   m_PrefabParentObject: {fileID: 100020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}

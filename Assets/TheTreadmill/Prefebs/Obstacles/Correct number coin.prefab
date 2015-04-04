@@ -245,6 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972a00ac1f90b3948abe1a2a1340e9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  correctCoinEffect: {fileID: 144888, guid: 8e4b3482fd7acdc40b60aa02b3a6b1bd, type: 2}
+  falseCoinEffect: {fileID: 144888, guid: 8e4b3482fd7acdc40b60aa02b3a6b1bd, type: 2}
 --- !u!114 &11475762
 MonoBehaviour:
   m_ObjectHideFlags: 1
