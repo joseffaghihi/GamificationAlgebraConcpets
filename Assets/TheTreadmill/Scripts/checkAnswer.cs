@@ -16,7 +16,8 @@ public class checkAnswer : MonoBehaviour
         {
             GameControl gameController = new GameControl();
             gameController.GameWon();
-            Instantiate(correctCoinEffect, GameObject.FindGameObjectWithTag("Player").transform.position, GameObject.FindGameObjectWithTag("Player").transform.rotation);
+            (Instantiate(correctCoinEffect, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity) as GameObject).transform.parent =
+                            GameObject.FindGameObjectWithTag("Player").transform;
         }
         else
         {
