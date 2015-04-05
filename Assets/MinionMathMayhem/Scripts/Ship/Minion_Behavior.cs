@@ -71,6 +71,8 @@ namespace MinionMathMayhem_Ship
                 SetAttributes();
             // Detect the minion's animation and event state
                 StartCoroutine(MinionEventState());
+            // Check references
+                CheckReferences();
 
         } // Start()
 
@@ -208,5 +210,24 @@ namespace MinionMathMayhem_Ship
             // Play the sound clip
                 GetComponent<AudioSource>().Play();
         } // MinionSqueal()
+
+
+
+        // This function will check to make sure that all the references has been initialized properly.
+        private void CheckReferences()
+        {
+            if (scriptMinionController == null)
+                MissingReferenceError("Minion Controller");
+        } // CheckReferences()
+
+
+
+        // When a reference has not been properly initialized, this function will display the message within the console and stop the game.
+        private void MissingReferenceError(string refLink = "UNKNOWN_REFERENCE_NOT_DEFINED")
+        {
+            Debug.LogError("Critical Error: Could not find a reference to [ " + refLink + " ]!");
+            Debug.LogError("  Can not continue further execution until the internal issues has been resolved!");
+            Time.timeScale = 0; // Halt the game
+        } // MissingReferenceError()
     } // End of Class
 } // Namespace
