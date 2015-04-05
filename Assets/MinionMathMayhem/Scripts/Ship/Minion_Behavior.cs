@@ -184,10 +184,14 @@ namespace MinionMathMayhem_Ship
         // When the creature has been 'selected', this function will be called
         private void OnMouseDown()
         {
-            // Selected action
-                Flick();
-            // Play sound
-                MinionSqueal();
+            // Only possible when the minion is on the ladder
+            if (isClimbing != false)
+            {
+                // Selected action
+                    Flick();
+                // Play sound
+                    MinionSqueal();
+            }
         } // End of OnMouseDown
 
 
@@ -195,9 +199,6 @@ namespace MinionMathMayhem_Ship
         // Actions to take place when the minion has been selected
         public void Flick()
         {
-            // Only possible when the minion is on the ladder
-            if (isClimbing != false)
-            {
                 particleActivation.Emit();
                 GetComponent<Rigidbody>().useGravity = true;
                 GetComponent<Rigidbody>().isKinematic = false;
@@ -208,7 +209,6 @@ namespace MinionMathMayhem_Ship
                 Destroy(gameObject, 1f);
                 minionAnim.SetBool("isFlicked", true);
                 Destroy(capsuleCollider);
-            }
         } // Flick()
 
 
