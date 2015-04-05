@@ -26,7 +26,7 @@ namespace MinionMathMayhem_Ship
             // Speed that is used when the minions are walking (or running) forward
                 private float walkSpeed;
             // Force 'thrust' that is used when the minions have been selected.
-                public float force;
+                private float force;
             // Minion actions:
                 private bool isClimbing = false;
                 private bool isWalking = true;
