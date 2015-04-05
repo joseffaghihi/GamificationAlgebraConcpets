@@ -21,9 +21,19 @@ namespace MinionMathMayhem_Ship
         // These can be adjusted within Unity's inspector
             // Speed
                 // Climbing the Ladder
-                    public float speedClimbLadder;
+                    // [MINION_CONTROLLER] This var takes the local ranges of (min, max) and uses a RNG to get a unique speed value.
+                        private float speedClimbLadder;
+                    // Local Minimum Boundry Range
+                        public float speedClimbLadder_Minimum;
+                    // Local Maximum Boundry Range
+                        public float speedClimbLadder_Maximum;
                 // Running
-                    public float speedRunning;
+                    // [MINION_CONTROLLER] This var takes the local ranges of (min, max) and uses a RNG to get a unique speed value.
+                        private float speedRunning;
+                    // Local Minimum Boundry Range
+                        public float speedRunning_Minimum;
+                    // Local Maximum Boundry Range
+                        public float speedRunning_Maximum;
             // Minion Selected\Flick
                 // Thrust Force
                         public float thrustForce;
@@ -34,10 +44,23 @@ namespace MinionMathMayhem_Ship
 
 
 
+        private float GenerateClimbSpeed()
+        {
+            return Random.RandomRange(speedClimbLadder_Minimum, speedClimbLadder_Maximum);
+        } // GenerateClimbSpeed()
+
+
+        private float GenerateRunningSpeed()
+        {
+            return Random.RandomRange(speedRunning_Minimum, speedRunning_Maximum);
+        } // GenerateRunningSpeed()
+
+
+
         // Returns the Climb Speed value to the calling script
         public float ReturnClimbSpeed
         {
-            get { return speedClimbLadder; }
+            get { return GenerateClimbSpeed(); }
         } // ReturnClimbSpeed
 
 
@@ -49,11 +72,13 @@ namespace MinionMathMayhem_Ship
         } // ReturnRunningSpeed
 
 
+
         // Returns the Thrust Force value to the calling script
         public float ReturnThurstForce
         {
             get { return thrustForce; }
         } // ReturnThrustForce
+
 
 
         // Returns the Thrust Direction to the calling script
