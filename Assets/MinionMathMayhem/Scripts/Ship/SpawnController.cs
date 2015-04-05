@@ -31,7 +31,6 @@ namespace MinionMathMayhem_Ship
                 // Spawner Broadcast Event
                     public delegate void ActivateSpawnPoint();
                     public static event ActivateSpawnPoint EnableSpawnPoint;
-            //public GameState gameState;
         // ----
 
 
