@@ -17,10 +17,10 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Volume Tuner; this can be toggled in the inspector
-        public float volumeNormal = 1.0f;
-        // Volume Tuner; during tutorial mode
-        public float volumeTutorial = 0.5f;
+            // Volume Tuner; this can be toggled in the inspector
+                public float volumeNormal = 1.0f;
+            // Volume Tuner; during tutorial mode
+                public float volumeTutorial = 0.5f;
 
 
 

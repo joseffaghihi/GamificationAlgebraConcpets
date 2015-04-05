@@ -21,26 +21,26 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Speed that is used when the minions are climbing the ladder
-        private float climbSpeed;
-        // Speed that is used when the minions are walking (or running) forward
-        private float walkSpeed;
-        // Force 'thrust' that is used when the minions have been selected.
-        public float force = 1000f;
-        // Minion actions:
-        private bool isClimbing = false;
-        private bool isWalking = true;
-        // Direction in which the Minions are thrusted
-        private Vector3 forceDirection;
-        // Multimedia
-        // Screeches
-        public AudioClip[] clickedSound;
-        // Won
-        public AudioClip[] celebrationSound;
-        // Animations and physics
-        private Animator minionAnim;
-        private CapsuleCollider capsuleCollider;
-        private ParticleActivation particleActivation;
+            // Speed that is used when the minions are climbing the ladder
+                private float climbSpeed;
+            // Speed that is used when the minions are walking (or running) forward
+                private float walkSpeed;
+            // Force 'thrust' that is used when the minions have been selected.
+                public float force = 1000f;
+            // Minion actions:
+                private bool isClimbing = false;
+                private bool isWalking = true;
+            // Direction in which the Minions are thrusted
+                private Vector3 forceDirection;
+            // Multimedia
+                // Screeches
+                    public AudioClip[] clickedSound;
+                // Won
+                    public AudioClip[] celebrationSound;
+                // Animations and physics
+                    private Animator minionAnim;
+                    private CapsuleCollider capsuleCollider;
+                    private ParticleActivation particleActivation;
         // ----
 
 
@@ -49,9 +49,9 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // References and Initializations
-            minionAnim = GetComponent<Animator>();
-            capsuleCollider = GetComponent<CapsuleCollider>();
-            particleActivation = GetComponent<ParticleActivation>();
+                minionAnim = GetComponent<Animator>();
+                capsuleCollider = GetComponent<CapsuleCollider>();
+                particleActivation = GetComponent<ParticleActivation>();
         } // Awake()
 
 
@@ -60,11 +60,11 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // Force direction that will be used for eliminating the minion
-            forceDirection = new Vector3(1f, 1f, 0);
+                forceDirection = new Vector3(1f, 1f, 0);
             // Set the actor's unique attributes.
-            SetAttributes();
+                SetAttributes();
             // Detect the minion's animation and event state
-            StartCoroutine(MinionEventState());
+                StartCoroutine(MinionEventState());
         } // Start()
 
 
@@ -91,10 +91,10 @@ namespace MinionMathMayhem_Ship
         private void SetAttributes()
         {
             // Climbing speed
-            climbSpeed = Random.Range(3.98f, 6.5f);
+                climbSpeed = Random.Range(3.98f, 6.5f);
 
             // Walking speed
-            walkSpeed = Random.Range(9.89f, 13.12f);
+                walkSpeed = Random.Range(9.89f, 13.12f);
         } // SetAttributes()
 
 
@@ -169,9 +169,9 @@ namespace MinionMathMayhem_Ship
         private void OnMouseDown()
         {
             // Selected action
-            Flick();
+                Flick();
             // Play sound
-            MinionSqueal();
+                MinionSqueal();
         } // End of OnMouseDown
 
 
@@ -197,9 +197,9 @@ namespace MinionMathMayhem_Ship
         public void MinionSqueal()
         {
             // Select a sound within the array
-            GetComponent<AudioSource>().clip = clickedSound[Random.Range(1, clickedSound.Length)];
+                GetComponent<AudioSource>().clip = clickedSound[Random.Range(1, clickedSound.Length)];
             // Play the sound clip
-            GetComponent<AudioSource>().Play();
+                GetComponent<AudioSource>().Play();
         } // MinionSqueal()
     } // End of Class
 } // Namespace

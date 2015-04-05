@@ -19,16 +19,16 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Quadratic Equation Indexes
-        private int index_A,
-                    index_B,
-                    index_C;
-        // Random Number Generator (RNG) range [minimum, maximum]
-        public int minValue,
-                   maxValue;
+            // Quadratic Equation Indexes
+                private int index_A,
+                            index_B,
+                            index_C;
+            // Random Number Generator (RNG) range [minimum, maximum]
+                public int minValue,
+                           maxValue;
 
-        // Accessors and Communication
-        private Text problemBox;
+            // Accessors and Communication
+                private Text problemBox;
         // ----
 
 
@@ -37,7 +37,7 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // Reference initialization
-            problemBox = GetComponent<Text>();
+                problemBox = GetComponent<Text>();
         } // Awake()
 
 
@@ -46,7 +46,7 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // Initialize the Quadratic Equation indexes
-            Generate();
+                Generate();
         } // Start()
 
 
@@ -55,9 +55,9 @@ namespace MinionMathMayhem_Ship
         private void Generate()
         {
             // Generate the new equation indexes
-            Generate_Indexes();
+                Generate_Indexes();
             // Display the new equation
-            Generate_Display();
+                Generate_Display();
         } // Generate()
 
 

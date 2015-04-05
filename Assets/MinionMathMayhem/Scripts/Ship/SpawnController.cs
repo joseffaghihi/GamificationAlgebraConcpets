@@ -17,21 +17,21 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Time when the next minion should spawn
-        private float nextSpawn;
-        // How many minions are to be spawned within 60 seconds of time
-        // Can be manipulated within Unity's Inspector
-        public float spawnRate;
+            // Time when the next minion should spawn
+                private float nextSpawn;
+            // How many minions are to be spawned within 60 seconds of time
+                // Can be manipulated within Unity's Inspector
+                public float spawnRate;
 
-        // Accessors and Communication
-        // GameController
-        public GameController scriptGameController;
-        // Game Event
-        public GameEvent scriptGameEvent;
-        // Spawner Broadcast Event
-        public delegate void ActivateSpawnPoint();
-        public static event ActivateSpawnPoint EnableSpawnPoint;
-        //public GameState gameState;
+            // Accessors and Communication
+                // GameController
+                    public GameController scriptGameController;
+                // Game Event
+                    public GameEvent scriptGameEvent;
+                // Spawner Broadcast Event
+                    public delegate void ActivateSpawnPoint();
+                    public static event ActivateSpawnPoint EnableSpawnPoint;
+            //public GameState gameState;
         // ----
 
 
@@ -41,11 +41,11 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // First make sure that all the scripts and actors are properly linked
-            CheckReferences();
+                CheckReferences();
             // Determine the spawn rate
-            CalcNextSpawnTime();
+                CalcNextSpawnTime();
             // Spawn Control
-            StartCoroutine(SpawnDriver());
+                StartCoroutine(SpawnDriver());
         } // Start()
 
 
@@ -91,9 +91,9 @@ namespace MinionMathMayhem_Ship
         void SpawnSignal()
         {
             // Broadcast a signal to the spawners to summon a minion.
-            EnableSpawnPoint();
+                EnableSpawnPoint();
             // Determine the next time to summon a new minion creature
-            CalcNextSpawnTime();
+                CalcNextSpawnTime();
         } // SpawnSignal()
 
 

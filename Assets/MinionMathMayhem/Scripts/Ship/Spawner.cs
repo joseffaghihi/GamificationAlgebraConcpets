@@ -14,8 +14,8 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Minion Actor
-        public GameObject actor;
+            // Minion Actor
+                public GameObject actor;
         // ----
 
 
@@ -24,7 +24,7 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // First make sure that all the scripts and actors are properly linked
-            CheckReferences();
+                CheckReferences();
         } // Start()
 
 

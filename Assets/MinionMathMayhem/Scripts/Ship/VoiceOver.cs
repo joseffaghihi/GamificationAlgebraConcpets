@@ -17,15 +17,15 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Tutorial Instructions: Voice
-        public AudioClip[] voiceOver = new AudioClip[10];
-        // Tutorial skip signal 
-        public bool tutorialSkip = false;
+            // Tutorial Instructions: Voice
+                public AudioClip[] voiceOver = new AudioClip[10];
+            // Tutorial skip signal 
+                public bool tutorialSkip = false;
 
-        // Accessors and Communication
-        // Tutorial State: Fininished
-        public delegate void TutorialStateEventEnded();
-        public static event TutorialStateEventEnded TutorialStateEnded;
+            // Accessors and Communication
+                // Tutorial State: Fininished
+                    public delegate void TutorialStateEventEnded();
+                    public static event TutorialStateEventEnded TutorialStateEnded;
         // ----
 
 

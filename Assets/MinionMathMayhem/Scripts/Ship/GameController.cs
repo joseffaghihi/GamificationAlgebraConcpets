@@ -19,40 +19,40 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // How many to win each wave
-        // Can be manipulated within Unity's Inspector
-        public int maxScore = 10;
-        // How many can the user get wrong on each wave
-        // Can be manipulated within Unity's Inspector
-        public int maxScoreFail = 5;
-        // [GameManager] Determining if the game is still executing or is finished.
-        private bool gameOver = false;
-        // [GameManager] Determines if the game is over; user won.
-        private bool gameOverWin = false;
-        // [GameManager] Determines if the game is over; user failed.
-        private bool gameOverFail = false;
-        // [GameManager] Enables or disables the spawners
-        private bool spawnMinions = false;
-        // [GameManager] Tutorial Ended switch
-        private bool gameTutorialEnded = false;
+            // How many to win each wave
+                // Can be manipulated within Unity's Inspector
+                public int maxScore = 10;
+            // How many can the user get wrong on each wave
+                // Can be manipulated within Unity's Inspector
+                public int maxScoreFail = 5;
+            // [GameManager] Determining if the game is still executing or is finished.
+                private bool gameOver = false;
+            // [GameManager] Determines if the game is over; user won.
+                private bool gameOverWin = false;
+            // [GameManager] Determines if the game is over; user failed.
+                private bool gameOverFail = false;
+            // [GameManager] Enables or disables the spawners
+                private bool spawnMinions = false;
+            // [GameManager] Tutorial Ended switch
+                private bool gameTutorialEnded = false;
 
-        // Accessors and Communication
-        // Win/Lose HUD Message
-        public Text textWinOrLose;
-        // Scores
-        public Score scriptScore;
-        // Tutorial
-        public VoiceOver scriptTutorial;
-        // Game Controller
-        public GameEvent scriptGameEvent;
-        // Tutorial State
-        public delegate void TutorialStateEventStart();
-        public static event TutorialStateEventStart TutorialStateStart;
+            // Accessors and Communication
+                // Win/Lose HUD Message
+                    public Text textWinOrLose;
+                // Scores
+                    public Score scriptScore;
+                // Tutorial
+                    public VoiceOver scriptTutorial;
+                // Game Controller
+                    public GameEvent scriptGameEvent;
+                // Tutorial State
+                    public delegate void TutorialStateEventStart();
+                    public static event TutorialStateEventStart TutorialStateStart;
 
-        // GameObjects
-        // Tutorial
-        public GameObject objectTutorialMinion;
-        public GameObject objectTutorialSkipButton;
+            // GameObjects
+                // Tutorial
+                    public GameObject objectTutorialMinion;
+                    public GameObject objectTutorialSkipButton;
 
 
 
@@ -77,7 +77,7 @@ namespace MinionMathMayhem_Ship
         private void TutorialMode_Ended()
         {
             // Toggle this variable; this is used to tell the other functions that the tutorial is over.
-            gameTutorialEnded = !gameTutorialEnded;
+                gameTutorialEnded = !gameTutorialEnded;
         } // TutorialMode_Ended()
 
 
@@ -86,9 +86,9 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // First make sure that all the scripts and actors are properly linked
-            CheckReferences();
+                CheckReferences();
             // Start the main game manager
-            StartCoroutine(GameManager());
+                StartCoroutine(GameManager());
         } // Start()
 
 
@@ -110,16 +110,16 @@ namespace MinionMathMayhem_Ship
         private IEnumerator GameManager()
         {
             // Execute the Tutorial
-            yield return (StartCoroutine(GameExecute_Tutorial()));
+                yield return (StartCoroutine(GameExecute_Tutorial()));
             // Display the animations and environment settings at the very start of the game
-            scriptGameEvent.Access_FirstRun_Animations();
+                scriptGameEvent.Access_FirstRun_Animations();
             // ----
             while (true) // This is a never ending loop
             {
                 // Fetch the scores and compute the scores
-                CheckScores();
+                    CheckScores();
                 // Brief wait time to ease the CPU
-                yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.5f);
 
                 // Manage the spawners, if needed.
                 if (gameOver == !true)
@@ -155,9 +155,9 @@ namespace MinionMathMayhem_Ship
             if (scriptScore.ScoreCorrect >= maxScore || scriptScore.ScoreIncorrect >= maxScoreFail)
             {
                 // The game is over
-                gameOver = true;
+                    gameOver = true;
                 // Kill the Minions from the scene
-                scriptGameEvent.Access_MinionGenocide();
+                    scriptGameEvent.Access_MinionGenocide();
                 // ----
 
                 // Did the user win?
@@ -208,16 +208,16 @@ namespace MinionMathMayhem_Ship
         private IEnumerator GameExecute_Tutorial()
         {
             // Enable the tutorial objects
-            objectTutorialMinion.SetActive(true);
-            objectTutorialSkipButton.SetActive(true);
+                objectTutorialMinion.SetActive(true);
+                objectTutorialSkipButton.SetActive(true);
             // Send the 'Tutorial Active' signal
-            TutorialStateStart();
+                TutorialStateStart();
             // Run a signal detector; once the signal has been detected, the tutorial is finished.
             //    Once the tutorial is finished, the rest of the game can execute.
-            yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
+                yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
             // Disable the tutorial objects
-            objectTutorialMinion.SetActive(false);
-            objectTutorialSkipButton.SetActive(false);
+                objectTutorialMinion.SetActive(false);
+                objectTutorialSkipButton.SetActive(false);
         } // GameExecute_Tutorial()
 
 
@@ -238,11 +238,14 @@ namespace MinionMathMayhem_Ship
         private void RestartGame()
         {
             // flip the gameOver variables
-            gameOver = !gameOver;
+                gameOver = !gameOver;
+
             if (gameOverWin == true)
                 gameOverWin = !gameOverWin;
+
             if (gameOverFail == true)
                 gameOverFail = !gameOverFail;
+
             // Clear the Game Over text
                 GameOver_ClearText();
             // Reset the scores to null

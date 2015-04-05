@@ -23,42 +23,42 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Spawner Toggle
-        private bool SpawnMinions;
-        // Sounds
-        // Game Sounds
-        public AudioSource gameSounds;
-        // Incorrect Answer
-        public AudioClip failSound;
-        // Correct Answer
-        public AudioClip successSound;
-        // Game Over
-        public AudioClip gameOverSound;
-        // Animations
-        private Animator letterBoxController;
+            // Spawner Toggle
+                private bool SpawnMinions;
+            // Sounds
+                // Game Sounds
+                    public AudioSource gameSounds;
+                // Incorrect Answer
+                    public AudioClip failSound;
+                // Correct Answer
+                    public AudioClip successSound;
+                // Game Over
+                    public AudioClip gameOverSound;
+                // Animations
+                    private Animator letterBoxController;
 
-        // GameObjects
-        // Letter Box Texting UI
-        public Text letterBox;
-        // Quadratic Equation Updated; 'What Is' message
-        public GameObject msgWhatIs;
-        // Event Letter Change
-        public GameObject EventLetterChange;
-        // Accessors and Communication
-        // Final Destroyer
-        public FinalDestroyer scriptFinalDestroyer;
-        // Quadratic Equation Index Letter Box
-        public LetterBox scriptLetterBox;
-        // Quadratic Equation Problem Box
-        public ProblemBox scriptProblemBox;
-        // Scores
-        public Score scriptScore;
-        // Game Controller
-        public GameController scriptGameController;
-        // What-Is Object
-        private WhatIsDisplay whatIsDisplay; // [DC]
-        // What-Is Index Object
-        private Animator eventLetterAnim; // [DC]
+            // GameObjects
+                // Letter Box Texting UI
+                    public Text letterBox;
+                // Quadratic Equation Updated; 'What Is' message
+                    public GameObject msgWhatIs;
+                // Event Letter Change
+                    public GameObject EventLetterChange;
+            // Accessors and Communication
+                // Final Destroyer
+                    public FinalDestroyer scriptFinalDestroyer;
+                // Quadratic Equation Index Letter Box
+                    public LetterBox scriptLetterBox;
+                // Quadratic Equation Problem Box
+                    public ProblemBox scriptProblemBox;
+                // Scores
+                    public Score scriptScore;
+                // Game Controller
+                    public GameController scriptGameController;
+                // What-Is Object
+                    private WhatIsDisplay whatIsDisplay; // [DC]
+                // What-Is Index Object
+                    private Animator eventLetterAnim; // [DC]
         // ----
 
 
@@ -84,7 +84,7 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // Event Letter Animations
-            eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the whatis text G.O. and gets the animator.
+                eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the whatis text G.O. and gets the animator.
         } // Awake()
 
 
@@ -93,10 +93,10 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // Reference initialization
-            letterBoxController = letterBox.GetComponent<Animator>();
-            whatIsDisplay = GetComponent<WhatIsDisplay>();
+                letterBoxController = letterBox.GetComponent<Animator>();
+                whatIsDisplay = GetComponent<WhatIsDisplay>();
             // First make sure that all the scripts and actors are properly linked
-            CheckReferences();
+                CheckReferences();
         } // Start()
 
 
@@ -118,22 +118,22 @@ namespace MinionMathMayhem_Ship
         private IEnumerator AnswerCorrect()
         {
             // Play sounds
-            AnswerCorrect_Sounds();
+                AnswerCorrect_Sounds();
             // Update the score
-            AnswerCorrect_UpdateScore();
+                AnswerCorrect_UpdateScore();
             // Pause the spawners
-            SpawnerToggleValue();
+                SpawnerToggleValue();
             // Murder the minions!
-            MinionGenocide();
+                MinionGenocide();
             // Slight pause
-            yield return (WaitTimer(2));
+                yield return (WaitTimer(2));
             // Generate a new quation
-            AnswerCorrect_Generate();
+                AnswerCorrect_Generate();
             // Animations
-            AnswerCorrect_FinalAnimations();
+                AnswerCorrect_FinalAnimations();
             // Display the 'What-is' messages
-            whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
-            yield return null;
+                whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
+                yield return null;
         } // AnswerCorrect()
 
 
@@ -161,10 +161,10 @@ namespace MinionMathMayhem_Ship
             if (MinionGenocide_CheckMinions() != false)
             {
                 // Fetch all of the minions in one array 
-                GameObject[] minionsInScene = GameObject.FindGameObjectsWithTag("Minion");
+                    GameObject[] minionsInScene = GameObject.FindGameObjectsWithTag("Minion");
                 // Kill them 
-                for (int i = 0; i < minionsInScene.Length; i++)
-                    DestroyObject(minionsInScene[i]);
+                    for (int i = 0; i < minionsInScene.Length; i++)
+                        DestroyObject(minionsInScene[i]);
             } // if
 
         } // AnswerCorrect_MinionGenocide()
@@ -192,10 +192,10 @@ namespace MinionMathMayhem_Ship
             if (scriptGameController.GameOver == false)
             {
                 // Generate a new equation
-                scriptProblemBox.Access_Generate();
-                scriptLetterBox.Access_Generate();
+                    scriptProblemBox.Access_Generate();
+                    scriptLetterBox.Access_Generate();
                 // Notify the user of index update
-                letterBoxController.SetTrigger("LetterChange");
+                    letterBoxController.SetTrigger("LetterChange");
                 //msgWhatIs.GetComponent<Animation>().Play();
             } // If
         } // AnswerCorrect_Generate()
@@ -215,10 +215,10 @@ namespace MinionMathMayhem_Ship
         private IEnumerator FirstRun_Animations()
         {
             // Animations
-            AnswerCorrect_FinalAnimations();
+                AnswerCorrect_FinalAnimations();
             // Notify the user of index update
-            letterBoxController.SetTrigger("LetterChange");
-            whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
+                letterBoxController.SetTrigger("LetterChange");
+                whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
             yield return new WaitForSeconds(2f);
         } // FirstRun_Animations()
 
@@ -244,9 +244,9 @@ namespace MinionMathMayhem_Ship
         private void AnswerIncorrect()
         {
             // Update the score
-            scriptScore.AccessUpdateScoreIncorrect();
+                scriptScore.AccessUpdateScoreIncorrect();
             // Play Sounds
-            AnswerIncorrect_Sounds();
+                AnswerIncorrect_Sounds();
         } // AnswerIncorrect()
 
 
