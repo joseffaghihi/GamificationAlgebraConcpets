@@ -33,13 +33,6 @@ namespace MinionMathMayhem_Ship
 
 
 
-        public void Detected()
-        {
-            print("Successfully detected this script and function!");
-        }
-
-
-
 
         // Returns the Climb Speed value to the calling script
         public float ReturnClimbSpeed
