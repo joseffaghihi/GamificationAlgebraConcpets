@@ -5004,6 +5004,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023910942ee571c45b810b4b7c1cd199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedClimbLadder_Minimum: 3.98000002
+  speedClimbLadder_Maximum: 6.5
+  speedRunning_Minimum: 9.89000034
+  speedRunning_Maximum: 13.1199999
+  thrustForce: 3000
+  thrustDirection: {x: 1, y: 1, z: 0}
 --- !u!1 &1635683666
 GameObject:
   m_ObjectHideFlags: 0
