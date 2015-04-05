@@ -110,7 +110,8 @@ namespace MinionMathMayhem_Ship
         private IEnumerator GameManager()
         {
             // Execute the Tutorial
-                yield return (StartCoroutine(GameExecute_Tutorial()));
+                // BY-REQUEST; the 'VoiceOver'tutorial is now considered deprecated [NG]
+                //yield return (StartCoroutine(GameExecute_Tutorial()));
             // Display the animations and environment settings at the very start of the game
                 scriptGameEvent.Access_FirstRun_Animations();
             // ----
