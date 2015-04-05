@@ -26,7 +26,7 @@ namespace MinionMathMayhem_Ship
             // Speed that is used when the minions are walking (or running) forward
                 private float walkSpeed;
             // Force 'thrust' that is used when the minions have been selected.
-                public float force = 1000f;
+                public float force;
             // Minion actions:
                 private bool isClimbing = false;
                 private bool isWalking = true;
@@ -65,8 +65,6 @@ namespace MinionMathMayhem_Ship
         // This function will be called once the actor has been summoned within the scene
         private void Start()
         {
-            // Force direction that will be used for eliminating the minion
-                forceDirection = new Vector3(1f, 1f, 0);
             // Set the actor's unique attributes.
                 SetAttributes();
             // Detect the minion's animation and event state
@@ -100,10 +98,19 @@ namespace MinionMathMayhem_Ship
         private void SetAttributes()
         {
             // Climbing speed
-                climbSpeed = Random.Range(3.98f, 6.5f);
+                climbSpeed = scriptMinionController.ClimbSpeed;
 
             // Walking speed
-                walkSpeed = Random.Range(9.89f, 13.12f);
+                walkSpeed = scriptMinionController.RunningSpeed;
+
+            // Thrust Force
+                // The force (or push) used when the minion is selected
+                force = scriptMinionController.thrustForce;
+
+            // Thrust Direction
+                // Push the minion to the desired direction when selected.
+                forceDirection = scriptMinionController.ThrustDirection;
+
         } // SetAttributes()
 
 
