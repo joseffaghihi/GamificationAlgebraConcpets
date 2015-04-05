@@ -41,6 +41,9 @@ namespace MinionMathMayhem_Ship
                     private Animator minionAnim;
                     private CapsuleCollider capsuleCollider;
                     private ParticleActivation particleActivation;
+            // Accessors and Communication
+                // Minion Controller; this is a centralization field for the minion behaviour
+                    private Minion_Controller scriptMinionController;
         // ----
 
 
@@ -52,6 +55,9 @@ namespace MinionMathMayhem_Ship
                 minionAnim = GetComponent<Animator>();
                 capsuleCollider = GetComponent<CapsuleCollider>();
                 particleActivation = GetComponent<ParticleActivation>();
+                // Find the GameController tag, and then find the attached script 'Minion_controller'.
+                    scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
+
         } // Awake()
 
 
@@ -65,6 +71,7 @@ namespace MinionMathMayhem_Ship
                 SetAttributes();
             // Detect the minion's animation and event state
                 StartCoroutine(MinionEventState());
+
         } // Start()
 
 

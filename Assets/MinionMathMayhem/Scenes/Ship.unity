@@ -4822,6 +4822,7 @@ GameObject:
   - 114: {fileID: 1430447471}
   - 114: {fileID: 1430447473}
   - 114: {fileID: 1430447475}
+  - 114: {fileID: 1430447476}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -4992,6 +4993,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsTextbox: {fileID: 491266297}
   eventLetterTextbox: {fileID: 2021063920}
+--- !u!114 &1430447476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430447468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023910942ee571c45b810b4b7c1cd199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1635683666
 GameObject:
   m_ObjectHideFlags: 0
