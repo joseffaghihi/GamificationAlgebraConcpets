@@ -205,7 +205,6 @@ namespace MinionMathMayhem_Ship
                 isClimbing = false;
                 isWalking = false;
                 GetComponent<Rigidbody>().AddForce(forceDirection * force);
-                Debug.Log("Clicked!");
                 Destroy(gameObject, 1f);
                 minionAnim.SetBool("isFlicked", true);
                 Destroy(capsuleCollider);
