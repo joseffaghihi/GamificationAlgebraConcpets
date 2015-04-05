@@ -195,16 +195,20 @@ namespace MinionMathMayhem_Ship
         // Actions to take place when the minion has been selected
         public void Flick()
         {
-            particleActivation.Emit();
-            GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().isKinematic = false;
-            isClimbing = false;
-            isWalking = false;
-            GetComponent<Rigidbody>().AddForce(forceDirection * force);
-            Debug.Log("Clicked!");
-            Destroy(gameObject, 1f);
-            minionAnim.SetBool("isFlicked", true);
-            Destroy(capsuleCollider);
+            // Only possible when the minion is on the ladder
+            if (isClimbing != false)
+            {
+                particleActivation.Emit();
+                GetComponent<Rigidbody>().useGravity = true;
+                GetComponent<Rigidbody>().isKinematic = false;
+                isClimbing = false;
+                isWalking = false;
+                GetComponent<Rigidbody>().AddForce(forceDirection * force);
+                Debug.Log("Clicked!");
+                Destroy(gameObject, 1f);
+                minionAnim.SetBool("isFlicked", true);
+                Destroy(capsuleCollider);
+            }
         } // Flick()
 
 
