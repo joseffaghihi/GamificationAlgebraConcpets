@@ -68,7 +68,7 @@ namespace MinionMathMayhem_Ship
         // Returns the Running Speed value to the calling script
         public float RunningSpeed
         {
-            get { return speedRunning; }
+            get { return GenerateRunningSpeed(); }
         } // RunningSpeed
 
 
