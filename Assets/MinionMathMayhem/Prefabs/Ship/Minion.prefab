@@ -435,8 +435,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157540}
   serializedVersion: 2
-  m_Mass: 2.04999995
-  m_Drag: .980000019
+  m_Mass: 3
+  m_Drag: 1.5
   m_AngularDrag: .629999995
   m_UseGravity: 0
   m_IsKinematic: 1
@@ -522,9 +522,9 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b7ca2063f8dc8470a81f5be837419a5d, type: 3}
   m_Controller: {fileID: 9100000, guid: 0185f8daa444242ef872ad94093ddd63, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -628,7 +628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da40891028745b24e93d7d0af010c7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 3000
   clickedSound:
   - {fileID: 8300000, guid: b5529d376c7634b3fa848356badbdc94, type: 3}
   - {fileID: 8300000, guid: 51780b707269d431780048e4120df00a, type: 3}

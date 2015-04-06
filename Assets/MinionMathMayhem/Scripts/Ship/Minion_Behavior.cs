@@ -31,7 +31,7 @@ namespace MinionMathMayhem_Ship
                 private bool isClimbing = false;
                 private bool isWalking = true;
             // Direction in which the Minions are thrusted
-                private Vector3 forceDirection;
+                private Vector3 forceDirection; 
             // Multimedia
                 // Screeches
                     public AudioClip[] clickedSound;
@@ -56,7 +56,7 @@ namespace MinionMathMayhem_Ship
                 capsuleCollider = GetComponent<CapsuleCollider>();
                 particleActivation = GetComponent<ParticleActivation>();
                 // Find the GameController tag, and then find the attached script 'Minion_controller'.
-                    scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
+                scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
 
         } // Awake()
 
@@ -200,8 +200,8 @@ namespace MinionMathMayhem_Ship
         public void Flick()
         {
                 particleActivation.Emit();
-                GetComponent<Rigidbody>().useGravity = true;
-                GetComponent<Rigidbody>().isKinematic = false;
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 isClimbing = false;
                 isWalking = false;
                 GetComponent<Rigidbody>().AddForce(forceDirection * force);
