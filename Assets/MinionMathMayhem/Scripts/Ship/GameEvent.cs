@@ -35,11 +35,13 @@ namespace MinionMathMayhem_Ship
                 // Game Over
                     public AudioClip gameOverSound;
                 // Animations
-                    private Animator letterBoxController;
+                    //private Animator letterBoxController;
+					private Animator correctTextAnim;
 
             // GameObjects
                 // Letter Box Texting UI
-                    public Text letterBox;
+					public GameObject correctText;
+                    //public GameObject letterBox;
                 // Quadratic Equation Updated; 'What Is' message
                     public GameObject msgWhatIs;
                 // Event Letter Change
@@ -85,6 +87,7 @@ namespace MinionMathMayhem_Ship
         {
             // Event Letter Animations
                 eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the whatis text G.O. and gets the animator.
+				correctTextAnim = correctText.GetComponent<Animator>();
         } // Awake()
 
 
@@ -93,7 +96,7 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // Reference initialization
-                letterBoxController = letterBox.GetComponent<Animator>();
+                //letterBoxController = letterBox.GetComponent<Animator>();
                 whatIsDisplay = GetComponent<WhatIsDisplay>();
             // First make sure that all the scripts and actors are properly linked
                 CheckReferences();
@@ -135,6 +138,7 @@ namespace MinionMathMayhem_Ship
                 whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
             // Resume the spawners
                 SpawnerToggleValue();
+			correctTextAnim.SetTrigger ("Drop");
             // ----
             yield return null;
         } // AnswerCorrect()
@@ -198,7 +202,7 @@ namespace MinionMathMayhem_Ship
                     scriptProblemBox.Access_Generate();
                     scriptLetterBox.Access_Generate();
                 // Notify the user of index update
-                    letterBoxController.SetTrigger("LetterChange");
+                    //letterBoxController.SetTrigger("LetterChange");
                 //msgWhatIs.GetComponent<Animation>().Play();
             } // If
         } // AnswerCorrect_Generate()
@@ -220,7 +224,7 @@ namespace MinionMathMayhem_Ship
             // Animations
                 AnswerCorrect_FinalAnimations();
             // Notify the user of index update
-                letterBoxController.SetTrigger("LetterChange");
+                //letterBoxController.SetTrigger("LetterChange");
                 whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
             yield return new WaitForSeconds(2f);
         } // FirstRun_Animations()
@@ -323,12 +327,12 @@ namespace MinionMathMayhem_Ship
                 MissingReferenceError("Scores");
             if (scriptGameController == null)
                 MissingReferenceError("Game Controller");
-            if (letterBoxController == null)
-                MissingReferenceError("Letter Box Controller");
+            //if (letterBoxController == null)
+               // MissingReferenceError("Letter Box Controller");
             if (eventLetterAnim == null)
                 MissingReferenceError("Event Letter Animation");
-            if (letterBox == null)
-                MissingReferenceError("Letter Box [text]");
+           // if (letterBox == null)
+               // MissingReferenceError("Letter Box [text]");
             if (whatIsDisplay == null)
                 MissingReferenceError("What Is Display Object");
         } // CheckReferences()
