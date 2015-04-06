@@ -135,7 +135,8 @@ namespace MinionMathMayhem_Ship
                 whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
             // Resume the spawners
                 SpawnerToggleValue();
-                yield return null;
+            // ----
+            yield return null;
         } // AnswerCorrect()
 
 
