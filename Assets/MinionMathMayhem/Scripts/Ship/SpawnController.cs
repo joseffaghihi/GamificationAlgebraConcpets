@@ -78,7 +78,7 @@ namespace MinionMathMayhem_Ship
 
 
         // Determine the new time in which a new minion will be spawned in the scene
-        void CalcNextSpawnTime()
+        private void CalcNextSpawnTime()
         {
             float r = Random.Range(0, 2 * MinionsASecond());
             nextSpawn = Time.time + r;
@@ -87,7 +87,7 @@ namespace MinionMathMayhem_Ship
 
 
         // Send a signal to spawn the creature
-        void SpawnSignal()
+        private void SpawnSignal()
         {
             // Broadcast a signal to the spawners to summon a minion.
                 EnableSpawnPoint();
