@@ -46,13 +46,13 @@ namespace MinionMathMayhem_Ship
 
         private float GenerateClimbSpeed()
         {
-            return Random.RandomRange(speedClimbLadder_Minimum, speedClimbLadder_Maximum);
+            return Random.Range(speedClimbLadder_Minimum, speedClimbLadder_Maximum);
         } // GenerateClimbSpeed()
 
 
         private float GenerateRunningSpeed()
         {
-            return Random.RandomRange(speedRunning_Minimum, speedRunning_Maximum);
+            return Random.Range(speedRunning_Minimum, speedRunning_Maximum);
         } // GenerateRunningSpeed()
 
 
