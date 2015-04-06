@@ -22,7 +22,13 @@ namespace MinionMathMayhem_Ship
             // How many minions are to be spawned within 60 seconds of time
                 // Can be manipulated within Unity's Inspector
                 public float spawnRate;
-
+            // Grace-Timer for when the spawners should be activated
+                // Used when the game resumes or starts; this allows the user to see the index's before the wave begins.
+                    private bool gracePeriodPassed = false;
+                // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
+                    private bool gracePeriodLockOut = false;
+                // Grace Timer Duriation
+                    public float gracePeriodTimer = 2.5f;
             // Accessors and Communication
                 // GameController
                     public GameController scriptGameController;
