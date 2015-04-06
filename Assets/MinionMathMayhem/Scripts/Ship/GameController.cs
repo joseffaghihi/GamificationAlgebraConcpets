@@ -109,6 +109,9 @@ namespace MinionMathMayhem_Ship
         // This function manages how the game is controlled - from start to finish.
         private IEnumerator GameManager()
         {
+            // Without this, things go horribly wrong [reference errors, even though everything is initialized]
+                yield return null;
+            // ----
             // Execute the Tutorial
                 // BY-REQUEST; the 'VoiceOver'tutorial is now considered deprecated [NG]
                 //yield return (StartCoroutine(GameExecute_Tutorial()));
@@ -135,7 +138,6 @@ namespace MinionMathMayhem_Ship
                     if (spawnMinions == !false)
                         FlipMinionSpawner();
                 }
-                //yield return null;
                 // ----
             } // while loop
         } // GameManager()
