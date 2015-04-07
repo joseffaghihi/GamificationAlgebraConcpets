@@ -40,6 +40,24 @@ namespace MinionMathMayhem_Ship
         // ----
 
 
+        
+
+        // Signal Listener: Detected
+        private void OnEnable()
+        {
+            GameEvent.RequestGraceTime += GraceTimer;
+            GameController.RequestGraceTime += GraceTimer;
+        } // OnEnable()
+
+
+
+        // Signal Listener: Deactivate
+        private void OnDisable()
+        {
+            GameEvent.RequestGraceTime -= GraceTimer;
+            GameController.RequestGraceTime -= GraceTimer;
+        } // OnDisable()
+
 
 
         // This function is immediately executed once the actor is in the game scene.
@@ -62,7 +80,7 @@ namespace MinionMathMayhem_Ship
             {
                 // ----
                 // Check to see if the spawner is activated
-                if (scriptGameController.SpawnMinions == !false && scriptGameController.GameOver != true && scriptGameEvent.AccessSpawnMinions != true)
+                if (scriptGameController.SpawnMinions == !false && scriptGameController.GameOver != true && scriptGameEvent.AccessSpawnMinions != true && gracePeriodLockOut != true)
                     // Check to see if it is time to spawn another minion
                     if (Time.time >= nextSpawn)
                         SpawnSignal();
@@ -100,6 +118,33 @@ namespace MinionMathMayhem_Ship
             // Determine the next time to summon a new minion creature
                 CalcNextSpawnTime();
         } // SpawnSignal()
+
+
+
+        // This function will kindly tell delay the signal to start instationating the minions.
+        public void GracePeriodTimeOut_Request()
+        {
+            gracePeriodLockOut = true;
+        } // GracePeriodTimeOut_Request()
+
+
+
+        // This function initiate the grace timer - that will momentarily delay the spawners from ever being activated.
+        private void GraceTimer()
+        {
+            // A simple timer
+                StartCoroutine(GraceTimer_InitiateTimer());
+        } // GraceTimer()
+
+
+
+        // The Timer function will disallow the spawners from becoming active until the wait-delay has passed.
+        private IEnumerator GraceTimer_InitiateTimer()
+        {
+            gracePeriodLockOut = true;
+            yield return new WaitForSeconds(gracePeriodTimer);
+            gracePeriodLockOut = false ;
+        } //GraceTimer_InitiateTimer()
 
 
 

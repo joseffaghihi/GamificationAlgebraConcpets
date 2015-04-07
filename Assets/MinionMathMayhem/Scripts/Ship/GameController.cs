@@ -48,6 +48,11 @@ namespace MinionMathMayhem_Ship
                 // Tutorial State
                     public delegate void TutorialStateEventStart();
                     public static event TutorialStateEventStart TutorialStateStart;
+                // Spawn Controller
+                    public SpawnController scriptSpawnController;
+                // Request Grace-Time Period; Broadcast Event
+                    public delegate void RequestGraceTimePeriodSig();
+                    public static event RequestGraceTimePeriodSig RequestGraceTime;
 
             // GameObjects
                 // Tutorial

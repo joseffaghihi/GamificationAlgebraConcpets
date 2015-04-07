@@ -61,6 +61,9 @@ namespace MinionMathMayhem_Ship
                     private WhatIsDisplay whatIsDisplay; // [DC]
                 // What-Is Index Object
                     private Animator eventLetterAnim; // [DC]
+                // Request Grace-Time Period; Broadcast Event
+                    public delegate void RequestGraceTimePeriodSig();
+                    public static event RequestGraceTimePeriodSig RequestGraceTime;
         // ----
 
 
