@@ -4482,6 +4482,7 @@ MonoBehaviour:
   scriptScore: {fileID: 1430447471}
   scriptTutorial: {fileID: 33354903}
   scriptGameEvent: {fileID: 1430447472}
+  scriptSpawnController: {fileID: 0}
   objectTutorialMinion: {fileID: 33354902}
   objectTutorialSkipButton: {fileID: 1635683666}
 --- !u!114 &1430447471
@@ -6738,8 +6739,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0239976905, y: .000601741194, z: 1.44048736e-05, w: .999711871}
-  m_LocalPosition: {x: -2.36457562, y: -20.7566891, z: -275.903961}
+  m_LocalRotation: {x: .087172322, y: .899590552, z: .210452542, w: -.372622699}
+  m_LocalPosition: {x: -13.7432308, y: -2.01402974, z: -44.1644745}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
