@@ -142,6 +142,8 @@ namespace MinionMathMayhem_Ship
                 SpawnerToggleValue();
 			// [DC] drops in the correct text
 				correctTextAnim.SetTrigger ("Drop");
+            // Issue a delay before activating the spawners.
+                RequestGraceTime();
             // ----
             yield return null;
         } // AnswerCorrect()

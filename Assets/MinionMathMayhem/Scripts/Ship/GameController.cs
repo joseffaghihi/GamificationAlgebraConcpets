@@ -122,6 +122,8 @@ namespace MinionMathMayhem_Ship
                 //yield return (StartCoroutine(GameExecute_Tutorial()));
             // Display the animations and environment settings at the very start of the game
                 scriptGameEvent.Access_FirstRun_Animations();
+            // Initiate the wait delay on the spawners
+                RequestGraceTime();
             // ----
             while (true) // This is a never ending loop
             {
@@ -260,6 +262,8 @@ namespace MinionMathMayhem_Ship
                 scriptScore.AccessReset();
             // Call the 'What-Is' animation
                 scriptGameEvent.Access_FirstRun_Animations();
+            // Issue a delay before activating the spawners.
+                RequestGraceTime();
         } // RestartGame()
 
 
