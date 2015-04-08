@@ -134,14 +134,16 @@ namespace MinionMathMayhem_Ship
                 yield return (WaitTimer(2));
             // Generate a new quation
                 AnswerCorrect_Generate();
+            // [DC] drops in the correct text
+                correctTextAnim.SetTrigger("Drop");
+            // Delay
+                yield return new WaitForSeconds(1.5f);
             // Animations
                 AnswerCorrect_FinalAnimations();
             // Display the 'What-is' messages
                 whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
             // Resume the spawners
                 SpawnerToggleValue();
-			// [DC] drops in the correct text
-				correctTextAnim.SetTrigger ("Drop");
             // Issue a delay before activating the spawners.
                 RequestGraceTime();
             // ----
