@@ -37,6 +37,8 @@ namespace MinionMathMayhem_Ship
                 // Animations
                     //private Animator letterBoxController;
 					private Animator correctTextAnim;
+                    // What-Is Index Object
+                        private Animator eventLetterAnim; // [DC]
 
             // GameObjects
                 // Letter Box Texting UI
@@ -59,8 +61,6 @@ namespace MinionMathMayhem_Ship
                     public GameController scriptGameController;
                 // What-Is Object
                     private WhatIsDisplay whatIsDisplay; // [DC]
-                // What-Is Index Object
-                    private Animator eventLetterAnim; // [DC]
                 // Request Grace-Time Period; Broadcast Event
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;

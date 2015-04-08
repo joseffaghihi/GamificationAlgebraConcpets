@@ -37,10 +37,10 @@ namespace MinionMathMayhem_Ship
                     public AudioClip[] clickedSound;
                 // Won
                     public AudioClip[] celebrationSound;
-                // Animations and physics
-                    private Animator minionAnim;
-                    private CapsuleCollider capsuleCollider;
-                    private ParticleActivation particleActivation;
+            // Animations and physics
+                private Animator minionAnim;
+                private CapsuleCollider capsuleCollider;
+                private ParticleActivation particleActivation;
             // Accessors and Communication
                 // Minion Controller; this is a centralization field for the minion behavior
                     private Minion_Controller scriptMinionController;
