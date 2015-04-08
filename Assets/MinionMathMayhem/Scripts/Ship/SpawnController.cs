@@ -23,8 +23,6 @@ namespace MinionMathMayhem_Ship
                 // Can be manipulated within Unity's Inspector
                 public float spawnRate;
             // Grace-Timer for when the spawners should be activated
-                // Used when the game resumes or starts; this allows the user to see the index's before the wave begins.
-                    private bool gracePeriodPassed = false;
                 // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
                     private bool gracePeriodLockOut = false;
                 // Grace Timer Duriation
