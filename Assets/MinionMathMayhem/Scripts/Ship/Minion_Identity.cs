@@ -25,7 +25,7 @@ namespace MinionMathMayhem_Ship
                 public Text numText;
 
             // Accessors and Communication
-                // Use the RNG from ProblemBox as contains the boundry limit.
+                // Use the RNG from ProblemBox as contains the boundary limit.
                     public ProblemBox problemBox;
         // ----
 

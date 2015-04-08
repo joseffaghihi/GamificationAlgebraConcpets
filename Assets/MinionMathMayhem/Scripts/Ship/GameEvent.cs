@@ -11,7 +11,7 @@ namespace MinionMathMayhem_Ship
          * Within this script, this will manage the game flow and game attributes dynamically.
          *     This will check if the user has the correct answer, toggle the score value (mainly sending you a signal),
          *     clear the scene by expunging all of the actors within the scene, and anything else that has value within
-         *     the gameplay aspect.
+         *     the game-play aspect.
          * 
          * GOALS:
          *  Check if the user has the correct or incorrect answer.
@@ -89,7 +89,7 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // Event Letter Animations
-                eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the whatis text G.O. and gets the animator.
+                eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the what-is text G.O. and gets the animator.
 				correctTextAnim = correctText.GetComponent<Animator>();
         } // Awake()
 
@@ -132,7 +132,7 @@ namespace MinionMathMayhem_Ship
                 MinionGenocide();
             // Slight pause
                 yield return (WaitTimer(2));
-            // Generate a new quation
+            // Generate a new equation
                 AnswerCorrect_Generate();
             // [DC] drops in the correct text
                 correctTextAnim.SetTrigger("Drop");
@@ -243,7 +243,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Whatis Text Animations
+        // What-is Text Animations
         private void AnswerCorrect_FinalAnimations()
         {
             eventLetterAnim.SetTrigger("SlideIn");

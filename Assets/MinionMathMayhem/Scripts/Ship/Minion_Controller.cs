@@ -8,7 +8,7 @@ namespace MinionMathMayhem_Ship
 
 
         /*                      MINION CONTROLLER
-         * This class is designed to centralize the minion's attributes and behaviour to meet the condition's within the environment.
+         * This class is designed to centralize the minion's attributes and behavior to meet the condition's within the environment.
          * 
          * GOALS:
          *  Centralization of behavior and attributes
@@ -23,16 +23,16 @@ namespace MinionMathMayhem_Ship
                 // Climbing the Ladder
                     // [MINION_CONTROLLER] This var takes the local ranges of (min, max) and uses a RNG to get a unique speed value.
                         private float speedClimbLadder;
-                    // Local Minimum Boundry Range
+                    // Local Minimum Boundary Range
                         public float speedClimbLadder_Minimum;
-                    // Local Maximum Boundry Range
+                    // Local Maximum Boundary Range
                         public float speedClimbLadder_Maximum;
                 // Running
                     // [MINION_CONTROLLER] This var takes the local ranges of (min, max) and uses a RNG to get a unique speed value.
                         private float speedRunning;
-                    // Local Minimum Boundry Range
+                    // Local Minimum Boundary Range
                         public float speedRunning_Minimum;
-                    // Local Maximum Boundry Range
+                    // Local Maximum Boundary Range
                         public float speedRunning_Maximum;
             // Minion Selected\Flick
                 // Thrust Force

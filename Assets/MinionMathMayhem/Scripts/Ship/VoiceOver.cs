@@ -23,7 +23,7 @@ namespace MinionMathMayhem_Ship
                 public bool tutorialSkip = false;
 
             // Accessors and Communication
-                // Tutorial State: Fininished
+                // Tutorial State: Finished
                     public delegate void TutorialStateEventEnded();
                     public static event TutorialStateEventEnded TutorialStateEnded;
         // ----

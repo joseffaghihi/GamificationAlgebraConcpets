@@ -6,7 +6,7 @@ namespace MinionMathMayhem_Ship
     public class SpawnController : MonoBehaviour
     {
         /*                    SPAWNER CONTROLLER
-         * This class will simply send a singal to the spawner actors to summon the minion actors into the scene.
+         * This class will simply send a signal to the spawner actors to summon the minion actors into the scene.
          *  
          * GOALS:
          *  Determine the next spawn
@@ -25,7 +25,7 @@ namespace MinionMathMayhem_Ship
             // Grace-Timer for when the spawners should be activated
                 // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
                     private bool gracePeriodLockOut = false;
-                // Grace Timer Duriation
+                // Grace Timer Duration
                     public float gracePeriodTimer = 2.5f;
             // Accessors and Communication
                 // GameController
@@ -119,7 +119,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function will kindly tell delay the signal to start instationating the minions.
+        // This function will kindly tell delay the signal to start instantiating the minions.
         public void GracePeriodTimeOut_Request()
         {
             gracePeriodLockOut = true;

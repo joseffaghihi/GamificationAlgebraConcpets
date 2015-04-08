@@ -74,7 +74,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function will call the generater function (which is private).
+        // This function will call the generator function (which is private).
         public void Access_Generate()
         {
             Generate();

@@ -11,7 +11,7 @@ namespace MinionMathMayhem_Ship
          *   The cached identity will be used from another
          *  
          * GOALS:
-         *  Fetch the actor's uniquly self-assigned number and cache it.
+         *  Fetch the actor's uniquely self-assigned number and cache it.
          *  Destroy the actor
          */
 
