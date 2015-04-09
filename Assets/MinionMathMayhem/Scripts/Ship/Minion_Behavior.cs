@@ -147,18 +147,66 @@ namespace MinionMathMayhem_Ship
             // Collided With: Another Minion
                 else if (other.tag == "Minion")
                 {
-                    // Get the collided object's script
-                    Minion_Behavior actorCollided = other.gameObject.GetComponent<Minion_Behavior>();
-
-                    // Determine what was selected
-                    if (scriptMinionController.MinionCollision(FetchObjectIDAddress(), actorCollided.FetchObjectIDAddress()) == FetchObjectIDAddress())
-                        // This actor was selected
-                        Flick();
-                    else
-                        // The collided actor was selected
-                        actorCollided.Flick();
+                    // Execute the function that will select which minion is the alpha male!
+                        MinionCollision(other.gameObject.GetComponent<Minion_Behavior>());
                 } // End if (Minion)
         } // OnTriggerEnter()
+
+
+
+        // When the minions collide with each other, this function will determine which one is going to be the alpha male!
+        private void MinionCollision(Minion_Behavior actor)
+        {
+
+            int actorSelected = scriptMinionController.MinionCollision(FetchObjectIDAddress(), actor.FetchObjectIDAddress());
+            // This gameObject has been selected
+                if (actorSelected == FetchObjectIDAddress())
+                {
+                    if (isClimbing == true)
+                    {
+                        MinionCollision_Selected_Climbing(true, actor);
+                    }
+                    else if (isWalking == true)
+                    {
+                        MinionCollision_Selected_Walking(true, actor);
+                    }
+                } // if
+
+            // The colliding actor was selected
+                else
+                {
+                    if (isClimbing == true)
+                    {
+                        MinionCollision_Selected_Climbing(false, actor);
+                    }
+                    else if (isWalking == true)
+                    {
+                        MinionCollision_Selected_Walking(false, actor);
+                    }
+                } // else
+        } // MinionCollision()
+
+
+
+        // Collision occured during the climbing; the selected minion will fling.
+        private void MinionCollision_Selected_Climbing(bool selected, Minion_Behavior actor = null)
+        {
+            if (selected == true)
+                Flick();
+            else
+                actor.Flick();
+        } // MinionCollision_Selected_Climbing()
+
+
+
+        // Collision occured during walking; the selected minion will fling.
+        private void MinionCollision_Selected_Walking(bool selected, Minion_Behavior actor = null)
+        {
+            if (selected == false)
+                Flick();
+            else
+                actor.Flick();
+        } // MinionCollision_Selected_Walking()
 
 
 
