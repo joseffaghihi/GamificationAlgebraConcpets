@@ -119,49 +119,37 @@ namespace MinionMathMayhem_Ship
         // When the minions 'hit' with other objects, this function is going to be called.
         private void OnTriggerEnter(Collider other)
         {
-            // Debug Purposes:
-            //id = gameObject.GetComponent<CreatureIdentity>();
 
-            // Ladder collision:
-            if (other.tag == "Ladder")
-            {
-                // Debug Purposes:
-                //Debug.Log("Hit Ladder: " + id.Number.ToString());
-                // ----
-                isClimbing = true;
-                isWalking = false;
-                minionAnim.SetTrigger("Climb");
-            } // End if (ladder)
+            // Collided With: Ladder
+                if (other.tag == "Ladder")
+                {
+                    // The minion is climbing
+                        isClimbing = true;
+                        isWalking = false;
+                        minionAnim.SetTrigger("Climb");
+                } // End if (ladder)
 
-            // Forward Enabler (game object) collision:
-            else if (other.tag == "ForwardEnabler")
-            {
+            // Collided With: Forward Enabler
+                else if (other.tag == "ForwardEnabler")
+                {
+                    // The minion is walking
+                        isClimbing = false;
+                        isWalking = true;
+                        minionAnim.SetTrigger("Walk");
+                } // End if (ForwardEnabler)
 
-                // Debug Purposes:
-                // ----
-                isClimbing = false;
-                isWalking = true;
-                minionAnim.SetTrigger("Walk");
-            } // End if (ForwardEnabler)
+            // Collided With: FinalDestroyer
+                else if (other.tag == "exit")
+                {
+                    // Do nothing
+                } // End if (exit)
 
-            // Exit collision:
-            else if (other.tag == "exit")
-            {
-                // Debug Purposes:
-                //Debug.Log("Hit Exit: " + id.Number.ToString());
-                // ----
-                // exit code
-            } // End if (exit)
-
-            // Minion collision (colliding with another minion):
-            else if (other.tag == "Minion")
-            {
-                Minion_Behavior actorCollided = other.gameObject.GetComponent<Minion_Behavior>();
-                print("This object: " + FetchObjectIDAddress() + " Collided with object: " + actorCollided.FetchObjectIDAddress());
-            } // End if (Minion)
-
-            // Temp Debug Messages [NG]
-            //Debug.Log("Minion has hit tag: " + other.tag);
+            // Collided With: Another Minion
+                else if (other.tag == "Minion")
+                {
+                    Minion_Behavior actorCollided = other.gameObject.GetComponent<Minion_Behavior>();
+                    print("This object: " + FetchObjectIDAddress() + " Collided with object: " + actorCollided.FetchObjectIDAddress());
+                } // End if (Minion)
         } // OnTriggerEnter()
 
 
