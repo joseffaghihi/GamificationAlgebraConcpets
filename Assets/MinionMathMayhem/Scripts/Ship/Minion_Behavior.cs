@@ -147,10 +147,30 @@ namespace MinionMathMayhem_Ship
             // Collided With: Another Minion
                 else if (other.tag == "Minion")
                 {
+                    // Disable the actor's bounding box
+                        MinionCollision_ToggleBoundingBox(other.gameObject as GameObject, false);
                     // Execute the function that will select which minion is the alpha male!
                         MinionCollision(other.gameObject.GetComponent<Minion_Behavior>());
+                    // Enable the actor's bounding box
+                        MinionCollision_ToggleBoundingBox(other.gameObject as GameObject, true);
                 } // End if (Minion)
         } // OnTriggerEnter()
+
+
+
+        // Toggle the minion's bounding box during the collision algorithm; this is to avoid the minions from re-executing the entire algorthim again.
+        private void MinionCollision_ToggleBoundingBox(GameObject minionActor, bool state)
+        {
+            // Get the object's colliders
+            CapsuleCollider actor1 = gameObject.GetComponent<CapsuleCollider>();
+            CapsuleCollider actor2 = minionActor.GetComponent<CapsuleCollider>();
+            // ----
+
+            // Toggle the colliders of the objects
+                actor1.isTrigger = state;
+                actor2.isTrigger = state;
+            // ----
+        } //MinionCollision_ToggleBoundingBox()
 
 
 
