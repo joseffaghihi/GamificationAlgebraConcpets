@@ -48,6 +48,7 @@ namespace MinionMathMayhem_Ship
 
 
 
+
         // Initialization of specialized variables
         private void Awake()
         {
@@ -55,6 +56,7 @@ namespace MinionMathMayhem_Ship
                 minionAnim = GetComponent<Animator>();
                 capsuleCollider = GetComponent<CapsuleCollider>();
                 particleActivation = GetComponent<ParticleActivation>();
+
                 // Find the GameController tag, and then find the attached script 'Minion_controller'.
                 scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
 
@@ -71,7 +73,6 @@ namespace MinionMathMayhem_Ship
                 StartCoroutine(MinionEventState());
             // Check references
                 CheckReferences();
-
         } // Start()
 
 
@@ -155,13 +156,21 @@ namespace MinionMathMayhem_Ship
             // Minion collision (colliding with another minion):
             else if (other.tag == "Minion")
             {
-                // Temp Debug Messages [NG]
-                //Debug.Log("Hit with minion detected");
+                Minion_Behavior actorCollided = other.gameObject.GetComponent<Minion_Behavior>();
+                print("This object: " + FetchObjectIDAddress() + " Collided with object: " + actorCollided.FetchObjectIDAddress());
             } // End if (Minion)
 
             // Temp Debug Messages [NG]
             //Debug.Log("Minion has hit tag: " + other.tag);
         } // OnTriggerEnter()
+
+
+
+        // This function will return the object's internal ID Address that is generated from Unity.
+        public int FetchObjectIDAddress()
+        {
+            return GetInstanceID();
+        } // FetchObjectIDAddress()
 
 
 
