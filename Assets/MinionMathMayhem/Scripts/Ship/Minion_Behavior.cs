@@ -148,7 +148,7 @@ namespace MinionMathMayhem_Ship
                 else if (other.tag == "Minion")
                 {
                     Minion_Behavior actorCollided = other.gameObject.GetComponent<Minion_Behavior>();
-                    print("This object: " + FetchObjectIDAddress() + " Collided with object: " + actorCollided.FetchObjectIDAddress());
+                    scriptMinionController.MinionCollision(FetchObjectIDAddress(), actorCollided.FetchObjectIDAddress());
                 } // End if (Minion)
         } // OnTriggerEnter()
 
