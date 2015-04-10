@@ -136,19 +136,19 @@ namespace MinionMathMayhem_Ship
                 if (scriptGameController.GameOver == false)
                 {
                     // Generate a new equation
-                    AnswerCorrect_Generate();
+                        AnswerCorrect_Generate();
                     // [DC] drops in the correct text
-                    correctTextAnim.SetTrigger("Drop");
+                        correctTextAnim.SetTrigger("Drop");
                     // Delay
-                    yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(1.5f);
                     // Animations
-                    AnswerCorrect_FinalAnimations();
+                        AnswerCorrect_FinalAnimations();
                     // Display the 'What-is' messages
-                    whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
+                        whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
                     // Resume the spawners
-                    SpawnerToggleValue();
+                        SpawnerToggleValue();
                     // Issue a delay before activating the spawners.
-                    RequestGraceTime();
+                        RequestGraceTime();
                 }
             // ----
             yield return null;
