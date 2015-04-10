@@ -131,7 +131,7 @@ namespace MinionMathMayhem_Ship
             // Murder the minions!
                 MinionGenocide();
             // Slight pause
-                yield return (WaitTimer(2));
+                yield return (StartCoroutine(WaitTimer(2f)));
             // Is the game over?
                 if (scriptGameController.GameOver == false)
                 {
