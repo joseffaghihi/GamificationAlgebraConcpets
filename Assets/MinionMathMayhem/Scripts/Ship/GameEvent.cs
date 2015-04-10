@@ -145,11 +145,11 @@ namespace MinionMathMayhem_Ship
                         AnswerCorrect_FinalAnimations();
                     // Display the 'What-is' messages
                         whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
-                    // Resume the spawners
-                        SpawnerToggleValue();
                     // Issue a delay before activating the spawners.
                         RequestGraceTime();
                 } // if
+            // Resume the spawners
+                SpawnerToggleValue();
             // ----
             yield return null;
         } // AnswerCorrect()
