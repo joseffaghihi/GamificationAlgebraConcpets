@@ -54,6 +54,11 @@ namespace MinionMathMayhem_Ship
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;
 
+            // Debug Tools
+                // Heartbeat Timer
+                    public bool heartbeat = false;
+                    public float heartbeatTimer = 1f;
+
             // GameObjects
                 // Tutorial
                     public GameObject objectTutorialMinion;
@@ -92,9 +97,37 @@ namespace MinionMathMayhem_Ship
         {
             // First make sure that all the scripts and actors are properly linked
                 CheckReferences();
+            // Debug Timer; when enabled, this can slow down the heartbeat of the game.
+                StartCoroutine(HeartbeatTimer());
             // Start the main game manager
                 StartCoroutine(GameManager());
         } // Start()
+
+
+
+        // When enabled through the Unity's inspector, this gives the ablity to slow down the game.
+        private IEnumerator HeartbeatTimer()
+        {
+            while (true)
+            {
+                // Change the heartbeat to a new value
+                    if (heartbeat == true)
+                    {
+                        Time.timeScale = heartbeatTimer;
+                        Debug.Log("ATTN: Heartbeat has been changed to value: " + heartbeatTimer);
+                    } // if
+
+                // Restore the heartbeat to it's original value
+                    else if (heartbeat == false && Time.timeScale != 1f)
+                    {
+                        Time.timeScale = 1f;
+                        Debug.Log("ATTN: Heartbeat has been restored to its default setting.");
+                    } // else-if
+
+                // Wait before re-looping
+                    yield return new WaitForSeconds(0.5f);
+            }
+        } // HeartbeatTimer()
 
 
 
