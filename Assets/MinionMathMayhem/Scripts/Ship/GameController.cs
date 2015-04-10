@@ -126,7 +126,7 @@ namespace MinionMathMayhem_Ship
 
                 // Wait before re-looping
                     yield return new WaitForSeconds(0.5f);
-            }
+            } // while
         } // HeartbeatTimer()
 
 
