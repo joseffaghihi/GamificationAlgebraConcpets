@@ -132,20 +132,24 @@ namespace MinionMathMayhem_Ship
                 MinionGenocide();
             // Slight pause
                 yield return (WaitTimer(2));
-            // Generate a new equation
-                AnswerCorrect_Generate();
-            // [DC] drops in the correct text
-                correctTextAnim.SetTrigger("Drop");
-            // Delay
-                yield return new WaitForSeconds(1.5f);
-            // Animations
-                AnswerCorrect_FinalAnimations();
-            // Display the 'What-is' messages
-                whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
-            // Resume the spawners
-                SpawnerToggleValue();
-            // Issue a delay before activating the spawners.
-                RequestGraceTime();
+            // Is the game over?
+                if (scriptGameController.GameOver == false)
+                {
+                    // Generate a new equation
+                    AnswerCorrect_Generate();
+                    // [DC] drops in the correct text
+                    correctTextAnim.SetTrigger("Drop");
+                    // Delay
+                    yield return new WaitForSeconds(1.5f);
+                    // Animations
+                    AnswerCorrect_FinalAnimations();
+                    // Display the 'What-is' messages
+                    whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
+                    // Resume the spawners
+                    SpawnerToggleValue();
+                    // Issue a delay before activating the spawners.
+                    RequestGraceTime();
+                }
             // ----
             yield return null;
         } // AnswerCorrect()
