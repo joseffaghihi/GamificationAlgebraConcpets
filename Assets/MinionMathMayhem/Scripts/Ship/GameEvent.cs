@@ -149,7 +149,7 @@ namespace MinionMathMayhem_Ship
                         SpawnerToggleValue();
                     // Issue a delay before activating the spawners.
                         RequestGraceTime();
-                }
+                } // if
             // ----
             yield return null;
         } // AnswerCorrect()
