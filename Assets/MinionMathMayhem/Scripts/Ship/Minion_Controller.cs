@@ -135,7 +135,7 @@ namespace MinionMathMayhem_Ship
         // Check to make sure that the other actor is not reporting the same values. 
         private bool MinionCollision_CrossValues(int actor1, int actor2)
         {
-            if (actor1 == minionCollision_Actor1)
+            if (actor2 == minionCollision_Actor1 && actor1 == minionCollision_Actor2)
                 // Cross-Value detected
                 return true;
             else
