@@ -193,7 +193,7 @@ namespace MinionMathMayhem_Ship
                 } // if
 
             // The colliding actor was selected
-                else
+                else if (actorSelected == actor.FetchObjectIDAddress())
                 {
                     if (isClimbing == true)
                     {
