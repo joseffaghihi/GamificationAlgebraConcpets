@@ -9,6 +9,7 @@ TagManager:
   - Minion
   - ForwardEnabler
   - Obstacle
+  - GameMenu
   layers:
   - Default
   - TransparentFX

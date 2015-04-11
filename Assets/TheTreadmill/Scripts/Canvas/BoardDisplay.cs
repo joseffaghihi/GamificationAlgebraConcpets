@@ -4,17 +4,12 @@ using UnityEngine.UI;
 
 public class BoardDisplay : MonoBehaviour 
 {
+    GameControl gameController = new GameControl(); //Get current Game info
 
-    GameControl gameController = new GameControl();
-
-    /**
-     * Updating text will later on be moved to a public function to avoid constant updating thereby saving cpu power making it more efficient
-     */
-	
 	// Update is called once per frame
-	void Update () 
+	public void UpdateBoard () 
     {
         GetComponent<Text>().text = "Lives Left: " + gameController.GetLives()  +
-                                    "\nSpeed: " + gameController.treadmillSpeed;
+                                    "\nRound: " + gameController.GetCurrentRound() + "/" + gameController.GetTotalRounds();
 	}
 }

@@ -48,7 +48,8 @@ public class MenuNavigation : MonoBehaviour
         {
             DisablePanel(i);
         }
-            //Enable and bring up new Panel
+
+       //Enable and bring up new Panel
         EnablePanel(0);
         mainMenuAnimator.Play(moveRight);
         stats.SetCurrentPanel(0);
