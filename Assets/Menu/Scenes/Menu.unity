@@ -1086,7 +1086,7 @@ GameObject:
   - 114: {fileID: 213639750}
   - 114: {fileID: 213639749}
   m_Layer: 5
-  m_Name: Scales
+  m_Name: Union
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1132,7 +1132,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1194349262}
-        m_MethodName: PlayBalancingGame
+        m_MethodName: PlayUnionGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9912,7 +9912,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Balance Game
+  m_Text: Union Game
 --- !u!222 &2113328893
 CanvasRenderer:
   m_ObjectHideFlags: 0
