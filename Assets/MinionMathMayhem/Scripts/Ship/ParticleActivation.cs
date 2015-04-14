@@ -5,7 +5,8 @@ namespace MinionMathMayhem_Ship
 {
     public class ParticleActivation : MonoBehaviour
     {
-        private ParticleSystem particles;
+        ParticleSystem particles;
+
 
         // Use this for initialization
         void Start()

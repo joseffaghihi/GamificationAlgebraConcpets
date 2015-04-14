@@ -9,14 +9,14 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // Text Object: What Is
-                public GameObject whatIsTextbox;
-            // Animation: What Is
-                private Animator whatIsAnim;
-            // Text Object: Index Char
-                public GameObject eventLetterTextbox;
-            // Animation: Index Char
-                private Animator eventLetterAnim;
+        // Text Object: What Is
+        public GameObject whatIsTextbox;
+        // Animation: What Is
+        private Animator whatIsAnim;
+        // Text Object: Index Char
+        public GameObject eventLetterTextbox;
+        // Animation: Index Char
+        private Animator eventLetterAnim;
         // ----
 
 

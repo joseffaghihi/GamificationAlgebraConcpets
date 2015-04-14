@@ -16,8 +16,8 @@ namespace MinionMathMayhem_Ship
         // Declarations and Initializations
         // ---------------------------------
         // Accessors and Communication
-            public delegate void SkipTutorial();
-            public static event SkipTutorial SkipTutorialDemand;
+        public delegate void SkipTutorial();
+        public static event SkipTutorial SkipTutorialDemand;
         // ----
 
 

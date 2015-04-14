@@ -19,10 +19,10 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // Quadratic Equation Index Address
-                private Text letterBox;
-            // Selected Index
-                private char indexChar;
+        // Quadratic Equation Index Address
+        private Text letterBox;
+        // Selected Index
+        private char indexChar;
         // ----
 
 
@@ -31,7 +31,7 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // Reference initialization
-                letterBox = GetComponent<Text>();
+            letterBox = GetComponent<Text>();
         } // Awake()
 
 
@@ -40,7 +40,7 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // Select an index address
-                Generate();
+            Generate();
         } // Start()
 
 
@@ -74,7 +74,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function will call the generator function (which is private).
+        // This function will call the generater function (which is private).
         public void Access_Generate()
         {
             Generate();

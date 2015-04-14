@@ -11,7 +11,7 @@ namespace MinionMathMayhem_Ship
          * Within this script, this will manage the game flow and game attributes dynamically.
          *     This will check if the user has the correct answer, toggle the score value (mainly sending you a signal),
          *     clear the scene by expunging all of the actors within the scene, and anything else that has value within
-         *     the game-play aspect.
+         *     the gameplay aspect.
          * 
          * GOALS:
          *  Check if the user has the correct or incorrect answer.
@@ -23,47 +23,42 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // Spawner Toggle
-                private bool SpawnMinions;
-            // Sounds
-                // Game Sounds
-                    public AudioSource gameSounds;
-                // Incorrect Answer
-                    public AudioClip failSound;
-                // Correct Answer
-                    public AudioClip successSound;
-                // Game Over
-                    public AudioClip gameOverSound;
-                // Animations
-                    //private Animator letterBoxController;
-					private Animator correctTextAnim;
-                    // What-Is Index Object
-                        private Animator eventLetterAnim; // [DC]
+        // Spawner Toggle
+        private bool SpawnMinions;
+        // Sounds
+        // Game Sounds
+        public AudioSource gameSounds;
+        // Incorrect Answer
+        public AudioClip failSound;
+        // Correct Answer
+        public AudioClip successSound;
+        // Game Over
+        public AudioClip gameOverSound;
+        // Animations
+        private Animator letterBoxController;
 
-            // GameObjects
-                // Letter Box Texting UI
-					public GameObject correctText;
-                    //public GameObject letterBox;
-                // Quadratic Equation Updated; 'What Is' message
-                    public GameObject msgWhatIs;
-                // Event Letter Change
-                    public GameObject EventLetterChange;
-            // Accessors and Communication
-                // Final Destroyer
-                    public FinalDestroyer scriptFinalDestroyer;
-                // Quadratic Equation Index Letter Box
-                    public LetterBox scriptLetterBox;
-                // Quadratic Equation Problem Box
-                    public ProblemBox scriptProblemBox;
-                // Scores
-                    public Score scriptScore;
-                // Game Controller
-                    public GameController scriptGameController;
-                // What-Is Object
-                    private WhatIsDisplay whatIsDisplay; // [DC]
-                // Request Grace-Time Period; Broadcast Event
-                    public delegate void RequestGraceTimePeriodSig();
-                    public static event RequestGraceTimePeriodSig RequestGraceTime;
+        // GameObjects
+        // Letter Box Texting UI
+        public Text letterBox;
+        // Quadratic Equation Updated; 'What Is' message
+        public GameObject msgWhatIs;
+        // Event Letter Change
+        public GameObject EventLetterChange;
+        // Accessors and Communication
+        // Final Destroyer
+        public FinalDestroyer scriptFinalDestroyer;
+        // Quadratic Equation Index Letter Box
+        public LetterBox scriptLetterBox;
+        // Quadratic Equation Problem Box
+        public ProblemBox scriptProblemBox;
+        // Scores
+        public Score scriptScore;
+        // Game Controller
+        public GameController scriptGameController;
+        // What-Is Object
+        private WhatIsDisplay whatIsDisplay; // [DC]
+        // What-Is Index Object
+        private Animator eventLetterAnim; // [DC]
         // ----
 
 
@@ -89,8 +84,7 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // Event Letter Animations
-                eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the what-is text G.O. and gets the animator.
-				correctTextAnim = correctText.GetComponent<Animator>();
+            eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the whatis text G.O. and gets the animator.
         } // Awake()
 
 
@@ -99,9 +93,10 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // Reference initialization
-                whatIsDisplay = GetComponent<WhatIsDisplay>();
+            letterBoxController = letterBox.GetComponent<Animator>();
+            whatIsDisplay = GetComponent<WhatIsDisplay>();
             // First make sure that all the scripts and actors are properly linked
-                CheckReferences();
+            CheckReferences();
         } // Start()
 
 
@@ -123,34 +118,21 @@ namespace MinionMathMayhem_Ship
         private IEnumerator AnswerCorrect()
         {
             // Play sounds
-                AnswerCorrect_Sounds();
+            AnswerCorrect_Sounds();
             // Update the score
-                AnswerCorrect_UpdateScore();
+            AnswerCorrect_UpdateScore();
             // Pause the spawners
-                SpawnerToggleValue();
+            SpawnerToggleValue();
             // Murder the minions!
-                MinionGenocide();
+            MinionGenocide();
             // Slight pause
-                yield return (StartCoroutine(WaitTimer(0.5f)));
-            // Is the game over?
-                if (scriptGameController.GameOver == false)
-                {
-                    // Generate a new equation
-                        AnswerCorrect_Generate();
-                    // [DC] drops in the correct text
-                        correctTextAnim.SetTrigger("Drop");
-                    // Delay
-                        yield return new WaitForSeconds(1.5f);
-                    // Animations
-                        AnswerCorrect_FinalAnimations();
-                    // Display the 'What-is' messages
-                        whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
-                    // Issue a delay before activating the spawners.
-                        RequestGraceTime();
-                } // if
-            // Resume the spawners
-                SpawnerToggleValue();
-            // ----
+            yield return (WaitTimer(2));
+            // Generate a new quation
+            AnswerCorrect_Generate();
+            // Animations
+            AnswerCorrect_FinalAnimations();
+            // Display the 'What-is' messages
+            whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
             yield return null;
         } // AnswerCorrect()
 
@@ -179,10 +161,10 @@ namespace MinionMathMayhem_Ship
             if (MinionGenocide_CheckMinions() != false)
             {
                 // Fetch all of the minions in one array 
-                    GameObject[] minionsInScene = GameObject.FindGameObjectsWithTag("Minion");
+                GameObject[] minionsInScene = GameObject.FindGameObjectsWithTag("Minion");
                 // Kill them 
-                    for (int i = 0; i < minionsInScene.Length; i++)
-                        DestroyObject(minionsInScene[i]);
+                for (int i = 0; i < minionsInScene.Length; i++)
+                    DestroyObject(minionsInScene[i]);
             } // if
 
         } // AnswerCorrect_MinionGenocide()
@@ -210,9 +192,11 @@ namespace MinionMathMayhem_Ship
             if (scriptGameController.GameOver == false)
             {
                 // Generate a new equation
-                    scriptProblemBox.Access_Generate();
-                    scriptLetterBox.Access_Generate();
+                scriptProblemBox.Access_Generate();
+                scriptLetterBox.Access_Generate();
                 // Notify the user of index update
+                letterBoxController.SetTrigger("LetterChange");
+                //msgWhatIs.GetComponent<Animation>().Play();
             } // If
         } // AnswerCorrect_Generate()
 
@@ -231,9 +215,10 @@ namespace MinionMathMayhem_Ship
         private IEnumerator FirstRun_Animations()
         {
             // Animations
-                AnswerCorrect_FinalAnimations();
+            AnswerCorrect_FinalAnimations();
             // Notify the user of index update
-                whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
+            letterBoxController.SetTrigger("LetterChange");
+            whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
             yield return new WaitForSeconds(2f);
         } // FirstRun_Animations()
 
@@ -247,7 +232,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // What-is Text Animations
+        // Whatis Text Animations
         private void AnswerCorrect_FinalAnimations()
         {
 			// This is what was causing the 'is to play twice'.
@@ -260,9 +245,9 @@ namespace MinionMathMayhem_Ship
         private void AnswerIncorrect()
         {
             // Update the score
-                scriptScore.AccessUpdateScoreIncorrect();
+            scriptScore.AccessUpdateScoreIncorrect();
             // Play Sounds
-                AnswerIncorrect_Sounds();
+            AnswerIncorrect_Sounds();
         } // AnswerIncorrect()
 
 
@@ -336,12 +321,12 @@ namespace MinionMathMayhem_Ship
                 MissingReferenceError("Scores");
             if (scriptGameController == null)
                 MissingReferenceError("Game Controller");
-            //if (letterBoxController == null)
-               // MissingReferenceError("Letter Box Controller");
+            if (letterBoxController == null)
+                MissingReferenceError("Letter Box Controller");
             if (eventLetterAnim == null)
                 MissingReferenceError("Event Letter Animation");
-           // if (letterBox == null)
-               // MissingReferenceError("Letter Box [text]");
+            if (letterBox == null)
+                MissingReferenceError("Letter Box [text]");
             if (whatIsDisplay == null)
                 MissingReferenceError("What Is Display Object");
         } // CheckReferences()

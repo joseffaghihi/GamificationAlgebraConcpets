@@ -11,18 +11,19 @@ namespace MinionMathMayhem_Ship
          *   The cached identity will be used from another
          *  
          * GOALS:
-         *  Fetch the actor's uniquely self-assigned number and cache it.
+         *  Fetch the actor's uniquly self-assigned number and cache it.
          *  Destroy the actor
          */
 
 
         // Declarations and Initializations
         // ---------------------------------
-            // Cached integer from the actor
-                private int cacheNumber;
-            // Game Event Broadcast 
-                public delegate void ToggleGameEventSignal();
-                public static event ToggleGameEventSignal GameEventSignal;
+        // Cached integer from the actor
+        private int cacheNumber;
+        // Spawner Broadcast Event
+        // Game Event Broadcast 
+        public delegate void ToggleGameEventSignal();
+        public static event ToggleGameEventSignal GameEventSignal;
         // ----
 
 
@@ -31,11 +32,11 @@ namespace MinionMathMayhem_Ship
         private void OnTriggerEnter(Collider actor)
         {
             // Fetch the number from the actor
-                cacheNumber = RetrieveActorIdentity(actor);
+            cacheNumber = RetrieveActorIdentity(actor);
             // Send a signal to GameEvent to execute
-                GameEventSignal();
+            GameEventSignal();
             // Destroy the actor
-                Destroy(actor.gameObject);
+            Destroy(actor.gameObject);
         } // OnTriggerEnter()
 
 
@@ -44,9 +45,9 @@ namespace MinionMathMayhem_Ship
         private int RetrieveActorIdentity(Collider actorObject)
         {
             // Fetch the minion's unique script.
-                Minion_Identity tempData = actorObject.gameObject.GetComponent<Minion_Identity>();
+            Minion_Identity tempData = actorObject.gameObject.GetComponent<Minion_Identity>();
             // Fetch and return the minion's uniquely assigned number.
-                return (tempData.MinionNumber);
+            return (tempData.MinionNumber);
         } // RetrieveActorIdentity()
 
 

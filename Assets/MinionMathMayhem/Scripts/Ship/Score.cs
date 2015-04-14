@@ -19,15 +19,15 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // Scores
-                private int scoreCorrect = 0;
-                private int scoreIncorrect = 0;
+        // Scores
+        private int scoreCorrect = 0;
+        private int scoreIncorrect = 0;
 
-            // Accessors and Communication
-                // HUD: Score box
-                    public Text scoreBox;
-                // HUD: Wrong score box
-                    public Text wrongScoreBox;
+        // Accessors and Communication
+        // HUD: Score box
+        public Text scoreBox;
+        // HUD: Wrong score box
+        public Text wrongScoreBox;
         // ----
 
 
@@ -37,7 +37,7 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // First make sure that all the scripts and actors are properly linked
-                CheckReferences();
+            CheckReferences();
         } // Start()
 
 
