@@ -21,27 +21,31 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Speed that is used when the minions are climbing the ladder
-        private float climbSpeed;
-        // Speed that is used when the minions are walking (or running) forward
-        private float walkSpeed;
-        // Force 'thrust' that is used when the minions have been selected.
-        public float force = 1000f;
-        // Minion actions:
-        private bool isClimbing = false;
-        private bool isWalking = true;
-        // Direction in which the Minions are thrusted
-        private Vector3 forceDirection;
-        // Multimedia
-        // Screeches
-        public AudioClip[] clickedSound;
-        // Won
-        public AudioClip[] celebrationSound;
-        // Animations and physics
-        private Animator minionAnim;
-        private CapsuleCollider capsuleCollider;
-        private ParticleActivation particleActivation;
+            // Speed that is used when the minions are climbing the ladder
+                private float climbSpeed;
+            // Speed that is used when the minions are walking (or running) forward
+                private float walkSpeed;
+            // Force 'thrust' that is used when the minions have been selected.
+                private float force;
+            // Minion actions:
+                private bool isClimbing = false;
+                private bool isWalking = true;
+            // Direction in which the Minions are thrusted
+                private Vector3 forceDirection; 
+            // Multimedia
+                // Screeches
+                    public AudioClip[] clickedSound;
+                // Won
+                    public AudioClip[] celebrationSound;
+            // Animations and physics
+                private Animator minionAnim;
+                private CapsuleCollider capsuleCollider;
+                private ParticleActivation particleActivation;
+            // Accessors and Communication
+                // Minion Controller; this is a centralization field for the minion behavior
+                    private Minion_Controller scriptMinionController;
         // ----
+
 
 
 
@@ -49,9 +53,13 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // References and Initializations
-            minionAnim = GetComponent<Animator>();
-            capsuleCollider = GetComponent<CapsuleCollider>();
-            particleActivation = GetComponent<ParticleActivation>();
+                minionAnim = GetComponent<Animator>();
+                capsuleCollider = GetComponent<CapsuleCollider>();
+                particleActivation = GetComponent<ParticleActivation>();
+
+                // Find the GameController tag, and then find the attached script 'Minion_controller'.
+                scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
+
         } // Awake()
 
 
@@ -59,12 +67,12 @@ namespace MinionMathMayhem_Ship
         // This function will be called once the actor has been summoned within the scene
         private void Start()
         {
-            // Force direction that will be used for eliminating the minion
-            forceDirection = new Vector3(1f, 1f, 0);
             // Set the actor's unique attributes.
-            SetAttributes();
+                SetAttributes();
             // Detect the minion's animation and event state
-            StartCoroutine(MinionEventState());
+                StartCoroutine(MinionEventState());
+            // Check references
+                CheckReferences();
         } // Start()
 
 
@@ -91,10 +99,19 @@ namespace MinionMathMayhem_Ship
         private void SetAttributes()
         {
             // Climbing speed
-            climbSpeed = Random.Range(3.98f, 6.5f);
+                climbSpeed = scriptMinionController.ClimbSpeed;
 
             // Walking speed
-            walkSpeed = Random.Range(9.89f, 13.12f);
+                walkSpeed = scriptMinionController.RunningSpeed;
+
+            // Thrust Force
+                // The force (or push) used when the minion is selected
+                force = scriptMinionController.thrustForce;
+
+            // Thrust Direction
+                // Push the minion to the desired direction when selected.
+                forceDirection = scriptMinionController.ThrustDirection;
+
         } // SetAttributes()
 
 
@@ -102,50 +119,122 @@ namespace MinionMathMayhem_Ship
         // When the minions 'hit' with other objects, this function is going to be called.
         private void OnTriggerEnter(Collider other)
         {
-            // Debug Purposes:
-            //id = gameObject.GetComponent<CreatureIdentity>();
 
-            // Ladder collision:
-            if (other.tag == "Ladder")
-            {
-                // Debug Purposes:
-                //Debug.Log("Hit Ladder: " + id.Number.ToString());
-                // ----
-                isClimbing = true;
-                isWalking = false;
-                minionAnim.SetTrigger("Climb");
-            } // End if (ladder)
+            // Collided With: Ladder
+                if (other.tag == "Ladder")
+                {
+                    // The minion is climbing
+                        isClimbing = true;
+                        isWalking = false;
+                        minionAnim.SetTrigger("Climb");
+                } // End if (ladder)
 
-            // Forward Enabler (game object) collision:
-            else if (other.tag == "ForwardEnabler")
-            {
+            // Collided With: Forward Enabler
+                else if (other.tag == "ForwardEnabler")
+                {
+                    // The minion is walking
+                        isClimbing = false;
+                        isWalking = true;
+                        minionAnim.SetTrigger("Walk");
+                } // End if (ForwardEnabler)
 
-                // Debug Purposes:
-                // ----
-                isClimbing = false;
-                isWalking = true;
-                minionAnim.SetTrigger("Walk");
-            } // End if (ForwardEnabler)
+            // Collided With: FinalDestroyer
+                else if (other.tag == "exit")
+                {
+                    // Do nothing
+                } // End if (exit)
 
-            // Exit collision:
-            else if (other.tag == "exit")
-            {
-                // Debug Purposes:
-                //Debug.Log("Hit Exit: " + id.Number.ToString());
-                // ----
-                // exit code
-            } // End if (exit)
-
-            // Minion collision (colliding with another minion):
-            else if (other.tag == "Minion")
-            {
-                // Temp Debug Messages [NG]
-                //Debug.Log("Hit with minion detected");
-            } // End if (Minion)
-
-            // Temp Debug Messages [NG]
-            //Debug.Log("Minion has hit tag: " + other.tag);
+            // Collided With: Another Minion
+                else if (other.tag == "Minion")
+                {
+                    // Disable the actor's bounding box
+                        MinionCollision_ToggleBoundingBox(other.gameObject as GameObject, false);
+                    // Execute the function that will select which minion is the alpha male!
+                        MinionCollision(other.gameObject.GetComponent<Minion_Behavior>());
+                    // Enable the actor's bounding box
+                        MinionCollision_ToggleBoundingBox(other.gameObject as GameObject, true);
+                } // End if (Minion)
         } // OnTriggerEnter()
+
+
+
+        // Toggle the minion's bounding box during the collision algorithm; this is to avoid the minions from re-executing the entire algorthim again.
+        private void MinionCollision_ToggleBoundingBox(GameObject minionActor, bool state)
+        {
+            // Get the object's colliders
+            CapsuleCollider actor1 = gameObject.GetComponent<CapsuleCollider>();
+            CapsuleCollider actor2 = minionActor.GetComponent<CapsuleCollider>();
+            // ----
+
+            // Toggle the colliders of the objects
+                actor1.isTrigger = state;
+                actor2.isTrigger = state;
+            // ----
+        } //MinionCollision_ToggleBoundingBox()
+
+
+
+        // When the minions collide with each other, this function will determine which one is going to be the alpha male!
+        private void MinionCollision(Minion_Behavior actor)
+        {
+
+            int actorSelected = scriptMinionController.MinionCollision(FetchObjectIDAddress(), actor.FetchObjectIDAddress());
+            // This gameObject has been selected
+                if (actorSelected == FetchObjectIDAddress())
+                {
+                    if (isClimbing == true)
+                    {
+                        MinionCollision_Selected_Climbing(true, actor);
+                    }
+                    else if (isWalking == true)
+                    {
+                        MinionCollision_Selected_Walking(true, actor);
+                    }
+                } // if
+
+            // The colliding actor was selected
+                else if (actorSelected == actor.FetchObjectIDAddress())
+                {
+                    if (isClimbing == true)
+                    {
+                        MinionCollision_Selected_Climbing(false, actor);
+                    }
+                    else if (isWalking == true)
+                    {
+                        MinionCollision_Selected_Walking(false, actor);
+                    }
+                } // else
+        } // MinionCollision()
+
+
+
+        // Collision occured during the climbing; the selected minion will fling.
+        private void MinionCollision_Selected_Climbing(bool selected, Minion_Behavior actor = null)
+        {
+            if (selected == true)
+                Flick();
+            else
+                actor.Flick();
+        } // MinionCollision_Selected_Climbing()
+
+
+
+        // Collision occured during walking; the selected minion will fling.
+        private void MinionCollision_Selected_Walking(bool selected, Minion_Behavior actor = null)
+        {
+            if (selected == false)
+                Flick();
+            else
+                actor.Flick();
+        } // MinionCollision_Selected_Walking()
+
+
+
+        // This function will return the object's internal ID Address that is generated from Unity.
+        public int FetchObjectIDAddress()
+        {
+            return GetInstanceID();
+        } // FetchObjectIDAddress()
 
 
 
@@ -168,10 +257,14 @@ namespace MinionMathMayhem_Ship
         // When the creature has been 'selected', this function will be called
         private void OnMouseDown()
         {
-            // Selected action
-            Flick();
-            // Play sound
-            MinionSqueal();
+            // Only possible when the minion is on the ladder
+            if (isClimbing != false)
+            {
+                // Selected action
+                    Flick();
+                // Play sound
+                    MinionSqueal();
+            }
         } // End of OnMouseDown
 
 
@@ -179,16 +272,15 @@ namespace MinionMathMayhem_Ship
         // Actions to take place when the minion has been selected
         public void Flick()
         {
-            particleActivation.Emit();
-            GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().isKinematic = false;
-            isClimbing = false;
-            isWalking = false;
-            GetComponent<Rigidbody>().AddForce(forceDirection * force);
-            Debug.Log("Clicked!");
-            Destroy(gameObject, 1f);
-            minionAnim.SetBool("isFlicked", true);
-            Destroy(capsuleCollider);
+                particleActivation.Emit();
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                isClimbing = false;
+                isWalking = false;
+                GetComponent<Rigidbody>().AddForce(forceDirection * force);
+                Destroy(gameObject, 1f);
+                minionAnim.SetBool("isFlicked", true);
+                Destroy(capsuleCollider);
         } // Flick()
 
 
@@ -197,9 +289,28 @@ namespace MinionMathMayhem_Ship
         public void MinionSqueal()
         {
             // Select a sound within the array
-            GetComponent<AudioSource>().clip = clickedSound[Random.Range(1, clickedSound.Length)];
+                GetComponent<AudioSource>().clip = clickedSound[Random.Range(1, clickedSound.Length)];
             // Play the sound clip
-            GetComponent<AudioSource>().Play();
+                GetComponent<AudioSource>().Play();
         } // MinionSqueal()
+
+
+
+        // This function will check to make sure that all the references has been initialized properly.
+        private void CheckReferences()
+        {
+            if (scriptMinionController == null)
+                MissingReferenceError("Minion Controller");
+        } // CheckReferences()
+
+
+
+        // When a reference has not been properly initialized, this function will display the message within the console and stop the game.
+        private void MissingReferenceError(string refLink = "UNKNOWN_REFERENCE_NOT_DEFINED")
+        {
+            Debug.LogError("Critical Error: Could not find a reference to [ " + refLink + " ]!");
+            Debug.LogError("  Can not continue further execution until the internal issues has been resolved!");
+            Time.timeScale = 0; // Halt the game
+        } // MissingReferenceError()
     } // End of Class
 } // Namespace

@@ -6,7 +6,7 @@ namespace MinionMathMayhem_Ship
     public class SpawnController : MonoBehaviour
     {
         /*                    SPAWNER CONTROLLER
-         * This class will simply send a singal to the spawner actors to summon the minion actors into the scene.
+         * This class will simply send a signal to the spawner actors to summon the minion actors into the scene.
          *  
          * GOALS:
          *  Determine the next spawn
@@ -17,23 +17,44 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Time when the next minion should spawn
-        private float nextSpawn;
-        // How many minions are to be spawned within 60 seconds of time
-        // Can be manipulated within Unity's Inspector
-        public float spawnRate;
-
-        // Accessors and Communication
-        // GameController
-        public GameController scriptGameController;
-        // Game Event
-        public GameEvent scriptGameEvent;
-        // Spawner Broadcast Event
-        public delegate void ActivateSpawnPoint();
-        public static event ActivateSpawnPoint EnableSpawnPoint;
-        //public GameState gameState;
+            // Time when the next minion should spawn
+                private float nextSpawn;
+            // How many minions are to be spawned within 60 seconds of time
+                // Can be manipulated within Unity's Inspector
+                public float spawnRate;
+            // Grace-Timer for when the spawners should be activated
+                // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
+                    private bool gracePeriodLockOut = false;
+                // Grace Timer Duration
+                    public float gracePeriodTimer = 2.5f;
+            // Accessors and Communication
+                // GameController
+                    public GameController scriptGameController;
+                // Game Event
+                    public GameEvent scriptGameEvent;
+                // Spawner Broadcast Event
+                    public delegate void ActivateSpawnPoint();
+                    public static event ActivateSpawnPoint EnableSpawnPoint;
         // ----
 
+
+        
+
+        // Signal Listener: Detected
+        private void OnEnable()
+        {
+            GameEvent.RequestGraceTime += GraceTimer;
+            GameController.RequestGraceTime += GraceTimer;
+        } // OnEnable()
+
+
+
+        // Signal Listener: Deactivate
+        private void OnDisable()
+        {
+            GameEvent.RequestGraceTime -= GraceTimer;
+            GameController.RequestGraceTime -= GraceTimer;
+        } // OnDisable()
 
 
 
@@ -41,11 +62,11 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // First make sure that all the scripts and actors are properly linked
-            CheckReferences();
+                CheckReferences();
             // Determine the spawn rate
-            CalcNextSpawnTime();
+                CalcNextSpawnTime();
             // Spawn Control
-            StartCoroutine(SpawnDriver());
+                StartCoroutine(SpawnDriver());
         } // Start()
 
 
@@ -57,7 +78,7 @@ namespace MinionMathMayhem_Ship
             {
                 // ----
                 // Check to see if the spawner is activated
-                if (scriptGameController.SpawnMinions == !false && scriptGameController.GameOver != true)
+                if (scriptGameController.SpawnMinions == !false && scriptGameController.GameOver != true && scriptGameEvent.AccessSpawnMinions != true && gracePeriodLockOut != true)
                     // Check to see if it is time to spawn another minion
                     if (Time.time >= nextSpawn)
                         SpawnSignal();
@@ -79,7 +100,7 @@ namespace MinionMathMayhem_Ship
 
 
         // Determine the new time in which a new minion will be spawned in the scene
-        void CalcNextSpawnTime()
+        private void CalcNextSpawnTime()
         {
             float r = Random.Range(0, 2 * MinionsASecond());
             nextSpawn = Time.time + r;
@@ -88,13 +109,40 @@ namespace MinionMathMayhem_Ship
 
 
         // Send a signal to spawn the creature
-        void SpawnSignal()
+        private void SpawnSignal()
         {
             // Broadcast a signal to the spawners to summon a minion.
-            EnableSpawnPoint();
+                EnableSpawnPoint();
             // Determine the next time to summon a new minion creature
-            CalcNextSpawnTime();
+                CalcNextSpawnTime();
         } // SpawnSignal()
+
+
+
+        // This function will kindly tell delay the signal to start instantiating the minions.
+        public void GracePeriodTimeOut_Request()
+        {
+            gracePeriodLockOut = true;
+        } // GracePeriodTimeOut_Request()
+
+
+
+        // This function initiate the grace timer - that will momentarily delay the spawners from ever being activated.
+        private void GraceTimer()
+        {
+            // A simple timer
+                StartCoroutine(GraceTimer_InitiateTimer());
+        } // GraceTimer()
+
+
+
+        // The Timer function will disallow the spawners from becoming active until the wait-delay has passed.
+        private IEnumerator GraceTimer_InitiateTimer()
+        {
+            gracePeriodLockOut = true;
+            yield return new WaitForSeconds(gracePeriodTimer);
+            gracePeriodLockOut = false ;
+        } //GraceTimer_InitiateTimer()
 
 
 

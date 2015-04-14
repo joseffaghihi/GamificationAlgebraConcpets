@@ -19,14 +19,16 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // This will hold the minion's unique number (or id)
-        private int number;
-        // This variable will hold the component to attach the self-assigned number on it's back.
-        public Text numText;
+            // This will hold the minion's unique number (or id)
+                private int number;
+            // This variable will hold the component to attach the self-assigned number on it's back.
+                public Text numText;
 
-        // Accessors and Communication
-        // Use the RNG from ProblemBox as contains the boundry limit.
-        public ProblemBox problemBox;
+            // Accessors and Communication
+                // Use the RNG from ProblemBox as contains the boundary limit.
+                    public ProblemBox problemBox;
+        // ----
+
 
 
 
@@ -34,7 +36,7 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // Initialize the component
-            numText = GetComponentInChildren<Text>();
+                numText = GetComponentInChildren<Text>();
         } // Awake()
 
 
@@ -43,9 +45,9 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // Fetch a random number from the Problem Box script.
-            number = problemBox.Access_GetRandomNumber();
+                number = problemBox.Access_GetRandomNumber();
             // Put the self-assigned unique number on the minion's back
-            numText.text = number.ToString();
+                numText.text = number.ToString();
         } // Start()
 
 

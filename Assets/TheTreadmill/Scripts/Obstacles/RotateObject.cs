@@ -6,6 +6,6 @@ public class RotateObject : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        GetComponent<Transform>().Rotate(GetComponent<ConstantForce>().force * Time.deltaTime);
+        GetComponent<Transform>().Rotate(new Vector3(0, 160, 0) * Time.deltaTime);
 	}
 }

@@ -7,39 +7,23 @@ public class UnionAction : MonoBehaviour {
 	public static int katana0isDestroyed;
 	public static int katana1isDestroyed;
 	public static int katana2isDestroyed;
-	public static int katana3isDestroyed;
-	public static int katana4isDestroyed;
-	public static int katana5isDestroyed;
-
-	public float restartDelay = 3f;
 
 	public BridgeController b;
 	public PlayerSet p;
 	public Katana_0Set k0;
 	public Katana_1Set k1;
 	public Katana_2Set k2;
-	public Katana_3Set k3;
-	public Katana_4Set k4;
-	public Katana_5Set k5;
 
 	public GameObject playerCenter;
 	public GameObject katanaCenter_0;
 	public GameObject katanaCenter_1;
 	public GameObject katanaCenter_2;
-	public GameObject katanaCenter_3;
-	public GameObject katanaCenter_4;
-	public GameObject katanaCenter_5;
-	public GameObject winImage;
 
 	GameObject player;
 	PlayerHealth playerHealth;
 	public int attackDamage = 50;
 	bool touched1 = false;
 	bool touched2 = false;
-	bool touched3 = false;
-	bool touched4 = false;
-	bool touched5 = false;
-	float restartTimer; 
 
 	//audio clips
 
@@ -47,18 +31,14 @@ public class UnionAction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		restartTimer = 0f;
-		//Time.timeScale = 1;
+
+		Time.timeScale = 1;
 		katana0isDestroyed = 0;
 		katana1isDestroyed = 0;
 		katana2isDestroyed = 0;
-		katana3isDestroyed = 0;
-		katana4isDestroyed = 0;
-		katana5isDestroyed = 0;
 
 		player = GameObject.FindGameObjectWithTag ("samurai");
 		playerHealth = player.GetComponent<PlayerHealth>();
-		winImage.SetActive (false);
 
 	}
 
@@ -95,7 +75,7 @@ public class UnionAction : MonoBehaviour {
 			if(touched1 == false && b.bridge_0_is_built==false)
 			{
 				
-				touched1 = true;
+				touched2 = true;
 			}
 			other.GetComponent<Renderer>().enabled = false;
 			katana1isDestroyed = 1;
@@ -146,99 +126,6 @@ public class UnionAction : MonoBehaviour {
 				//call makeSet2 function
 				makeSet2(ref p.playerSet1, ref p.playerSet2);
 			}
-		}
-		if(other.tag == "katana_3")
-		{
-			if(touched3 == false && b.bridge_1_is_built==false)
-			{
-				
-				touched3 = true;
-			}
-			other.GetComponent<Renderer>().enabled = false;
-			katana3isDestroyed = 1;
-			Debug.Log(other.tag+" is destroyed");
-			
-			foreach (Transform child in playerCenter.transform) {
-				GameObject.Destroy(child.gameObject);
-			}
-			
-			if(k3.katana_3Set2==null)
-				print ("k3.katana_3Set2 is null");
-			else{
-				//call myUnion function
-				myUnion(ref p.playerSet1,ref k3.katana_3Set1);
-				
-				//clear playerset2
-				p.playerSet2.Clear ();
-				
-				//call makeSet2 function
-				makeSet2(ref p.playerSet1, ref p.playerSet2);
-			}
-			
-		}
-		if(other.tag == "katana_4")
-		{
-			if(touched4 == false && b.bridge_1_is_built==false)
-			{
-				
-				touched4 = true;
-			}
-			other.GetComponent<Renderer>().enabled = false;
-			katana4isDestroyed = 1;
-			Debug.Log(other.tag+" is destroyed");
-			
-			foreach (Transform child in playerCenter.transform) {
-				GameObject.Destroy(child.gameObject);
-			}
-			
-			if(k4.katana_4Set2==null)
-				print ("k4.katana_4Set2 is null");
-			else{
-				//call myUnion function
-				myUnion(ref p.playerSet1,ref k4.katana_4Set1);
-				
-				//clear playerset2
-				p.playerSet2.Clear ();
-				
-				//call makeSet2 function
-				makeSet2(ref p.playerSet1, ref p.playerSet2);
-			}
-			
-		}
-		if(other.tag == "katana_5")
-		{
-			if(touched5 == false && b.bridge_1_is_built==false)
-			{
-				
-				touched5 = true;
-			}
-			other.GetComponent<Renderer>().enabled = false;
-			katana5isDestroyed = 1;
-			Debug.Log(other.tag+" is destroyed");
-			
-			foreach (Transform child in playerCenter.transform) {
-				GameObject.Destroy(child.gameObject);
-			}
-			
-			if(k5.katana_5Set2==null)
-				print ("k5.katana_5Set2 is null");
-			else{
-				//call myUnion function
-				myUnion(ref p.playerSet1,ref k5.katana_5Set1);
-				
-				//clear playerset2
-				p.playerSet2.Clear ();
-				
-				//call makeSet2 function
-				makeSet2(ref p.playerSet1, ref p.playerSet2);
-			}
-			
-		}
-
-
-		if(other.tag == "Chest"){
-			winImage.SetActive (true);
-
 		}
 
 
@@ -315,7 +202,7 @@ public class UnionAction : MonoBehaviour {
 
 	void Update()
 	{
-		//Debug.Log ("The bridge is build:" + b.bridge_0_is_built);
+		Debug.Log ("The bridge is build:" + b.bridge_0_is_built);
 		if(touched1 == true && b.bridge_0_is_built==false)
 		{
 			playerHealth.TakeDamage(attackDamage);
@@ -325,29 +212,6 @@ public class UnionAction : MonoBehaviour {
 		{
 			playerHealth.TakeDamage(attackDamage);
 			touched2 = false;
-		}
-		if(touched3 == true && b.bridge_1_is_built==false)
-		{
-			playerHealth.TakeDamage(attackDamage);
-			touched3 = false;
-		}
-		if(touched4 == true && b.bridge_1_is_built==false)
-		{
-			playerHealth.TakeDamage(attackDamage);
-			touched4 = false;
-		}
-		if(touched5 == true && b.bridge_1_is_built==false)
-		{
-			playerHealth.TakeDamage(attackDamage);
-			touched5 = false;
-		}
-		if (winImage.activeInHierarchy == true) {
-			restartTimer += Time.deltaTime;
-			if (restartTimer >= restartDelay) {
-				winImage.SetActive (false);
-				// .. then reload the currently loaded level.
-				Application.LoadLevel (Application.loadedLevel);
-			}
 		}
 	}
 }
