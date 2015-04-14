@@ -375,11 +375,11 @@ Transform:
   - {fileID: 1839939938}
   m_Father: {fileID: 0}
   m_RootOrder: 5
---- !u!1 &63528814
+--- !u!1 &63528814 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100376, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
   m_PrefabInternal: {fileID: 1733703669}
---- !u!114 &63528817
+--- !u!114 &63528817 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4,
     type: 2}
@@ -1705,8 +1705,6 @@ Terrain:
     serializedVersion: 2
     rgba: 4286545791
   m_LegacyShininess: .078125
-  m_UseDefaultSmoothness: 1
-  m_DefaultSmoothness: 0
   m_MaterialTemplate: {fileID: 0}
   m_BakeLightProbesForTrees: 1
   m_ScaleInLightmap: 1
@@ -1949,7 +1947,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!4 &627249715
+--- !u!4 &627249715 stripped
 Transform:
   m_PrefabParentObject: {fileID: 479826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
   m_PrefabInternal: {fileID: 778220806}
@@ -2200,11 +2198,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &867779711
+--- !u!4 &867779711 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400020, guid: 8ec97ff33bf964d39a53d9d376840564, type: 3}
   m_PrefabInternal: {fileID: 29076553}
---- !u!4 &871709228
+--- !u!4 &871709228 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: b544816461f324e56a39767fdeb5b114, type: 2}
   m_PrefabInternal: {fileID: 1962403907}
@@ -3581,11 +3579,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 899642964}
---- !u!4 &927459880
+--- !u!4 &927459880 stripped
 Transform:
   m_PrefabParentObject: {fileID: 479826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
   m_PrefabInternal: {fileID: 1358912439}
---- !u!4 &954177113
+--- !u!4 &954177113 stripped
 Transform:
   m_PrefabParentObject: {fileID: 479826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
   m_PrefabInternal: {fileID: 839399797}
@@ -3744,7 +3742,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
---- !u!1 &1006633162
+--- !u!1 &1006633162 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 114380, guid: 7e62b51a070a94a3bbab1362bb1a6b08, type: 2}
   m_PrefabInternal: {fileID: 960536866}
@@ -3959,7 +3957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeNormal: 1
   volumeTutorial: .100000001
---- !u!1 &1333129013
+--- !u!1 &1333129013 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 92f4e13b1cc5340789cdbe5173c5fe9e, type: 3}
   m_PrefabInternal: {fileID: 1422772200}
@@ -4091,7 +4089,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1379191545
+--- !u!4 &1379191545 stripped
 Transform:
   m_PrefabParentObject: {fileID: 452916, guid: 7e62b51a070a94a3bbab1362bb1a6b08, type: 2}
   m_PrefabInternal: {fileID: 960536866}
@@ -4483,6 +4481,8 @@ MonoBehaviour:
   scriptTutorial: {fileID: 33354903}
   scriptGameEvent: {fileID: 1430447472}
   scriptSpawnController: {fileID: 0}
+  heartbeat: 0
+  heartbeatTimer: 1
   objectTutorialMinion: {fileID: 33354902}
   objectTutorialSkipButton: {fileID: 1635683666}
 --- !u!114 &1430447471
@@ -4902,12 +4902,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
---- !u!224 &1715427615
+--- !u!224 &1715427615 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22415348, guid: 500a1a609963c7d4283a573a8a0530f7,
     type: 2}
   m_PrefabInternal: {fileID: 899403380}
---- !u!114 &1715427619
+--- !u!114 &1715427619 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11415352, guid: 500a1a609963c7d4283a573a8a0530f7,
     type: 2}
@@ -6739,8 +6739,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: .087172322, y: .899590552, z: .210452542, w: -.372622699}
-  m_LocalPosition: {x: -13.7432308, y: -2.01402974, z: -44.1644745}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}

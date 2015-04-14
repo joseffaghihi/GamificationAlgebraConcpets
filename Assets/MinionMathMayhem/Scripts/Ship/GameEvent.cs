@@ -250,7 +250,8 @@ namespace MinionMathMayhem_Ship
         // What-is Text Animations
         private void AnswerCorrect_FinalAnimations()
         {
-            eventLetterAnim.SetTrigger("SlideIn");
+			// This is what was causing the 'is to play twice'.
+            //eventLetterAnim.SetTrigger("SlideIn");
         } // AnswerCorrect_FinalAnimations()
 
 
