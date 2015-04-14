@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//<<<<<<< HEAD:Assets/UnionAndIntersection/Assets/Scripts/PlayerController.cs
 
 public class PlayerController: MonoBehaviour {
+//=======
+//public class PlayerControl: MonoBehaviour {
+//>>>>>>> origin/master:Assets/UnionAndIntersection/Assets/Scripts/PlayerControl.cs
 	public float speed = 6f;            // The speed that the player will move at.
 	
 	Vector3 movement;                   // The vector to store the direction of the player's movement.

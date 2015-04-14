@@ -13,3 +13,7 @@ EditorBuildSettings:
     path: Assets/MinionMathMayhem/Scenes/Ship.unity
   - enabled: 1
     path: Assets/TheTreadmill/Scenes/Treadmill.unity
+  - enabled: 1
+    path: Assets/UnionAndIntersection/Assets/_Scene/TutorialScene.unity
+  - enabled: 1
+    path: Assets/UnionAndIntersection/Assets/_Scene/UnionAlgorithmScene.unity

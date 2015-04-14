@@ -72,15 +72,15 @@
      <Compile Include="Assets\UnionAlgorithm.cs" />
      <Compile Include="Assets\test.cs" />
      <None Include="Assets\Packs\model\Cartoony Weapon Pack\Readme.txt" />
-     <None Include="Assets\Packs\model\Cartoony Weapon Pack\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Packs\model\KY_effects\FX_free_pack\prefab\01_shot\00_ReadMe.txt" />
      <None Include="Assets\Packs\audio\Dark Future\ReadMe.txt" />
-     <None Include="Assets\Packs\model\KY_effects\FX_free_pack\ReadMe.txt" />
-     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Packs\model\Cartoony Weapon Pack\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\Packs\model\Cartoony Weapon Pack\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Packs\model\Cartoony Weapon Pack\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Packs\model\KY_effects\FX_free_pack\ReadMe.txt" />
+     <None Include="Assets\Packs\model\Cartoony Weapon Pack\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Packs\model\Cartoony Weapon Pack\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Packs\model\Treasurechest\Read me\readme.txt" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>G:/software/Unity 5/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
