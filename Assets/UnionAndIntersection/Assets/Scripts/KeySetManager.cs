@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class KeySetManager : MonoBehaviour {
 	public Text ele_hint;
 
@@ -12,13 +13,35 @@ public class KeySetManager : MonoBehaviour {
 	public bool get_hint;
 	public List<int> set3;
 	public List<string> set4;
+	public List<int> key_set_0;
+	public List<int> key_set_1;
+	public List<int> key_set_2;
+	//public key
 	// Use this for initialization
 	void Start () {
 		get_hint = false;
 		//get_ele_hint_set (ref set3,ref set4);
 		//ele_hint.text += set3 [0].ToString ();
+
+		//initialize key_set_0;
+		key_set_0.Add (1);
+		key_set_0.Add (2);
+		key_set_0.Add (3);
+		key_set_0.Add (5);
+		key_set_0.Add (6);
+
+		//initialize key_set_1;
+		key_set_1.Add (3);
+		key_set_1.Add (6);
+
+		//initialize key_set_2;
+		key_set_2.Add (0);
+		key_set_2.Add (4);
+		key_set_2.Add (5);
+
 	}
-	
+
+	/*ALGORITHM FOR RANDOM
 	// Update is called once per frame
 	void Update () {
 		while(get_hint == false)
@@ -89,5 +112,5 @@ public class KeySetManager : MonoBehaviour {
 		}
 		return set3;
 	}
-
+	*/
 }
