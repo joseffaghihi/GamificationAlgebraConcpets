@@ -35,7 +35,7 @@ namespace MinionMathMayhem_Ship
         private IEnumerator NextLetterEventPlay(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
-            whatIsAnim.SetTrigger("SlideIn");
+            whatIsAnim.SetTrigger("Slide");
             eventLetterAnim.SetTrigger("SlideIn");
         } // NextLetterEventPlay()
 
