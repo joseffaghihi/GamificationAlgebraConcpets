@@ -767,7 +767,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22484508, guid: 7fe9c8d7d26996f4dbef10f3bcb12801, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 22484508, guid: 7fe9c8d7d26996f4dbef10f3bcb12801, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -897,6 +897,9 @@ GameObject:
   - 75: {fileID: 631748157}
   - 114: {fileID: 631748156}
   - 136: {fileID: 631748159}
+  - 114: {fileID: 631748160}
+  - 82: {fileID: 631748161}
+  - 114: {fileID: 631748162}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -978,6 +981,101 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.39999998, z: 0}
+--- !u!114 &631748160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 631748154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 493657f99994f924c865699270549563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctCoinSound: {fileID: 8300000, guid: 2575fcb018fe8f849bb0997425394a01, type: 3}
+  falseCoinSound: {fileID: 8300000, guid: 6982f0c4fd47f4e31987402aa0262158, type: 3}
+--- !u!82 &631748161
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 631748154}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &631748162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 631748154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d4b78e486a8bc40a4a7db3610b06e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctCoinEffect: {fileID: 144888, guid: 8e4b3482fd7acdc40b60aa02b3a6b1bd, type: 2}
+  falseCoinEffect: {fileID: 144888, guid: 8e4b3482fd7acdc40b60aa02b3a6b1bd, type: 2}
 --- !u!1 &663381295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41790cba77a2c674c9c35ee914884f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 129536, guid: 062591cfc48ab9648972048cd7827229, type: 2}
+  obstacle: {fileID: 102542, guid: 062591cfc48ab9648972048cd7827229, type: 2}
   spawnValues: {x: 7, y: 4.5, z: 25}
   hazardCount: 10
   spawnWait: 1

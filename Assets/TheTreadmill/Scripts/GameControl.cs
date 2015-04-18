@@ -7,6 +7,7 @@ public class GameControl
     private const int rounds = 10;
 	static private int livesLeft = lives;
     static private int currentRound = 1;
+    static private bool answerIsCorrect = false; //Keep check of whether the right answer was given
 
 	//Subtract a life and check for EndOfGame
 	public void LostLife()
@@ -53,6 +54,19 @@ public class GameControl
     public int GetTotalRounds()
     {
         return rounds;
+    }
+
+    public void correctAnswer(bool correct)
+    {
+        if (correct)
+            answerIsCorrect = true;
+        else
+            answerIsCorrect = false;
+    }
+
+    public bool isAnswerCorrect()
+    {
+        return answerIsCorrect;
     }
 
 	//Check Game State
