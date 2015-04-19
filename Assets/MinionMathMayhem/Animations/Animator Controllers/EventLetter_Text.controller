@@ -96,7 +96,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: EventLetter_SlideIn
-  m_Speed: .800000012
+  m_Speed: .5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110100400}
