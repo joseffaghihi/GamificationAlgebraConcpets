@@ -2,11 +2,22 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/*
+ * This script handles updating other scripts by checking the user's selected answer.
+ * It also instantiates effects based on whether the user was correct or not.
+ * Updates the following Scripts: GameControl
+ */
+
 public class GameProgress : MonoBehaviour 
 {
+    //Particle Effects
     public GameObject correctCoinEffect;
     public GameObject falseCoinEffect;
 
+    //Updated Scripts
+    private GameControl gameController = new GameControl();
+
+    //On Collision
     public void OnCollisionEnter(Collision collision)
     {
         int obstacleNum = GetComponentInChildren<RandomNumberGenerator>().GetRandomNumber(); //Get the number attached to the obstacle
@@ -14,17 +25,18 @@ public class GameProgress : MonoBehaviour
 
         if (collision.gameObject.tag == "Player" && obstacleNum == answer) //Correct Answer
         {
-            GameControl gameController = new GameControl();
-            gameController.clearedRound();
+            gameController.clearedRound(); //Update Game Info
 
+            //Instantiate Particle Effect
             (Instantiate(correctCoinEffect, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity) as GameObject).transform.parent =
                             GameObject.FindGameObjectWithTag("Player").transform;
-            GameObject.Find("Equation").GetComponent<EquationGenerator>().newRandomEquation();
+
+            //Create a new Equation
+            GameObject.Find("Equation").GetComponent<EquationGenerator>().outputEquation();
         }
         else //Wrong Answer
         {   
-            GameControl gameController = new GameControl();
-            gameController.LostLife();
+            gameController.LostLife(); //Update Game Info
         }
 
         GameObject.Find("Board_GameInfo").GetComponent<BoardDisplay>().UpdateBoard(); //Update the board info (lives, rounds, etc.)

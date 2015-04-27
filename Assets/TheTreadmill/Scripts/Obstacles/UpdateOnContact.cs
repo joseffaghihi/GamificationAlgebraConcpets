@@ -22,7 +22,7 @@ public class UpdateOnContact : MonoBehaviour
             gameController.clearedRound(); //Cleared a round
 
             //Create new equation
-            GameObject.Find("Equation").GetComponent<EquationGenerator>().newRandomEquation();
+            GameObject.Find("Equation").GetComponent<EquationGenerator>().outputEquation();
         }
         else //Wrong Answer
         {

@@ -2,22 +2,37 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/*
+ * This script generates the equation and outputs it onto the coin.
+ */ 
+
 public class EquationGenerator : MonoBehaviour 
 {
-    public int min, max; //Set the minimum and maximum range for the random Number
+    private const int min = -9, max = 9; //Set the minimum and maximum range for the random Number
 
-    private int randomNumber;
-    private int answer;
+    //Stores the number on the left/right side of the equal sign
+    private int rightSideNumber = 0;
+    private int leftSideNumber = 0;
+
+    private int answer = 0; //Stores the answer
+
+    private GameControl gameState = new GameControl(); //Get current info on the game state (current round)
 
 	// Use this for initialization
 	void Start () 
     {
-        newRandomEquation(); //Create an Equation
+        outputEquation(); //Output the Equation
 	}
 
-    public int GetRandomNumber()
+    public void outputEquation()
     {
-        return randomNumber;
+        updateRandomNumbers(); //Create the random equation
+
+        //Adjust text to account for negative and positive sign
+        if (leftSideNumber >= 0)
+            GetComponent<Text>().text = "x + " + leftSideNumber + " = " + rightSideNumber;
+        else if (leftSideNumber < 0)
+            GetComponent<Text>().text = "x - " + Mathf.Abs(leftSideNumber) + " = " + rightSideNumber;
     }
 
     public int GetAnswer()
@@ -25,21 +40,66 @@ public class EquationGenerator : MonoBehaviour
         return answer;
     }
 
-    public void newRandomEquation()
+    //Creates an equation depending on difficulty selected.
+    public void updateRandomNumbers()
     {
-        //Set Random number to a random number except for 0
-        randomNumber = 0;
-        while (randomNumber == 0)
+        //Addition with the right site equal to zero
+        if (gameState.GetCurrentRound() <= 2)
         {
-            randomNumber = Random.Range(min, max);
+            leftSideNumber = Random.Range(min, 0);
+            rightSideNumber = 0;
         }
 
-        //Adjust text to account for negative and positive sign
-        if (randomNumber > 0)
-            GetComponent<Text>().text = "x + " + randomNumber + " = 0";
-        else if (randomNumber < 0)
-            GetComponent<Text>().text = "x - " + Mathf.Abs(randomNumber) + " = 0";
+        //Addition with both sides containing non-zero numbers
+        else if (gameState.GetCurrentRound() <= 4)
+        {
+            leftSideNumber = Random.Range(min, 0);
+            rightSideNumber = Random.Range(min, 0);
+        }
 
-        answer = -randomNumber;
+        //Subtraction with right side equal to zero
+        else if (gameState.GetCurrentRound() <= 6)
+        {
+            leftSideNumber = Random.Range(0, max);
+            rightSideNumber = 0;
+        }
+
+        //Subtraction with both sides containing non-zero numbers
+        else if (gameState.GetCurrentRound() <= 8)
+        {
+            leftSideNumber = Random.Range(0, max);
+            rightSideNumber = Random.Range(0, max);
+        }
+
+        //Mix of it all - everything is possible
+        else
+        {
+            leftSideNumber = Random.Range(min, max); //Set the left-side Number
+
+            int calculatedMin, calculatedMax; //Hold the possible numbers for the right side of the equation
+
+            //Make sure the answer will not be above the maximum or below the minimum
+            if(leftSideNumber < 0) //If left-side number is smaller than 0 - boundaries change
+            {
+                calculatedMin = leftSideNumber - min;
+                calculatedMax = leftSideNumber + max;
+            }
+
+            if (leftSideNumber > 0) //If left-side number is bigger than 0 - boundaries change
+            {
+                calculatedMin = leftSideNumber + min;
+                calculatedMax = leftSideNumber - max;
+            }
+
+            else //If left-side number is equal to 0 - boundaries stay the same
+            {
+                calculatedMin = min;
+                calculatedMax = max;
+            }
+
+            rightSideNumber = Random.Range(calculatedMin, calculatedMax); //Set the right-side Number
+        }
+
+        answer = rightSideNumber - leftSideNumber;
     }
 }

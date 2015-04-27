@@ -23,19 +23,20 @@ public class GameControl
     }
 	
     //Execute this on winning the game
-    public void GameWon()
+    public bool GameWon()
     {
-        Debug.Log("won");
+        if (currentRound >= 10) //Game Won
+        {
+            return true;
+        }
+        else
+            return false;
     }
 
     //Execute this on clearing a round
     public void clearedRound()
     {
-        if (currentRound >= 10) //If the game is over
-        {
-            GameWon();
-        }
-        else //If the round, but not the game, is over
+        if (currentRound < 10)//If the round, but not the game, is over
         {
             currentRound++;
         }

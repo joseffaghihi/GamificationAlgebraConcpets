@@ -20,5 +20,11 @@ public class GameOverview : MonoBehaviour
         {
             GameObject.Find("GameOver").GetComponent<CanvasGroup>().alpha = 0; //Show Game Over box
         }
+
+        if(gameController.GameWon()) //Game has been won
+        {
+            GameObject.FindGameObjectWithTag("GameMenu").GetComponent<GameMenu>().openMenu(true); //Open Menu
+            //GameObject.Find("GameWon").GetComponent<CanvasGroup>().alpha = 1; //Show Game over box
+        }
 	}
 }

@@ -13,7 +13,7 @@ public class GameMenu : MonoBehaviour
         {
             openMenu(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && inMenu && !gameState.isGameOver()) //If the user pressed Escape AND is in the menu AND the game is not over
+        else if (Input.GetKeyDown(KeyCode.Escape) && inMenu && !gameState.isGameOver() && !gameState.GameWon()) //If the user pressed Escape AND is in the menu AND the game is not over or won
         {
             openMenu(false);
         }
