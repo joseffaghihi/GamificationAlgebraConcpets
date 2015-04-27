@@ -4,15 +4,16 @@ using System.Collections;
 public class GameMenu : MonoBehaviour 
 {
     private bool inMenu = false;
+    private GameControl gameState = new GameControl();
 
 	// Update is called once per frame
 	void Update () 
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !inMenu)
+        if (Input.GetKeyDown(KeyCode.Escape) && !inMenu) //If user pressed Escape AND is not already in the menu
         {
             openMenu(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && inMenu)
+        else if (Input.GetKeyDown(KeyCode.Escape) && inMenu && !gameState.isGameOver()) //If the user pressed Escape AND is in the menu AND the game is not over
         {
             openMenu(false);
         }
