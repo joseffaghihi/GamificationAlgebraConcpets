@@ -348,7 +348,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 128884413}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &138657965
+--- !u!4 &138657965 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
   m_PrefabInternal: {fileID: 16721025}
@@ -719,7 +719,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 303748657}
---- !u!4 &343555770
+--- !u!4 &343555770 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
   m_PrefabInternal: {fileID: 16721025}
@@ -1535,11 +1535,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2fb4c6a56066d41b43923f4b51491a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &998202201
+--- !u!1 &998202201 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
   m_PrefabInternal: {fileID: 16721025}
---- !u!4 &998202202
+--- !u!4 &998202202 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
   m_PrefabInternal: {fileID: 16721025}
@@ -1711,7 +1711,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1025822399}
   m_Mesh: {fileID: 4300004, guid: a7b88e8134a7a3c4697d65949b301627, type: 3}
---- !u!4 &1064039000
+--- !u!4 &1064039000 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400010, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
   m_PrefabInternal: {fileID: 16721025}
@@ -2172,7 +2172,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1320944505}
   m_Mesh: {fileID: 4300010, guid: a7b88e8134a7a3c4697d65949b301627, type: 3}
---- !u!4 &1329132726
+--- !u!4 &1329132726 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
   m_PrefabInternal: {fileID: 16721025}
@@ -2352,7 +2352,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!4 &1384234357
+--- !u!4 &1384234357 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}
   m_PrefabInternal: {fileID: 16721025}
