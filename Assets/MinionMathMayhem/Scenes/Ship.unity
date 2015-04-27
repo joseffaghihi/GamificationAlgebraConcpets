@@ -374,7 +374,7 @@ Transform:
   - {fileID: 790340097}
   - {fileID: 1839939938}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 11
 --- !u!1 &63528814 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100376, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
@@ -3896,7 +3896,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &1006633162 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 114380, guid: 7e62b51a070a94a3bbab1362bb1a6b08, type: 2}
@@ -4635,7 +4635,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92f4e13b1cc5340789cdbe5173c5fe9e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92f4e13b1cc5340789cdbe5173c5fe9e, type: 3}
       propertyPath: m_LocalScale.x
@@ -4689,7 +4689,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!114 &1430447470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4710,8 +4710,9 @@ MonoBehaviour:
   scriptSpawnController: {fileID: 0}
   heartbeat: 0
   heartbeatTimer: 2
-  objectTutorialMinion: {fileID: 33354902}
-  objectTutorialSkipButton: {fileID: 1635683666}
+  objectTutorial_Movie: {fileID: 964868980}
+  objectTutorial_Canvas: {fileID: 1923049301}
+  objectTutorial_SkipButton: {fileID: 1635683666}
 --- !u!114 &1430447471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4890,7 +4891,7 @@ Transform:
   - {fileID: 147099094}
   - {fileID: 876682460}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
 --- !u!1 &1635683666
 GameObject:
   m_ObjectHideFlags: 0
@@ -4921,7 +4922,7 @@ Transform:
   m_LocalScale: {x: 3.03046632, y: 1, z: .99999994}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 12
 --- !u!114 &1635683668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5048,7 +5049,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
 --- !u!1 &1692958822
 GameObject:
   m_ObjectHideFlags: 0
@@ -5177,7 +5178,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400376, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: problemBox
@@ -6669,7 +6670,7 @@ Transform:
   - {fileID: 12442283}
   - {fileID: 871709228}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &1939987166
 GameObject:
   m_ObjectHideFlags: 0
@@ -7056,8 +7057,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
+  m_LocalRotation: {x: .087172322, y: .899590552, z: .210452542, w: -.372622699}
+  m_LocalPosition: {x: -13.7432308, y: -2.01402974, z: -44.1644745}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
