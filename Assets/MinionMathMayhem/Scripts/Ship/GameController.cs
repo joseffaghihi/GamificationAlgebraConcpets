@@ -61,8 +61,9 @@ namespace MinionMathMayhem_Ship
 
             // GameObjects
                 // Tutorial
-                    public GameObject objectTutorialMinion;
-                    public GameObject objectTutorialSkipButton;
+                    public GameObject objectTutorial_Movie;
+                    public GameObject objectTutorial_Canvas;
+                    public GameObject objectTutorial_SkipButton;
 
 
 
@@ -152,7 +153,7 @@ namespace MinionMathMayhem_Ship
             // ----
             // Execute the Tutorial
                 // BY-REQUEST; the 'VoiceOver'tutorial is now considered deprecated [NG]
-                //yield return (StartCoroutine(GameExecute_Tutorial()));
+                yield return (StartCoroutine(GameExecute_Tutorial()));
             // Display the animations and environment settings at the very start of the game
                 scriptGameEvent.Access_FirstRun_Animations();
             // Initiate the wait delay on the spawners
@@ -251,16 +252,18 @@ namespace MinionMathMayhem_Ship
         private IEnumerator GameExecute_Tutorial()
         {
             // Enable the tutorial objects
-                objectTutorialMinion.SetActive(true);
-                objectTutorialSkipButton.SetActive(true);
+                objectTutorial_Movie.SetActive(true);
+                objectTutorial_Canvas.SetActive(true);
+                objectTutorial_SkipButton.SetActive(true);
             // Send the 'Tutorial Active' signal
                 TutorialStateStart();
             // Run a signal detector; once the signal has been detected, the tutorial is finished.
             //    Once the tutorial is finished, the rest of the game can execute.
                 yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
             // Disable the tutorial objects
-                objectTutorialMinion.SetActive(false);
-                objectTutorialSkipButton.SetActive(false);
+                objectTutorial_Movie.SetActive(false);
+                objectTutorial_Canvas.SetActive(false);
+                objectTutorial_SkipButton.SetActive(false);
         } // GameExecute_Tutorial()
 
 
@@ -340,7 +343,7 @@ namespace MinionMathMayhem_Ship
                 MissingReferenceError("Score");
             if (scriptTutorial == null)
                 MissingReferenceError("Tutorial");
-            if (objectTutorialMinion == null)
+            if (objectTutorial_Movie == null)
                 MissingReferenceError("Tutorial Actor");
             if (scriptGameEvent == null)
                 MissingReferenceError("Game Event");
