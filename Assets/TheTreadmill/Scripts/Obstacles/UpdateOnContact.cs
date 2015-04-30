@@ -24,7 +24,7 @@ public class UpdateOnContact : MonoBehaviour
             //Create new equation
             GameObject.Find("Equation").GetComponent<EquationGenerator>().outputEquation();
         }
-        else //Wrong Answer
+        else if(collision.gameObject.tag == "Player") //Wrong Answer
         {
             //Update gameController
             GameControl gameController = new GameControl();
