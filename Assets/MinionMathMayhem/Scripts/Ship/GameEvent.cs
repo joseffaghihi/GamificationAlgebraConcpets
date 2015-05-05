@@ -250,7 +250,7 @@ namespace MinionMathMayhem_Ship
         // What-is Text Animations
         private void AnswerCorrect_FinalAnimations()
         {
-           // eventLetterAnim.SetTrigger("SlideIn");
+            eventLetterAnim.SetTrigger("SlideIn");
         } // AnswerCorrect_FinalAnimations()
 
 
