@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correctCoinEffect: {fileID: 144888, guid: 8e4b3482fd7acdc40b60aa02b3a6b1bd, type: 2}
-  falseCoinEffect: {fileID: 144888, guid: 8e4b3482fd7acdc40b60aa02b3a6b1bd, type: 2}
+  falseCoinEffect: {fileID: 100006, guid: f3224a3de45354093be7f5e87be4bb4a, type: 2}
   text: {fileID: 131206, guid: a5f453f207b378545820137099ae0541, type: 2}
 --- !u!1 &663381295
 GameObject:
