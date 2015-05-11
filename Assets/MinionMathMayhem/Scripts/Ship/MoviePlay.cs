@@ -23,8 +23,8 @@ namespace MinionMathMayhem_Ship
         private IEnumerator Start()
         {
             // Initialization Field
-                Renderer r = GetComponent<Renderer>();
-                MovieTexture movie = (MovieTexture)r.material.mainTexture;
+                Renderer movieRenderer = GetComponent<Renderer>();
+                MovieTexture movie = (MovieTexture)movieRenderer.material.mainTexture;
             // ----
 
             // Play the movie
