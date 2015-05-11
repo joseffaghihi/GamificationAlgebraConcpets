@@ -4896,7 +4896,7 @@ MonoBehaviour:
   scriptScore: {fileID: 1430447471}
   scriptTutorial: {fileID: 33354903}
   scriptGameEvent: {fileID: 1430447472}
-  scriptSpawnController: {fileID: 0}
+  scriptSpawnController: {fileID: 1430447473}
   heartbeat: 0
   heartbeatTimer: 2
   objectTutorial_Movie: {fileID: 964868980}
