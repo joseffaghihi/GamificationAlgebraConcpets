@@ -1732,6 +1732,7 @@ GameObject:
   - 222: {fileID: 231372672}
   - 114: {fileID: 231372671}
   - 114: {fileID: 231372673}
+  - 114: {fileID: 231372674}
   m_Layer: 5
   m_Name: SkipButton_Img
   m_TagString: Untagged
@@ -1849,6 +1850,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &231372674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 231372669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf54ead17495ab44b02b481220149da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &376758234
 GameObject:
   m_ObjectHideFlags: 0
@@ -4889,7 +4901,7 @@ MonoBehaviour:
   heartbeatTimer: 2
   objectTutorial_Movie: {fileID: 964868980}
   objectTutorial_Canvas: {fileID: 1923049301}
-  objectTutorial_SkipButton: {fileID: 0}
+  objectTutorial_SkipButton: {fileID: 231372669}
 --- !u!114 &1430447471
 MonoBehaviour:
   m_ObjectHideFlags: 0
