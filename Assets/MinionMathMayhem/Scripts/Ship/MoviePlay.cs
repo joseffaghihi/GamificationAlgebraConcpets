@@ -19,22 +19,88 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // Declarations and Initializations
+        // ---------------------------------
+            // Movie Renderer [Mesh Renderer]
+                public Renderer movieRenderer;
+            // Movie Texture
+                public MovieTexture movieTexture;
+            // Tutorial skip signal
+                public bool tutorialSkip = false;
+            
+
+            // Accessors and Communication
+                // Tutorial State: Finished
+                    public delegate void TutorialStateEventEnded();
+                    public static event TutorialStateEventEnded TutorialStateEnded;
+        // ----
+
+
+
+        // Signal Listener: Detected
+        private void OnEnable()
+        {
+            GameController.TutorialStateStart += EnableTutorial;
+            TutorialSkipButton.SkipTutorialDemand += SkipTutorial;
+        } // OnEnable()
+
+
+
+        // Signal Listener: Deactivate
+        private void OnDisable()
+        {
+            GameController.TutorialStateStart -= EnableTutorial;
+            TutorialSkipButton.SkipTutorialDemand -= SkipTutorial;
+        } // OnDisable()
+
+
+
+        // When the signal has been detected, start the tutorial algorithm.
+        private void EnableTutorial()
+        {
+            StartCoroutine(PlayTutorial());
+        } // EnableTutorial()
+
+
+
+        // When the signal has been detected, flip the bit 
+        private void SkipTutorial()
+        {
+            tutorialSkip = !tutorialSkip;
+        } // SkipTutorial()
+
+
+
         // Start-Up execution
         private IEnumerator Start()
         {
             // Initialization Field
-                Renderer movieRenderer = GetComponent<Renderer>();
-                MovieTexture movie = (MovieTexture)movieRenderer.material.mainTexture;
+                movieRenderer = GetComponent<Renderer>();
+                movieTexture = (MovieTexture)movieRenderer.material.mainTexture;
+            //gameObject.GetComponent<Renderer>().material.mainTexture = movieTexture;
+            movieTexture.Play();
             // ----
 
+                yield return null;
+        } // Start()
+
+
+
+        // This function will execute the Movie Texture
+        private IEnumerator PlayTutorial()
+        {
             // Play the movie
-                Movie_Execute(movie);
+                Movie_Execute(movieTexture);
             // ----
 
             // Wait for the movie to end
-                yield return (StartCoroutine(Movie_Ended_Check(movie)));
-            // ----                
-        } // Start()
+                yield return (StartCoroutine(Movie_Ended_Check(movieTexture)));
+            // ----
+
+            // turn off the tutorial mode
+                TutorialStateEnded();
+        } // PlayTutorial()
+
 
 
         // Play the movie
@@ -42,6 +108,7 @@ namespace MinionMathMayhem_Ship
         {
             onScreenMovie.Play();
         } // ExecuteMovie()
+
 
 
         private IEnumerator Movie_Ended_Check(MovieTexture onScreenMovie)
