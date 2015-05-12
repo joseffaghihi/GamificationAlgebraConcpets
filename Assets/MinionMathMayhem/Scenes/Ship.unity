@@ -1836,18 +1836,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 964868980}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &231372674
@@ -3932,6 +3920,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e82e318e69584d96bf7c1983b28b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movieRenderer: {fileID: 0}
+  movieTexture: {fileID: 0}
+  tutorialSkip: 0
 --- !u!82 &964868986
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7163,8 +7154,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: .09622664, y: .227246925, z: .0225711856, w: -.968808472}
-  m_LocalPosition: {x: -4.8759551, y: -8.81453228, z: -36.5140495}
+  m_LocalRotation: {x: .087172322, y: .899590552, z: .210452542, w: -.372622699}
+  m_LocalPosition: {x: -13.7432308, y: -2.01402974, z: -44.1644745}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
