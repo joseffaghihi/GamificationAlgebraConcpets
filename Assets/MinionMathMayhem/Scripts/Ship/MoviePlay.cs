@@ -129,5 +129,6 @@ namespace MinionMathMayhem_Ship
 
             yield return null;
         } // Movie_Ended_Check();
-    }
-}
+
+    } // End of Class
+} // Namespace
