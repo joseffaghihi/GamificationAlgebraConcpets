@@ -72,16 +72,12 @@ namespace MinionMathMayhem_Ship
 
 
         // Start-Up execution
-        private IEnumerator Start()
+        private void Awake()
         {
             // Initialization Field
                 movieRenderer = GetComponent<Renderer>();
                 movieTexture = (MovieTexture)movieRenderer.material.mainTexture;
-            //gameObject.GetComponent<Renderer>().material.mainTexture = movieTexture;
-            movieTexture.Play();
             // ----
-
-                yield return null;
         } // Start()
 
 
