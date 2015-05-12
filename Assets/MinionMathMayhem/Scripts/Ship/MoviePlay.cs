@@ -119,6 +119,7 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // Periodically check if the movie ended or was skipped.
         private IEnumerator Movie_Ended_Check(MovieTexture onScreenMovie)
         {
             do
