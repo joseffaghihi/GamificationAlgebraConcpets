@@ -71,7 +71,7 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            VoiceOver.TutorialStateEnded += TutorialMode_Ended;
+            MoviePlay.TutorialStateEnded += TutorialMode_Ended;
         } // OnEnable()
 
 
@@ -79,7 +79,7 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            VoiceOver.TutorialStateEnded -= TutorialMode_Ended;
+            MoviePlay.TutorialStateEnded -= TutorialMode_Ended;
         } // OnDisable()
 
 
@@ -252,9 +252,9 @@ namespace MinionMathMayhem_Ship
         private IEnumerator GameExecute_Tutorial()
         {
             // Enable the tutorial objects
+                objectTutorial_SkipButton.SetActive(true);
                 objectTutorial_Movie.SetActive(true);
                 objectTutorial_Canvas.SetActive(true);
-                objectTutorial_SkipButton.SetActive(true);
             // Send the 'Tutorial Active' signal
                 TutorialStateStart();
             // Run a signal detector; once the signal has been detected, the tutorial is finished.
