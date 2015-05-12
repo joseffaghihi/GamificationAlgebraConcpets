@@ -22,10 +22,10 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // When the user clicks this object, skip the tutorial.
-        private void OnMouseDown()
+        // When the user clicks on the object, the object will begin to be disabled from the virtual world -- this function will automatically execute during this phase.
+        private void OnDisable()
         {
             SkipTutorialDemand();
-        } // OnMouseDown()
+        } // OnDisable()
     } // End of Class
 } // Namespace
