@@ -112,7 +112,7 @@ namespace MinionMathMayhem_Ship
             do
             {
                 yield return new WaitForSeconds(.5f);
-            } while (onScreenMovie.isPlaying == !false);
+            } while (onScreenMovie.isPlaying == !false && tutorialSkip == false);
 
             yield return null;
         } // Movie_Ended_Check();
