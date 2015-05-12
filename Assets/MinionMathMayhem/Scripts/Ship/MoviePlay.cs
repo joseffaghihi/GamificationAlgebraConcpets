@@ -93,6 +93,10 @@ namespace MinionMathMayhem_Ship
                 yield return (StartCoroutine(Movie_Ended_Check(movieTexture)));
             // ----
 
+            // Stop the movie
+                Movie_Stop(movieTexture);
+            // ----
+
             // turn off the tutorial mode
                 TutorialStateEnded();
         } // PlayTutorial()
@@ -104,6 +108,14 @@ namespace MinionMathMayhem_Ship
         {
             onScreenMovie.Play();
         } // ExecuteMovie()
+
+
+
+        // Stop the movie
+        private void Movie_Stop(MovieTexture onScreenMovie)
+        {
+            onScreenMovie.Stop();
+        } // Movie_Stop()
 
 
 
