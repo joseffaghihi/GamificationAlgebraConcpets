@@ -29,7 +29,7 @@ namespace MinionMathMayhem_Ship
         private void OnEnable()
         {
             GameController.TutorialStateStart += MusicTurner_Reduce;
-            VoiceOver.TutorialStateEnded += MusicTurner_Return;
+            MoviePlay.TutorialStateEnded += MusicTurner_Return;
         } // OnEnable()
 
 
@@ -38,7 +38,7 @@ namespace MinionMathMayhem_Ship
         private void OnDisable()
         {
             GameController.TutorialStateStart -= MusicTurner_Reduce;
-            VoiceOver.TutorialStateEnded -= MusicTurner_Return;
+            MoviePlay.TutorialStateEnded -= MusicTurner_Return;
         } // OnDisable()
 
 
