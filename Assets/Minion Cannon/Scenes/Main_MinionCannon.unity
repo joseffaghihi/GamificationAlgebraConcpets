@@ -365,7 +365,7 @@ GameObject:
   - 114: {fileID: 814532923}
   - 114: {fileID: 814532922}
   m_Layer: 5
-  m_Name: Text
+  m_Name: QuadraticText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,6 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3394c2016e0b42fd92b8659d472d847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  min: -225
+  max: 225
 --- !u!114 &814532923
 MonoBehaviour:
   m_ObjectHideFlags: 0

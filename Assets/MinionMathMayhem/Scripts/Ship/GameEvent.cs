@@ -43,6 +43,7 @@ namespace MinionMathMayhem_Ship
             // GameObjects
                 // Letter Box Texting UI
 					public GameObject correctText;
+					public GameObject[] positiveReinforcement;
                     //public GameObject letterBox;
                 // Quadratic Equation Updated; 'What Is' message
                     public GameObject msgWhatIs;
@@ -250,7 +251,7 @@ namespace MinionMathMayhem_Ship
         // What-is Text Animations
         private void AnswerCorrect_FinalAnimations()
         {
-            eventLetterAnim.SetTrigger("SlideIn");
+            //eventLetterAnim.SetTrigger("SlideIn");
         } // AnswerCorrect_FinalAnimations()
 
 
