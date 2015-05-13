@@ -41,10 +41,8 @@ namespace MinionMathMayhem_Ship
                         private Animator eventLetterAnim; // [DC]
 
             // GameObjects
-                // Letter Box Texting UI
-					public GameObject correctText;
-					public GameObject[] positiveReinforcement;
                     //public GameObject letterBox;
+					// public GameObject correctText; [DC] ************************************************
                 // Quadratic Equation Updated; 'What Is' message
                     public GameObject msgWhatIs;
                 // Event Letter Change
@@ -62,6 +60,8 @@ namespace MinionMathMayhem_Ship
                     public GameController scriptGameController;
                 // What-Is Object
                     private WhatIsDisplay whatIsDisplay; // [DC]
+				// Positive Text Drop
+					private PositiveTextDrop textDrop;	// [DC]
                 // Request Grace-Time Period; Broadcast Event
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;
@@ -91,7 +91,8 @@ namespace MinionMathMayhem_Ship
         {
             // Event Letter Animations
                 eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the what-is text G.O. and gets the animator.
-				correctTextAnim = correctText.GetComponent<Animator>();
+			//	correctTextAnim = correctText.GetComponent<Animator>(); [DC] temp comment out
+			textDrop = GetComponent<PositiveTextDrop>();
         } // Awake()
 
 
@@ -112,7 +113,7 @@ namespace MinionMathMayhem_Ship
         {
             if (scriptFinalDestroyer.ActorIdentity == GetQuadraticEquation_Index())
                 // Correct Answer
-                StartCoroutine(AnswerCorrect());
+                StartCoroutine("AnswerCorrect");
             else
                 // Incorrect Answer
                 AnswerIncorrect();
@@ -139,7 +140,8 @@ namespace MinionMathMayhem_Ship
                     // Generate a new equation
                         AnswerCorrect_Generate();
                     // [DC] drops in the correct text
-                        correctTextAnim.SetTrigger("Drop");
+						textDrop.Drop ();
+						// correctTextAnim.SetTrigger ("Drop");
                     // Delay
                         yield return new WaitForSeconds(1.5f);
                     // Animations

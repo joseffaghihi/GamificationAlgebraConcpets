@@ -5115,6 +5115,7 @@ GameObject:
   - 114: {fileID: 1430447473}
   - 114: {fileID: 1430447475}
   - 114: {fileID: 1430447476}
+  - 114: {fileID: 1430447477}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -5185,12 +5186,6 @@ MonoBehaviour:
   failSound: {fileID: 8300000, guid: 255a83748e196450ab7e08826f77aa40, type: 3}
   successSound: {fileID: 8300000, guid: f410804f11a144dce927bd3c179d0608, type: 3}
   gameOverSound: {fileID: 8300000, guid: 6b2f4111365644f72b2d2c1f949f9103, type: 3}
-  correctText: {fileID: 1006633162}
-  positiveReinforcement:
-  - {fileID: 58658925}
-  - {fileID: 222575598}
-  - {fileID: 809622345}
-  - {fileID: 1390142858}
   msgWhatIs: {fileID: 491266297}
   EventLetterChange: {fileID: 2021063920}
   scriptFinalDestroyer: {fileID: 63528817}
@@ -5308,10 +5303,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedClimbLadder_Minimum: 3.5
   speedClimbLadder_Maximum: 7
-  speedRunning_Minimum: 3
-  speedRunning_Maximum: 3
+  speedRunning_Minimum: 9
+  speedRunning_Maximum: 12
   thrustForce: 2000
   thrustDirection: {x: 1, y: 1, z: 0}
+--- !u!114 &1430447477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430447468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f6cd32d597344548d489c431727cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greatJob: {fileID: 58658925}
+  nice: {fileID: 222575598}
+  thatsIt: {fileID: 809622345}
+  wayToGo: {fileID: 1390142858}
+  correct: {fileID: 1006633162}
+  greatJobAud: {fileID: 8300000, guid: 84862ee425f9b564b958378105143e41, type: 3}
+  niceAud: {fileID: 8300000, guid: 2575fcb018fe8f849bb0997425394a01, type: 3}
+  thatItAud: {fileID: 8300000, guid: 42f81e8024ac5514d90e77091617e36f, type: 3}
+  wayToGoAud: {fileID: 8300000, guid: f410804f11a144dce927bd3c179d0608, type: 3}
+  randomAud: {fileID: 8300000, guid: f6181421d922bc8459cad0f570f197bb, type: 3}
 --- !u!1001 &1456280122
 Prefab:
   m_ObjectHideFlags: 0
@@ -5750,7 +5766,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400376, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 20.3999996
+      value: 20.6000004
       objectReference: {fileID: 0}
     - target: {fileID: 400376, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7655,8 +7671,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
+  m_LocalRotation: {x: -.227237403, y: .334442854, z: .0834371224, w: .910796046}
+  m_LocalPosition: {x: -3.54798126, y: -6.37469625, z: -28.4863167}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
