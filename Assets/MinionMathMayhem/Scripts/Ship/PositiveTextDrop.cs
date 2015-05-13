@@ -3,6 +3,10 @@ using System.Collections;
 
 namespace MinionMathMayhem_Ship
 {
+	// This script handles the dropping of the positive reinforcement text
+	// This script also plays the audio that corresponds the the text being
+	// Dropped
+	
 	public class PositiveTextDrop : MonoBehaviour
 	{
 

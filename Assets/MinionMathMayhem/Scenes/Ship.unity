@@ -5184,7 +5184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSounds: {fileID: 0}
   failSound: {fileID: 8300000, guid: 255a83748e196450ab7e08826f77aa40, type: 3}
-  successSound: {fileID: 8300000, guid: f410804f11a144dce927bd3c179d0608, type: 3}
   gameOverSound: {fileID: 8300000, guid: 6b2f4111365644f72b2d2c1f949f9103, type: 3}
   msgWhatIs: {fileID: 491266297}
   EventLetterChange: {fileID: 2021063920}
@@ -7671,8 +7670,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.227237403, y: .334442854, z: .0834371224, w: .910796046}
-  m_LocalPosition: {x: -3.54798126, y: -6.37469625, z: -28.4863167}
+  m_LocalRotation: {x: .0404885374, y: .00507990317, z: .000209377657, w: -.999167085}
+  m_LocalPosition: {x: 159.870895, y: -96.6948624, z: -363.068634}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}

@@ -30,19 +30,19 @@ namespace MinionMathMayhem_Ship
                     public AudioSource gameSounds;
                 // Incorrect Answer
                     public AudioClip failSound;
+				// Audio Clip not needed anymore because audio is handled by PositiveTextDrop ***************************[DC]
+				/*
                 // Correct Answer
                     public AudioClip successSound;
+				*/
                 // Game Over
                     public AudioClip gameOverSound;
                 // Animations
-                    //private Animator letterBoxController;
-					private Animator correctTextAnim;
                     // What-Is Index Object
                         private Animator eventLetterAnim; // [DC]
 
             // GameObjects
                     //public GameObject letterBox;
-					// public GameObject correctText; [DC] ************************************************
                 // Quadratic Equation Updated; 'What Is' message
                     public GameObject msgWhatIs;
                 // Event Letter Change
@@ -124,8 +124,11 @@ namespace MinionMathMayhem_Ship
         // When the user has the correct answer, this function will be executed
         private IEnumerator AnswerCorrect()
         {
+			/* Sound handled by positive text drop now **********************************************************[DC]
             // Play sounds
                 AnswerCorrect_Sounds();
+			*/
+
             // Update the score
                 AnswerCorrect_UpdateScore();
             // Pause the spawners
@@ -141,7 +144,6 @@ namespace MinionMathMayhem_Ship
                         AnswerCorrect_Generate();
                     // [DC] drops in the correct text
 						textDrop.Drop ();
-						// correctTextAnim.SetTrigger ("Drop");
                     // Delay
                         yield return new WaitForSeconds(1.5f);
                     // Animations
@@ -157,14 +159,16 @@ namespace MinionMathMayhem_Ship
             yield return null;
         } // AnswerCorrect()
 
-
-
+		// This is not needed anymore because the sound is handled by the positive text drop *********************[DC]
+		// You can delete this if you wish
+		/*
         // When the answer was correct, play some sounds.
         private void AnswerCorrect_Sounds()
         {
             GetComponent<AudioSource>().clip = successSound;
             GetComponent<AudioSource>().Play();
         } // AnswerCorrect_Sounds()
+        */
 
 
 

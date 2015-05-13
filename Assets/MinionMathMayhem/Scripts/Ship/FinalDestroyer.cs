@@ -30,13 +30,10 @@ namespace MinionMathMayhem_Ship
         // During the collision, cache the actor's uniquely assigned 
         private void OnTriggerEnter(Collider actor)
         {
-			Debug.Log ("On Collide");
             // Fetch the number from the actor
                 cacheNumber = RetrieveActorIdentity(actor);
             // Send a signal to GameEvent to execute
-			Debug.Log("Before the signal");
                 GameEventSignal();
-			Debug.Log ("After the signal");
             // Destroy the actor
                 Destroy(actor.gameObject);
         } // OnTriggerEnter()
