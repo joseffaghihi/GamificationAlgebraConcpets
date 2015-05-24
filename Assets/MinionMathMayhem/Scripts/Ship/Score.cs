@@ -118,7 +118,9 @@ namespace MinionMathMayhem_Ship
         // Return the correct score value to the calling script.
         public int ScoreCorrect
         {
-            get { return scoreCorrect; }
+            get {
+                    return scoreCorrect;
+                } // get
         } // ScoreCorrect
 
 
@@ -126,7 +128,9 @@ namespace MinionMathMayhem_Ship
         // Return the incorrect\fail score value to the calling script.
         public int ScoreIncorrect
         {
-            get { return scoreIncorrect; }
+            get {
+                    return scoreIncorrect;
+                } // get
         } // ScoreIncorrect
 
 

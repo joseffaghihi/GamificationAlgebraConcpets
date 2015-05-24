@@ -307,7 +307,9 @@ namespace MinionMathMayhem_Ship
         // Return the value of: spawnMinions to outside classes
         public bool SpawnMinions
         {
-            get { return spawnMinions; }
+            get {
+                    return spawnMinions;
+                } // get
         } // SpawnMinions
 
 
@@ -315,7 +317,9 @@ namespace MinionMathMayhem_Ship
         // Return the value of: gameOverWin to outside classes
         public bool GameOverWon
         {
-            get { return gameOverWin; }
+            get {
+                    return gameOverWin;
+                } // get
         } // GameOverWon
 
 
@@ -323,7 +327,9 @@ namespace MinionMathMayhem_Ship
         // Return the value of: gameOverFail to outside classes
         public bool GameOverFail
         {
-            get { return gameOverFail; }
+            get {
+                    return gameOverFail;
+                } // get
         } // GameOverFail
 
 
@@ -331,7 +337,9 @@ namespace MinionMathMayhem_Ship
         // Return the value of: gameOver to outside classes
         public bool GameOver
         {
-            get { return gameOver; }
+            get {
+                    return gameOver;
+                } // get
         } // GameOver
 
 

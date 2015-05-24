@@ -312,7 +312,9 @@ namespace MinionMathMayhem_Ship
         // Return the value of the Spawners behavior; should they be on or off at this time.
         public bool AccessSpawnMinions
         {
-            get { return SpawnMinions; }
+            get {
+                    return SpawnMinions;
+                } // get
         } // AccessSpawnMinions
 
 

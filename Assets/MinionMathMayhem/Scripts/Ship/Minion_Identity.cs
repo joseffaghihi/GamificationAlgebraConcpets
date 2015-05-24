@@ -55,7 +55,9 @@ namespace MinionMathMayhem_Ship
         // Return the value of the minion's self-assigned number.
         public int MinionNumber
         {
-            get { return number; }
+            get {
+                    return number;
+                } // get
         } // MinionNumber
     } // End of Class
 } // Namespace

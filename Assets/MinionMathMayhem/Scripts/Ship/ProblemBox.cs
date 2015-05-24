@@ -107,7 +107,9 @@ namespace MinionMathMayhem_Ship
         // Returning Quadratic Equation Index: A
         public int Index_A
         {
-            get { return index_A; }
+            get {
+                    return index_A;
+                } // get
         } // Index_A
 
 
@@ -115,7 +117,9 @@ namespace MinionMathMayhem_Ship
         // Returning Quadratic Equation Index: B
         public int Index_B
         {
-            get { return index_B; }
+            get {
+                    return index_B;
+                } // get
         } // Index_B
 
 
@@ -123,7 +127,9 @@ namespace MinionMathMayhem_Ship
         // Returning Quadratic Equation Index: C
         public int Index_C
         {
-            get { return index_C; }
+            get {
+                    return index_C;
+                } // get
         } // Index_C
     } // End of Class
 } // Namespace

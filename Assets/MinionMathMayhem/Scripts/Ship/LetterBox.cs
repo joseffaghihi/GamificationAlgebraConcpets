@@ -84,7 +84,9 @@ namespace MinionMathMayhem_Ship
         // This function will allow other scripts to determine what index is selected.
         public char Access_SelectedIndex
         {
-            get { return indexChar; }
+            get {
+                    return indexChar;
+                } // get
         } // Access_SelectedIndex
     } // End of Class
 } // Namespace

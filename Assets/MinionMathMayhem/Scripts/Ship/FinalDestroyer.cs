@@ -54,7 +54,9 @@ namespace MinionMathMayhem_Ship
         // This accessor will allow outside classes to retrieve the actor's number.
         public int ActorIdentity
         {
-            get { return cacheNumber; }
+            get {
+                    return cacheNumber;
+                } // get
         } // ActorIdentity
     } // End of Class
 } // Namespace

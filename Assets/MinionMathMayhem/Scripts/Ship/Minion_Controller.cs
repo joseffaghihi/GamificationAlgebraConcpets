@@ -63,7 +63,9 @@ namespace MinionMathMayhem_Ship
         // Returns the Climb Speed value to the calling script
         public float ClimbSpeed
         {
-            get { return GenerateClimbSpeed(); }
+            get {
+                    return GenerateClimbSpeed();
+                } // get
         } // ClimbSpeed
 
 
@@ -71,7 +73,9 @@ namespace MinionMathMayhem_Ship
         // Returns the Running Speed value to the calling script
         public float RunningSpeed
         {
-            get { return GenerateRunningSpeed(); }
+            get {
+                    return GenerateRunningSpeed();
+                } // get
         } // RunningSpeed
 
 
@@ -79,7 +83,9 @@ namespace MinionMathMayhem_Ship
         // Returns the Thrust Force value to the calling script
         public float ThurstForce
         {
-            get { return thrustForce; }
+            get {
+                    return thrustForce;
+                } // get
         } // ThrustForce
 
 
@@ -87,7 +93,9 @@ namespace MinionMathMayhem_Ship
         // Returns the Thrust Direction to the calling script
         public Vector3 ThrustDirection
         {
-            get { return thrustDirection; }
+            get {
+                    return thrustDirection;
+                } // get
         } // ThrustDirection
 
 
