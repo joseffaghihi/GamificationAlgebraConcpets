@@ -1602,7 +1602,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0591181eef66c45cdab23482e62c45c0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .300000012
+  m_Volume: .185000002
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3693,7 +3693,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3e1cf3e6f93aa4754bb3bfb55b279280, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: .0970000029
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4093,7 +4093,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d962d0345a21e846839ef4e2d9f5e92, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 522ddbaae9ae846da8fb7b34fa5176a5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4324,7 +4324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: d0f6c597abfb74a399861fb479d6d2f4, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 15200000, guid: 2d962d0345a21e846839ef4e2d9f5e92, type: 3}
+  m_Texture: {fileID: 15200000, guid: 522ddbaae9ae846da8fb7b34fa5176a5, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -7670,8 +7670,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: .0404885374, y: .00507990317, z: .000209377657, w: -.999167085}
-  m_LocalPosition: {x: 159.870895, y: -96.6948624, z: -363.068634}
+  m_LocalRotation: {x: .0329823308, y: -.475210339, z: .0178253502, w: .879073143}
+  m_LocalPosition: {x: -13.2695646, y: -.37038672, z: -47.8288422}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
