@@ -75,7 +75,7 @@ namespace MinionMathMayhem_Ship
         // Display the Quadratic Equation on the HUD
         private void Generate_Display()
         {
-            problemBox.text = index_A.ToString() + "x +" + index_B.ToString() + "x+" + index_C.ToString();
+            problemBox.text = index_A.ToString() + "x +" + index_B.ToString() + "x+" + index_C.ToString() + " =0";
         } // Generate_Display()
 
 
