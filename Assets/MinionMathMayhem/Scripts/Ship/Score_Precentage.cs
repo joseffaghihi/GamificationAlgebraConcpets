@@ -6,8 +6,8 @@ namespace MinionMathMayhem_Ship
     public class Score_Precentage : MonoBehaviour
     {
         /*
-         * This script is designed to calculate the precentage of how much the user has gotten right within the game.
-         * The purpose of the task is to take what the user has right over the total possible points and return the precentage in a form of a double.
+         * This script is designed to calculate the percentage of how much the user has gotten right within the game.
+         * The purpose of the task is to take what the user has right over the total possible points and return the percentage in a form of a double.
          * For example, (right/total = double).
          * 
          * 
@@ -21,7 +21,7 @@ namespace MinionMathMayhem_Ship
          */
 
 
-        // When called by other classes or scripts; this will take the provided values and return the precentage of the score.
+        // When called by other classes or scripts; this will take the provided values and return the percentage of the score.
         public double CalculateScorePercentageInterface (int earnedPoints = 0, int totalPoints = 0)
         {
             if (totalPoints == ~0)

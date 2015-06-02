@@ -17,7 +17,7 @@ namespace MinionMathMayhem_Ship
 		public GameObject wayToGo;
 		public GameObject correct;
 
-		// Audio refernces to be played along with the text
+		// Audio references to be played along with the text
 		public AudioClip greatJobAud;
 		public AudioClip niceAud;
 		public AudioClip thatItAud;
@@ -49,7 +49,7 @@ namespace MinionMathMayhem_Ship
 			{
 				Debug.Log ("No game controller object was found!");
 			}
-		// Audio source initialiaztion - game controller
+		// Audio source initialization - game controller
 			gameControllerAudSrc = gameController.GetComponent<AudioSource>();
 		}
 

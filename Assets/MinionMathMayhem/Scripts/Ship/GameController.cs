@@ -106,7 +106,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // When enabled through the Unity's inspector, this gives the ablity to slow down the game.
+        // When enabled through the Unity's inspector, this gives the ability to slow down the game.
         private IEnumerator HeartbeatTimer()
         {
             while (true)

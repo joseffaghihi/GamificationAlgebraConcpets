@@ -158,7 +158,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Toggle the minion's bounding box during the collision algorithm; this is to avoid the minions from re-executing the entire algorthim again.
+        // Toggle the minion's bounding box during the collision algorithm; this is to avoid the minions from re-executing the entire algorithm again.
         private void MinionCollision_ToggleBoundingBox(GameObject minionActor, bool state)
         {
             // Get the object's colliders
@@ -208,7 +208,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Collision occured during the climbing; the selected minion will fling.
+        // Collision occurred during the climbing; the selected minion will fling.
         private void MinionCollision_Selected_Climbing(bool selected, Minion_Behavior actor = null)
         {
             if (selected == true)
@@ -219,7 +219,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Collision occured during walking; the selected minion will fling.
+        // Collision occurred during walking; the selected minion will fling.
         private void MinionCollision_Selected_Walking(bool selected, Minion_Behavior actor = null)
         {
             if (selected == false)

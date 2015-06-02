@@ -78,7 +78,7 @@ namespace MinionMathMayhem_Ship
         // When the attached game object is available; this function will immediately execute. 
         private void Start()
         {
-            // Chcek to make sure that everything is properly initialized.
+            // Check to make sure that everything is properly initialized.
                 CheckReferences();
             // Execute the Wave Manager
                 StartCoroutine("WaveManager");
