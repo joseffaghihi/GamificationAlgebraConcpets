@@ -47,7 +47,14 @@ namespace MinionMathMayhem_Ship
         // Generate a random climbing speed.
         private float GenerateClimbSpeed()
         {
-            return Random.Range(speedClimbLadder_Minimum, speedClimbLadder_Maximum);
+            // Prevent negated values
+                if (speedClimbLadder_Minimum < 0)
+                    speedClimbLadder_Minimum = (speedClimbLadder_Minimum * -1);
+                if (speedClimbLadder_Maximum < 0)
+                    speedClimbLadder_Maximum = (speedClimbLadder_Maximum * -1);
+            
+            // Pass through the RNG
+                return Random.Range(speedClimbLadder_Minimum, speedClimbLadder_Maximum);
         } // GenerateClimbSpeed()
 
 
@@ -55,7 +62,14 @@ namespace MinionMathMayhem_Ship
         // Generate a random running speed.
         private float GenerateRunningSpeed()
         {
-            return Random.Range(speedRunning_Minimum, speedRunning_Maximum);
+            // Prevent negated values
+                if (speedRunning_Minimum < 0)
+                    speedRunning_Minimum = (speedRunning_Minimum * -1);
+                if (speedRunning_Maximum < 0)
+                    speedRunning_Maximum = (speedRunning_Maximum * -1);
+
+            // Pass through the RNG
+                return Random.Range(speedRunning_Minimum, speedRunning_Maximum);
         } // GenerateRunningSpeed()
 
 

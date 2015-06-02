@@ -80,6 +80,8 @@ namespace MinionMathMayhem_Ship
         {
             // Check to make sure that everything is properly initialized.
                 CheckReferences();
+            // Check values; prevert negated values
+                CheckValues();
             // Execute the Wave Manager
                 StartCoroutine("WaveManager");
         } // Start()
@@ -162,6 +164,16 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // This function will check the public variables and prevent any negated values.
+        private void CheckValues()
+        {
+            if (nextSpawn < 0)
+                nextSpawn = (nextSpawn * -1);
+            if (spawnRate < 0)
+                spawnRate = (spawnRate * -1);
+            if (gracePeriodTimer < 0)
+                gracePeriodTimer = (gracePeriodTimer * -1);
+        } // CheckValues()
 
 
 

@@ -21,10 +21,10 @@ namespace MinionMathMayhem_Ship
         // ---------------------------------
             // How many to win each wave
                 // Can be manipulated within Unity's Inspector
-                public int maxScore = 10;
+                public uint maxScore = 10;
             // How many can the user get wrong on each wave
                 // Can be manipulated within Unity's Inspector
-                public int maxScoreFail = 5;
+                public uint maxScoreFail = 5;
             // [GameManager] Determining if the game is still executing or is finished.
                 private bool gameOver = false;
             // [GameManager] Determines if the game is over; user won.
@@ -111,6 +111,10 @@ namespace MinionMathMayhem_Ship
         {
             while (true)
             {
+                // Make sure the value is not negated
+                    if (heartbeatTimer < 0)
+                        // Flip the sign
+                        heartbeatTimer = heartbeatTimer * -1;
                 // Change the heartbeat to a new value
                     if (heartbeat == true)
                     {

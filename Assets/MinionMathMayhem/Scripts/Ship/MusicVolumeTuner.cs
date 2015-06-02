@@ -46,6 +46,7 @@ namespace MinionMathMayhem_Ship
         // Tutorial is running, reduce the volume of the background music.
         private void MusicTurner_Reduce()
         {
+            MusicTurnerCheckValue(1);
             GetComponent<AudioSource>().volume = volumeTutorial;
         } // MusicTurner_Reduce()
 
@@ -54,7 +55,29 @@ namespace MinionMathMayhem_Ship
         // Tutorial has ended, revert the volume of the background music.
         private void MusicTurner_Return()
         {
+            MusicTurnerCheckValue(0);
             GetComponent<AudioSource>().volume = volumeNormal;
         } // MusicTurner_Return()
+
+
+
+        // Check the values; prevent negated values
+        private void MusicTurnerCheckValue(short checkMode = 9999)
+        {
+            // Check Normal Volume
+            if (checkMode == 0 || checkMode == 9999)
+            {
+                if (volumeNormal < 0)
+                    volumeNormal = (volumeNormal * -1);
+            } // Check Normal Volume
+
+
+            // Check Tutorial Volume
+            if (checkMode == 1 || checkMode == 9999)
+            {
+                if (volumeTutorial < 0)
+                    volumeTutorial = (volumeTutorial * -1);
+            } // Check Tutorial Volume
+        } // MusicTurnerCheckValue()
     } // End Class
 } // Namespace
