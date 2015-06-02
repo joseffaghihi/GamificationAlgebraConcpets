@@ -32,7 +32,7 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            SpawnController.EnableSpawnPoint += SpawnActor;
+            SpawnController.EnableSpawnPoint += SpawnChoice;
         } // OnEnable()
 
 
@@ -40,19 +40,35 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            SpawnController.EnableSpawnPoint -= SpawnActor;
+            SpawnController.EnableSpawnPoint -= SpawnChoice;
         } // OnDisable()
 
 
 
-        // Spawn the creature
-        void SpawnActor()
+        // 50% of spawning the actor
+        private void SpawnChoice()
         {
-            // Chance; 50% that the actor will spawn
             if (System.Convert.ToBoolean(UnityEngine.Random.Range(0, 2)))
-                // spawn the minion actor
+                SpawnActor();
+        } // SpawnChoice()
+
+
+
+        // Spawn the creature
+        private void SpawnActor()
+        {            
+            // spawn the minion actor
                 Instantiate(actor, gameObject.transform.position, Quaternion.identity);
         } // Spawn()
+
+
+
+        // Allow calling scripts\objects to trigger this function; the final destination is a private function, this method will call the desired function.
+        public void SpawnForcibly_public()
+        {
+            // Forcibly spawn an actor
+                SpawnActor();
+        } // SpawnForcibly_public()
 
 
 

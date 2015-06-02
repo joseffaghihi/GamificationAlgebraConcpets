@@ -5116,6 +5116,7 @@ GameObject:
   - 114: {fileID: 1430447475}
   - 114: {fileID: 1430447476}
   - 114: {fileID: 1430447477}
+  - 114: {fileID: 1430447478}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -5207,6 +5208,9 @@ MonoBehaviour:
   gracePeriodTimer: 2.5
   scriptGameController: {fileID: 1430447470}
   scriptGameEvent: {fileID: 1430447472}
+  spawnerObject0: {fileID: 1695659190}
+  spawnerObject1: {fileID: 1087691905}
+  spawnerObject2: {fileID: 2044786451}
 --- !u!82 &1430447474
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5327,6 +5331,21 @@ MonoBehaviour:
   thatItAud: {fileID: 8300000, guid: 42f81e8024ac5514d90e77091617e36f, type: 3}
   wayToGoAud: {fileID: 8300000, guid: f410804f11a144dce927bd3c179d0608, type: 3}
   randomAud: {fileID: 8300000, guid: f6181421d922bc8459cad0f570f197bb, type: 3}
+--- !u!114 &1430447478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430447468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04518035c0388f42a22db8573ae86b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRate: 60
+  gracePeriodTimer: 2.5
+  scriptGameController: {fileID: 1430447470}
+  scriptGameEvent: {fileID: 1430447472}
 --- !u!1001 &1456280122
 Prefab:
   m_ObjectHideFlags: 0
