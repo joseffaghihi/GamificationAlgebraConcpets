@@ -39,6 +39,26 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // Signal Listener: Detected
+        private void OnEnable()
+        {
+            // Tutorial states
+            MoviePlay.TutorialStateEnded += RestoreHUD;
+            GameController.TutorialStateStart += HideHUD;
+        } // OnEnable()
+
+
+
+        // Signal Listener: Deactivate
+        private void OnDisable()
+        {
+            // Tutorial states
+            MoviePlay.TutorialStateEnded -= RestoreHUD;
+            GameController.TutorialStateStart -= HideHUD;
+        } // OnDisable()
+
+
+
         // Immediately execute when the game object is available within the scene.
         private void Start()
         {
@@ -47,6 +67,22 @@ namespace MinionMathMayhem_Ship
             // Initialize the default fade level with the desired current alpha value.
                 alphaChannelNormal = gameObject.GetComponent<CanvasGroup>().alpha;
         } // Start()
+
+
+
+        // Hide the HUD from the scene [NOTE: it's _NOT_ thrashed nor disabled]
+        private void HideHUD()
+        {
+            gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelHide;
+        } // HideHUD()
+
+
+
+        // Restore the HUD back to the scene
+        private void RestoreHUD()
+        {
+            gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelNormal;
+        } // RestoreHUD()
 
 
 
