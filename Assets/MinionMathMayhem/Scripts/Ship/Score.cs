@@ -33,6 +33,22 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // Signal Listener: Detected
+        private void OnEnable()
+        {
+            GameController.GameStateRestart += Reset;
+        } // OnEnable()
+
+
+
+        // Signal Listener: Deactivate
+        private void OnDisable()
+        {
+            GameController.GameStateRestart -= Reset;
+        } // OnDisable()
+
+
+
         // This function is immediately executed once the actor is in the game scene.
         private void Start()
         {
@@ -104,14 +120,6 @@ namespace MinionMathMayhem_Ship
             // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
             UpdateScoreIncorrect();
         } // AccessUpdateScoreCorrect()
-
-
-
-        // Access reset score function; as the function is set to 'private'
-        public void AccessReset()
-        {
-            Reset();
-        } // AccessThrashScores()
 
 
 

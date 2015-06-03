@@ -74,6 +74,7 @@ namespace MinionMathMayhem_Ship
         private void OnEnable()
         {
             FinalDestroyer.GameEventSignal += Driver;
+            GameController.GameStateEnded += MinionGenocide;
         } // OnEnable()
 
 
@@ -82,6 +83,7 @@ namespace MinionMathMayhem_Ship
         private void OnDisable()
         {
             FinalDestroyer.GameEventSignal -= Driver;
+            GameController.GameStateEnded -= MinionGenocide;
         } // OnDisable()
 
 
@@ -316,14 +318,6 @@ namespace MinionMathMayhem_Ship
                     return SpawnMinions;
                 } // get
         } // AccessSpawnMinions
-
-
-
-        // Access the MinionGenocide function as it is a private function; this will allow other scripts to call the desired function.
-        public void Access_MinionGenocide()
-        {
-            MinionGenocide();
-        } // AccessMinionGenocide()
 
 
 

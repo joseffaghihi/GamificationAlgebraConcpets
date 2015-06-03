@@ -212,8 +212,6 @@ namespace MinionMathMayhem_Ship
                     gameOver = true;
                 // Send signal that the game is over
                     GameStateEnded();
-                // Kill the Minions from the scene
-                    scriptGameEvent.Access_MinionGenocide();
                 // ----
 
                 // Did the user win?
@@ -308,8 +306,6 @@ namespace MinionMathMayhem_Ship
 
             // Clear the Game Over text
                 GameOver_ClearText();
-            // Reset the scores to null
-                scriptScore.AccessReset();
             // Call the 'What-Is' animation
                 scriptGameEvent.Access_FirstRun_Animations();
             // Issue a delay before activating the spawners.
