@@ -43,8 +43,11 @@ namespace MinionMathMayhem_Ship
         private void OnEnable()
         {
             // Tutorial states
-            MoviePlay.TutorialStateEnded += RestoreHUD;
-            GameController.TutorialStateStart += HideHUD;
+                MoviePlay.TutorialStateEnded += RestoreHUD;
+                GameController.TutorialStateStart += HideHUD;
+            // Game State
+                GameController.GameStateEnded += HideHUD;
+                GameController.GameStateRestart += RestoreHUD;
         } // OnEnable()
 
 
@@ -53,8 +56,11 @@ namespace MinionMathMayhem_Ship
         private void OnDisable()
         {
             // Tutorial states
-            MoviePlay.TutorialStateEnded -= RestoreHUD;
-            GameController.TutorialStateStart -= HideHUD;
+                MoviePlay.TutorialStateEnded -= RestoreHUD;
+                GameController.TutorialStateStart -= HideHUD;
+            // Game State
+                GameController.GameStateEnded -= HideHUD;
+                GameController.GameStateRestart -= RestoreHUD;
         } // OnDisable()
 
 

@@ -48,6 +48,12 @@ namespace MinionMathMayhem_Ship
                 // Tutorial State
                     public delegate void TutorialStateEventStart();
                     public static event TutorialStateEventStart TutorialStateStart;
+                // Game Over
+                    public delegate void GameStateEventEnded();
+                    public static event GameStateEventEnded GameStateEnded;
+                // Game Restarted
+                    public delegate void GameStateEventRestart();
+                    public static event GameStateEventRestart GameStateRestart;
                 // Spawn Controller
                     public SpawnController scriptSpawnController;
                 // Request Grace-Time Period; Broadcast Event
@@ -204,6 +210,8 @@ namespace MinionMathMayhem_Ship
             {
                 // The game is over
                     gameOver = true;
+                // Send signal that the game is over
+                    GameStateEnded();
                 // Kill the Minions from the scene
                     scriptGameEvent.Access_MinionGenocide();
                 // ----
@@ -289,6 +297,8 @@ namespace MinionMathMayhem_Ship
         {
             // flip the gameOver variables
                 gameOver = !gameOver;
+            // Send signal that the game is restarting
+                GameStateRestart();
 
             if (gameOverWin == true)
                 gameOverWin = !gameOverWin;
