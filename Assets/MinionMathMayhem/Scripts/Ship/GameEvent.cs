@@ -30,11 +30,6 @@ namespace MinionMathMayhem_Ship
                     public AudioSource gameSounds;
                 // Incorrect Answer
                     public AudioClip failSound;
-				// Audio Clip not needed anymore because audio is handled by PositiveTextDrop ***************************[DC]
-				/*
-                // Correct Answer
-                    public AudioClip successSound;
-				*/
                 // Game Over
                     public AudioClip gameOverSound;
                 // Animations
@@ -126,11 +121,6 @@ namespace MinionMathMayhem_Ship
         // When the user has the correct answer, this function will be executed
         private IEnumerator AnswerCorrect()
         {
-			/* Sound handled by positive text drop now **********************************************************[DC]
-            // Play sounds
-                AnswerCorrect_Sounds();
-			*/
-
             // Update the score
                 AnswerCorrect_UpdateScore();
             // Pause the spawners
@@ -148,8 +138,6 @@ namespace MinionMathMayhem_Ship
 						textDrop.Drop ();
                     // Delay
                         yield return new WaitForSeconds(1.5f);
-                    // Animations
-                        AnswerCorrect_FinalAnimations();
                     // Display the 'What-is' messages
                         whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
                     // Issue a delay before activating the spawners.
@@ -160,17 +148,6 @@ namespace MinionMathMayhem_Ship
             // ----
             yield return null;
         } // AnswerCorrect()
-
-		// This is not needed anymore because the sound is handled by the positive text drop *********************[DC]
-		// You can delete this if you wish
-		/*
-        // When the answer was correct, play some sounds.
-        private void AnswerCorrect_Sounds()
-        {
-            GetComponent<AudioSource>().clip = successSound;
-            GetComponent<AudioSource>().Play();
-        } // AnswerCorrect_Sounds()
-        */
 
 
 
@@ -239,8 +216,6 @@ namespace MinionMathMayhem_Ship
         // When the game starts once the tutorial has finished, this script will run any actions required when the game begins.
         private IEnumerator FirstRun_Animations()
         {
-            // Animations
-                AnswerCorrect_FinalAnimations();
             // Notify the user of index update
                 whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
             yield return new WaitForSeconds(2f);
@@ -253,14 +228,6 @@ namespace MinionMathMayhem_Ship
         {
             StartCoroutine(FirstRun_Animations());
         } // Access_FirstRun_Animations()
-
-
-
-        // What-is Text Animations
-        private void AnswerCorrect_FinalAnimations()
-        {
-            //eventLetterAnim.SetTrigger("SlideIn");
-        } // AnswerCorrect_FinalAnimations()
 
 
 
@@ -338,12 +305,8 @@ namespace MinionMathMayhem_Ship
                 MissingReferenceError("Scores");
             if (scriptGameController == null)
                 MissingReferenceError("Game Controller");
-            //if (letterBoxController == null)
-               // MissingReferenceError("Letter Box Controller");
             if (eventLetterAnim == null)
                 MissingReferenceError("Event Letter Animation");
-           // if (letterBox == null)
-               // MissingReferenceError("Letter Box [text]");
             if (whatIsDisplay == null)
                 MissingReferenceError("What Is Display Object");
         } // CheckReferences()
