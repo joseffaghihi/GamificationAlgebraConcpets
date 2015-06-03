@@ -4523,8 +4523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf507ec97150c9b4d846414490fcb0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeNormal: 1
-  volumeTutorial: .100000001
+  volumeNormal: .800000012
+  volumeTutorial: .0500000007
 --- !u!1 &1333129013 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 92f4e13b1cc5340789cdbe5173c5fe9e, type: 3}
