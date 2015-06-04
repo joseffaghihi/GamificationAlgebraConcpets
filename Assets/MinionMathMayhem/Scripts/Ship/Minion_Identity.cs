@@ -26,7 +26,7 @@ namespace MinionMathMayhem_Ship
 
             // Accessors and Communication
                 // Use the RNG from ProblemBox as contains the boundary limit.
-                    public ProblemBox problemBox;
+                    private ProblemBox problemBox;
         // ----
 
 
