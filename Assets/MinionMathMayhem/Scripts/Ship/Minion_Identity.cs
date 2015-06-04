@@ -37,6 +37,8 @@ namespace MinionMathMayhem_Ship
         {
             // Initialize the component
                 numText = GetComponentInChildren<Text>();
+            // Find the Problem Box
+                problemBox = GameObject.FindGameObjectWithTag("RandomNumberGenerator").GetComponent<ProblemBox>();
         } // Awake()
 
 
