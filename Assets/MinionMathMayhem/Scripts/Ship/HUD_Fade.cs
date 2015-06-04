@@ -29,11 +29,12 @@ namespace MinionMathMayhem_Ship
         // Declarations and Initializations
         // ---------------------------------
             // Normal Fade Target [when the game is playing]
+                // NOTE: This uses the value provided from the Canvas Group of the object.
                 private float alphaChannelNormal;
             // Hide Fade Target [Fade out]
-                public float alphaChannelHide = 0.0f;
+                private float alphaChannelHide = 0.0f;
             // Speed of fader
-                public float alphaChangeSpeed = 0.0f;
+                public float alphaChangeSpeed = 0.03f;
         // ---------------------------------
 
 
@@ -43,11 +44,11 @@ namespace MinionMathMayhem_Ship
         private void OnEnable()
         {
             // Tutorial states
-                MoviePlay.TutorialStateEnded += RestoreHUD;
-                GameController.TutorialStateStart += HideHUD;
+                MoviePlay.TutorialStateEnded += Access_RestoreHUD;
+                GameController.TutorialStateStart += Access_HideHUD;
             // Game State
-                GameController.GameStateEnded += HideHUD;
-                GameController.GameStateRestart += RestoreHUD;
+                GameController.GameStateEnded += Access_HideHUD;
+                GameController.GameStateRestart += Access_RestoreHUD;
         } // OnEnable()
 
 
@@ -56,11 +57,11 @@ namespace MinionMathMayhem_Ship
         private void OnDisable()
         {
             // Tutorial states
-                MoviePlay.TutorialStateEnded -= RestoreHUD;
-                GameController.TutorialStateStart -= HideHUD;
+                MoviePlay.TutorialStateEnded -= Access_RestoreHUD;
+                GameController.TutorialStateStart -= Access_HideHUD;
             // Game State
-                GameController.GameStateEnded -= HideHUD;
-                GameController.GameStateRestart -= RestoreHUD;
+                GameController.GameStateEnded -= Access_HideHUD;
+                GameController.GameStateRestart -= Access_RestoreHUD;
         } // OnDisable()
 
 
@@ -77,18 +78,64 @@ namespace MinionMathMayhem_Ship
 
 
         // Hide the HUD from the scene [NOTE: it's _NOT_ thrashed nor disabled]
-        private void HideHUD()
+        private IEnumerator HideHUD()
         {
-            gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelHide;
+            if (alphaChangeSpeed != (float)0)
+            {
+                while (gameObject.GetComponent<CanvasGroup>().alpha != (float)alphaChannelHide)
+                {
+                    // Check in advanced if the fader has reached the lowest possible setting to avoid bad values.
+                    if ((gameObject.GetComponent<CanvasGroup>().alpha - alphaChangeSpeed) <= alphaChannelHide)
+                        gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelHide;
+                    else
+                        gameObject.GetComponent<CanvasGroup>().alpha -= alphaChangeSpeed;
+                    yield return null;
+                } // while
+            } // if
+            else
+                gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelHide;
+
+            yield return null;
         } // HideHUD()
 
 
 
         // Restore the HUD back to the scene
-        private void RestoreHUD()
+        private IEnumerator RestoreHUD()
         {
-            gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelNormal;
+            if (alphaChangeSpeed != (float)0)
+            {
+                while (gameObject.GetComponent<CanvasGroup>().alpha != (float)alphaChannelNormal)
+                {
+                    // Check in advanced if the fader has reached the lowest possible setting to avoid bad values.
+                    if ((gameObject.GetComponent<CanvasGroup>().alpha + alphaChangeSpeed) >= alphaChannelNormal)
+                        gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelNormal;
+                    else
+                        gameObject.GetComponent<CanvasGroup>().alpha += alphaChangeSpeed;
+                    yield return null;
+                } // while
+            } // if
+            else
+                gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelNormal;
+            
+            yield return null;
         } // RestoreHUD()
+
+
+
+        // Kindly call the HideHUD which is a Coroutine
+        private void Access_HideHUD()
+        {
+            StartCoroutine(HideHUD());
+        } // Access_HideHUD()
+
+
+
+        // Kindly call the RestoreHUD which is a coroutine
+        private void Access_RestoreHUD()
+        {
+            StartCoroutine(RestoreHUD());
+        } // Access_RestoreHUD()
 
 
 
