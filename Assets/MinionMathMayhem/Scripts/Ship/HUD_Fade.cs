@@ -80,19 +80,24 @@ namespace MinionMathMayhem_Ship
         // Hide the HUD from the scene [NOTE: it's _NOT_ thrashed nor disabled]
         private IEnumerator HideHUD()
         {
+            // Is the fader disabled?
             if (alphaChangeSpeed != (float)0)
             {
+                // Is the HUD visually hidden?
                 while (gameObject.GetComponent<CanvasGroup>().alpha != (float)alphaChannelHide)
                 {
                     // Check in advanced if the fader has reached the lowest possible setting to avoid bad values.
                     if ((gameObject.GetComponent<CanvasGroup>().alpha - alphaChangeSpeed) <= alphaChannelHide)
+                        // To avoid bad values [overage\underage], just set the HUD's alpha to the match the proper value
                         gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelHide;
                     else
+                        // Update the HUD's alpha
                         gameObject.GetComponent<CanvasGroup>().alpha -= alphaChangeSpeed;
                     yield return null;
                 } // while
             } // if
             else
+                // Fader is disabled; immediately hide the HUD.
                 gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelHide;
 
             yield return null;
@@ -103,19 +108,24 @@ namespace MinionMathMayhem_Ship
         // Restore the HUD back to the scene
         private IEnumerator RestoreHUD()
         {
+            // Is the fader disabled?
             if (alphaChangeSpeed != (float)0)
             {
+                // Is the HUD back to normal?
                 while (gameObject.GetComponent<CanvasGroup>().alpha != (float)alphaChannelNormal)
                 {
                     // Check in advanced if the fader has reached the lowest possible setting to avoid bad values.
                     if ((gameObject.GetComponent<CanvasGroup>().alpha + alphaChangeSpeed) >= alphaChannelNormal)
+                        // To avoid bad values [overage\underage], just set the HUD's alpha to the match the proper value
                         gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelNormal;
                     else
+                        // Update the HUD's alpha
                         gameObject.GetComponent<CanvasGroup>().alpha += alphaChangeSpeed;
                     yield return null;
                 } // while
             } // if
             else
+                // Fader is disabled; immediately restore the HUD.
                 gameObject.GetComponent<CanvasGroup>().alpha = alphaChannelNormal;
             
             yield return null;
