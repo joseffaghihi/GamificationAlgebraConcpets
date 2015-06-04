@@ -10,6 +10,7 @@ TagManager:
   - ForwardEnabler
   - Obstacle
   - GameMenu
+  - RandomNumberGenerator
   layers:
   - Default
   - TransparentFX
