@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace MinionMathMayhem_Ship
 {
@@ -23,6 +24,10 @@ namespace MinionMathMayhem_Ship
                 private int index_A,
                             index_B,
                             index_C;
+            // Quadratic Equation Indexes [Properties]
+                private List<object> index_A_Prop = new List<object>();
+                private List<object> index_B_Prop = new List<object>();
+                private List<object> index_C_Prop = new List<object>();
             // Random Number Generator (RNG) range [minimum, maximum]
                 public int minValue,
                            maxValue;
@@ -56,6 +61,8 @@ namespace MinionMathMayhem_Ship
         {
             // Generate the new equation indexes
                 Generate_Indexes();
+            // Translate the Indexes
+                Generate_TranslateIndexes();
             // Display the new equation
                 Generate_Display();
         } // Generate()
@@ -65,9 +72,21 @@ namespace MinionMathMayhem_Ship
         // Generate the Quadratic Equation Indexes
         private void Generate_Indexes()
         {
-            index_A = GetRandomNumber();
-            index_B = GetRandomNumber();
-            index_C = GetRandomNumber();
+            // LIST FORMAT STANDARD
+            // --------------------
+            // Index 0: Value [int]
+            // Index 1: Position (left or right of the equal sign) [char]
+            // ==============================
+
+            // Index A
+                index_A_Prop.Add((int)GetRandomNumber());
+                index_A_Prop.Add((char)GetRandomPosition());
+            // Index B
+                index_B_Prop.Add((int)GetRandomNumber());
+                index_B_Prop.Add((char)GetRandomPosition());
+            // Index C
+                index_C_Prop.Add((int)GetRandomNumber());
+                index_C_Prop.Add((char)GetRandomPosition());
         } // Generate_Indexes()
 
 
@@ -76,7 +95,30 @@ namespace MinionMathMayhem_Ship
         private void Generate_Display()
         {
             problemBox.text = index_A.ToString() + "x +" + index_B.ToString() + "x+" + index_C.ToString() + " =0";
+            // Translate the Index Properties
+                
         } // Generate_Display()
+
+
+
+        // Translate the index properties into the index variables for ready use.
+        private void Generate_TranslateIndexes()
+        {
+            if ((char)index_A_Prop[1] == (char)'R')
+                index_A = -((int)index_A_Prop[0]);
+            else
+                index_A = ((int)index_A_Prop[0]);
+
+            if ((char)index_B_Prop[1] == (char)'R')
+                index_B = -((int)index_B_Prop[0]);
+            else
+                index_B = ((int)index_B_Prop[0]);
+
+            if ((char)index_C_Prop[1] == (char)'R')
+                index_C = -((int)index_C_Prop[0]);
+            else
+                index_C = ((int)index_C_Prop[0]);
+        } // Generate_TranslateIndexes()
 
 
 
@@ -85,6 +127,19 @@ namespace MinionMathMayhem_Ship
         {
             return Random.Range(minValue, maxValue);
         } // GetRandomNumber()
+
+
+
+        // Return what position the index is currently located
+        private char GetRandomPosition()
+        {
+            if (System.Convert.ToBoolean(UnityEngine.Random.Range(0, 2)))
+                // Left
+                return 'L';
+            else
+                // Right
+                return 'R';
+        } // GetRandomPosition()
 
 
 
