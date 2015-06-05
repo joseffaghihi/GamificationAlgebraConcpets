@@ -50,9 +50,27 @@ namespace MinionMathMayhem_Ship
         // This script is called once, after the actor has been placed in the scene
         private void Start()
         {
+            // Initialize Index Property Fields
+                InitializeIndexProp();
             // Initialize the Quadratic Equation indexes
                 Generate();
         } // Start()
+
+
+
+        // Initialize the required indexes that will be used for the index properties.
+        private void InitializeIndexProp()
+        {
+            // Index A
+            index_A_Prop.Add((int)0);
+            index_A_Prop.Add((char)'X');
+            // Index B
+            index_B_Prop.Add((int)0);
+            index_B_Prop.Add((char)'X');
+            // Index C
+            index_C_Prop.Add((int)0);
+            index_C_Prop.Add((char)'X');
+        } // InitializeIndexProp()
 
 
 
@@ -79,14 +97,14 @@ namespace MinionMathMayhem_Ship
             // ==============================
 
             // Index A
-                index_A_Prop.Add((int)GetRandomNumber());
-                index_A_Prop.Add((char)GetRandomPosition());
+                index_A_Prop[0] = ((int)GetRandomNumber());
+                index_A_Prop[1] = ((char)GetRandomPosition());
             // Index B
-                index_B_Prop.Add((int)GetRandomNumber());
-                index_B_Prop.Add((char)GetRandomPosition());
+                index_B_Prop[0] = ((int)GetRandomNumber());
+                index_B_Prop[1] = ((char)GetRandomPosition());
             // Index C
-                index_C_Prop.Add((int)GetRandomNumber());
-                index_C_Prop.Add((char)GetRandomPosition());
+                index_C_Prop[0] = ((int)GetRandomNumber());
+                index_C_Prop[1] = ((char)GetRandomPosition());
         } // Generate_Indexes()
 
 
