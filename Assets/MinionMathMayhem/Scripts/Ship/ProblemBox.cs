@@ -28,6 +28,9 @@ namespace MinionMathMayhem_Ship
                 private List<object> index_A_Prop = new List<object>();
                 private List<object> index_B_Prop = new List<object>();
                 private List<object> index_C_Prop = new List<object>();
+            // Quadratic Equation Filler [Meaningless; only used for displaying on screen.  Cache arrays]
+                private List<int> DEG_DisplayLeft = new List<int>();
+                private List<int> DEG_DisplayRight = new List<int>();
             // Random Number Generator (RNG) range [minimum, maximum]
                 public int minValue,
                            maxValue;
@@ -81,8 +84,12 @@ namespace MinionMathMayhem_Ship
                 Generate_Indexes();
             // Translate the Indexes
                 Generate_TranslateIndexes();
+            // Sort the indexes in cached arrays
+                Generate_DEGCacheSort();
             // Display the new equation
                 Generate_Display();
+            // Thrash Cache Array
+                ThrashArrayCacheValues();
         } // Generate()
 
 
@@ -106,6 +113,49 @@ namespace MinionMathMayhem_Ship
                 index_C_Prop[0] = ((int)GetRandomNumber());
                 index_C_Prop[1] = ((char)GetRandomPosition());
         } // Generate_Indexes()
+
+
+
+        // Sort the Dynamic Equation Generator in an array format; this will be eventually used to output to the screen.
+        private void Generate_DEGCacheSort()
+        {
+            // Index: A
+                if ((char)index_A_Prop[1] == (char)'L')
+                    // Left side of equals
+                    DEG_DisplayLeft[0] = (int)index_A_Prop[0];
+                else
+                    // Right side of equals
+                    DEG_DisplayRight[0] = (int)index_A_Prop[0];
+
+
+            // Index: B
+                if ((char)index_B_Prop[1] == (char)'L')
+                    // Left side of equals
+                    DEG_DisplayLeft[1] = (int)index_B_Prop[0];
+                else
+                    // Right side of equals
+                    DEG_DisplayRight[1] = (int)index_B_Prop[0];
+
+
+            // Index: C
+                if ((char)index_C_Prop[1] == (char)'L')
+                    // Left side of equals
+                    DEG_DisplayLeft[2] = (int)index_C_Prop[0];
+                else
+                    // Right side of equals
+                    DEG_DisplayRight[2] = (int)index_C_Prop[0];
+        } // Generate_DEGCacheSort()
+
+
+
+        // Delete all values from the cache arrays
+        private void ThrashArrayCacheValues()
+        {
+            foreach(int scanID in DEG_DisplayLeft)
+                DEG_DisplayLeft.RemoveAt(scanID);
+            foreach (int scanID in DEG_DisplayRight)
+                DEG_DisplayRight.RemoveAt(scanID);
+        } // ThrashArrayCacheValues()
 
 
 
