@@ -73,6 +73,13 @@ namespace MinionMathMayhem_Ship
             // Index C
             index_C_Prop.Add((int)0);
             index_C_Prop.Add((char)'X');
+
+            DEG_DisplayLeft.Add(0);
+            DEG_DisplayLeft.Add(0);
+            DEG_DisplayLeft.Add(0);
+            DEG_DisplayRight.Add(0);
+            DEG_DisplayRight.Add(0);
+            DEG_DisplayRight.Add(0);
         } // InitializeIndexProp()
 
 
@@ -87,9 +94,9 @@ namespace MinionMathMayhem_Ship
             // Sort the indexes in cached arrays
                 Generate_DEGCacheSort();
             // Display the new equation
-                Generate_Display();
+                Generate_Display_DEG();
             // Thrash Cache Array
-                ThrashArrayCacheValues();
+                //ThrashArrayCacheValues();
         } // Generate()
 
 
@@ -145,6 +152,62 @@ namespace MinionMathMayhem_Ship
                     // Right side of equals
                     DEG_DisplayRight[2] = (int)index_C_Prop[0];
         } // Generate_DEGCacheSort()
+
+
+
+        // Try to put the cached lists together to be displayed on the screen
+        private void Generate_Display_DEG()
+        {
+            // Evaluate the left side of the equation
+            string displayCacheLeft = EvaluateIndexFields(DEG_DisplayLeft);
+            // Evaluate the right side of the equation
+            string displayCacheRight = EvaluateIndexFields(DEG_DisplayRight);
+
+            problemBox.text = displayCacheLeft + " = " + displayCacheRight;
+
+        } // Generate_Display_DEG()
+
+
+
+        // Evaluate the index fields
+        private string EvaluateIndexFields(List<int> listIndexField)
+        {
+            //Check combinations for: Index A
+            // Ax^2 + Bx + C
+                if (listIndexField[0] > 0 && listIndexField[1] > 0 && listIndexField[2] > 0)
+                    return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[1].ToString() + "x" + " + " + listIndexField[2].ToString();
+
+            // Ax^2 + Bx
+                else if (listIndexField[0] > 0 && listIndexField[1] > 0)
+                    return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[1].ToString() + "x";
+
+            // Ax^2 + C
+                else if (listIndexField[0] > 0 && listIndexField[2] > 0)
+                    return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[2].ToString();
+
+            // Ax^2
+                else if (listIndexField[0] > 0)
+                    return listIndexField[0].ToString() + "x^2";
+            // -----------
+
+            // Check combinations for: Index B
+            // Bx + C
+                if (listIndexField[1] > 0 && listIndexField[2] > 0)
+                    return listIndexField[1].ToString() + "x" + " + " + listIndexField[2];
+            // Bx
+                else if (listIndexField[1] > 0)
+                    return listIndexField[1].ToString() + "x";
+            // -----------
+
+            // Check combinations for: Index C
+            // c
+                if (listIndexField[2] > 0)
+                    return listIndexField[2].ToString();
+            // -----------
+
+            // If nothing satisfies, then assume nothing in this side exists.
+                return "0";
+        } // EvaluateIndexFields()
 
 
 
