@@ -74,12 +74,15 @@ namespace MinionMathMayhem_Ship
             index_C_Prop.Add((int)0);
             index_C_Prop.Add((char)'X');
 
-            DEG_DisplayLeft.Add(0);
-            DEG_DisplayLeft.Add(0);
-            DEG_DisplayLeft.Add(0);
-            DEG_DisplayRight.Add(0);
-            DEG_DisplayRight.Add(0);
-            DEG_DisplayRight.Add(0);
+
+            // GROSS HACK ALERT!
+                DEG_DisplayLeft.Add(0);
+                DEG_DisplayLeft.Add(0);
+                DEG_DisplayLeft.Add(0);
+                DEG_DisplayRight.Add(0);
+                DEG_DisplayRight.Add(0);
+                DEG_DisplayRight.Add(0);
+            // END OF GROSS HACK
         } // InitializeIndexProp()
 
 
@@ -96,6 +99,7 @@ namespace MinionMathMayhem_Ship
             // Display the new equation
                 Generate_Display_DEG();
             // Thrash Cache Array
+                // Doesn't work; still figuring out why....
                 //ThrashArrayCacheValues();
         } // Generate()
 
