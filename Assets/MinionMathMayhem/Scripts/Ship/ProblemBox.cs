@@ -104,6 +104,9 @@ namespace MinionMathMayhem_Ship
         } // Generate()
 
 
+        // DYNAMIC EQUATION GENERATOR
+        // ==================================================
+        // --------------------------------------------------
 
         // Generate the Quadratic Equation Indexes
         private void Generate_Indexes()
@@ -174,38 +177,39 @@ namespace MinionMathMayhem_Ship
 
 
         // Evaluate the index fields
+        // This will pre-determine the possible combinations
         private string EvaluateIndexFields(List<int> listIndexField)
         {
             //Check combinations for: Index A
             // Ax^2 + Bx + C
-                if (listIndexField[0] > 0 && listIndexField[1] > 0 && listIndexField[2] > 0)
+                if (listIndexField[0] != null && listIndexField[1] != null && listIndexField[2] != null)
                     return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[1].ToString() + "x" + " + " + listIndexField[2].ToString();
 
             // Ax^2 + Bx
-                else if (listIndexField[0] > 0 && listIndexField[1] > 0)
+                else if (listIndexField[0] != null && listIndexField[1] != null)
                     return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[1].ToString() + "x";
 
             // Ax^2 + C
-                else if (listIndexField[0] > 0 && listIndexField[2] > 0)
+                else if (listIndexField[0] != null && listIndexField[2] != null)
                     return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[2].ToString();
 
             // Ax^2
-                else if (listIndexField[0] > 0)
+                else if (listIndexField[0] != null)
                     return listIndexField[0].ToString() + "x^2";
             // -----------
 
             // Check combinations for: Index B
             // Bx + C
-                if (listIndexField[1] > 0 && listIndexField[2] > 0)
+                if (listIndexField[1] != null && listIndexField[2] != null)
                     return listIndexField[1].ToString() + "x" + " + " + listIndexField[2];
             // Bx
-                else if (listIndexField[1] > 0)
+                else if (listIndexField[1] != null)
                     return listIndexField[1].ToString() + "x";
             // -----------
 
             // Check combinations for: Index C
             // c
-                if (listIndexField[2] > 0)
+                if (listIndexField[2] != null)
                     return listIndexField[2].ToString();
             // -----------
 
@@ -227,11 +231,10 @@ namespace MinionMathMayhem_Ship
 
 
         // Display the Quadratic Equation on the HUD
+        // ** DEPERCATED **
         private void Generate_Display()
         {
-            problemBox.text = index_A.ToString() + "x +" + index_B.ToString() + "x+" + index_C.ToString() + " =0";
-            // Translate the Index Properties
-                
+            problemBox.text = index_A.ToString() + "x +" + index_B.ToString() + "x+" + index_C.ToString() + " =0";               
         } // Generate_Display()
 
 
@@ -257,14 +260,6 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Return the range of the 'Random Number Generator' or simply the RNG of the Quadratic Equation.
-        private int GetRandomNumber()
-        {
-            return Random.Range(minValue, maxValue);
-        } // GetRandomNumber()
-
-
-
         // Return what position the index is currently located
         private char GetRandomPosition()
         {
@@ -275,6 +270,20 @@ namespace MinionMathMayhem_Ship
                 // Right
                 return 'R';
         } // GetRandomPosition()
+
+
+
+        // END OF: DYNAMIC EQUATION GENERATOR
+        // --------------------------------------------------
+        // ==================================================
+
+
+
+        // Return the range of the 'Random Number Generator' or simply the RNG of the Quadratic Equation.
+        private int GetRandomNumber()
+        {
+            return Random.Range(minValue, maxValue);
+        } // GetRandomNumber()
 
 
 
