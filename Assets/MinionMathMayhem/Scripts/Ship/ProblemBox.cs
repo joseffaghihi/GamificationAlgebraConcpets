@@ -36,6 +36,10 @@ namespace MinionMathMayhem_Ship
                            maxValue;
             // Accessors and Communication
                 private Text problemBox;
+            // Complexity Level
+                // False: No terms shift to the right, all terms stay on the left.
+                // True: All terms can shift left or right
+                    public bool complexLevel = false;
         // ----
 
 
@@ -308,12 +312,20 @@ namespace MinionMathMayhem_Ship
         // Return what position the index is currently located
         private char GetRandomPosition()
         {
-            if (System.Convert.ToBoolean(UnityEngine.Random.Range(0, 2)))
-                // Left
-                return 'L';
+            // All terms can shift left or right
+            if (complexLevel == true)
+            {
+                if (System.Convert.ToBoolean(UnityEngine.Random.Range(0, 2)))
+                    // Left
+                    return 'L';
+                else
+                    // Right
+                    return 'R';
+            }
+
+            // All terms MUST remain on the left side
             else
-                // Right
-                return 'R';
+                return 'L';
         } // GetRandomPosition()
 
 
