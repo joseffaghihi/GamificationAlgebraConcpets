@@ -29,8 +29,8 @@ namespace MinionMathMayhem_Ship
                 private List<object> index_B_Prop = new List<object>();
                 private List<object> index_C_Prop = new List<object>();
             // Quadratic Equation Filler [Meaningless; only used for displaying on screen.  Cache arrays]
-                private List<int> DEG_DisplayLeft = new List<int>();
-                private List<int> DEG_DisplayRight = new List<int>();
+                private List<int?> DEG_DisplayLeft = new List<int?>();
+                private List<int?> DEG_DisplayRight = new List<int?>();
             // Random Number Generator (RNG) range [minimum, maximum]
                 public int minValue,
                            maxValue;
@@ -74,12 +74,12 @@ namespace MinionMathMayhem_Ship
 
 
             // GROSS HACK ALERT!
-                DEG_DisplayLeft.Add(0);
-                DEG_DisplayLeft.Add(0);
-                DEG_DisplayLeft.Add(0);
-                DEG_DisplayRight.Add(0);
-                DEG_DisplayRight.Add(0);
-                DEG_DisplayRight.Add(0);
+                DEG_DisplayLeft.Add(null);
+                DEG_DisplayLeft.Add(null);
+                DEG_DisplayLeft.Add(null);
+                DEG_DisplayRight.Add(null);
+                DEG_DisplayRight.Add(null);
+                DEG_DisplayRight.Add(null);
             // END OF GROSS HACK
         } // InitializeIndexProp()
 
@@ -144,29 +144,46 @@ namespace MinionMathMayhem_Ship
         {
             // Index: A
                 if ((char)index_A_Prop[1] == (char)'L')
+                {
                     // Left side of equals
                     DEG_DisplayLeft[0] = (int)index_A_Prop[0];
+                    DEG_DisplayRight[0] = null;
+                }
                 else
+                {
                     // Right side of equals
                     DEG_DisplayRight[0] = (int)index_A_Prop[0];
+                    DEG_DisplayLeft[0] = null;
+                }
 
 
             // Index: B
                 if ((char)index_B_Prop[1] == (char)'L')
+                {
                     // Left side of equals
                     DEG_DisplayLeft[1] = (int)index_B_Prop[0];
+                    DEG_DisplayRight[1] = null;
+                }
                 else
+                {
                     // Right side of equals
                     DEG_DisplayRight[1] = (int)index_B_Prop[0];
+                    DEG_DisplayLeft[1] = null;
+                }
 
 
             // Index: C
                 if ((char)index_C_Prop[1] == (char)'L')
+                {
                     // Left side of equals
                     DEG_DisplayLeft[2] = (int)index_C_Prop[0];
+                    DEG_DisplayRight[2] = null;
+                }
                 else
-                    // Right side of equals
+                {  // Right side of equals
                     DEG_DisplayRight[2] = (int)index_C_Prop[0];
+                    DEG_DisplayLeft[2] = null;
+                }
         } // Generate_DEGCacheSort()
 
 
@@ -188,8 +205,14 @@ namespace MinionMathMayhem_Ship
 
         // Evaluate the index fields
         // This will pre-determine the possible combinations
-        private string EvaluateIndexFields(List<int> listIndexField)
+        private string EvaluateIndexFields(List<int?> listIndexField)
         {
+
+            //foreach (int var in listIndexField)
+                //Debug.Log(listIndexField[var] ?? 0);
+
+            Debug.Log("Index Size: " + listIndexField.Count);
+            //return null;
             //Check combinations for: Index A
             // Ax^2 + Bx + C
                 if (listIndexField[0] != null && listIndexField[1] != null && listIndexField[2] != null)
@@ -232,7 +255,7 @@ namespace MinionMathMayhem_Ship
 
 
         // Delete all values from the cache arrays
-        private void ThrashListCacheValues(List<int> intList)
+        private void ThrashListCacheValues(List<int?> intList)
         {
             for (int i = (intList.Count - 1); i >= 0; --i)
             {
