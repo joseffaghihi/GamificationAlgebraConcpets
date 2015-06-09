@@ -234,10 +234,8 @@ namespace MinionMathMayhem_Ship
         // Delete all values from the cache arrays
         private void ThrashListCacheValues(List<int> intList)
         {
-            Debug.Log("List Size: " + intList.Count);
-            for (int i = (intList.Count - 1); i >= 0; i--)
+            for (int i = (intList.Count - 1); i >= 0; --i)
             {
-                Debug.Log("Index: " + i + " Data: " + intList[i]);
                 intList.RemoveAt(i);
             }
         } // ThrashArrayCacheValues()
@@ -247,7 +245,7 @@ namespace MinionMathMayhem_Ship
         // Delete all values from the DEG Indexes
         private void ThrashListIndexValues(List<object> objList)
         {
-            for (int i = 0; i < objList.Count; ++i)
+            for (int i = (objList.Count - 1); i >= 0; --i)
             {
                 objList.RemoveAt(i);
             }
