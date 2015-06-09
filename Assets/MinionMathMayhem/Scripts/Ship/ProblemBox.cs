@@ -53,8 +53,6 @@ namespace MinionMathMayhem_Ship
         // This script is called once, after the actor has been placed in the scene
         private void Start()
         {
-            // Initialize Index Property Fields
-                InitializeIndexProp();
             // Initialize the Quadratic Equation indexes
                 Generate();
         } // Start()
@@ -90,6 +88,8 @@ namespace MinionMathMayhem_Ship
         // Generate the Quadratic Equation
         private void Generate()
         {
+            // Initialize the required lists
+                InitializeIndexProp();
             // Generate the new equation indexes
                 Generate_Indexes();
             // Translate the Indexes
@@ -99,14 +99,23 @@ namespace MinionMathMayhem_Ship
             // Display the new equation
                 Generate_Display_DEG();
             // Thrash Cache Array
-                // Doesn't work; still figuring out why....
-                //ThrashArrayCacheValues();
+                ThrashListCacheValues(DEG_DisplayLeft);
+                ThrashListCacheValues(DEG_DisplayRight);
+            // Thrash Index Array
+                ThrashListIndexValues(index_A_Prop);
+                ThrashListIndexValues(index_B_Prop);
+                ThrashListIndexValues(index_C_Prop);
         } // Generate()
+
+
 
 
         // DYNAMIC EQUATION GENERATOR
         // ==================================================
         // --------------------------------------------------
+
+
+
 
         // Generate the Quadratic Equation Indexes
         private void Generate_Indexes()
@@ -166,11 +175,12 @@ namespace MinionMathMayhem_Ship
         private void Generate_Display_DEG()
         {
             // Evaluate the left side of the equation
-            string displayCacheLeft = EvaluateIndexFields(DEG_DisplayLeft);
+                string displayCacheLeft = EvaluateIndexFields(DEG_DisplayLeft);
             // Evaluate the right side of the equation
-            string displayCacheRight = EvaluateIndexFields(DEG_DisplayRight);
+                string displayCacheRight = EvaluateIndexFields(DEG_DisplayRight);
 
-            problemBox.text = displayCacheLeft + " = " + displayCacheRight;
+            // Display the data onto the dedicated Problem Box on the HUD
+                problemBox.text = displayCacheLeft + " = " + displayCacheRight;
 
         } // Generate_Display_DEG()
 
@@ -198,6 +208,7 @@ namespace MinionMathMayhem_Ship
                     return listIndexField[0].ToString() + "x^2";
             // -----------
 
+
             // Check combinations for: Index B
             // Bx + C
                 if (listIndexField[1] != null && listIndexField[2] != null)
@@ -206,6 +217,7 @@ namespace MinionMathMayhem_Ship
                 else if (listIndexField[1] != null)
                     return listIndexField[1].ToString() + "x";
             // -----------
+
 
             // Check combinations for: Index C
             // c
@@ -220,13 +232,26 @@ namespace MinionMathMayhem_Ship
 
 
         // Delete all values from the cache arrays
-        private void ThrashArrayCacheValues()
+        private void ThrashListCacheValues(List<int> intList)
         {
-            foreach(int scanID in DEG_DisplayLeft)
-                DEG_DisplayLeft.RemoveAt(scanID);
-            foreach (int scanID in DEG_DisplayRight)
-                DEG_DisplayRight.RemoveAt(scanID);
+            Debug.Log("List Size: " + intList.Count);
+            for (int i = (intList.Count - 1); i >= 0; i--)
+            {
+                Debug.Log("Index: " + i + " Data: " + intList[i]);
+                intList.RemoveAt(i);
+            }
         } // ThrashArrayCacheValues()
+
+
+
+        // Delete all values from the DEG Indexes
+        private void ThrashListIndexValues(List<object> objList)
+        {
+            for (int i = 0; i < objList.Count; ++i)
+            {
+                objList.RemoveAt(i);
+            }
+        } // ThrashListIndexValues()
 
 
 
@@ -240,6 +265,7 @@ namespace MinionMathMayhem_Ship
 
 
         // Translate the index properties into the index variables for ready use.
+        // NOTE: Remember that the variables 'index_[A|B|C]' are for the minions for checking the answer.
         private void Generate_TranslateIndexes()
         {
             if ((char)index_A_Prop[1] == (char)'R')
@@ -273,9 +299,11 @@ namespace MinionMathMayhem_Ship
 
 
 
+
         // END OF: DYNAMIC EQUATION GENERATOR
         // --------------------------------------------------
         // ==================================================
+
 
 
 
