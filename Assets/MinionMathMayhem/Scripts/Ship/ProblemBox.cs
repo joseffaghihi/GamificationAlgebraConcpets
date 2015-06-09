@@ -278,15 +278,6 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Display the Quadratic Equation on the HUD
-        // ** DEPERCATED **
-        private void Generate_Display()
-        {
-            problemBox.text = index_A.ToString() + "x +" + index_B.ToString() + "x+" + index_C.ToString() + " =0";               
-        } // Generate_Display()
-
-
-
         // Translate the index properties into the index variables for ready use.
         // NOTE: Remember that the variables 'index_[A|B|C]' are for the minions for checking the answer.
         private void Generate_TranslateIndexes()
