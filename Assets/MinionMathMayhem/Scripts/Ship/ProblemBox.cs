@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic; // For the 'List' support.
 
 namespace MinionMathMayhem_Ship
 {
@@ -34,7 +34,6 @@ namespace MinionMathMayhem_Ship
             // Random Number Generator (RNG) range [minimum, maximum]
                 public int minValue,
                            maxValue;
-
             // Accessors and Communication
                 private Text problemBox;
         // ----
@@ -63,25 +62,34 @@ namespace MinionMathMayhem_Ship
         private void InitializeIndexProp()
         {
             // Index A
-            index_A_Prop.Add((int)0);
-            index_A_Prop.Add((char)'X');
+                InitializeIndexProp_IndexProperties(index_A_Prop);
             // Index B
-            index_B_Prop.Add((int)0);
-            index_B_Prop.Add((char)'X');
+                InitializeIndexProp_IndexProperties(index_B_Prop);
             // Index C
-            index_C_Prop.Add((int)0);
-            index_C_Prop.Add((char)'X');
+                InitializeIndexProp_IndexProperties(index_C_Prop);
 
-
-            // GROSS HACK ALERT!
-                DEG_DisplayLeft.Add(null);
-                DEG_DisplayLeft.Add(null);
-                DEG_DisplayLeft.Add(null);
-                DEG_DisplayRight.Add(null);
-                DEG_DisplayRight.Add(null);
-                DEG_DisplayRight.Add(null);
-            // END OF GROSS HACK
+            // Cache List for the HUD
+                InitializeIndexProp_DEGDisplay(DEG_DisplayLeft);
+                InitializeIndexProp_DEGDisplay(DEG_DisplayRight);
         } // InitializeIndexProp()
+
+
+
+        // Initialize the Term Properties
+        private void InitializeIndexProp_IndexProperties(List<object> objList)
+        {
+            objList.Add((int)0);
+            objList.Add((char)'X');
+        } // InitializeIndexProp_IndexProperties()
+
+
+
+        // Initialize the DEG_Display[Left|Right] list
+        private void InitializeIndexProp_DEGDisplay(List<int?> intList, uint listSize = 3)
+        {
+            for(int i = 0; i < listSize; ++i)
+                intList.Add(null);
+        } // InitializeIndexProp_DEGDisplay()
 
 
 
@@ -207,12 +215,6 @@ namespace MinionMathMayhem_Ship
         // This will pre-determine the possible combinations
         private string EvaluateIndexFields(List<int?> listIndexField)
         {
-
-            //foreach (int var in listIndexField)
-                //Debug.Log(listIndexField[var] ?? 0);
-
-            Debug.Log("Index Size: " + listIndexField.Count);
-            //return null;
             //Check combinations for: Index A
             // Ax^2 + Bx + C
                 if (listIndexField[0] != null && listIndexField[1] != null && listIndexField[2] != null)
@@ -258,9 +260,7 @@ namespace MinionMathMayhem_Ship
         private void ThrashListCacheValues(List<int?> intList)
         {
             for (int i = (intList.Count - 1); i >= 0; --i)
-            {
                 intList.RemoveAt(i);
-            }
         } // ThrashArrayCacheValues()
 
 
@@ -269,9 +269,7 @@ namespace MinionMathMayhem_Ship
         private void ThrashListIndexValues(List<object> objList)
         {
             for (int i = (objList.Count - 1); i >= 0; --i)
-            {
                 objList.RemoveAt(i);
-            }
         } // ThrashListIndexValues()
 
 
