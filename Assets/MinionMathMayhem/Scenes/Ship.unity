@@ -3839,7 +3839,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415350, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
       propertyPath: m_FontData.m_HorizontalOverflow
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11415350, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
       propertyPath: m_Text
@@ -3847,15 +3847,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415348, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
       propertyPath: m_LocalScale.x
-      value: .576219738
+      value: .620000005
       objectReference: {fileID: 0}
     - target: {fileID: 22415348, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
       propertyPath: m_LocalScale.y
-      value: .576219618
+      value: .649999976
       objectReference: {fileID: 0}
     - target: {fileID: 22415348, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
       propertyPath: m_LocalScale.z
-      value: .576219618
+      value: .600000024
       objectReference: {fileID: 0}
     - target: {fileID: 115348, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
       propertyPath: m_IsActive
@@ -3871,7 +3871,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415350, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
       propertyPath: m_FontData.m_MaxSize
-      value: 50
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415348, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
+      propertyPath: m_UseGraphicAlpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415350, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415350, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415350, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
