@@ -139,7 +139,7 @@ namespace MinionMathMayhem_Ship
             // ==============================
 
             // Index A
-                index_A_Prop[0] = ((int)GetRandomNumber());
+                index_A_Prop[0] = ((int)GetRandomNumber(true));
                 index_A_Prop[1] = ((char)GetRandomPosition());
             // Index B
                 index_B_Prop[0] = ((int)GetRandomNumber());
@@ -330,9 +330,17 @@ namespace MinionMathMayhem_Ship
 
 
         // Return the range of the 'Random Number Generator' or simply the RNG of the Quadratic Equation.
-        private int GetRandomNumber()
+        private int GetRandomNumber(bool preventNull = false)
         {
-            return Random.Range(minValue, maxValue);
+            int randNumber;
+
+            // This loop is designed to prevent '0' value; this is controlled by the variable switch 'preventNull'.  By default, the arguement switch is off, but when enabled this will avoid a 0 return.
+            do
+            {
+              randNumber = Random.Range(minValue, maxValue);
+            } while (randNumber == 0 && preventNull != false);
+
+            return randNumber;
         } // GetRandomNumber()
 
 
