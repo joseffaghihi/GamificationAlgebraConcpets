@@ -36,7 +36,7 @@ sysinfo.txt
 # Windows
 # =========================
 # Windows image file caches
-Thumbs.db
+[T|t]humbs.db
 ehthumbs.db
 
 # Folder config file
