@@ -222,15 +222,15 @@ namespace MinionMathMayhem_Ship
             //Check combinations for: Index A
             // Ax^2 + Bx + C
                 if (listIndexField[0] != null && listIndexField[1] != null && listIndexField[2] != null)
-                    return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[1].ToString() + "x" + " + " + listIndexField[2].ToString();
+                    return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[1]) + " " + Generate_Display_TranslateValues(listIndexField[1]) + "x" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
 
             // Ax^2 + Bx
                 else if (listIndexField[0] != null && listIndexField[1] != null)
-                    return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[1].ToString() + "x";
+                    return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[1]) + " " + Generate_Display_TranslateValues(listIndexField[1]) + "x";
 
             // Ax^2 + C
                 else if (listIndexField[0] != null && listIndexField[2] != null)
-                    return listIndexField[0].ToString() + "x^2" + " + " + listIndexField[2].ToString();
+                    return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
 
             // Ax^2
                 else if (listIndexField[0] != null)
@@ -241,7 +241,7 @@ namespace MinionMathMayhem_Ship
             // Check combinations for: Index B
             // Bx + C
                 if (listIndexField[1] != null && listIndexField[2] != null)
-                    return listIndexField[1].ToString() + "x" + " + " + listIndexField[2];
+                    return listIndexField[1].ToString() + "x" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
             // Bx
                 else if (listIndexField[1] != null)
                     return listIndexField[1].ToString() + "x";
@@ -257,6 +257,31 @@ namespace MinionMathMayhem_Ship
             // If nothing satisfies, then assume nothing in this side exists.
                 return "0";
         } // EvaluateIndexFields()
+
+
+
+        // Convert the operation sign (in the Quadratic Equation) to the desired sign.
+        // For example, if the leading coefficent is a negative, then the 'plus' switches signs as negative.
+        private char Generate_Display_OperatorSign(int? intNumber)
+        {
+            if (intNumber < 0)
+                return '-';
+            else
+                return '+';
+        } // Generate_Display_OperatorSign()
+
+
+
+        // This method will turncate the negative number and output a 'positive' value; this function is to only
+        private int? Generate_Display_TranslateValues(int? intNumber)
+        {
+            if (intNumber < 0)
+                // Flip the negative number to a positive number; for display only that requires the negative to be turncated from the value specifically.
+                return (intNumber * -1);
+            else
+                // Number is already positive.
+                return intNumber;
+        } // Generate_Display_TranslateValues()
 
 
 
