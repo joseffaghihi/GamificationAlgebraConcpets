@@ -261,7 +261,7 @@ namespace MinionMathMayhem_Ship
 
 
         // Convert the operation sign (in the Quadratic Equation) to the desired sign.
-        // For example, if the leading coefficent is a negative, then the 'plus' switches signs as negative.
+        // For example, if the leading coefficient is a negative, then the 'plus' switches signs as negative.
         private char Generate_Display_OperatorSign(int? intNumber)
         {
             if (intNumber < 0)
@@ -272,11 +272,11 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This method will turncate the negative number and output a 'positive' value; this function is to only
+        // This method will truncate the negative number and output a 'positive' value; this function is to only
         private int? Generate_Display_TranslateValues(int? intNumber)
         {
             if (intNumber < 0)
-                // Flip the negative number to a positive number; for display only that requires the negative to be turncated from the value specifically.
+                // Flip the negative number to a positive number; for display only that requires the negative to be truncated from the value specifically.
                 return (intNumber * -1);
             else
                 // Number is already positive.
@@ -359,7 +359,7 @@ namespace MinionMathMayhem_Ship
         {
             int randNumber;
 
-            // This loop is designed to prevent '0' value; this is controlled by the variable switch 'preventNull'.  By default, the arguement switch is off, but when enabled this will avoid a 0 return.
+            // This loop is designed to prevent '0' value; this is controlled by the variable switch 'preventNull'.  By default, the argument switch is off, but when enabled this will avoid a 0 return.
             do
             {
               randNumber = Random.Range(minValue, maxValue);
