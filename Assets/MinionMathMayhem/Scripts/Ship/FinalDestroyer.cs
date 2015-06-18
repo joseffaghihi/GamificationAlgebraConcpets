@@ -8,10 +8,12 @@ namespace MinionMathMayhem_Ship
 
         /*                      FINAL DESTROYER
          * When the actor triggers the exit object, this class will simply cache the actor's identity number and kill the actor from the scene.
-         *   The cached identity will be used from another
-         *  
+         *   The cached identity will be used from another script that is required for the game.
+         * 
+         * 
          * GOALS:
          *  Fetch the actor's uniquely self-assigned number and cache it.
+         *  Cached ID will be accessible for other outside scripts within the same namespace.
          *  Destroy the actor
          */
 
@@ -20,17 +22,17 @@ namespace MinionMathMayhem_Ship
         // ---------------------------------
             // Cached integer from the actor
                 private int cacheNumber;
-            // Game Event Broadcast 
+            // Game Event Broadcast \ Delegate Event
                 public delegate void ToggleGameEventSignal();
                 public static event ToggleGameEventSignal GameEventSignal;
         // ----
 
 
 
-        // During the collision, cache the actor's uniquely assigned 
+        // During the collision, handle the proper protocol for handling the actor
         private void OnTriggerEnter(Collider actor)
         {
-            // Fetch the number from the actor
+            // Fetch the actor's ID number
                 cacheNumber = RetrieveActorIdentity(actor);
             // Send a signal to GameEvent to execute
                 GameEventSignal();
@@ -40,7 +42,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function is designed to fetch the uniquely self-assigned number.
+        // This function is designed to fetch the uniquely self-assigned number from the actor.
         private int RetrieveActorIdentity(Collider actorObject)
         {
             // Fetch the minion's unique script.
@@ -51,7 +53,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This accessor will allow outside classes to retrieve the actor's number.
+        // This accessor will allow outside script's to retrieve the actor's number.
         public int ActorIdentity
         {
             get {
