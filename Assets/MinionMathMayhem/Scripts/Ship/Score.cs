@@ -8,10 +8,13 @@ namespace MinionMathMayhem_Ship
     {
 
         /*                            SCORE
-         * This class is designed to manage the general score of the game.
+         * This class is designed to manage the general score of the game.  This will hold the scores of the game of what the user got right and wrong.
+         *  In addition, the scores are publicly available within the scope of the namespace.  Thus, the scores can be easily fetched throughout the entire game, whichother scripts can easily acess.
          * 
          * GOALS:
          *  Managing the scores
+         *      Increment the correct or wrong score
+         *      Reset or nullify the scores
          *  Returning the score values (when called)
          */
 
@@ -36,7 +39,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            GameController.GameStateRestart += Reset;
+            // Reset the scores
+                GameController.GameStateRestart += Reset;
         } // OnEnable()
 
 
@@ -44,7 +48,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            GameController.GameStateRestart -= Reset;
+            // Reset the scores
+                GameController.GameStateRestart -= Reset;
         } // OnDisable()
 
 
@@ -58,12 +63,13 @@ namespace MinionMathMayhem_Ship
 
 
 
-
-        // Update the correct score
+        // Increment the 'Correct' score and display it on the screen.
         private void UpdateScoreCorrect()
         {
-            scoreCorrect++;
-            UpdateScoreDisplay(); // Update the score display   
+            // Increment the score of what the user got right.
+                scoreCorrect++;
+            // Update the 'Correct' score on the HUD
+                UpdateScoreDisplay();   
         } // UpdateScore()
 
 
@@ -76,7 +82,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function will update the wrong answer score canvas string that is on the HUD
+        // This function will update the incorrect score canvas string that is on the HUD
         private void UpdateWrongScoreDisplay()
         {
             wrongScoreBox.text = "Oopsies: " + scoreIncorrect.ToString();
@@ -84,46 +90,47 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Update the incorrect\fail score
+        // Increment the 'Incorrect' score and display it on the screen.
         private void UpdateScoreIncorrect()
         {
-            scoreIncorrect++;
-            UpdateWrongScoreDisplay();
+            // Increment the score of what the user got wrong.
+                scoreIncorrect++;
+            // Update the 'Incorrect' score on the HUD
+                UpdateWrongScoreDisplay();
         } // UpdateScoreIncorrect()
 
 
 
-        // Reset Score function
+        // This function is designed to completely reset the entire scores kept within this script.
         private void Reset()
         {
-            // This function - will thrash the current scores
-            scoreCorrect = 0;
-            scoreIncorrect = 0;
-            UpdateScoreDisplay();
-            UpdateWrongScoreDisplay();
+            // Thrash the scores that is internally kept within the script.
+                scoreCorrect = 0;
+                scoreIncorrect = 0;
+            // Update the score on the HUD.
+                UpdateScoreDisplay();
+                UpdateWrongScoreDisplay();
         } // ThrashScore()
 
 
 
-        // Allow outside scripts to access the 'UpdateScoreCorrect' function.
+        // Allow outside scripts to access the 'UpdateScoreCorrect' function; which is a private function.
         public void AccessUpdateScoreCorrect()
         {
-            // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
             UpdateScoreCorrect();
         } // AccessUpdateScoreCorrect()
 
 
 
-        // Allow outside scripts to access the 'UpdateScoreIncorrect' function.
+        // Allow outside scripts to access the 'UpdateScoreIncorrect' function; which is a private function.
         public void AccessUpdateScoreIncorrect()
         {
-            // Because the function is private and should remain this way, this function will kindly access that function and invoke it.
             UpdateScoreIncorrect();
         } // AccessUpdateScoreCorrect()
 
 
 
-        // Return the correct score value to the calling script.
+        // Return the value of the score that the user got right, to the calling script.
         public int ScoreCorrect
         {
             get {
@@ -133,7 +140,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Return the incorrect\fail score value to the calling script.
+        // Return the value of the score that the user got incorrect, to the calling script.
         public int ScoreIncorrect
         {
             get {
