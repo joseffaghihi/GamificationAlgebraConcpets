@@ -5,16 +5,19 @@ namespace MinionMathMayhem_Ship
 {
     public class MoviePlay : MonoBehaviour
     {
-        /*              Tutorial Movie
-         * Plays the tutorial movie specifically for the map.  This script will play the desired movie and send a signal that the movie has ended.
+        /*                                  TUTORIAL MOVIE
+         * This script will manage the movie tutorial sequence of the game.  This script is designed to listen for an event and activate the desired -
+         *  on screen tutorial movie.  In addition, this script is also designed to listen an event to abort any movie that is being currently executed.  As well as, send a broad event signal that a movie has ended for active scripts listening.
          * 
          * 
          * Dependencies:
          *      QuickTime
+         *          Source Download: http://www.apple.com/quicktime/
          * 
          * Goals:
-         *      Play the tutorial movie
-         *      Report back when the tutorial has finished.
+         *      Play the desired movie sequence
+         *      Send an event signal that the movie has ended.
+         *      Listen for the 'Skip' button being activate.
          */
 
 
@@ -27,8 +30,6 @@ namespace MinionMathMayhem_Ship
                 public MovieTexture movieTexture;
             // Tutorial skip signal
                 public bool tutorialSkip = false;
-            
-
             // Accessors and Communication
                 // Tutorial State: Finished
                     public delegate void TutorialStateEventEnded();
@@ -40,8 +41,10 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            GameController.TutorialStateStart += EnableTutorial;
-            TutorialSkipButton.SkipTutorialDemand += SkipTutorial;
+            // Activate the tutorial movie
+                GameController.TutorialStateStart += EnableTutorial;
+            // The Skip Button was toggled
+                TutorialSkipButton.SkipTutorialDemand += SkipTutorial;
         } // OnEnable()
 
 
@@ -49,13 +52,25 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            GameController.TutorialStateStart -= EnableTutorial;
-            TutorialSkipButton.SkipTutorialDemand -= SkipTutorial;
+            // Tutorial movie
+                GameController.TutorialStateStart -= EnableTutorial;
+            // Skip Button was toggled
+                TutorialSkipButton.SkipTutorialDemand -= SkipTutorial;
         } // OnDisable()
 
 
 
-        // When the signal has been detected, start the tutorial algorithm.
+        // Start-Up execution
+        private void Awake()
+        {
+            // Initialization objects for the movie sequence
+                movieRenderer = GetComponent<Renderer>();
+                movieTexture = (MovieTexture)movieRenderer.material.mainTexture;
+        } // Start()
+
+
+
+        // When triggered by the event, initiate the movie tutorial sequence.
         private void EnableTutorial()
         {
             StartCoroutine(PlayTutorial());
@@ -71,18 +86,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Start-Up execution
-        private void Awake()
-        {
-            // Initialization Field
-                movieRenderer = GetComponent<Renderer>();
-                movieTexture = (MovieTexture)movieRenderer.material.mainTexture;
-            // ----
-        } // Start()
-
-
-
-        // This function will execute the Movie Texture
+        // This function will execute the tutorial movie sequence.
         private IEnumerator PlayTutorial()
         {
             // Play the movie
@@ -124,11 +128,11 @@ namespace MinionMathMayhem_Ship
         {
             do
             {
-                yield return new WaitForSeconds(.5f);
+                // A loop-wait to ease on the CPU without being abundantly excessive on resources.
+                    yield return new WaitForSeconds(.5f);
             } while (onScreenMovie.isPlaying == !false && tutorialSkip == !true);
 
             yield return null;
-        } // Movie_Ended_Check();
-
+        } // Movie_Ended_Check()
     } // End of Class
 } // Namespace
