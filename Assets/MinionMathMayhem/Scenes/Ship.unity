@@ -5210,6 +5210,7 @@ MonoBehaviour:
   EventLetterChange: {fileID: 2021063920}
   scriptFinalDestroyer: {fileID: 63528817}
   scriptLetterBox: {fileID: 1750759271}
+  scriptEventLetterChange: {fileID: 2021063926}
   scriptProblemBox: {fileID: 1715427619}
   scriptScore: {fileID: 1430447471}
   scriptGameController: {fileID: 1430447470}
@@ -7652,6 +7653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6c7f7afa3b2430c993d04f1c0493db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptLetterBox: {fileID: 1750759271}
 --- !u!1 &2022404233
 GameObject:
   m_ObjectHideFlags: 0
@@ -7708,8 +7710,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
+  m_LocalRotation: {x: -.196351975, y: -.374206185, z: .0813998356, w: -.902657032}
+  m_LocalPosition: {x: -18.7319927, y: -1.89937782, z: -15.7008228}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
