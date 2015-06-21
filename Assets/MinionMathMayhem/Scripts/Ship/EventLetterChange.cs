@@ -12,10 +12,13 @@ namespace MinionMathMayhem_Ship
          *  NOTE: This is NOT related to the 'Letter Box' object, which is an independent object.  This script will merely try to
          *   fetch the selected index letter (of the quadratic) and display it when the "What is" appears on the screen.
          *   
-         * DEPENDENCIES AND CHAIN-LINKS:
-         *      Scene GameObjects
-         *          Letter_Box; LetterBox script (HUD object)
-         *      Game Controller; Game Event script (which calls this script)
+         * STRUCTURAL DEPENDENCY NOTES:
+         *      GameEvent {Game Controller}
+         *          |_ EventLetterChange
+         *             |_ Letter Box
+         * 
+         * GOALS:
+         *    Update the index letter [A|B|C] that will be used for the 'What Is...' message that is displayed on the screen.
          */
 
 
