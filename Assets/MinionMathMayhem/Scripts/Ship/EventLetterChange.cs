@@ -8,7 +8,7 @@ namespace MinionMathMayhem_Ship
     {
 
         /*                              EVENT LETTER CHANGE
-         * This script is designd to display what 'letter' is to be selected when the 'What is...' appears on the screen.
+         * This script is designed to display what 'letter' is to be selected when the 'What is...' appears on the screen.
          *  NOTE: This is NOT related to the 'Letter Box' object, which is an independent object.  This script will merely try to
          *   fetch the selected index letter (of the quadratic) and display it when the "What is" appears on the screen.
          *   
