@@ -12,9 +12,10 @@ namespace MinionMathMayhem_Ship
          *  NOTE: This is NOT related to the 'Letter Box' object, which is an independent object.  This script will merely try to
          *   fetch the selected index letter (of the quadratic) and display it when the "What is" appears on the screen.
          *   
-         * DEPENDENCIES:
+         * DEPENDENCIES AND CHAIN-LINKS:
          *      Scene GameObjects
-         *          Letter_Box (HUD object)
+         *          Letter_Box; LetterBox script (HUD object)
+         *      Game Controller; Game Event script (which calls this script)
          */
 
 
@@ -22,11 +23,12 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-                private Text ThisText;
-                private GameObject referenceText;
-                private Text referenceTextLetter;
+            // Accessors and Communication
+                // Text UI component
+                    private Text ThisText;
+                // Link to the Letter Box's script; used for fetching char - index.
+                    public LetterBox scriptLetterBox;
         // ----
-
 
 
 
@@ -34,22 +36,25 @@ namespace MinionMathMayhem_Ship
         // Use this for initialization
         void Start()
         {
-            // Initialization
-            ThisText = GetComponent<Text>();
-            referenceText = GameObject.Find("Letter_Text");
-            if (referenceText == null)
-            {
-                Debug.Log("No referenceText object was set.");
-            }
-            referenceTextLetter = referenceText.GetComponent<Text>();
+            // Initializations
+                // Include the text UI component from this current object
+                    ThisText = gameObject.GetComponent<Text>();
         } // Start()
 
 
 
-        // Update on each frame
-        void Update()
+        // Update the text component to hold the latest selected index from the 'Letter Box' object.
+        private void UpdateIndex()
         {
-            ThisText.text = referenceTextLetter.text;
-        } // Update()
+            ThisText.text = scriptLetterBox.Access_SelectedIndex.ToString();
+        } // UpdateIndex()
+
+
+
+        // Would you kindly access a private function, UpdateIndex()? [NG] (I am touching a bit into Bioshock ;))
+        public void Access_UpdateIndex()
+        {
+            UpdateIndex();
+        } // Access_UpdateIndex()
     } // End of Class
 } // Namepsace

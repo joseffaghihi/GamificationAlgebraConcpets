@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; // Allow the use of the 'text' component
 using System.Collections;
 
 
@@ -47,6 +47,8 @@ namespace MinionMathMayhem_Ship
                     public FinalDestroyer scriptFinalDestroyer;
                 // Quadratic Equation Index Letter Box
                     public LetterBox scriptLetterBox;
+                // Even Letter Change
+                    public EventLetterChange scriptEventLetterChange;
                 // Quadratic Equation Problem Box
                     public ProblemBox scriptProblemBox;
                 // Scores
@@ -139,7 +141,8 @@ namespace MinionMathMayhem_Ship
                     // Delay
                         yield return new WaitForSeconds(1.5f);
                     // Display the 'What-is' messages
-                        whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
+                        //whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
+                        DisplayWhatIsHUD();
                     // Issue a delay before activating the spawners.
                         RequestGraceTime();
                 } // if
@@ -148,6 +151,17 @@ namespace MinionMathMayhem_Ship
             // ----
             yield return null;
         } // AnswerCorrect()
+
+
+
+        // Properly handle the 'What is' 
+        private void DisplayWhatIsHUD()
+        {
+            // Update the Event Letter Change; this displays the index letter [A|B|C] that is displayed with the 'What Is'
+                scriptEventLetterChange.Access_UpdateIndex();
+            // Display the what is
+                whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
+        } // DisplayWhatIsHUD()
 
 
 
@@ -217,7 +231,8 @@ namespace MinionMathMayhem_Ship
         private IEnumerator FirstRun_Animations()
         {
             // Notify the user of index update
-                whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
+                //whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
+                DisplayWhatIsHUD();
             yield return new WaitForSeconds(2f);
         } // FirstRun_Animations()
 
