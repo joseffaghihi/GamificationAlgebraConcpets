@@ -8,8 +8,13 @@ namespace MinionMathMayhem_Ship
     {
 
         /*                      MINION IDENTITY
-         * This class is designed for the minion to self generate its own randomized number given by a specific range.
-         *  This essentially gives the minion its own unique number that they choose.
+         * This script is designed for the minion to self generate its own randomized number given by a specific range.
+         *  This essentially gives the minion its own unique number that they choose themselves.
+         * 
+         * 
+         * STRUCTURAL DEPENDENCY NOTES:
+         *      |_ Problem Box
+         * 
          * 
          * GOALS:
          *  Self-Generate a number
