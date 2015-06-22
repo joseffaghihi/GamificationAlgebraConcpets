@@ -6,11 +6,21 @@ namespace MinionMathMayhem_Ship
     public class Spawner : MonoBehaviour
     {
         /*                    SPAWNER
-         * This class merely listens for a signal from the 'Spawn Controller' to instantiate a minion actor.
+         * This script will merely listen for a signal from the 'Spawn Controller' to instantiate a minion actor or an invoktion to forcibly spawn an actor.
          *  
+         * 
+         * STRUCTURAL DEPENDENCY NOTES:
+         *      SPAWN CONTROLLER
+         *          |_ Spawner
+         * 
+         * 
          * GOALS:
          *  Spawn the minion when a signal has been detected.
+         *                      OR
+         *  Forcibly spawn an actor without a 50% chance; the actor WILL be summoned into the scene.
          */
+
+
 
         // Declarations and Initializations
         // ---------------------------------
@@ -20,10 +30,10 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function is immediately executed once the actor is in the game scene.
+        // This function is immediately executed once the object is in the game scene.
         private void Start()
         {
-            // First make sure that all the scripts and actors are properly linked
+            // First make sure that all the scripts and actors are properly intialized.
                 CheckReferences();
         } // Start()
 
@@ -32,7 +42,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            SpawnController.EnableSpawnPoint += SpawnChoice;
+            // Spawn actor with 50/50% chance
+                SpawnController.EnableSpawnPoint += SpawnChoice;
         } // OnEnable()
 
 
@@ -40,30 +51,33 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            SpawnController.EnableSpawnPoint -= SpawnChoice;
+            // Spawn actor with 50/50% chance
+                SpawnController.EnableSpawnPoint -= SpawnChoice;
         } // OnDisable()
 
 
 
-        // 50% of spawning the actor
+        // Choice: 50 / 50% of spawning the minion actor into the scene
         private void SpawnChoice()
         {
             if (System.Convert.ToBoolean(UnityEngine.Random.Range(0, 2)))
                 SpawnActor();
+            else
+                return;
         } // SpawnChoice()
 
 
 
-        // Spawn the creature
+        // Spawn the minion actor into the scene
         private void SpawnActor()
-        {            
-            // spawn the minion actor
-                Instantiate(actor, gameObject.transform.position, Quaternion.identity);
-        } // Spawn()
+        {
+            Instantiate(actor, gameObject.transform.position, Quaternion.identity);
+        } // SpawnActor()
 
 
 
         // Allow calling scripts\objects to trigger this function; the final destination is a private function, this method will call the desired function.
+        // Spawn the minion actor without the 50 / 50% chance of spawning.
         public void SpawnForcibly_public()
         {
             // Forcibly spawn an actor
