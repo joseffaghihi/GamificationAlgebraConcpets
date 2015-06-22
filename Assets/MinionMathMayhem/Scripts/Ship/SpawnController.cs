@@ -6,18 +6,25 @@ namespace MinionMathMayhem_Ship
     public class SpawnController : MonoBehaviour
     {
         /*                    SPAWNER CONTROLLER
-         * This class will simply send a signal to the spawner actors to summon the minion actors into the scene.
+         * This script will manage the spawners within the virtual world to spawn the minion actors either individually or by issuing a message to notify the spawners to summon a minion actor (depending other conditions of the spawner itself).  
          *  
+         * 
+         * STRUCTURAL DEPENDENCY NOTES:
+         *      WAVES
+         *       |_ Spawn Controller
+         *          |_ SPAWNER OBJECTS*
+         * 
          * GOALS:
          *  Determine the next spawn
-         *  Send spawn signal to the spawners
+         *  Send a spawn signal to all possible spawners
+         *                  OR
+         *  Send a spawn signal to just only one spawner.
          */
 
 
 
         // Declarations and Initializations
         // ---------------------------------
-
         // Accessors and Communication
             // Spawners (Summoning batches)
                 public delegate void SpawnBatchMinions();
@@ -54,6 +61,7 @@ namespace MinionMathMayhem_Ship
 
 
         // Only spawn 'one' minion from a random spawner.
+        // NOTE: THIS REQUIRES THE SPAWNER OBJECTS TO BE INITIALIZED WITHIN THE INSPECTOR!
         private void SpawnMinion()
         {
             switch (Random.Range(0, 4))
