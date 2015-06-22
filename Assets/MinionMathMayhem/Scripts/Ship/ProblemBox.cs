@@ -9,10 +9,14 @@ namespace MinionMathMayhem_Ship
     {
 
         /*                    PROBLEM BOX
-         * This class will simply generate the quadratic equation by using the RNG within the given range specified within the inspector.
+         * This script will simply generate the quadratic equation by using the RNG within the given range specified within the inspector.
+         * This script will generate a new quadratic equation either in standard form [Ax^2 + Bx + C = 0] or in complex form (one example) [ C = -Ax^2 - Bx] (another example) [ Bx + C = -Ax^2 ]
+         *  If complexity level has been enabled, the user must move the index - that was choosen - and make sure that the index has is on the right side of the equation, else - the user _MUST_ consider wither or not the index is a postive number or a negative.
+         *   
          *  
          * GOALS:
-         *  Generate the quadratic equation indexes
+         *  Generate the quadratic equation indexes in standard form
+         *  Generate the quadratic equation indexes in complexity form
          *  Return a random number that requires the RNG boundary
          */
 
@@ -353,8 +357,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-
-        // Return the range of the 'Random Number Generator' or simply the RNG of the Quadratic Equation.
+        // Generate a randomized number given the [minimal, maximum] range.
         private int GetRandomNumber(bool preventNull = false)
         {
             int randNumber;
