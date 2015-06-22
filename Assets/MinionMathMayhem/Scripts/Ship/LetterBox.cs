@@ -8,11 +8,22 @@ namespace MinionMathMayhem_Ship
     {
 
         /*                         LETTER BOX
-         * Within the Letter Box class, this will automatically - upon called - randomly select which index position to select.
-         *  Example: Indexes within the Quadratic Equation is: A, B, and C.  As follows: Ax^2 + Bx + C.  This script will only select the index, but nothing further.
+         * Within the Letter Box object, this will randomly select which letter index to select [A|B|C].
+         *   This random generator chooses only the 'charactor' of the index: A, B, or C.  The output given is a char.
+         * 
+         * STRUCTURAL DEPENDENCY NOTES:
+         *      GAME EVENT
+         *        |_ Letter Box
+         *        
+         * INPUT \ OUTPUT
+         *      INPUT:
+         *          Access_Generate()
+         *      OUTPUT:
+         *          Access_SelectedIndex() {CHAR}
+         *
          * 
          * Goals:
-         *      Randomly select an index position of the quadratic equation.
+         *      Randomly select an index letter of the quadratic equation [A, B, C].
          */
 
 
