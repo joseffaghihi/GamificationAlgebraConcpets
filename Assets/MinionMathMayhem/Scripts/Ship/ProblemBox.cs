@@ -360,15 +360,14 @@ namespace MinionMathMayhem_Ship
         // Generate a randomized number given the [minimal, maximum] range.
         private int GetRandomNumber(bool preventNull = false)
         {
-            int randNumber;
+            // Generate a random number, within the given range.
+                int randNumber = Random.Range(minValue, maxValue);
 
-            // This loop is designed to prevent '0' value; this is controlled by the variable switch 'preventNull'.  By default, the argument switch is off, but when enabled this will avoid a 0 return.
-            do
-            {
-              randNumber = Random.Range(minValue, maxValue);
-            } while (randNumber == 0 && preventNull != false);
-
-            return randNumber;
+            // Prevent a '0' value if requested.
+            if (randNumber == 0 && preventNull != false)
+                return 1;
+            else
+                return randNumber;
         } // GetRandomNumber()
 
 
