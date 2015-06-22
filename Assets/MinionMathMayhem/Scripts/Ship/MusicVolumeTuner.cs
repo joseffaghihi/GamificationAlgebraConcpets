@@ -7,19 +7,22 @@ namespace MinionMathMayhem_Ship
     {
 
         /*                          MUSIC VOLUME TUNER
-         * This script will reduce the volume of the main music when the game is in tutorial mode.
+         * This script will adjust the volume of the music playing in the background given special conditions.
+         * 
          * 
          * Goals:
          *      Reduce music volume during Tutorial mode
+         *      Restore music volume when returning to 'Normal' mode.
          */
 
 
 
         // Declarations and Initializations
         // ---------------------------------
-            // Volume Tuner; this can be toggled in the inspector
+        // Volume Tuner
+            // Normal background music level
                 public float volumeNormal = 1.0f;
-            // Volume Tuner; during tutorial mode
+            // Tutorial background music level
                 public float volumeTutorial = 0.05f;
         // ----
 
@@ -28,8 +31,10 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            GameController.TutorialStateStart += MusicTurner_Reduce;
-            MoviePlay.TutorialStateEnded += MusicTurner_Return;
+            // Listen for tutorial sequence started
+                GameController.TutorialStateStart += MusicTurner_Reduce;
+            // Listen for tutorial sequence stopped
+                MoviePlay.TutorialStateEnded += MusicTurner_Return;
         } // OnEnable()
 
 
@@ -37,8 +42,10 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            GameController.TutorialStateStart -= MusicTurner_Reduce;
-            MoviePlay.TutorialStateEnded -= MusicTurner_Return;
+            // Listen for tutorial sequence started
+                GameController.TutorialStateStart -= MusicTurner_Reduce;
+            // Listen for tutorial sequence stopped
+                MoviePlay.TutorialStateEnded -= MusicTurner_Return;
         } // OnDisable()
 
 
@@ -46,8 +53,10 @@ namespace MinionMathMayhem_Ship
         // Tutorial is running, reduce the volume of the background music.
         private void MusicTurner_Reduce()
         {
-            MusicTurnerCheckValue(1);
-            GetComponent<AudioSource>().volume = volumeTutorial;
+            // Make sure that the value is not negative
+                MusicTurnerCheckValue(1);
+            // Update the music volume
+                GetComponent<AudioSource>().volume = volumeTutorial;
         } // MusicTurner_Reduce()
 
 
@@ -55,13 +64,16 @@ namespace MinionMathMayhem_Ship
         // Tutorial has ended, revert the volume of the background music.
         private void MusicTurner_Return()
         {
-            MusicTurnerCheckValue(0);
-            GetComponent<AudioSource>().volume = volumeNormal;
+            // Make sure that the value is not a negative
+                MusicTurnerCheckValue(0);
+            // Update the music volume
+                GetComponent<AudioSource>().volume = volumeNormal;
         } // MusicTurner_Return()
 
 
 
         // Check the values; prevent negated values
+        //  IIF (if only if) x < 0, flip the sign.
         private void MusicTurnerCheckValue(short checkMode = 9999)
         {
             // Check Normal Volume
