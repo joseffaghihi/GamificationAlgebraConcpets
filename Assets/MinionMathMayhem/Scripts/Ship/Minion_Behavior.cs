@@ -158,14 +158,27 @@ namespace MinionMathMayhem_Ship
             // Collided With: Another Minion
                 else if (other.tag == "Minion")
                 {
-                    // Disable the actor's bounding box
-                        MinionCollision_ToggleBoundingBox(other.gameObject as GameObject, false);
-                    // Execute the function that will select which minion is the alpha male!
-                        MinionCollision(other.gameObject.GetComponent<Minion_Behavior>());
-                    // Enable the actor's bounding box
-                        MinionCollision_ToggleBoundingBox(other.gameObject as GameObject, true);
+                    MinionCollision(other);
                 } // End if (Minion)
+            // Collided with: Another Minion AND the ladder at the EXACT time
+                else if (other.tag == "Minion" && other.tag == "Ladder")
+                {
+                    MinionCollision(other);
+                } // End if (Minion && Ladder)
         } // OnTriggerEnter()
+
+
+
+        // When the minion's hit each other, this function will properly setup the proper procedure
+        private void MinionCollision(Collider actor)
+        {
+            // Disable the actor's bounding box
+                MinionCollision_ToggleBoundingBox(actor.gameObject as GameObject, false);
+            // Execute the function that will select which minion is the alpha male!
+                MinionCollision(actor.gameObject.GetComponent<Minion_Behavior>());
+            // Enable the actor's bounding box
+                MinionCollision_ToggleBoundingBox(actor.gameObject as GameObject, true);
+        } // MinionCollision()
 
 
 
