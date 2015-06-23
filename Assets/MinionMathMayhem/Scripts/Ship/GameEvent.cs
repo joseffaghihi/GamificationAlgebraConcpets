@@ -7,11 +7,13 @@ namespace MinionMathMayhem_Ship
 {
     public class GameEvent : MonoBehaviour
     {
-        /*                      GAME EVENT
+        /*                                  GAME EVENT
          * Within this script, this will manage the game flow and game attributes dynamically.
          *     This will check if the user has the correct answer, toggle the score value (mainly sending you a signal),
          *     clear the scene by expunging all of the actors within the scene, and anything else that has value within
          *     the game-play aspect.
+         *     
+         * 
          * 
          * GOALS:
          *  Check if the user has the correct or incorrect answer.
@@ -37,7 +39,6 @@ namespace MinionMathMayhem_Ship
                         private Animator eventLetterAnim; // [DC]
 
             // GameObjects
-                    //public GameObject letterBox;
                 // Quadratic Equation Updated; 'What Is' message
                     public GameObject msgWhatIs;
                 // Event Letter Change
@@ -70,8 +71,10 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            FinalDestroyer.GameEventSignal += Driver;
-            GameController.GameStateEnded += MinionGenocide;
+            // Final Destroyer
+                FinalDestroyer.GameEventSignal += Driver;
+            // Kill minion's from the scene
+                GameController.GameStateEnded += MinionGenocide;
         } // OnEnable()
 
 
@@ -79,8 +82,10 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            FinalDestroyer.GameEventSignal -= Driver;
-            GameController.GameStateEnded -= MinionGenocide;
+            // Final Destroyer
+                FinalDestroyer.GameEventSignal -= Driver;
+            // Kill minion's from the scene
+                GameController.GameStateEnded -= MinionGenocide;
         } // OnDisable()
 
 
@@ -88,10 +93,11 @@ namespace MinionMathMayhem_Ship
         // Specialized initialization
         private void Awake()
         {
-            // Event Letter Animations
-                eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the what-is text G.O. and gets the animator.
-			//	correctTextAnim = correctText.GetComponent<Animator>(); [DC] temp comment out
-			textDrop = GetComponent<PositiveTextDrop>();
+            // Initializations
+                // Event Letter Animations
+                    eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the what-is text G.O. and gets the animator.
+                // Positive text
+			        textDrop = GetComponent<PositiveTextDrop>();
         } // Awake()
 
 
@@ -141,11 +147,10 @@ namespace MinionMathMayhem_Ship
                     // Delay
                         yield return new WaitForSeconds(1.5f);
                     // Display the 'What-is' messages
-                        //whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC]
                         DisplayWhatIsHUD();
                     // Issue a delay before activating the spawners.
                         RequestGraceTime();
-                } // if
+                } // if (game is over)
             // Resume the spawners
                 SpawnerToggleValue();
             // ----
@@ -231,7 +236,6 @@ namespace MinionMathMayhem_Ship
         private IEnumerator FirstRun_Animations()
         {
             // Notify the user of index update
-                //whatIsDisplay.Access_NextLetterEventPlay(0f); // [DC] Display the index letter
                 DisplayWhatIsHUD();
             yield return new WaitForSeconds(2f);
         } // FirstRun_Animations()
