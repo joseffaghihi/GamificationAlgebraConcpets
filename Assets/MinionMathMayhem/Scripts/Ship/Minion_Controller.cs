@@ -7,11 +7,13 @@ namespace MinionMathMayhem_Ship
     {
 
 
-        /*                      MINION CONTROLLER
-         * This class is designed to centralize the minion's attributes and behavior to meet the condition's within the environment.
+        /*                                  MINION CONTROLLER
+         * This script is designed to centralize the minion's attributes and behavior to meet the condition's within the environment.
          * 
          * GOALS:
-         *  Centralization of behavior and attributes
+         *      Centralization of behavior and attributes
+         *      Ability to fight with another collided minion
+         *          Try's to self determine which one is the alpha male.
          */
 
 
