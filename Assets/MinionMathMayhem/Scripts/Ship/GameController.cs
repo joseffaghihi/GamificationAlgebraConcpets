@@ -20,10 +20,8 @@ namespace MinionMathMayhem_Ship
         // Declarations and Initializations
         // ---------------------------------
             // How many to win each wave
-                // Can be manipulated within Unity's Inspector
                 public uint maxScore = 10;
             // How many can the user get wrong on each wave
-                // Can be manipulated within Unity's Inspector
                 public uint maxScoreFail = 5;
             // [GameManager] Determining if the game is still executing or is finished.
                 private bool gameOver = false;
@@ -77,7 +75,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            MoviePlay.TutorialStateEnded += TutorialMode_Ended;
+            // Tutorial movie ended
+                MoviePlay.TutorialStateEnded += TutorialMode_Ended;
         } // OnEnable()
 
 
@@ -85,7 +84,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            MoviePlay.TutorialStateEnded -= TutorialMode_Ended;
+            // Tutorial movie ended
+                MoviePlay.TutorialStateEnded -= TutorialMode_Ended;
         } // OnDisable()
 
 
@@ -158,18 +158,16 @@ namespace MinionMathMayhem_Ship
         // This function manages how the game is controlled - from start to finish.
         private IEnumerator GameManager()
         {
-            // Without this, things go horribly wrong [reference errors, even though everything is initialized]
                 yield return null;
             // ----
             // Execute the Tutorial
-                // BY-REQUEST; the 'VoiceOver'tutorial is now considered deprecated [NG]
                 yield return (StartCoroutine(GameExecute_Tutorial()));
             // Display the animations and environment settings at the very start of the game
                 scriptGameEvent.Access_FirstRun_Animations();
             // Initiate the wait delay on the spawners
                 RequestGraceTime();
             // ----
-            while (true) // This is a never ending loop
+            while (true) // Always check the state of the game.
             {
                 // Fetch the scores and compute the scores
                     CheckScores();
@@ -189,7 +187,6 @@ namespace MinionMathMayhem_Ship
                     if (spawnMinions == !false)
                         FlipMinionSpawner();
                 }
-                // ----
             } // while loop
         } // GameManager()
 
@@ -220,7 +217,7 @@ namespace MinionMathMayhem_Ship
                     gameOverWin = true;
                     gameOverFail = false;
                     GameOver_WinText();
-                } // if
+                } // if (User Won)
 
                 // Did the user lost?
                 if (scriptScore.ScoreIncorrect >= maxScoreFail)
@@ -228,13 +225,13 @@ namespace MinionMathMayhem_Ship
                     gameOverWin = false;
                     gameOverFail = true;
                     GameOver_LostText();
-                } // if
-                // ----
-            } // if
+                } // if (User lost)
+            } // if (Check Scores)
         } // CheckScores()
 
 
 
+        // Display the text that the user has won the game.
         private void GameOver_WinText()
         {
             textWinOrLose.text = "You Won!" + "\n\n" +
@@ -243,6 +240,7 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // Display the text that the user has lost the game.
         private void GameOver_LostText()
         {
             textWinOrLose.text = "Try again!" + "\n\n" +
@@ -251,6 +249,7 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // Thrash the displayed text that indicates that the user has won or lost.
         private void GameOver_ClearText()
         {
             textWinOrLose.text = "";
@@ -258,7 +257,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Run the game tutorial; requires the script reference
+        // Game Tutorial Sequence front-end.
         private IEnumerator GameExecute_Tutorial()
         {
             // Enable the tutorial objects
@@ -290,7 +289,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function is going to reset the game
+        // This will reset the game's environment
         private void RestartGame()
         {
             // flip the gameOver variables
