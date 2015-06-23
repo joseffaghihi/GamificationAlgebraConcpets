@@ -6,6 +6,15 @@ namespace MinionMathMayhem_Ship
 {
     public class WhatIsDisplay : MonoBehaviour
     {
+        /*                      WHAT IS DISPLAY [HUD'ish]
+         * Within this script, this will activate the 'WHAT IS...' animation within the animator.  In addition, this will also display the current selected index [A, B, C] with the 'WHAT IS...' message.
+         * 
+         * 
+         * GOALS:
+         *  Display the 'WHAT IS...' with the index [A|B|C] message on to the screen.
+         */
+
+
 
         // Declarations and Initializations
         // ---------------------------------
@@ -22,11 +31,12 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function will be called when the object is declared in the scene and activated.
+        // This function will be called when the actor has been activated within the virtual world.
         void Awake()
         {
-            whatIsAnim = whatIsTextbox.GetComponent<Animator>();
-            eventLetterAnim = eventLetterTextbox.GetComponent<Animator>();
+            // Initialize the internal object's components
+                whatIsAnim = whatIsTextbox.GetComponent<Animator>();
+                eventLetterAnim = eventLetterTextbox.GetComponent<Animator>();
         } // Awake()
 
 
