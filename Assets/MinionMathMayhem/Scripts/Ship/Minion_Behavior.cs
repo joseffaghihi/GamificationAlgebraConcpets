@@ -7,14 +7,25 @@ namespace MinionMathMayhem_Ship
     public class Minion_Behavior : MonoBehaviour
     {
 
-        /*                      MINION BEHAVIOR
-         * Designed for the minions, specifically for actor activity and attributes.
+        /*                                  MINION BEHAVIOR
+         * This script defines the minion's self personality, generalized attirubutes, and attitude.  This script will allow the minion
+         *  to walk and climb at it's own unique pace, and fight with eachother as to who gets to enter into the ship when they run into each other.
+         *  In addition, when the minions get flung out of the way, they will screech.
+         * 
+         *
+         * STRUCTURAL DEPENDENCY NOTES:
+         *      |_ UNITY 3D ENGINE 4.5 OR LATER (atleast tested since)
+         *      |_ Minion Controller
+         *          |_ Minion Behavior
+         *
          * 
          * GOALS:
-         *  Minion walks forward, depending on the given condition
-         *  Minion climbs ladder, depending on the given condition
-         *  Screech when selected
-         *  Specialized activity when selected (or flicked)
+         *      Minion walks forward at a random speed, depending on the given condition
+         *      Minion climbs ladder at a random speed, depending on the given condition
+         *      Screech or make sounds
+         *      Selected attirubutes
+         *          Normal selection; user interaction
+         *          Minions fighting with each other
          */
 
 
@@ -58,13 +69,13 @@ namespace MinionMathMayhem_Ship
                 particleActivation = GetComponent<ParticleActivation>();
 
                 // Find the GameController tag, and then find the attached script 'Minion_controller'.
-                scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
+                    scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
 
         } // Awake()
 
 
 
-        // This function will be called once the actor has been summoned within the scene
+        // This function will be called once the actor has been active within the scene
         private void Start()
         {
             // Set the actor's unique attributes.
@@ -162,8 +173,8 @@ namespace MinionMathMayhem_Ship
         private void MinionCollision_ToggleBoundingBox(GameObject minionActor, bool state)
         {
             // Get the object's colliders
-            CapsuleCollider actor1 = gameObject.GetComponent<CapsuleCollider>();
-            CapsuleCollider actor2 = minionActor.GetComponent<CapsuleCollider>();
+                CapsuleCollider actor1 = gameObject.GetComponent<CapsuleCollider>();
+                CapsuleCollider actor2 = minionActor.GetComponent<CapsuleCollider>();
             // ----
 
             // Toggle the colliders of the objects
@@ -230,7 +241,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function will return the object's internal ID Address that is generated from Unity.
+        // This function will return the object's internal ID Address that is generated from the Unity Engine itself.
         public int FetchObjectIDAddress()
         {
             return GetInstanceID();
