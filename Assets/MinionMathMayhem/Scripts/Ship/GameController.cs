@@ -7,10 +7,13 @@ namespace MinionMathMayhem_Ship
     public class GameController : MonoBehaviour
     {
         /*                      GAME CONTROLLER
-         * This class is designed to manage the general state of the game.
+         * This script is the spin of the game and controls the main game environment.  This will execute the game tutorial and manage the scores of the game, in which this script will determine if the game is over.  When the game is over, it is possible to restart the game environment - fresh.
+         * 
          * 
          * GOALS:
+         *  Control the game environment
          *  Execute the tutorial
+         *  Determine the game state (Won or lost)
          *  Enable the spawners
          *  Restart the game
          */
