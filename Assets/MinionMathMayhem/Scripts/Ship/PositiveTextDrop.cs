@@ -60,9 +60,7 @@ namespace MinionMathMayhem_Ship
 		// If nothing is selected, and error displays in the console
 		public void Drop()
 		{
-			int i = Random.Range (1, 6);
-
-			switch (i)
+			switch (Random.Range (1, 6))
 			{
 			case 1:
 				gameControllerAudSrc.clip = greatJobAud; 
