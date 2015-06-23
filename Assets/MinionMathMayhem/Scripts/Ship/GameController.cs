@@ -124,6 +124,9 @@ namespace MinionMathMayhem_Ship
                     if (heartbeatTimer < 0)
                         // Flip the sign
                         heartbeatTimer = heartbeatTimer * -1;
+                // If the heatbeat timer is null, slightly increase the timer.  If it is set to zero, the game will freeze completely.
+                    if (heartbeatTimer == 0)
+                        heartbeatTimer += 0.0001f;
                 // Change the heartbeat to a new value
                     if (heartbeat == true)
                     {
