@@ -9,5 +9,11 @@ public class MoveObstacleHorizontally : MonoBehaviour
 	void FixedUpdate () 
     {
         GetComponent<Transform>().Translate(Vector3.left * Time.deltaTime * speed, Space.World);
+
+		//Destroy the danger zone once the obstacle has passed
+		if(GetComponent<Transform>().position.x < -7 && GetComponent<Transform>().position.x > -8)
+		{
+			Destroy(GameObject.Find("DangerArea(Clone)"));
+		}
 	}
 }
