@@ -4,7 +4,7 @@ using System.Collections;
 public class GameControl 
 {
     private const int lives = 3;
-    private const int rounds = 10;
+    private const int rounds = 12;
 	static private int livesLeft = lives;
     static private int currentRound = 1;
     static private bool answerIsCorrect = false; //Keep check of whether the right answer was given
@@ -25,7 +25,7 @@ public class GameControl
     //Execute this on winning the game
     public bool GameWon()
     {
-        if (currentRound >= 10) //Game Won
+        if (currentRound >= rounds) //Game Won
         {
             return true;
         }
@@ -36,7 +36,7 @@ public class GameControl
     //Execute this on clearing a round
     public void clearedRound()
     {
-        if (currentRound < 10)//If the round, but not the game, is over
+        if (currentRound < rounds)//If the round, but not the game, is over
         {
             currentRound++;
         }

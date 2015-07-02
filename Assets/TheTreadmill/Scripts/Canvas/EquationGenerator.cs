@@ -28,8 +28,21 @@ public class EquationGenerator : MonoBehaviour
     {
         updateRandomNumbers(); //Create the random equation
 
+		//Extra for the first two rounds (equation is different in form x = a)
+		if(gameState.GetCurrentRound() == 1) // First Round
+		{
+			answer = Random.Range (0,max);
+			GetComponent<Text>().text = "x = " + answer;
+
+		}
+		else if(gameState.GetCurrentRound() == 2)
+		{
+			answer = Random.Range (min, 0);
+			GetComponent<Text>().text = "x = " + answer;
+		}
+
         //Adjust text to account for negative and positive sign
-        if (leftSideNumber >= 0)
+        else if (leftSideNumber >= 0)
             GetComponent<Text>().text = "x + " + leftSideNumber + " = " + rightSideNumber;
         else if (leftSideNumber < 0)
             GetComponent<Text>().text = "x - " + Mathf.Abs(leftSideNumber) + " = " + rightSideNumber;
@@ -44,28 +57,28 @@ public class EquationGenerator : MonoBehaviour
     public void updateRandomNumbers()
     {
         //Addition with the right site equal to zero
-        if (gameState.GetCurrentRound() <= 2)
+        if (gameState.GetCurrentRound() <= 4)
         {
             leftSideNumber = Random.Range(min, 0);
             rightSideNumber = 0;
         }
 
         //Addition with both sides containing non-zero numbers
-        else if (gameState.GetCurrentRound() <= 4)
+        else if (gameState.GetCurrentRound() <= 6)
         {
             leftSideNumber = Random.Range(min, 0);
             rightSideNumber = Random.Range(min, 0);
         }
 
         //Subtraction with right side equal to zero
-        else if (gameState.GetCurrentRound() <= 6)
+        else if (gameState.GetCurrentRound() <= 8)
         {
             leftSideNumber = Random.Range(0, max);
             rightSideNumber = 0;
         }
 
         //Subtraction with both sides containing non-zero numbers
-        else if (gameState.GetCurrentRound() <= 8)
+        else if (gameState.GetCurrentRound() <= 10)
         {
             leftSideNumber = Random.Range(0, max);
             rightSideNumber = Random.Range(0, max);
