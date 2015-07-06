@@ -5,26 +5,38 @@ using System.Collections;
 
 namespace MinionMathMayhem_Ship
 {
-    public class Waves : MonoBehaviour
+    public class UserAI : MonoBehaviour
     {
         /*
-         *                          Waves
-         * This is the forefront as to how many minions will be in the scene within a given time.
-         * Once activated, the very first starting wave will be easy and slow -- only a few creatures will be spawned.
-         * However, as the later waves continue, the more minions will be in the virtual world.  This will be accomplished by changing the frequency
-         * of the spawn rate.
+         *                          USER PERFORMANCE ARTIFICIAL INTELLIGENCE
+         * This is the forefront of controlling the environment based on the user performances.  This script is a 'always live' monitoring
+         *  the user's performances based on accuracy and reaction time.  This daemon or service will routinly check the user's accuracy and determine if the
+         *  game itself should be a bit more difficult or easier, and also check the user's reaction time to determine if the user is capable of clicking the actors
+         *  at a expeditious rate or adrenaline rush takes in (which is usually short lived, depending on the user and environment they are in).
+         * 
+         * 
+         * NOTES:
+         *  Since I am treating this like a daemon, this is going to hog resources.
+         *  
          * 
          * STRUCTURAL DEPENDENCY NOTES:
-         *      Waves
-         *         |_ SpawnController
+         *      UserAI
+         *          |_ SpawnController
          *              |_ Spawners
-         *              
+         *          |_ < Warten... >
+         *              |_ < Warten... >
+         *
+         * 
          * GOALS:
-         *  Specifically and forcibly spawn a minion from a spawner
-         *  Spawn an abundance of minions given the wave count
-         *      WAVE 00 <=> Tutorialish
-         *      WAVE 01 <=> Several minions spawning
-         *      WAVE 05 <=> An abundance of minions spawning
+         *      Always Alive; Monitoring service -- daemon service.
+         *      Control the game specific environments
+         *      Monitor User Performance
+         *          * Accuracy; Spawn more minions
+         *                              OR
+         *                      Change the complexity level of the DEG.
+         *          * Speed; minion speed movement is increased or decreased
+         *                      Including climbing leaders and walking.
+         *  
          */
 
 
