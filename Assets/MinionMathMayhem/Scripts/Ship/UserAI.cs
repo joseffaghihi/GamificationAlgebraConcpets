@@ -43,6 +43,9 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
+            // Daemon Service Update Frequency
+                // LOGIC: PERIOD = 1/clock;  200 KHz ~> P = 1/2x10^5 --> P == 5x10^(-6)
+                private const float daemonUpdateFreq = 0.000005f;
             // Time when the next minion should spawn
                 private float nextSpawn;
             // How many minions are to be spawned within 60 seconds of time
