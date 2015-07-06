@@ -8,7 +8,7 @@ namespace MinionMathMayhem_Ship
     public class UserAI : MonoBehaviour
     {
         /*
-         *                          USER PERFORMANCE ARTIFICIAL INTELLIGENCE
+         *                                              USER PERFORMANCE ARTIFICIAL INTELLIGENCE
          * This is the forefront of controlling the environment based on the user performances.  This script is a 'always live' monitoring
          *  the user's performances based on accuracy and reaction time.  This daemon or service will routinly check the user's accuracy and determine if the
          *  game itself should be a bit more difficult or easier, and also check the user's reaction time to determine if the user is capable of clicking the actors
@@ -51,6 +51,8 @@ namespace MinionMathMayhem_Ship
             // How many minions are to be spawned within 60 seconds of time
                 // Can be manipulated within Unity's Inspector
                 public float spawnRate;
+            // Legacy Mode; this puts the game back to its original state without using any AI.
+                public bool legacyMode = true;
             // Grace-Timer for when the spawners should be activated
                 // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
                     private bool gracePeriodLockOut = false;
@@ -97,12 +99,46 @@ namespace MinionMathMayhem_Ship
                 CheckReferences();
             // Check values; prevert negated values
                 CheckValues();
-            // Execute the Wave Manager
+
+            // Game Environment Service
+            if (legacyMode == !false)
+                // Legacy, no AI service.
                 StartCoroutine("WaveManager");
+            else
+                // AI daemon not present, use legacy anyways.
+                StartCoroutine("WaveManager");
+
         } // Start()
 
 
 
+        // This function will check the public variables and prevent any negated values.
+        private void CheckValues()
+        {
+            if (nextSpawn < 0)
+                nextSpawn = (nextSpawn * -1);
+            if (spawnRate < 0)
+                spawnRate = (spawnRate * -1);
+            if (gracePeriodTimer < 0)
+                gracePeriodTimer = (gracePeriodTimer * -1);
+        } // CheckValues()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // =======================================================================
+        //                             LEGACY MODE
+        // =======================================================================
         // The Wave Manager
         private IEnumerator WaveManager()
         {
@@ -176,19 +212,10 @@ namespace MinionMathMayhem_Ship
         {
             gracePeriodLockOut = true;
         } // GracePeriodTimeOut_Request()
+        // =======================================================================
+        // =======================================================================
+        // =======================================================================
 
-
-
-        // This function will check the public variables and prevent any negated values.
-        private void CheckValues()
-        {
-            if (nextSpawn < 0)
-                nextSpawn = (nextSpawn * -1);
-            if (spawnRate < 0)
-                spawnRate = (spawnRate * -1);
-            if (gracePeriodTimer < 0)
-                gracePeriodTimer = (gracePeriodTimer * -1);
-        } // CheckValues()
 
 
 
