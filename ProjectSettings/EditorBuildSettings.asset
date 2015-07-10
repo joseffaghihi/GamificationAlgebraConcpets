@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Menu/Scenes/Menu.unity
   - enabled: 0
-    path: Assets/MinionMathMayhem/Scales/Scenes/Balance.unity
+    path: Assets/Scales/Scenes/Balance.unity
   - enabled: 1
     path: Assets/MinionMathMayhem/Scenes/Ship.unity
   - enabled: 1
