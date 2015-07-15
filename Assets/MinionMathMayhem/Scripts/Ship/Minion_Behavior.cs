@@ -55,6 +55,8 @@ namespace MinionMathMayhem_Ship
             // Accessors and Communication
                 // Minion Controller; this is a centralization field for the minion behavior
                     private Minion_Controller scriptMinionController;
+                // Minion Life Span
+                    private Minion_LifeSpan scriptMinion_LifeSpan;
         // ----
 
 
@@ -70,6 +72,8 @@ namespace MinionMathMayhem_Ship
 
                 // Find the GameController tag, and then find the attached script 'Minion_controller'.
                     scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
+                // Initialize the Life Span script
+                    scriptMinion_LifeSpan = gameObject.GetComponent<Minion_LifeSpan>();
 
         } // Awake()
 
@@ -296,6 +300,9 @@ namespace MinionMathMayhem_Ship
         // Actions to take place when the minion has been selected
         public void Flick()
         {
+            // Time of Death
+                scriptMinion_LifeSpan.Access_UpdateTimeOfDeath();
+            // Rest of the algoritm
                 particleActivation.Emit();
                 gameObject.GetComponent<Rigidbody>().useGravity = true;
                 gameObject.GetComponent<Rigidbody>().isKinematic = false;
