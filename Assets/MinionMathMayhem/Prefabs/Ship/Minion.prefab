@@ -54,6 +54,7 @@ GameObject:
   - 114: {fileID: 11461500}
   - 82: {fileID: 8202768}
   - 114: {fileID: 11415404}
+  - 114: {fileID: 11419258}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Minion
@@ -610,7 +611,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b60199e2c4949d0b8a511ce81bcd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleAudio: {fileID: 153214}
+--- !u!114 &11419258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0393d45d6e0572b439eb5b74fc2e98d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11431156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -701,8 +712,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickedSound:
   - {fileID: 8300000, guid: b5529d376c7634b3fa848356badbdc94, type: 3}
-  - {fileID: 8300000, guid: 51780b707269d431780048e4120df00a, type: 3}
-  - {fileID: 8300000, guid: 6982f0c4fd47f4e31987402aa0262158, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 8300000, guid: f231ac78516a546d5a78aa8f10489d0b, type: 3}
   - {fileID: 8300000, guid: 6a6361d8750bc4aceb0eca5e73349db0, type: 3}
   - {fileID: 8300000, guid: acf8779f158d84194ac00ae049aad58b, type: 3}
@@ -720,7 +731,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numText: {fileID: 0}
-  problemBox: {fileID: 11415352, guid: 500a1a609963c7d4283a573a8a0530f7, type: 2}
 --- !u!136 &13665080
 CapsuleCollider:
   m_ObjectHideFlags: 1
