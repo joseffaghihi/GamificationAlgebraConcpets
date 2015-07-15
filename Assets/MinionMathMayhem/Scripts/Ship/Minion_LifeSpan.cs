@@ -48,7 +48,7 @@ namespace MinionMathMayhem_Ship
         // Return the actor's life span from its birth to its death.
         private float OutputLifeSpan()
         {
-            return (timeOfDeath ?? 0 - timeOfBirth);
+            return ((timeOfDeath ?? 0) - timeOfBirth);
         } // outputLifeSpan()
 
 
