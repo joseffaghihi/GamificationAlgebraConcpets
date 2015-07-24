@@ -8,7 +8,14 @@ public class GenerateCogWheel : MonoBehaviour
     public float spawnTime = 15; //Stores the amount of time an obstacle spawns
 	public bool generateObstacles = true; //Check to see if generating obstacles is enabled (default = enabled)
 
+	private GameControl gameControl = new GameControl();
     private Vector3 playerPosition; //Stores the player's position
+
+	//Start generating Obstacles
+	void Start()
+	{
+		GenerateObstacles ();
+	}
 
     void FixedUpdate()
     {
@@ -17,8 +24,11 @@ public class GenerateCogWheel : MonoBehaviour
 
     void SpawnObstacle()
     {
-        Instantiate(obstacle, new Vector3(playerPosition.x + 40, playerPosition.y + 7, playerPosition.z), Quaternion.identity);
-		Instantiate (dangerSign, new Vector3 (0.0f, 1.55f, playerPosition.z), Quaternion.identity);
+		if (!gameControl.getDelayWave ()) 
+		{
+			Instantiate (obstacle, new Vector3 (playerPosition.x + 40, playerPosition.y + 7, playerPosition.z), Quaternion.identity);
+			Instantiate (dangerSign, new Vector3 (0.0f, 1.55f, playerPosition.z), Quaternion.identity);
+		}
     }
 
 	public void GenerateObstacles()

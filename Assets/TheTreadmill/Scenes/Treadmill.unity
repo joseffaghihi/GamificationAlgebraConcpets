@@ -2005,8 +2005,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacle: {fileID: 194402, guid: c56053c6822da0346b840408c6842d81, type: 2}
   dangerSign: {fileID: 174370, guid: cc184b3b3c012b24ea23c4b317fc5b08, type: 2}
-  spawnTime: 15
-  generateObstacles: 0
+  spawnTime: 10
+  generateObstacles: 1
 --- !u!1 &998202201 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100020, guid: 3661d4b892ab0d847a781d68faa5451b, type: 3}

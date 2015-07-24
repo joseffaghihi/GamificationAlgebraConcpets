@@ -8,6 +8,17 @@ public class GameControl
 	static private int livesLeft = lives;
     static private int currentRound = 1;
     static private bool answerIsCorrect = false; //Keep check of whether the right answer was given
+	static private bool delayWave = false; //Delays wave
+
+	public void DelayWave(bool state)
+	{
+		delayWave = state;
+	}
+
+	public bool getDelayWave()
+	{
+		return delayWave;
+	}
 
 	//Subtract a life and check for EndOfGame
 	public void LostLife()
@@ -21,7 +32,7 @@ public class GameControl
         currentRound = 1; //Reset rounds
         livesLeft = lives; //Reset player lives
     }
-	
+
     //Execute this on winning the game
     public bool GameWon()
     {
@@ -41,7 +52,7 @@ public class GameControl
             currentRound++;
         }
     }
-
+	
     public int GetLives()
     {
         return livesLeft;

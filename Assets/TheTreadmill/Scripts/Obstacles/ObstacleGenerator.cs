@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ObstacleGenerator : MonoBehaviour 
 {
-
     /** 
      * Generate Obstacles
      * Place number on each obstacle
@@ -15,9 +14,13 @@ public class ObstacleGenerator : MonoBehaviour
     public float spawnWait;
     public float startWait;
     public float waveWait;
+	private float initWaveWait;
+
+	GameControl gc = new GameControl();
 
     void Start()
     {
+		initWaveWait = waveWait; //Set the initial spawnWait
         StartCoroutine(SpawnWaves());
     }
 
@@ -26,11 +29,18 @@ public class ObstacleGenerator : MonoBehaviour
         yield return new WaitForSeconds(startWait);
         while (true)
         {
+			gc.DelayWave(false); //Reset Delay
+			waveWait = initWaveWait; //Reset waveWait
             for (int i = 0; i < hazardCount; i++)
             {
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(obstacle, spawnPosition, spawnRotation);
+				if(gc.getDelayWave())
+				{
+					i = hazardCount;
+					waveWait = 5;
+				}
                 yield return new WaitForSeconds(spawnWait);
             }
             yield return new WaitForSeconds(waveWait);

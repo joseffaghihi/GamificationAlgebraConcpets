@@ -11,13 +11,13 @@ public class UpdateOnContact : MonoBehaviour
 {
     public void OnCollisionEnter(Collision collision)
     {
+		GameControl gameController = new GameControl();
         int obstacleNum = GetComponentInChildren<RandomNumberGenerator>().GetRandomNumber(); //Get the number attached to the obstacle
         int answer = GameObject.Find("Equation").GetComponent<EquationGenerator>().GetAnswer(); //Get the answer
 
         if (collision.gameObject.tag == "Player" && obstacleNum == answer) //Correct Answer
         {
             //Update gameController
-            GameControl gameController = new GameControl();
             gameController.correctAnswer(true); //Correct Answer
             gameController.clearedRound(); //Cleared a round
 
@@ -27,11 +27,11 @@ public class UpdateOnContact : MonoBehaviour
         else if(collision.gameObject.tag == "Player") //Wrong Answer
         {
             //Update gameController
-            GameControl gameController = new GameControl();
             gameController.correctAnswer(false); //Wrong Answer
             gameController.LostLife(); //Lost life
         }
-
+	
+		gameController.DelayWave (true);
         GameObject.Find("Board_GameInfo").GetComponent<BoardDisplay>().UpdateBoard(); //Update the board info (lives, rounds, etc.)
     }
 }
