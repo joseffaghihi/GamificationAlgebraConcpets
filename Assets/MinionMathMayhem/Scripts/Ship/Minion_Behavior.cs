@@ -244,9 +244,9 @@ namespace MinionMathMayhem_Ship
         private void MinionCollision_Selected_Climbing(bool selected, Minion_Behavior actor = null)
         {
             if (selected == true)
-                Flick();
+                Flick(true);
             else
-                actor.Flick();
+                actor.Flick(true);
         } // MinionCollision_Selected_Climbing()
 
 
@@ -255,9 +255,9 @@ namespace MinionMathMayhem_Ship
         private void MinionCollision_Selected_Walking(bool selected, Minion_Behavior actor = null)
         {
             if (selected == false)
-                Flick();
+                Flick(true);
             else
-                actor.Flick();
+                actor.Flick(true);
         } // MinionCollision_Selected_Walking()
 
 
@@ -301,13 +301,23 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Actions to take place when the minion has been selected
-        public void Flick()
+        /// <summary>
+        ///     Actions to take place when the minion has been selected or eliminated.
+        /// </summary>
+        /// <param name="reportToDaemon">
+        ///     Set to true if the minion has been selected by the 'MinionCollision()' function
+        ///     Default is value is false
+        /// </param>
+
+        public void Flick(bool reportToDaemon = false)
         {
-            // Time of Death
+            // Time of Death of the minion
                 scriptMinion_LifeSpan.Access_UpdateTimeOfDeath();
-            // Notify the UserAI
-                scriptUserAI.Access_Database_MinionLifeSpan(scriptMinion_LifeSpan.Access_OutputLifeSpan);
+
+            // Report the minion's life span to the Daemon Service
+                if (!reportToDaemon)
+                    scriptUserAI.Access_Database_MinionLifeSpan(scriptMinion_LifeSpan.Access_OutputLifeSpan);
+
             // Rest of the algoritm
                 particleActivation.Emit();
                 gameObject.GetComponent<Rigidbody>().useGravity = true;
