@@ -51,7 +51,7 @@ namespace MinionMathMayhem_Ship
                     private uint counterMinionTime = 0;
                 // Maximum entries within the array; default is '4' within the whole number structure.
                     // This is customizable within the inspector; this will be used to set the size of the Database array.
-                    private const uint counterMinionTimeMax = 4;
+                    private const uint counterMinionTimeMax = 5;
                 // Array for holding the time database
                     // DO NOT SET THE SIZE!  ALLOW THE SIZE TO BE ADJUSTABLE!
                     private float[] minionTimeArray = new float[counterMinionTimeMax];
