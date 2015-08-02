@@ -46,6 +46,15 @@ namespace MinionMathMayhem_Ship
             // Daemon Service Update Frequency
                 // LOGIC: PERIOD = 1/clock;  200 KHz ~> P = 1/2x10^5 --> P == 5x10^(-6)
                 private const float daemonUpdateFreq = 0.000005f;
+            // Minion Lifespan Time Entry Counter
+                // Entry counter within the array
+                    private uint counterMinionTime;
+                // Maximum entries within the array; default is '4' within the whole number structure.
+                    // This is customizable within the inspector; this will be used to set the size of the Database array.
+                    public uint counterMinionTimeMax = 4;
+                // Array for holding the time database
+                    // DO NOT SET THE SIZE!  ALLOW THE SIZE TO BE ADJUSTABLE!
+                    private float[] minionTimeArray;
             // Time when the next minion should spawn
                 private float nextSpawn;
             // How many minions are to be spawned within 60 seconds of time
@@ -108,6 +117,7 @@ namespace MinionMathMayhem_Ship
                 // AI daemon not present, use legacy anyways.
                 StartCoroutine("WaveManager");
 
+
         } // Start()
 
 
@@ -126,10 +136,86 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // =======================================================================
+        //                          DAEMON SERVICE
+        //                            SCHEDULER
+        // This will call the depending functions required for the AI.
+        // =======================================================================
+        private IEnumerator DaemonService()
+        {
+            // Never ending loop
+            while(true)
+            {
+                // Request update on the following functions:
+                    // Minion Service
+                        StartCoroutine(Daemon_MinionService());
+                yield return new WaitForSeconds(daemonUpdateFreq);
+            } // While-Loop
+        } //DaemonService()
 
 
 
+        // =======================================================================
+        //                          MINION DATABASE
+        // =======================================================================
 
+        // DAEMON SERVICER
+        // Check the minion time database; if filled - determine the minion speed based on the average time from the records.
+        private IEnumerator Daemon_MinionService()
+        {
+            // Only execute if the max indexs has been reached to fill the array
+            if (counterMinionTime < counterMinionTimeMax)
+            {
+                // Compute the average time
+                float avgRecordTime = Database_MinionLifeSpan_AverageTime();
+                // Reset the array index counter
+                counterMinionTime = 0;
+            } // If
+            yield return null;
+        } // Daemon_MinionService()
+
+
+
+        /// <summary>
+        ///     This calculates the average life span of the minions based on the array database.
+        ///     Computation is based on the standard average: Add all entries, divide by the index size.
+        /// </summary>
+        /// <returns>
+        ///     The users average time; float
+        /// </returns>
+        private float Database_MinionLifeSpan_AverageTime()
+        {
+            // Cached value
+            float timeValue = 0f;
+            
+            // Added all the indexes
+            for (int i = 0; i < counterMinionTime ; i++)
+                timeValue += minionTimeArray[i];
+
+            // Divide by the database (or array) size and return the value
+            return (timeValue / counterMinionTime);
+        } // Database_MinionLifeSpan_AverageTime()
+
+
+
+        // Record the minion's life span within an array; if the array is full (if we reached the max count) then do not record the entry.
+        // The array counter will be reset by the Minion Service.
+        private void Database_MinionLifeSpan(float time)
+        {
+            if (counterMinionTime > counterMinionTimeMax)
+            {
+                minionTimeArray[counterMinionTime] = time;
+                counterMinionTime++;
+            }
+        } // Database_MinionLifeSpan()
+
+
+
+        // This is a accessor function that will call the correct function
+        public void Access_Database_MinionLifeSpan(float time)
+        {
+            Database_MinionLifeSpan(time);
+        } // Access_Database_MinionLifeSpan()
 
 
 

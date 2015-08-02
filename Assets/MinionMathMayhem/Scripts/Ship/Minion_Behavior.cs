@@ -57,6 +57,8 @@ namespace MinionMathMayhem_Ship
                     private Minion_Controller scriptMinionController;
                 // Minion Life Span
                     private Minion_LifeSpan scriptMinion_LifeSpan;
+                // User AI integration
+                    private UserAI scriptUserAI;
         // ----
 
 
@@ -72,6 +74,8 @@ namespace MinionMathMayhem_Ship
 
                 // Find the GameController tag, and then find the attached script 'Minion_controller'.
                     scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
+                // Find the GameController tag, and then find the attached script 'UserAI'.
+                    scriptUserAI = GameObject.FindGameObjectWithTag("GameController").GetComponent<UserAI>();
                 // Initialize the Life Span script
                     scriptMinion_LifeSpan = gameObject.GetComponent<Minion_LifeSpan>();
 
@@ -302,6 +306,8 @@ namespace MinionMathMayhem_Ship
         {
             // Time of Death
                 scriptMinion_LifeSpan.Access_UpdateTimeOfDeath();
+            // Notify the UserAI
+                scriptUserAI.Access_Database_MinionLifeSpan(scriptMinion_LifeSpan.Access_OutputLifeSpan);
             // Rest of the algoritm
                 particleActivation.Emit();
                 gameObject.GetComponent<Rigidbody>().useGravity = true;
