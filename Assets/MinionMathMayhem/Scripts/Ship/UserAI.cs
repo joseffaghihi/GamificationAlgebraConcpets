@@ -223,7 +223,8 @@ namespace MinionMathMayhem_Ship
 
         /// <summary>
         ///     This function will output the results to the console; nothing is changed or returned
-        ///     DEBUG PURPOSES ONLY
+        ///   <para />
+        ///     __DEBUG_PURPOSES_ONLY__
         /// </summary>
         private void Database_MinionLifeSpan_AverageTime_DEBUG()
         {
