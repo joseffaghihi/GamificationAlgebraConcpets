@@ -338,6 +338,10 @@ namespace MinionMathMayhem_Ship
         {
             if (scriptMinionController == null)
                 MissingReferenceError("Minion Controller");
+            if (scriptUserAI == null)
+                MissingReferenceError("User AI Daemon Servicer");
+            if (scriptMinion_LifeSpan == null)
+                MissingReferenceError("Minion Life Span");
         } // CheckReferences()
 
 
