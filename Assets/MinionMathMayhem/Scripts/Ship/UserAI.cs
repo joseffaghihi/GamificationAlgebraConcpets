@@ -55,18 +55,8 @@ namespace MinionMathMayhem_Ship
                 // Array for holding the time database
                     // DO NOT SET THE SIZE!  ALLOW THE SIZE TO BE ADJUSTABLE!
                     private float[] minionTimeArray = new float[counterMinionTimeMax];
-            // Time when the next minion should spawn
-                private float nextSpawn;
-            // How many minions are to be spawned within 60 seconds of time
-                // Can be manipulated within Unity's Inspector
-                public float spawnRate;
             // Legacy Mode; this puts the game back to its original state without using any AI.
                 public bool legacyMode = true;
-            // Grace-Timer for when the spawners should be activated
-                // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
-                    private bool gracePeriodLockOut = false;
-                // Grace Timer Duration
-                    public float gracePeriodTimer = 2.5f;
             // Accessors and Communication
                 // GameController
                     public GameController scriptGameController;
@@ -118,19 +108,6 @@ namespace MinionMathMayhem_Ship
                 StartCoroutine(DaemonService());
             StartCoroutine(WaveManager());
         } // Start()
-
-
-
-        // This function will check the public variables and prevent any negated values.
-        private void CheckValues()
-        {
-            if (nextSpawn < 0)
-                nextSpawn = (nextSpawn * -1);
-            if (spawnRate < 0)
-                spawnRate = (spawnRate * -1);
-            if (gracePeriodTimer < 0)
-                gracePeriodTimer = (gracePeriodTimer * -1);
-        } // CheckValues()
 
 
 
@@ -249,9 +226,33 @@ namespace MinionMathMayhem_Ship
 
 
 
+
+
+
+
+
+
         // =======================================================================
         //                             LEGACY MODE
         // =======================================================================
+
+
+        // Declarations and Initializations
+        // ---------------------------------
+            // Time when the next minion should spawn
+                private float nextSpawn;
+            // How many minions are to be spawned within 60 seconds of time
+                // Can be manipulated within Unity's Inspector
+                public float spawnRate;
+            // Grace-Timer for when the spawners should be activated
+                // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
+                    private bool gracePeriodLockOut = false;
+                // Grace Timer Duration
+                    public float gracePeriodTimer = 2.5f;
+        // ---------------------------------
+
+
+
         // The Wave Manager
         private IEnumerator WaveManager()
         {
@@ -337,6 +338,19 @@ namespace MinionMathMayhem_Ship
         // ERROR CHECKING
         // ====
 
+        // This function will check the public variables and prevent any negated values.
+        private void CheckValues()
+        {
+            if (nextSpawn < 0)
+                nextSpawn = (nextSpawn * -1);
+            if (spawnRate < 0)
+                spawnRate = (spawnRate * -1);
+            if (gracePeriodTimer < 0)
+                gracePeriodTimer = (gracePeriodTimer * -1);
+        } // CheckValues()
+
+
+
         // This function will check to make sure that all the references has been initialized properly.
         private void CheckReferences()
         {
@@ -345,7 +359,6 @@ namespace MinionMathMayhem_Ship
             if (scriptGameEvent == null)
                 MissingReferenceError("Game Event");
         } // CheckReferences()
-
 
 
         // When a reference has not been properly initialized, this function will display the message within the console and stop the game.
