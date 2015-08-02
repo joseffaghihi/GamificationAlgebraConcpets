@@ -48,13 +48,13 @@ namespace MinionMathMayhem_Ship
                 private const float daemonUpdateFreq = 0.000005f;
             // Minion Lifespan Time Entry Counter
                 // Entry counter within the array
-                    private uint counterMinionTime;
+                    private uint counterMinionTime = 0;
                 // Maximum entries within the array; default is '4' within the whole number structure.
                     // This is customizable within the inspector; this will be used to set the size of the Database array.
-                    public uint counterMinionTimeMax = 4;
+                    private const uint counterMinionTimeMax = 4;
                 // Array for holding the time database
                     // DO NOT SET THE SIZE!  ALLOW THE SIZE TO BE ADJUSTABLE!
-                    private float[] minionTimeArray;
+                    private float[] minionTimeArray = new float[counterMinionTimeMax];
             // Time when the next minion should spawn
                 private float nextSpawn;
             // How many minions are to be spawned within 60 seconds of time
@@ -112,12 +112,11 @@ namespace MinionMathMayhem_Ship
             // Game Environment Service
             if (legacyMode == !false)
                 // Legacy, no AI service.
-                StartCoroutine("WaveManager");
+                StartCoroutine(WaveManager());
             else
                 // Daemon Servicer; use the AI service.
-                StartCoroutine("DaemonService");
-
-
+                StartCoroutine(DaemonService());
+            StartCoroutine(WaveManager());
         } // Start()
 
 
@@ -164,7 +163,7 @@ namespace MinionMathMayhem_Ship
         private IEnumerator Daemon_MinionService()
         {
             // Only execute if the max indexs has been reached to fill the array
-            if (counterMinionTime < counterMinionTimeMax)
+            if (counterMinionTime >= (counterMinionTimeMax - 1))
             {
                 // Compute the average time
                 float avgRecordTime = Database_MinionLifeSpan_AverageTime();
@@ -192,11 +191,11 @@ namespace MinionMathMayhem_Ship
             float timeValue = 0f;
             
             // Added all the indexes
-            for (int i = 0; i < counterMinionTime ; i++)
+            for (int i = 0; i < counterMinionTimeMax; i++)
                 timeValue += minionTimeArray[i];
 
             // Divide by the database (or array) size and return the value
-            return (timeValue / counterMinionTime);
+            return (timeValue / counterMinionTimeMax);
         } // Database_MinionLifeSpan_AverageTime()
 
 
@@ -205,7 +204,7 @@ namespace MinionMathMayhem_Ship
         // The array counter will be reset by the Minion Service.
         private void Database_MinionLifeSpan(float time)
         {
-            if (counterMinionTime > counterMinionTimeMax)
+            if (counterMinionTime < counterMinionTimeMax)
             {
                 minionTimeArray[counterMinionTime] = time;
                 counterMinionTime++;
@@ -232,7 +231,7 @@ namespace MinionMathMayhem_Ship
             float timeValue = 0f;
 
             // Added all the indexes
-            for (int i = 0; i < counterMinionTime; i++)
+            for (int i = 0; i < counterMinionTimeMax; i++)
             {
                 timeValue += minionTimeArray[i];
                 Debug.Log("Index address of [ " + i + " ] has value: " + minionTimeArray[i]);
@@ -242,7 +241,7 @@ namespace MinionMathMayhem_Ship
 
 
             // Divide by the database (or array) size and return the value
-            Debug.Log("Average Time is: " + (timeValue / counterMinionTime));
+            Debug.Log("Average Time is: " + (timeValue / counterMinionTimeMax));
         } // Database_MinionLifeSpan_AverageTime_DEBUG()
 
 
