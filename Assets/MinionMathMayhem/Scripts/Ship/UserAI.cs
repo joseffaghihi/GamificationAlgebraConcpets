@@ -114,7 +114,7 @@ namespace MinionMathMayhem_Ship
                 // Legacy, no AI service.
                 StartCoroutine("WaveManager");
             else
-                // AI daemon not present, use legacy anyways.
+                // Daemon Servicer; use the AI service.
                 StartCoroutine("DaemonService");
 
 
