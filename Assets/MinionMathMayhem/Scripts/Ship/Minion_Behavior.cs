@@ -305,10 +305,8 @@ namespace MinionMathMayhem_Ship
         ///     Actions to take place when the minion has been selected or eliminated.
         /// </summary>
         /// <param name="reportToDaemon">
-        ///     Set to true if the minion has been selected by the 'MinionCollision()' function
-        ///     Default is value is false
+        ///     Set to true if the minion has been selected by the 'MinionCollision()' function.  Default is value is false
         /// </param>
-
         public void Flick(bool reportToDaemon = false)
         {
             // Time of Death of the minion
