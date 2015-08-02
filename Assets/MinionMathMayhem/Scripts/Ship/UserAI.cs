@@ -163,7 +163,7 @@ namespace MinionMathMayhem_Ship
         private IEnumerator Daemon_MinionService()
         {
             // Only execute if the max indexs has been reached to fill the array
-            if (counterMinionTime >= (counterMinionTimeMax - 1))
+            if (counterMinionTime >= (counterMinionTimeMax))
             {
                 // Compute the average time
                 float avgRecordTime = Database_MinionLifeSpan_AverageTime();
