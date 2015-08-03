@@ -49,8 +49,7 @@ namespace MinionMathMayhem_Ship
             // Minion Lifespan Time Entry Counter
                 // Entry counter within the array
                     private uint counterMinionTime = 0;
-                // Maximum entries within the array; default is '4' within the whole number structure.
-                    // This is customizable within the inspector; this will be used to set the size of the Database array.
+                // Maximum record entries of the minion's life spawn within the array
                     private const uint counterMinionTimeMax = 5;
                 // Array for holding the time database
                     // DO NOT SET THE SIZE!  ALLOW THE SIZE TO BE ADJUSTABLE!
