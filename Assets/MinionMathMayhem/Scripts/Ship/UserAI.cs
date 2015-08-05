@@ -105,7 +105,6 @@ namespace MinionMathMayhem_Ship
             else
                 // Daemon Servicer; use the AI service.
                 StartCoroutine(DaemonService());
-            StartCoroutine(WaveManager());
         } // Start()
 
 
