@@ -123,6 +123,8 @@ namespace MinionMathMayhem_Ship
                 // Request update on the following functions:
                     // Minion Service
                         StartCoroutine(Daemon_MinionService());
+                    // Spawner Service
+                        StartCoroutine(Daemon_SpawnerServicer());
                 yield return new WaitForSeconds(daemonUpdateFreq);
             } // While-Loop
         } //DaemonService()
@@ -223,8 +225,14 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // =======================================================================
+        //                          SPAWNER SERVICE
+        // =======================================================================
 
-
+        private IEnumerator Daemon_SpawnerServicer()
+        {
+            yield return null;
+        } // Daemon_SpawnerServicer()
 
 
 
