@@ -333,7 +333,9 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function initiate the grace timer - that will momentarily delay the spawners from ever being activated.
+        /// <summary>
+        ///     This function will initiate the grace timer, which will momentarily delay another event from being broadcasted.
+        /// </summary>
         private void GraceTimer()
         {
             // A simple timer
@@ -342,7 +344,12 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // The Timer function will disallow the spawners from becoming active until the wait-delay has passed.
+        /// <summary>
+        ///     The grace timer function will enforce a wait-delay before another event can being broadcasted.
+        /// </summary>
+        /// <returns>
+        ///     Returns nothing; coroutine function.
+        /// </returns>
         private IEnumerator GraceTimer_InitiateTimer()
         {
             gracePeriodLockOut = true;
@@ -351,7 +358,13 @@ namespace MinionMathMayhem_Ship
         } //GraceTimer_InitiateTimer()
 
 
+
         // This function will kindly tell delay the signal to start instantiating the minions.
+        
+        /// <summary>
+        ///     This function will push a delay before another event can be broadcasted.  This is a public set function, use carefully.
+        ///     NOTE: Deprecated?
+        /// </summary>
         public void GracePeriodTimeOut_Request()
         {
             gracePeriodLockOut = true;
@@ -367,11 +380,13 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // ----
-        // ERROR CHECKING
-        // ====
+        // =======================================================================
+        //                          ERROR CHECKING
+        // =======================================================================
 
-        // This function will check the public variables and prevent any negated values.
+        /// <summary>
+        ///     Assure that no variables have been initialized with bad values.
+        /// </summary>
         private void CheckValues()
         {
             if (nextSpawn < 0)
@@ -384,7 +399,9 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This function will check to make sure that all the references has been initialized properly.
+        /// <summary>
+        ///     Make sure that the dependent references have been initialized properly.
+        /// </summary>
         private void CheckReferences()
         {
             if (scriptGameController == null)
@@ -394,7 +411,13 @@ namespace MinionMathMayhem_Ship
         } // CheckReferences()
 
 
-        // When a reference has not been properly initialized, this function will display the message within the console and stop the game.
+
+        /// <summary>
+        ///     When a reference has not been properly initalized, this function will display the message within the console and stop the game.
+        /// </summary>
+        /// <param name="refLink">
+        ///     The name of the reference link that is missing.
+        /// </param>
         private void MissingReferenceError(string refLink = "UNKNOWN_REFERENCE_NOT_DEFINED")
         {
             Debug.LogError("Critical Error: Could not find a reference to [ " + refLink + " ]!");
