@@ -22,10 +22,22 @@ namespace MinionMathMayhem_Ship
 
 
         // When called by other scripts; this will take the provided values and return the percentage of the score.
+
+        /// <summary>
+        ///     Calculate the percentage of the user's score.  The values that will be provided will be passed through the initial function that performs the calculation.
+        /// </summary>
+        /// <param name="earnedPoints">
+        ///     Points earned
+        /// </param>
+        /// <param name="totalPoints">
+        ///     Total points possible
+        /// </param>
+        /// <returns>
+        ///     Percentage
+        /// </returns>
         public double CalculateScorePercentageInterface (int earnedPoints = 0, int totalPoints = 0)
         {
-            if (totalPoints == ~0)
-                // Total points != 0; valid
+            if (totalPoints != 0)
                 return CalculateScorePercentage(earnedPoints, totalPoints);
             else
                 // Total points == 0; invalid
@@ -34,7 +46,18 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Calculate the score percentage and return the value.
+        /// <summary>
+        ///     Calculate the percentage
+        /// </summary>
+        /// <param name="earnedPoints">
+        ///     Points earned
+        /// </param>
+        /// <param name="totalPoints">
+        ///     Total points possible
+        /// </param>
+        /// <returns>
+        ///     Percentage
+        /// </returns>
         private double CalculateScorePercentage (int earnedPoints, int totalPoints)
         {
             return (earnedPoints / totalPoints);
