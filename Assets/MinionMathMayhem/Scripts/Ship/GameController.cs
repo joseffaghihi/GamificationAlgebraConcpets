@@ -359,6 +359,28 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // Return the value of: Maximum Score Possible
+        public uint MaxScore
+        {
+            get
+            {
+                return maxScore;
+            } // get
+        } // MaxScore
+
+
+
+        // Return the value of: Maximum Incorrect Score Possible
+        public uint MaxScoreIncorrect
+        {
+            get
+            {
+                return maxScoreFail;
+            } // get
+        } // MaxScoreIncorrect
+
+
+
         // This function will check to make sure that all the references has been initialized properly.
         private void CheckReferences()
         {
