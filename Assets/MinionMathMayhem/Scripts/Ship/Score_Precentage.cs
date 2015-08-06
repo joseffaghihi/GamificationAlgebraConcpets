@@ -60,7 +60,7 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private double CalculateScorePercentage (int earnedPoints, int totalPoints)
         {
-            return (earnedPoints / totalPoints);
+            return (((double)earnedPoints / (double)totalPoints) * 100);
         } // CalculateScorePercentage();
     } // End of Class 
 } // Namespace
