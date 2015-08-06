@@ -10,7 +10,7 @@ namespace MinionMathMayhem_Ship
         /*
          *                                              USER PERFORMANCE ARTIFICIAL INTELLIGENCE
          * This is the forefront of controlling the environment based on the user performances.  This script is a 'always live' monitoring
-         *  the user's performances based on accuracy and reaction time.  This daemon or service will routinly check the user's accuracy and determine if the
+         *  the user's performances based on accuracy and reaction time.  This daemon or service will routinely check the user's accuracy and determine if the
          *  game itself should be a bit more difficult or easier, and also check the user's reaction time to determine if the user is capable of clicking the actors
          *  at a expeditious rate or adrenaline rush takes in (which is usually short lived, depending on the user and environment they are in).
          * 
@@ -112,7 +112,7 @@ namespace MinionMathMayhem_Ship
         {
             // Check to make sure that everything is properly initialized.
                 CheckReferences();
-            // Check values; prevert negated values
+            // Check values; prevent negated values
                 CheckValues();
 
             // Game Environment Service
@@ -159,7 +159,7 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private IEnumerator Daemon_MinionService()
         {
-            // Only execute if the max indexs has been reached to fill the array
+            // Only execute if the max indexes has been reached to fill the array
             if (counterMinionTime >= (counterMinionTimeMax))
             {
                 // Compute the average time
@@ -413,7 +413,7 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     When a reference has not been properly initalized, this function will display the message within the console and stop the game.
+        ///     When a reference has not been properly initialized, this function will display the message within the console and stop the game.
         /// </summary>
         /// <param name="refLink">
         ///     The name of the reference link that is missing.
