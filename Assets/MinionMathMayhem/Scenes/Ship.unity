@@ -5137,6 +5137,7 @@ GameObject:
   - 114: {fileID: 1430447476}
   - 114: {fileID: 1430447477}
   - 114: {fileID: 1430447478}
+  - 114: {fileID: 1430447479}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -5192,6 +5193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreBox: {fileID: 1868065507}
   wrongScoreBox: {fileID: 461673502}
+  scriptScore_Percentage: {fileID: 1430447479}
+  scriptGameController: {fileID: 1430447470}
 --- !u!114 &1430447472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5363,6 +5366,17 @@ MonoBehaviour:
   gracePeriodTimer: 2.5
   scriptGameController: {fileID: 1430447470}
   scriptGameEvent: {fileID: 1430447472}
+--- !u!114 &1430447479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430447468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7bd92c0e8171443b300b0d124fbe3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1456280122
 Prefab:
   m_ObjectHideFlags: 0
@@ -7710,8 +7724,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.196351975, y: -.374206185, z: .0813998356, w: -.902657032}
-  m_LocalPosition: {x: -18.7319927, y: -1.89937782, z: -15.7008228}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
