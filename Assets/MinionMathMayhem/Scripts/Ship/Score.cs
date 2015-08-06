@@ -25,12 +25,18 @@ namespace MinionMathMayhem_Ship
             // Scores
                 private int scoreCorrect = 0;
                 private int scoreIncorrect = 0;
+                private double scoreCorrectPercent = 0.0;
+                private double scoreIncorrectPercent = 0.0;
 
             // Accessors and Communication
                 // HUD: Score box
                     public Text scoreBox;
                 // HUD: Wrong score box
                     public Text wrongScoreBox;
+                // Score Precentage
+                    public Score_Precentage scriptScore_Percentage;
+                // Game Controller
+                    public GameController scriptGameController;
         // ----
 
 
@@ -70,6 +76,8 @@ namespace MinionMathMayhem_Ship
                 scoreCorrect++;
             // Update the 'Correct' score on the HUD
                 UpdateScoreDisplay();   
+            // Get the new percentage of the score
+                UpdateScoreCorrect_Percentage();
         } // UpdateScore()
 
 
@@ -97,6 +105,8 @@ namespace MinionMathMayhem_Ship
                 scoreIncorrect++;
             // Update the 'Incorrect' score on the HUD
                 UpdateWrongScoreDisplay();
+            // Get the new percentage of the score
+                UpdateScoreIncorrect_Percentage();
         } // UpdateScoreIncorrect()
 
 
@@ -107,10 +117,40 @@ namespace MinionMathMayhem_Ship
             // Thrash the scores that is internally kept within the script.
                 scoreCorrect = 0;
                 scoreIncorrect = 0;
+                scoreCorrectPercent = 0.0;
+                scoreIncorrectPercent = 0.0;
             // Update the score on the HUD.
                 UpdateScoreDisplay();
                 UpdateWrongScoreDisplay();
         } // ThrashScore()
+
+
+
+        /// <summary>
+        ///     Update the correct answers percentage
+        /// </summary>
+        private void UpdateScoreCorrect_Percentage()
+        {
+            // Get the maximum score possible
+            int maxScore = (int)scriptGameController.MaxScore;
+
+            // Get the new precentage
+            scoreCorrectPercent = scriptScore_Percentage.CalculateScorePercentageInterface(scoreCorrect, maxScore);
+        } // UpdateScoreCorrect_Percentage()
+
+
+
+        /// <summary>
+        ///     Update the incorrect answers percentage
+        /// </summary>
+        private void UpdateScoreIncorrect_Percentage()
+        {
+            // Get the maximum incorrect score possible
+            int maxIncorrect = (int)scriptGameController.maxScoreFail;
+
+            // Get the new precentage
+            scoreIncorrectPercent = scriptScore_Percentage.CalculateScorePercentageInterface(scoreIncorrect, maxIncorrect);
+        } // UpdateScoreIncorrect_Percentage()
 
 
 
@@ -150,6 +190,28 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // Return the value of the correct score precentage to the calling script.
+        public double ScoreCorrectPercent
+        {
+            get
+            {
+                return scoreCorrectPercent;
+            } // get
+        } // ScoreCorrectPercent
+
+
+
+        // Return the value of the incorrect score precentage to the calling script.
+        public double ScoreIncorrectPercent
+        {
+            get
+            {
+                return scoreIncorrectPercent;
+            } // get
+        } // ScoreIncorrectPercent
+
+
+
         // This function will check to make sure that all the references has been initialized properly.
         private void CheckReferences()
         {
@@ -157,6 +219,10 @@ namespace MinionMathMayhem_Ship
                 MissingReferenceError("Score Box [HUD]");
             if (wrongScoreBox == null)
                 MissingReferenceError("Wrong Score Box [HUD]");
+            if (scriptScore_Percentage == null)
+                MissingReferenceError("Score Precentage Interface");
+            if (scriptGameController == null)
+                MissingReferenceError("Game Controller");
         } // CheckReferences()
 
 
