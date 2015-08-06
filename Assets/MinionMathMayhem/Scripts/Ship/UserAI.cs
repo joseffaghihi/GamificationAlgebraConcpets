@@ -80,7 +80,10 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Signal Listener: Detected
+        /// <summary>
+        ///     Unity Function
+        ///     Signal Listener: Detected (or heard)
+        /// </summary>
         private void OnEnable()
         {
             GameEvent.RequestGraceTime += GraceTimer;
@@ -89,7 +92,10 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Signal Listener: Deactivate
+        /// <summary>
+        ///     Unity Function
+        ///     Signal Listener: Deactivated
+        /// </summary>
         private void OnDisable()
         {
             GameEvent.RequestGraceTime -= GraceTimer;
@@ -97,8 +103,11 @@ namespace MinionMathMayhem_Ship
         } // OnDisable()
 
 
-
-        // When the attached game object is available; this function will immediately execute. 
+ 
+        /// <summary>
+        ///     Unity Function
+        ///     This function will immediately and automatically execute when the actor is 'activated' within the virtual world.
+        /// </summary>
         private void Start()
         {
             // Check to make sure that everything is properly initialized.
@@ -113,12 +122,13 @@ namespace MinionMathMayhem_Ship
 
 
 
-
-        // =======================================================================
-        //                          DAEMON SERVICE
-        //                            SCHEDULER
-        // This will call the depending functions required for the AI.
-        // =======================================================================
+        /// <summary>
+        ///     DAEMON SERVICE SCHEDULER
+        ///     This will call the depending function required for the AI.
+        /// </summary>
+        /// <returns>
+        ///     Returns nothing; coroutine function
+        /// </returns>
         private IEnumerator DaemonService()
         {
             // Never ending loop
@@ -131,7 +141,8 @@ namespace MinionMathMayhem_Ship
                         StartCoroutine(Daemon_SpawnerService());
                 yield return new WaitForSeconds(daemonUpdateFreq);
             } // While-Loop
-        } //DaemonService()
+        } // DaemonService()
+
 
 
 
@@ -139,8 +150,13 @@ namespace MinionMathMayhem_Ship
         //                          MINION DATABASE
         // =======================================================================
 
-        // DAEMON SERVICER
-        // Check the minion time database; if filled - determine the minion speed based on the average time from the records.
+
+        /// <summary>
+        ///     Check the minion time database; if the array has been filled - determine the minion speed based on the average time from the recorded times.
+        /// </summary>
+        /// <returns>
+        ///     Returns nothing
+        /// </returns>
         private IEnumerator Daemon_MinionService()
         {
             // Only execute if the max indexs has been reached to fill the array
@@ -181,8 +197,13 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Record the minion's life span within an array; if the array is full (if we reached the max count) then do not record the entry.
-        // The array counter will be reset by the Minion Service.
+        /// <summary>
+        ///     Record the minion's life span within an array; if the array is full (if we reached the max count) then do not record the entry.
+        ///     The array counter will be reset by the Minion Service function.
+        /// </summary>
+        /// <param name="time">
+        ///     Recorded time
+        /// </param>
         private void Database_MinionLifeSpan(float time)
         {
             if (counterMinionTime < counterMinionTimeMax)
@@ -194,7 +215,12 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This is a accessor function that will call the correct function
+        /// <summary>
+        ///     This is merely an accessor function that will kindly call the private function.
+        /// </summary>
+        /// <param name="time">
+        ///     Recorded time
+        /// </param>
         public void Access_Database_MinionLifeSpan(float time)
         {
             Database_MinionLifeSpan(time);
@@ -262,7 +288,11 @@ namespace MinionMathMayhem_Ship
 
 
 
-
+        /// <summary>
+        ///     Spawn a minion depending upon the next spawn time.
+        ///     This function will first check to see if the next batch of minions can be spawned yet.
+        ///      When true, the batch full of minions will be spawned and the next spawn time will be recalculated.
+        /// </summary>
         private void SpawnController_Service()
         {
             if (Time.time >= nextSpawn)
@@ -276,9 +306,12 @@ namespace MinionMathMayhem_Ship
 
 
 
+        /// <summary>
+        ///     Send a event message to the spawners, specifically, to spawn the minions.  (NOT Forcefully)
+        /// </summary>
         private void SpawnController_SummonActor_Batch()
         {
-            // Broadcast a signal to the spawners to summon a minion.
+            // Broadcast event
                 SummonMinion_Batches();
         } // SpawnController_SummonActor_Batch()
 
