@@ -54,8 +54,16 @@ namespace MinionMathMayhem_Ship
                 // Array for holding the time database
                     // DO NOT SET THE SIZE!  ALLOW THE SIZE TO BE ADJUSTABLE!
                     private float[] minionTimeArray = new float[counterMinionTimeMax];
-            // Legacy Mode; this puts the game back to its original state without using any AI.
-                public bool legacyMode = true;
+            // Time when the next minion should spawn
+                private float nextSpawn;
+            // How many minions are to be spawned within 60 seconds of time
+                // Can be manipulated within Unity's Inspector
+                public float spawnRate;
+            // Grace-Timer for when the spawners should be activated
+                // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
+                    private bool gracePeriodLockOut = false;
+                // Grace Timer Duration
+                    public float gracePeriodTimer = 2.5f;
             // Accessors and Communication
                 // GameController
                     public GameController scriptGameController;
@@ -99,12 +107,8 @@ namespace MinionMathMayhem_Ship
                 CheckValues();
 
             // Game Environment Service
-            if (legacyMode == !false)
-                // Legacy, no AI service.
-                StartCoroutine(WaveManager());
-            else
                 // Daemon Servicer; use the AI service.
-                StartCoroutine(DaemonService());
+                    StartCoroutine(DaemonService());
         } // Start()
 
 
@@ -124,7 +128,7 @@ namespace MinionMathMayhem_Ship
                     // Minion Service
                         StartCoroutine(Daemon_MinionService());
                     // Spawner Service
-                        StartCoroutine(Daemon_SpawnerServicer());
+                        StartCoroutine(Daemon_SpawnerService());
                 yield return new WaitForSeconds(daemonUpdateFreq);
             } // While-Loop
         } //DaemonService()
@@ -143,9 +147,9 @@ namespace MinionMathMayhem_Ship
             if (counterMinionTime >= (counterMinionTimeMax))
             {
                 // Compute the average time
-                float avgRecordTime = Database_MinionLifeSpan_AverageTime();
+                    float avgRecordTime = Database_MinionLifeSpan_AverageTime();
                 // Reset the array index counter
-                counterMinionTime = 0;
+                    counterMinionTime = 0;
             } // If
             yield return null;
         } // Daemon_MinionService()
@@ -162,17 +166,17 @@ namespace MinionMathMayhem_Ship
         private float Database_MinionLifeSpan_AverageTime()
         {
             // DEBUG
-            Database_MinionLifeSpan_AverageTime_DEBUG();
+                Database_MinionLifeSpan_AverageTime_DEBUG();
 
             // Cached value
-            float timeValue = 0f;
+                float timeValue = 0f;
             
             // Added all the indexes
             for (int i = 0; i < counterMinionTimeMax; i++)
                 timeValue += minionTimeArray[i];
 
             // Divide by the database (or array) size and return the value
-            return (timeValue / counterMinionTimeMax);
+                return (timeValue / counterMinionTimeMax);
         } // Database_MinionLifeSpan_AverageTime()
 
 
@@ -229,54 +233,70 @@ namespace MinionMathMayhem_Ship
         //                          SPAWNER SERVICE
         // =======================================================================
 
-        private IEnumerator Daemon_SpawnerServicer()
+
+        /// <summary>
+        ///     This is a service function for managing how the minion actors will spawn within the scene.
+        ///     NOTE: This function is DEPENDENT on the Daemon update frequency!
+        /// </summary>
+        /// <returns>
+        ///     Nothing is returned
+        /// </returns>
+        private IEnumerator Daemon_SpawnerService()
         {
+            // Is it safe to spawn the minions within the map?
+            if (scriptGameController.SpawnMinions == !false &&
+                scriptGameController.GameOver != true &&
+                scriptGameEvent.AccessSpawnMinions != true &&
+                gracePeriodLockOut != true)
+            {
+                // Safe to spawn minions within the virtual world
+                    SpawnController_Service();                
+            }
+            else
+            {
+                // Not safe to spawn the minions within the virtual world
+            }
+
             yield return null;
         } // Daemon_SpawnerServicer()
 
 
 
 
-
-        // =======================================================================
-        //                             LEGACY MODE
-        // =======================================================================
-
-
-        // Declarations and Initializations
-        // ---------------------------------
-            // Time when the next minion should spawn
-                private float nextSpawn;
-            // How many minions are to be spawned within 60 seconds of time
-                // Can be manipulated within Unity's Inspector
-                public float spawnRate;
-            // Grace-Timer for when the spawners should be activated
-                // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
-                    private bool gracePeriodLockOut = false;
-                // Grace Timer Duration
-                    public float gracePeriodTimer = 2.5f;
-        // ---------------------------------
-
-
-
-        // The Wave Manager
-        private IEnumerator WaveManager()
+        private void SpawnController_Service()
         {
-            yield return null;
-            while (true) // Never ending
+            if (Time.time >= nextSpawn)
             {
-                // ----
-                // Check to see if the spawner is activated
-                if (scriptGameController.SpawnMinions == !false && scriptGameController.GameOver != true && scriptGameEvent.AccessSpawnMinions != true && gracePeriodLockOut != true)
-                    // Check to see if it is time to spawn another minion
-                    if (Time.time >= nextSpawn)
-                        SpawnSignal();
-                // ----
+                // Batch signal to summon minion actors.
+                    SpawnController_SummonActor_Batch();
+                // Determine the next time to summon a new minion creature
+                    SpawnController_GetNextSpawnTime();
+            }
+        } // SpawnController_Service()
 
-                // Brief wait time to ease the CPU
-                yield return new WaitForSeconds(0.1f);
-            } // While()
-        } // WaveManager()
+
+
+        private void SpawnController_SummonActor_Batch()
+        {
+            // Broadcast a signal to the spawners to summon a minion.
+                SummonMinion_Batches();
+        } // SpawnController_SummonActor_Batch()
+
+
+
+        
+        // Determine the new time in which a new minion will be spawned in the scene
+        /// <summary>
+        ///     This function is designed to calculate the next spawn time in which that next actor should be instantiated.
+        ///     The calculation:
+        ///         Using the game run time, get a random number from null to the spawn rate (per second) times two.
+        ///         This should determine the next spawn ratio in which the minions should be summoned within the environment.
+        ///         Credit to Bob for this code, that still exists today ;)
+        /// </summary>
+        private void SpawnController_GetNextSpawnTime()
+        {
+            nextSpawn = (Time.time + Random.Range(0, 2 * (60 / spawnRate)));
+        } // SpawnController_GetNextSpawnTime()
 
 
 
@@ -298,40 +318,14 @@ namespace MinionMathMayhem_Ship
         } //GraceTimer_InitiateTimer()
 
 
-
-        // Determine how long the minions will spawn within the given time of 60 seconds.
-        private float MinionsASecond()
-        {
-            return 60 / spawnRate;
-        } // MinionASecond()
-
-
-
-        // Determine the new time in which a new minion will be spawned in the scene
-        private void CalcNextSpawnTime()
-        {
-            float r = Random.Range(0, 2 * MinionsASecond());
-            nextSpawn = Time.time + r;
-        } // CalcNextSpawnTime()
-
-
-
-        // Send a signal to spawn the creature
-        private void SpawnSignal()
-        {
-            // Broadcast a signal to the spawners to summon a minion.
-                SummonMinion_Batches();
-            // Determine the next time to summon a new minion creature
-                CalcNextSpawnTime();
-        } // SpawnSignal()
-
-
-
         // This function will kindly tell delay the signal to start instantiating the minions.
         public void GracePeriodTimeOut_Request()
         {
             gracePeriodLockOut = true;
         } // GracePeriodTimeOut_Request()
+
+
+
         // =======================================================================
         // =======================================================================
         // =======================================================================
