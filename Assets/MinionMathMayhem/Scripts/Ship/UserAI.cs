@@ -52,7 +52,6 @@ namespace MinionMathMayhem_Ship
                 // Maximum record entries of the minion's life spawn within the array
                     private const uint counterMinionTimeMax = 5;
                 // Array for holding the time database
-                    // DO NOT SET THE SIZE!  ALLOW THE SIZE TO BE ADJUSTABLE!
                     private float[] minionTimeArray = new float[counterMinionTimeMax];
             // Time when the next minion should spawn
                 private float nextSpawn;
