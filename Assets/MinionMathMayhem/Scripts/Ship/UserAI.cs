@@ -295,7 +295,9 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void CalculateUserAverageTime_TimeDifference()
         {
+            float timeDiff = (avgRecordTime - avgRecordTime_old);
 
+            // TODO: Determine to increase or decrease challenge, include user 'Comfort Zone' range.
         } // CalculateUserAverageTime_TimeDifference()
 
 
