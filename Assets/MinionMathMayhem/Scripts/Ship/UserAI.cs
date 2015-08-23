@@ -170,6 +170,8 @@ namespace MinionMathMayhem_Ship
                     avgRecordTime = Database_MinionLifeSpan_AverageTime();
                 // Reset the array index counter
                     counterMinionTime = 0;
+                // Calculate the user's current average and previously stored average time.
+                    // CalculateUserAverageTime()
             } // If
             yield return null;
         } // Daemon_MinionService()
@@ -255,6 +257,46 @@ namespace MinionMathMayhem_Ship
             // Divide by the database (or array) size and return the value
             Debug.Log("Average Time is: " + (timeValue / counterMinionTimeMax));
         } // Database_MinionLifeSpan_AverageTime_DEBUG()
+
+
+
+        /// <summary>
+        ///     This function is designed to take the difference of the user's current average and the previous average and decide
+        ///         wither or not to make the game more challenging or to make it easier for the player.
+        /// </summary>
+        private void CalculateUserAverageTime()
+        {
+            // If the game is just starting, do not calculate the time.
+            // 
+            if (avgRecordTime_old != 0f)
+                CalculateUserAverageTime_TimeDifference();
+
+            // Change the user's average time from current to old.
+                CalculateUserAverageTime_ShiftTime();
+        } // CalculateUserAverageTime()
+
+
+
+        /// <summary>
+        ///     Shift the users current average time to the 'old' stored time; this will be used to calculate the next average time.
+        /// </summary>
+        private void CalculateUserAverageTime_ShiftTime()
+        {
+            avgRecordTime_old = avgRecordTime;
+
+            // Perhaps not needed, but thrash the stored value to null.
+            avgRecordTime = 0f;
+        } // CalculateUserAverageTime_ShiftTime()
+
+
+
+        /// <summary>
+        ///     Calculate the difference between the user's current average against the previous average time.
+        /// </summary>
+        private void CalculateUserAverageTime_TimeDifference()
+        {
+
+        } // CalculateUserAverageTime_TimeDifference()
 
 
 
