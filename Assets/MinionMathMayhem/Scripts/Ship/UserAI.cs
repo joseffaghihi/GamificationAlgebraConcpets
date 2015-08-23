@@ -53,6 +53,11 @@ namespace MinionMathMayhem_Ship
                     private const uint counterMinionTimeMax = 5;
                 // Array for holding the time database
                     private float[] minionTimeArray = new float[counterMinionTimeMax];
+                // Cache the user's average time into one of these identifiers
+                    // Current time
+                        private float avgRecordTime = 0f;
+                    // Previous time
+                        private float avgRecordTime_old = 0f;
             // Time when the next minion should spawn
                 private float nextSpawn;
             // How many minions are to be spawned within 60 seconds of time
@@ -162,7 +167,7 @@ namespace MinionMathMayhem_Ship
             if (counterMinionTime >= (counterMinionTimeMax))
             {
                 // Compute the average time
-                    float avgRecordTime = Database_MinionLifeSpan_AverageTime();
+                    avgRecordTime = Database_MinionLifeSpan_AverageTime();
                 // Reset the array index counter
                     counterMinionTime = 0;
             } // If
