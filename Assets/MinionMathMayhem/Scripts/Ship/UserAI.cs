@@ -187,9 +187,6 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private float Database_MinionLifeSpan_AverageTime()
         {
-            // DEBUG
-                Database_MinionLifeSpan_AverageTime_DEBUG();
-
             // Cached value
                 float timeValue = 0f;
             
@@ -231,32 +228,6 @@ namespace MinionMathMayhem_Ship
         {
             Database_MinionLifeSpan(time);
         } // Access_Database_MinionLifeSpan()
-
-
-
-        /// <summary>
-        ///     This function will output the results to the console; nothing is changed or returned
-        ///   <para />
-        ///     __DEBUG_PURPOSES_ONLY__
-        /// </summary>
-        private void Database_MinionLifeSpan_AverageTime_DEBUG()
-        {
-            // Cached value
-            float timeValue = 0f;
-
-            // Added all the indexes
-            for (int i = 0; i < counterMinionTimeMax; i++)
-            {
-                timeValue += minionTimeArray[i];
-                Debug.Log("Index address of [ " + i + " ] has value: " + minionTimeArray[i]);
-            }
-
-            Debug.Log("Lifespan database accumulative time: " + timeValue);
-
-
-            // Divide by the database (or array) size and return the value
-            Debug.Log("Average Time is: " + (timeValue / counterMinionTimeMax));
-        } // Database_MinionLifeSpan_AverageTime_DEBUG()
 
 
 
