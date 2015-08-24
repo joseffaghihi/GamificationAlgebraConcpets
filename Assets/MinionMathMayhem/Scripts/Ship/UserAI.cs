@@ -266,8 +266,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void CalculateUserAverageTime()
         {
-            // If the game is just starting, do not calculate the time.
-            // 
+            // If the game is just starting, do not calculate the time.  Otherwise, call a function will get the difference
+            //  and determine the challenge within the game.
             if (avgRecordTime_old != 0f)
                 CalculateUserAverageTime_TimeDifference();
 
