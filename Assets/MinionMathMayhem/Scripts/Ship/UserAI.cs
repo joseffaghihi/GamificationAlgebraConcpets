@@ -170,6 +170,12 @@ namespace MinionMathMayhem_Ship
                     avgRecordTime = Database_MinionLifeSpan_AverageTime();
                 // Reset the array index counter
                     counterMinionTime = 0;
+
+                // Verbose; debug stuff
+                    Debug.Log("Current Average Time Collected: " + avgRecordTime);
+                    Debug.Log("Previous Average Time Collected: " + avgRecordTime_old);
+                // ------
+
                 // Calculate the user's current average and previously stored average time.
                     // CalculateUserAverageTime()
             } // If
