@@ -22,7 +22,7 @@ public class GameProgress : MonoBehaviour
     {
         int obstacleNum = GetComponentInChildren<RandomNumberGenerator>().GetRandomNumber(); //Get the number attached to the obstacle
         int answer = GameObject.Find("Equation").GetComponent<EquationGenerator>().GetAnswer(); //Get the answer to the problem
-		
+
         if (collision.gameObject.tag == "Player" && obstacleNum == answer) //Correct Answer
         {
             gameController.clearedRound(); //Update Game Info

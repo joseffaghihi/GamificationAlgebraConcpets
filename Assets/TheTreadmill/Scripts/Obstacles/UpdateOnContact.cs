@@ -9,11 +9,24 @@ using UnityEngine.UI;
  */ 
 public class UpdateOnContact : MonoBehaviour 
 {
+    public Canvas flyingNumber;
+
     public void OnCollisionEnter(Collision collision)
     {
+
+        GameObject.Find("Equation").GetComponent<EquationGenerator>().Invoke("outputEquation", 8);
+        int num;
 		GameControl gameController = new GameControl();
         int obstacleNum = GetComponentInChildren<RandomNumberGenerator>().GetRandomNumber(); //Get the number attached to the obstacle
         int answer = GameObject.Find("Equation").GetComponent<EquationGenerator>().GetAnswer(); //Get the answer
+
+        //Create the flying Number
+        if(collision.gameObject.tag == "Player")
+        {
+            num = gameObject.GetComponentInChildren<RandomNumberGenerator>().GetRandomNumber(); //Get the number on the coin
+            GameObject number = (Instantiate(flyingNumber, gameObject.transform.position, Quaternion.identity) as GameObject);
+            GameObject.Find("FlyingNumber(Clone)").GetComponent<MoveNumber>().setNumber(num);
+        }
 
         if (collision.gameObject.tag == "Player" && obstacleNum == answer) //Correct Answer
         {

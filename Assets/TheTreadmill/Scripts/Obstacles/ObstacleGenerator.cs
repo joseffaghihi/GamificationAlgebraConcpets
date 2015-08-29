@@ -39,7 +39,7 @@ public class ObstacleGenerator : MonoBehaviour
 				if(gc.getDelayWave())
 				{
 					i = hazardCount;
-					waveWait = 5;
+					waveWait = 8;
 				}
                 yield return new WaitForSeconds(spawnWait);
             }
