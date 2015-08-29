@@ -30,9 +30,6 @@ public class GameProgress : MonoBehaviour
             //Instantiate Particle Effect
             (Instantiate(correctCoinEffect, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity) as GameObject).transform.parent =
                             GameObject.FindGameObjectWithTag("Player").transform;
-
-            //Create a new Equation
-            GameObject.Find("Equation").GetComponent<EquationGenerator>().outputEquation();
         }
         else //Wrong Answer
         {   
