@@ -397,6 +397,30 @@ namespace MinionMathMayhem_Ship
 
 
 
+
+
+        // =======================================================================
+        //                       USER PERFORMANCE SERVICER
+        // =======================================================================
+
+
+        /// <summary>
+        ///     This service checks the user's performance by comparing how many the user has right against what the user has incorrect.
+        ///     If the user has more incorrect responses than correct, or there's a certain critera where there's more incorrect responses -
+        ///     due to the user not understanding the game (in general), then this service will do the following:
+        ///         Provide movie tutorials (prompt user)
+        ///         Change the minion's spawn rate or minion speed
+        ///         Toggle the Dynamic Equation Generator's complexity level
+        /// </summary>
+        private void Daemon_UserPerformance()
+        {
+
+        } //Daemon_UserPerformance()
+
+
+
+
+
         // =======================================================================
         // =======================================================================
         // =======================================================================
