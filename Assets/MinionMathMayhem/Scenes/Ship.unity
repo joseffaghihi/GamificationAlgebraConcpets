@@ -5373,7 +5373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04518035c0388f42a22db8573ae86b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 60
+  spawnRate: 20
   gracePeriodTimer: 2.5
   scriptGameController: {fileID: 1430447470}
   scriptGameEvent: {fileID: 1430447472}
