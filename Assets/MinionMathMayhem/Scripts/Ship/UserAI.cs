@@ -405,17 +405,25 @@ namespace MinionMathMayhem_Ship
         //                       USER PERFORMANCE SERVICER
         // =======================================================================
 
-
+        
+            private int userPrefScoreCorrect;
+            private int userPrefScoreWrong;
         /// <summary>
-        ///     This service checks the user's performance by comparing how many the user has right against what the user has incorrect.
-        ///     If the user has more incorrect responses than correct, or there's a certain critera where there's more incorrect responses -
-        ///     due to the user not understanding the game (in general), then this service will do the following:
-        ///         Provide movie tutorials (prompt user)
-        ///         Change the minion's spawn rate or minion speed
-        ///         Toggle the Dynamic Equation Generator's complexity level
+        ///     This daemon servicer will determine how the game should interact with the player; this is done by anaylizing -
+        ///     the user's score and getting the user's grade (by precentage) and understand how well the end-user understands -
+        ///     the material presented.
+        /// 
+        ///     What this Controls:
+        ///         Toggle Dynamic Equation Generator's complexity level
+        ///         Change the Minion's speed
+        ///                 OR
+        ///         Change the Minion actor spawner
+        ///         Provide demonstration tutorials when needed
+        ///         Kick the player if foundation is bad
         /// </summary>
         private IEnumerator Daemon_UserPerformance()
         {
+
             yield return null;
         } //Daemon_UserPerformance()
 
