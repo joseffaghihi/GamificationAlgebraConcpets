@@ -143,6 +143,8 @@ namespace MinionMathMayhem_Ship
                         StartCoroutine(Daemon_MinionService());
                     // Spawner Service
                         StartCoroutine(Daemon_SpawnerService());
+                    // User Performance Service
+                        StartCoroutine(Daemon_UserPerformance());
                 yield return new WaitForSeconds(daemonUpdateFreq);
             } // While-Loop
         } // DaemonService()
@@ -412,9 +414,9 @@ namespace MinionMathMayhem_Ship
         ///         Change the minion's spawn rate or minion speed
         ///         Toggle the Dynamic Equation Generator's complexity level
         /// </summary>
-        private void Daemon_UserPerformance()
+        private IEnumerator Daemon_UserPerformance()
         {
-
+            yield return null;
         } //Daemon_UserPerformance()
 
 
