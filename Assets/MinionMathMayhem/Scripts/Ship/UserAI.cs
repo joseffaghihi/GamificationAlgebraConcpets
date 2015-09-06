@@ -92,6 +92,8 @@ namespace MinionMathMayhem_Ship
         {
             GameEvent.RequestGraceTime += GraceTimer;
             GameController.RequestGraceTime += GraceTimer;
+            Score.ScoreUpdate_Correct += Daemon_UserPerformance_IncrementCorrectScore;
+            Score.ScoreUpdate_Incorrect += Daemon_UserPerformance_IncrementWrongScore;
         } // OnEnable()
 
 
@@ -104,6 +106,8 @@ namespace MinionMathMayhem_Ship
         {
             GameEvent.RequestGraceTime -= GraceTimer;
             GameController.RequestGraceTime -= GraceTimer;
+            Score.ScoreUpdate_Correct -= Daemon_UserPerformance_IncrementCorrectScore;
+            Score.ScoreUpdate_Incorrect -= Daemon_UserPerformance_IncrementWrongScore;
         } // OnDisable()
 
 
