@@ -413,6 +413,7 @@ namespace MinionMathMayhem_Ship
             private int userPrefScoreCorrect = 0;
             private int userPrefScoreWrong = 0;
             private int userPrefScorePossible = 0;
+            private static short userPrefScorePossible_EnableAI = 10;
             // ----
                 // User Performance Array
                 private static short userPrefArrayIndexSize = 3;
@@ -435,7 +436,7 @@ namespace MinionMathMayhem_Ship
         private IEnumerator Daemon_UserPerformance()
         {
             // Only run when the possible points has reached a certain value.
-            if (userPrefScorePossible >= 10)
+            if (userPrefScorePossible >= userPrefScorePossible_EnableAI)
             {
                 // User understands the material thus far
                 if (!Daemon_UserPerformance_Array())
