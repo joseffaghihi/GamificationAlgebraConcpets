@@ -469,51 +469,52 @@ namespace MinionMathMayhem_Ship
             // Sorry for this long conditional, I couldn't find a nicer way to do this with a Switch statement :(
             if (95 < userGrade && userGrade <= 100)
             {
-                // Do something
+                // Skill Level: Very-High
             }
 
             else if (90 < userGrade && userGrade <= 95)
             {
-                // Do something
+                // Skill Level: Medium-High
             }
 
             else if (85 < userGrade && userGrade <= 90)
             {
-                // Do something
+                // Skill Level: Medium
             }
 
             else if (80 < userGrade && userGrade <= 85)
             {
-                // Do something
+                //   Skill Level: Medium-Low
             }
 
             else if (75 < userGrade && userGrade <= 80)
             {
-                // Do something
+                //  Skill Level: Low
             }
 
             else if (70 < userGrade && userGrade <= 75)
             {
-                // Do something
+                //  Skill Level: WeakFoundation - Low
             }
 
             else if (65 < userGrade && userGrade <= 70)
             {
-                // Do something
+                //  Skill Level: WeakFoundation - Medium
             }
 
             else if (60 < userGrade && userGrade <= 65)
             {
-                // Do something
+                //  Skill Level: WeakFoundation - High
             }
 
             else if (userGrade <= 60)
             {
-                // Do something
+                //  Skill Level: WeakFoundation - Failed
             }
 
             else
             {
+                // Incase the grade parameter is something unpredictable, output the error on the terminal.
                 Debug.Log("<!> ATTENTION: RUN AWAY DETECTED <!>");
                 Debug.Log("Using grade value of: " + userGrade);
             }
