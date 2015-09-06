@@ -410,9 +410,15 @@ namespace MinionMathMayhem_Ship
         // =======================================================================
 
         
-            private int userPrefScoreCorrect;
-            private int userPrefScoreWrong;
-            private int userPrefScorePossible;
+            private int userPrefScoreCorrect = 0;
+            private int userPrefScoreWrong = 0;
+            private int userPrefScorePossible = 0;
+            // ----
+                // User Performance Array
+                private static short userPrefArrayIndexSize = 3;
+                private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
+                private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
+            // ----
         /// <summary>
         ///     This daemon servicer will determine how the game should interact with the player; this is done by anaylizing -
         ///     the user's score and getting the user's grade (by precentage) and understand how well the end-user understands -
@@ -428,9 +434,56 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private IEnumerator Daemon_UserPerformance()
         {
+            // Only run when the possible points has reached a certain value.
+            if (userPrefScorePossible >= 10)
+            {
+                // User understands the material thus far
+                if (Daemon_UserPerformance_Array())
+                {
+                    
+                }
+
+                // User may not understand the material
+                else
+                {
+
+                }
+            }
 
             yield return null;
         } //Daemon_UserPerformance()
+
+
+
+        /// <summary>
+        ///     Check to make sure that the user understands the material
+        ///     This is done by managing the array which holds the user's performance.
+        /// </summary>
+        private bool Daemon_UserPerformance_Array()
+        {
+            return true;
+        } //
+
+
+
+        /// <summary>
+        ///     Update values within the array based on the user's actual performance.
+        /// 
+        ///     Array Index Value Key:
+        ///     True = Correct Answer
+        ///     False = Wrong Answer
+        /// </summary>
+        private void Daemon_UserPerformance_ArrayUpdateField(bool userFeedback)
+        {
+            // Make sure that we're not overflowing the array
+            if (userPrefArrayIndex_HighLight >= userPrefArrayIndexSize)
+                userPrefArrayIndex_HighLight = 0;
+
+            // Update the array at the highlighted index
+                userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
+            // Highlight the next index
+                userPrefArrayIndex_HighLight++;
+        } // Daemon_UserPerformance_ArrayUpdateField()
 
 
 
@@ -441,6 +494,8 @@ namespace MinionMathMayhem_Ship
         {
             userPrefScoreCorrect++;
 
+            // Update the array that holds the user performance
+                Daemon_UserPerformance_ArrayUpdateField(true);
             // Update the possible score
                 Daemon_UserPerformance_UpdatePossibleScore();
 
@@ -455,6 +510,8 @@ namespace MinionMathMayhem_Ship
         {
             userPrefScoreWrong++;
 
+            // Update the array that holds the user performance
+                Daemon_UserPerformance_ArrayUpdateField(false);
             // Update the possible score
                 Daemon_UserPerformance_UpdatePossibleScore();
         } // Daemon_UserPerformance_IncrementWrongScore()
