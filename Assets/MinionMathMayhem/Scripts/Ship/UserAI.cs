@@ -408,6 +408,7 @@ namespace MinionMathMayhem_Ship
         
             private int userPrefScoreCorrect;
             private int userPrefScoreWrong;
+            private int userPrefScorePossible;
         /// <summary>
         ///     This daemon servicer will determine how the game should interact with the player; this is done by anaylizing -
         ///     the user's score and getting the user's grade (by precentage) and understand how well the end-user understands -
@@ -427,6 +428,54 @@ namespace MinionMathMayhem_Ship
             yield return null;
         } //Daemon_UserPerformance()
 
+
+
+        /// <summary>
+        ///     Update the correct score for the Daemon service
+        /// </summary>
+        private void Daemon_UserPerformance_IncrementCorrectScore()
+        {
+            userPrefScoreCorrect++;
+
+            // Update the possible score
+                Daemon_UserPerformance_UpdatePossibleScore();
+
+        } // Daemon_UserPerformance_IncrementCorrectScore()
+
+
+
+        /// <summary>
+        ///     Update the incorrect score for the Daemon service
+        /// </summary>
+        private void Daemon_UserPerformance_IncrementWrongScore()
+        {
+            userPrefScoreWrong++;
+
+            // Update the possible score
+                Daemon_UserPerformance_UpdatePossibleScore();
+        } // Daemon_UserPerformance_IncrementWrongScore()
+
+
+
+        /// <summary>
+        ///     Update the possible score possible by adding the scores.
+        /// </summary>
+        private void Daemon_UserPerformance_UpdatePossibleScore()
+        {
+            userPrefScorePossible = (userPrefScoreCorrect + userPrefScoreWrong);
+        } // Daemon_UserPerformance_UpdatePossibleScore()
+
+
+
+        /// <summary>
+        ///     This will reset the scores; game restarted
+        /// </summary>
+        private void Daemon_UserPerformance_ResetAllScores()
+        {
+            userPrefScorePossible = 0;
+            userPrefScoreCorrect = 0;
+            userPrefScoreWrong = 0;
+        } // Daemon_UserPerformance_ResetAllScores()
 
 
 
