@@ -455,14 +455,29 @@ namespace MinionMathMayhem_Ship
 
 
 
+
         /// <summary>
-        ///     Check to make sure that the user understands the material
-        ///     This is done by managing the array which holds the user's performance.
+        ///     Check to make sure that the user understands the material.
+        ///     This is done by managing the array which holds the user's performance
         /// </summary>
+        /// <returns>
+        ///     True = User did not understand the material\n
+        ///     False = User understands the material
+        /// </returns>
         private bool Daemon_UserPerformance_Array()
         {
-            return true;
-        } //
+            short userIncorrectAnswers = 0;
+            // Read the array and make sure that the user understands the material
+            for (short i = 0; i <= userPrefArrayIndexSize; ++i)
+                if (userPrefArray[i] == false)
+                    userIncorrectAnswers++;
+
+            // User may not have understood the material or is having difficulties
+            if (userIncorrectAnswers == userPrefArrayIndexSize)
+                return true;
+            else
+                return false;
+        } // Daemon_UserPerformance_Array()
 
 
 
@@ -475,7 +490,7 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void Daemon_UserPerformance_ArrayUpdateField(bool userFeedback)
         {
-            // Make sure that we're not overflowing the array
+            // Make sure that we're not overflowing the array, move the highlight to the start of the index if needed.
             if (userPrefArrayIndex_HighLight >= userPrefArrayIndexSize)
                 userPrefArrayIndex_HighLight = 0;
 
