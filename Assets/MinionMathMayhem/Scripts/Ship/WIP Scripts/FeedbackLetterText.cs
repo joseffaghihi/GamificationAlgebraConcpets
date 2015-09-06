@@ -18,6 +18,6 @@ public class FeedbackLetterText : MonoBehaviour {
 	// Update is called once per frame
 	// Sets answer text
 	void Update () {
-		text.text = answerText.text;
+		text = answerText;
 	}
 }

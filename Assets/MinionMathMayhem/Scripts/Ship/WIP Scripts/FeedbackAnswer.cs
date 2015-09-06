@@ -11,8 +11,8 @@ public class FeedbackAnswer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		text = GetComponent<Text>().text;
-		answerText = answerObject.GetComponent<Text>().text;
+		text = GetComponent<Text>();
+		answerText = answerObject.GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
