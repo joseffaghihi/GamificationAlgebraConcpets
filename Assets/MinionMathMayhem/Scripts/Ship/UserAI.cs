@@ -438,7 +438,7 @@ namespace MinionMathMayhem_Ship
             if (userPrefScorePossible >= 10)
             {
                 // User understands the material thus far
-                if (Daemon_UserPerformance_Array())
+                if (!Daemon_UserPerformance_Array())
                 {
                     
                 }
