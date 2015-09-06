@@ -420,6 +420,13 @@ namespace MinionMathMayhem_Ship
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
                 private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
             // ----
+
+        // BITFIELD EMULATED IDENTIFIER
+        // 0 - Empty or Default
+        // 1 - Minion Speed has changed
+        // 2 - Spawner Frequency
+            private short userPrefChallenge = 0;
+
         /// <summary>
         ///     This daemon servicer will determine how the game should interact with the player; this is done by anaylizing -
         ///     the user's score and getting the user's grade (by precentage) and understand how well the end-user understands -
