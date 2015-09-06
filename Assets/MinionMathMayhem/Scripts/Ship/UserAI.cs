@@ -440,20 +440,77 @@ namespace MinionMathMayhem_Ship
             {
                 // User understands the material thus far
                 if (!Daemon_UserPerformance_Array())
-                {
-                    
-                }
+                    Daemon_UserPerformance_PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
 
                 // User may not understand the material
                 else
                 {
-
+                    // Do something
                 }
-            }
+            } // if
 
             yield return null;
         } //Daemon_UserPerformance()
 
+
+
+        /// <summary>
+        ///     This function will scan its internal library and determine how to control the environment based on the user's grade.
+        /// </summary>
+        private void Daemon_UserPerformance_PerformanceGradingLibrary(int userGrade)
+        {
+            // Sorry for this long conditional, I couldn't find a nicer way to do this with a Switch statement :(
+            if (95 < userGrade && userGrade <= 100)
+            {
+                // Do something
+            }
+
+            else if (90 < userGrade && userGrade <= 95)
+            {
+                // Do something
+            }
+
+            else if (85 < userGrade && userGrade <= 90)
+            {
+                // Do something
+            }
+
+            else if (80 < userGrade && userGrade <= 85)
+            {
+                // Do something
+            }
+
+            else if (75 < userGrade && userGrade <= 80)
+            {
+                // Do something
+            }
+
+            else if (70 < userGrade && userGrade <= 75)
+            {
+                // Do something
+            }
+
+            else if (65 < userGrade && userGrade <= 70)
+            {
+                // Do something
+            }
+
+            else if (60 < userGrade && userGrade <= 65)
+            {
+                // Do something
+            }
+
+            else if (userGrade <= 60)
+            {
+                // Do something
+            }
+
+            else
+            {
+                Debug.Log("<!> ATTENTION: RUN AWAY DETECTED <!>");
+                Debug.Log("Using grade value of: " + userGrade);
+            }
+        } // Daemon_UserPerformance_PerformanceGradingLibrary()
 
 
 
