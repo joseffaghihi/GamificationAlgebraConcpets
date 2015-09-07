@@ -80,6 +80,12 @@ namespace MinionMathMayhem_Ship
                     // Send Signal: Instantiate minions
                         public delegate void SummonMinionBatchSignal();
                         public static event SummonMinionBatchSignal SummonMinion_Batches;
+                // Minion Speed
+                    public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
+                    public static event MinionSpeedDelegate MinionSpeed;
+                // Spawner Frequency
+                    public delegate void SpawnerFequencyDelegate(int frequencyLevel);
+                    public static event SpawnerFequencyDelegate SpawnerFrequency;
         // ---------------------------------
 
 
