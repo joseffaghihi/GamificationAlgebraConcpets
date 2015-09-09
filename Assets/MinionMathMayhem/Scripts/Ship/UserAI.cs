@@ -150,9 +150,9 @@ namespace MinionMathMayhem_Ship
             {
                 // Request update on the following functions:
                     // Minion Service
-                        StartCoroutine(Daemon_MinionService());
+                        //StartCoroutine(Daemon_MinionService());
                     // Spawner Service
-                        StartCoroutine(Daemon_SpawnerService());
+                        //StartCoroutine(Daemon_SpawnerService());
                     // User Performance Service
                         StartCoroutine(Daemon_UserPerformance());
                 yield return new WaitForSeconds(daemonUpdateFreq);
