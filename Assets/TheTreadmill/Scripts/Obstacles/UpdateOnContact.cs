@@ -14,8 +14,8 @@ public class UpdateOnContact : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
 
-        GameObject.Find("Equation").GetComponent<EquationGenerator>().Invoke("outputEquation", 8);
-        int num;
+        GameObject.Find("Equation").GetComponent<EquationGenerator>().Invoke("outputEquation", 8); //Create new Equation whenever the player collides with a coin
+        int num; //Store number on coin
 		GameControl gameController = new GameControl();
         int obstacleNum = GetComponentInChildren<RandomNumberGenerator>().GetRandomNumber(); //Get the number attached to the obstacle
         int answer = GameObject.Find("Equation").GetComponent<EquationGenerator>().GetAnswer(); //Get the answer
@@ -33,9 +33,6 @@ public class UpdateOnContact : MonoBehaviour
             //Update gameController
             gameController.correctAnswer(true); //Correct Answer
             gameController.clearedRound(); //Cleared a round
-
-            //Create new equation
-            GameObject.Find("Equation").GetComponent<EquationGenerator>().outputEquation();
         }
         else if(collision.gameObject.tag == "Player") //Wrong Answer
         {
