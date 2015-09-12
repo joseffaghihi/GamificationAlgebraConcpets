@@ -20,12 +20,23 @@ namespace MinionMathMayhem_Ship
 		public float seconds = 0.0f; // initial value for seconds used in Coroutine
 		public float addedSeconds = 0.0f;
 
-		// Use this for initialization
+        // Use this for initialization
+        // Initializes letter, equals, answer, and control
+        // gameObjects and will print out the corresponding
+        // warnings in console if initializations fail
 		void Awake () {
 			letter = GameObject.Find("fb_letter");
+            if (letter == null)
+                Debug.Log("letter not found!");
 			equals = GameObject.Find("fb_equals");
+            if (equals == null)
+                Debug.Log("equals not found!");
 			answer = GameObject.Find("fb_answer");
+            if (answer == null)
+                Debug.Log("answer not found!");
 			control = GameObject.Find ("fb_control");
+            if (control == null)
+                Debug.Log("control not found!");
 		}
 
 		// Initializing Activator scripts on Feedback UI gameObjects------------------come back to this ----------------------------- check
@@ -64,6 +75,9 @@ namespace MinionMathMayhem_Ship
 		{
 			StartCoroutine ("FeedbackAnimationsPlay");
 		}
+
+        // Subscriptions to delegates and events
+        
 
 	} // End class
 } // End namespace

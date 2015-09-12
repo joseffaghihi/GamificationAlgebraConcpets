@@ -37,12 +37,16 @@ namespace MinionMathMayhem_Ship
                 // Animations
                     // What-Is Index Object
                         private Animator eventLetterAnim; // [DC]
+            // Feedback Animations Component
+                   private FeedbackAnimations feedbackAnims; // -------DC------- // 9/11/15
 
             // GameObjects
                 // Quadratic Equation Updated; 'What Is' message
                     public GameObject msgWhatIs;
                 // Event Letter Change
                     public GameObject EventLetterChange;
+        // Feedback Canvas Controller
+                     public GameObject feedbackController; // -------DC------- // 9/11/15
             // Accessors and Communication
                 // Final Destroyer
                     public FinalDestroyer scriptFinalDestroyer;
@@ -98,6 +102,8 @@ namespace MinionMathMayhem_Ship
                     eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the what-is text G.O. and gets the animator.
                 // Positive text
 			        textDrop = GetComponent<PositiveTextDrop>();
+            // feedback animation
+                    feedbackAnims = feedbackController.GetComponent<FeedbackAnimations>(); // -------DC------- // 9/11/15
         } // Awake()
 
 
@@ -129,6 +135,8 @@ namespace MinionMathMayhem_Ship
         // When the user has the correct answer, this function will be executed
         private IEnumerator AnswerCorrect()
         {
+            // Play feedback Animations
+                feedbackAnims.FeedbackAnimsPlay(); // -------DC------- // 9/11/15
             // Update the score
                 AnswerCorrect_UpdateScore();
             // Pause the spawners

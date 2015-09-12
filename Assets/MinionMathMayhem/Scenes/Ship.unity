@@ -5953,7 +5953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movieRenderer: {fileID: 0}
   movieTexture: {fileID: 0}
-  tutorialSkip: 0
+  tutorialSkip: 1
 --- !u!82 &964868986
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8296,6 +8296,7 @@ MonoBehaviour:
   gameOverSound: {fileID: 8300000, guid: 6b2f4111365644f72b2d2c1f949f9103, type: 3}
   msgWhatIs: {fileID: 491266297}
   EventLetterChange: {fileID: 2021063920}
+  feedbackController: {fileID: 304027668}
   scriptFinalDestroyer: {fileID: 63528817}
   scriptLetterBox: {fileID: 1750759271}
   scriptEventLetterChange: {fileID: 2021063926}
@@ -11298,8 +11299,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.13623035, y: .0469370149, z: .00645073736, w: .989543676}
-  m_LocalPosition: {x: 119.522972, y: -337.897675, z: -746.666565}
+  m_LocalRotation: {x: .114085041, y: .36518389, z: .0451351702, w: -.922815382}
+  m_LocalPosition: {x: 238.640701, y: -142.748718, z: -259.392456}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
@@ -12517,8 +12518,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
+  m_LocalRotation: {x: .114085041, y: .36518389, z: .0451351702, w: -.922815382}
+  m_LocalPosition: {x: 238.640701, y: -142.748718, z: -259.392456}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}
