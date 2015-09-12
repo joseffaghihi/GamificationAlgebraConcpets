@@ -22,7 +22,9 @@ namespace MinionMathMayhem_Ship
 			anim.SetTrigger("Push");
 		}
 
-		// Accessor for Feedback Animations to call PlayAnswerAnimation()
+		//  for Feedback Animations to call PlayAnswerAnimation()
+		// Plays the animation on the number answer object 
+		// in the feedback canvas
 		public void PlayAnswerAnim()
 		{
 			PlayAnswerAnimation ();

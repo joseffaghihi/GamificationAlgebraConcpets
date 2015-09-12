@@ -24,7 +24,8 @@ namespace MinionMathMayhem_Ship
 			anim.SetTrigger ("Push");
 		}
 
-		// Accessor for FeedbackAnimations script to call PlayLetterAnimation()
+		// Public function for FeedbackAnimations script to call PlayLetterAnimation()
+		// WIll play the one animation on the Feedback Canvas' Letter display object
 		public void PlayLetterAnim()
 		{
 			PlayLetterAnimation ();

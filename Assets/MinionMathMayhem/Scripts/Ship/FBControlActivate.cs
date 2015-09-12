@@ -13,17 +13,20 @@ namespace MinionMathMayhem_Ship
 
 		void Awake()
 		{
-			// initialize animator
+			// initializes animator
 			controlAnim = GetComponent<Animator>();
 		}
 
-		// Plays the animation on the control object by setting the trigger in the animator for the fb_control
+		// Plays the one animation on the control object by 
+		// setting the trigger in the animator for the fb_control
 		private void PlayControlAnimation()
 		{
 			controlAnim.SetTrigger ("Push");
 		}
 
-		// Accessor for FeedbackAnimations to call PlayControlAnimation()
+		// THis function calls the private function PlayControlAnimation()
+		// the fb_control object will play its one animation and then go
+		// back to its default position
 		public void PlayControlAnim()
 		{
 			PlayControlAnimation ();

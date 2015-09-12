@@ -22,7 +22,8 @@ namespace MinionMathMayhem_Ship
 			anim.SetTrigger ("Push");
 		}
 
-		// Accessor for FeedbackAnimations script to call PlayEqualsAnimation()
+		// For FeedbackAnimations script to call PlayEqualsAnimation()
+		// on the '=' sign on the feedback canvas
 		public void PlayEqualsAnim()
 		{
 			PlayEqualsAnimation ();

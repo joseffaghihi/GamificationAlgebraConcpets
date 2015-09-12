@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿// This script supplies the fb_answer object with the correct number
+// matching the A,B, or C in the quadratic equation textbox.
+// Whichever one the top-right UI element is asking for, this script provides
+// the answer
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 

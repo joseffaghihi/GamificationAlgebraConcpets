@@ -57,7 +57,9 @@ namespace MinionMathMayhem_Ship
 			controlActivator.PlayControlAnim();
 		}
 
-		// Accessor that allows other scripts to call FeedbackAnimationsPlay()
+		// When called, this function displays an animation that gives the user feedback
+		// The feedback is when the user gets the correct answer, 'A = 12' or whatever
+		// The value is will be displayed on the screen
 		public void FeedbackAnimsPlay()
 		{
 			StartCoroutine ("FeedbackAnimationsPlay");
