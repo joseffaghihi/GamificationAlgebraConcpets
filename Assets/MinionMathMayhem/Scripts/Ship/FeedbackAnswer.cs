@@ -12,24 +12,26 @@ namespace MinionMathMayhem_Ship
     public class FeedbackAnswer : MonoBehaviour
     {
         private Text text;
-        // This is for supplying the fb_answer with the right number
-        // But it doesn't work yet // -------DC------- // 9/11/15
-        // private Text answerText;
-
-        // This variable is a reference to the A,B, or C textbox
-        public GameObject answerObject;
 
         // Use this for initialization
         void Start()
         {
             text = GetComponent<Text>();
-            // answerText = answerObject.GetComponent<Text>(); // -------DC------- // 9/11/15
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            // text = answerText; // -------DC------- // 9/11/15
-        }
+		// Public functions for other classes
+		// to call Feedback Letter Change
+		public void Access_FeedbackNumberChange(int answer)
+		{
+			FeedbackNumberChange(answer);
+		}
+
+		// Changes the feedback letter
+		// a, b, or c so when it is displayed, it will have
+		// the right correct number inside
+		private void FeedbackNumberChange(int answer)
+		{
+			text.text = answer.ToString ();
+		}
     } // class
 } // namepace

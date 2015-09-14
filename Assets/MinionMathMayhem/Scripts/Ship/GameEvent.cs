@@ -41,7 +41,13 @@ namespace MinionMathMayhem_Ship
                    private FeedbackAnimations feedbackAnims; // -------DC------- // 9/11/15
 
             // GameObjects
-                // Quadratic Equation Updated; 'What Is' message
+				// Feedback answer 
+					public GameObject feedbackAnswer;
+					FeedbackAnswer answerFeed;
+				// Feedback letter
+					public GameObject feedbackLetter;
+					FeedbackLetterText letterFeed;
+        	    // Quadratic Equation Updated; 'What Is' message
                     public GameObject msgWhatIs;
                 // Event Letter Change
                     public GameObject EventLetterChange;
@@ -102,6 +108,9 @@ namespace MinionMathMayhem_Ship
                     eventLetterAnim = msgWhatIs.GetComponent<Animator>(); // finds the what-is text G.O. and gets the animator.
                 // Positive text
 			        textDrop = GetComponent<PositiveTextDrop>();
+				// FeedbackAnswer script on the feedbackAnswer gameObject
+					answerFeed = feedbackAnswer.GetComponent<FeedbackAnswer>();
+					letterFeed = feedbackLetter.GetComponent<FeedbackLetterText>();
             // feedback animation
                     feedbackAnims = feedbackController.GetComponent<FeedbackAnimations>(); // -------DC------- // 9/11/15
         } // Awake()
@@ -135,14 +144,18 @@ namespace MinionMathMayhem_Ship
         // When the user has the correct answer, this function will be executed
         private IEnumerator AnswerCorrect()
         {
-            // Play feedback Animations
-                feedbackAnims.FeedbackAnimsPlay(); // -------DC------- // 9/11/15
+			// Changes the fb_answers text to the right number
+			answerFeed.Access_FeedbackNumberChange(GetQuadraticEquation_Index());
+			letterFeed.Access_FeedbackLetterChange(scriptLetterBox.Access_SelectedIndex);
+			Debug.Log ("Too the loom!");
             // Update the score
                 AnswerCorrect_UpdateScore();
             // Pause the spawners
                 SpawnerToggleValue();
             // Murder the minions!
                 MinionGenocide();
+			// Play feedback Animations
+				feedbackAnims.FeedbackAnimsPlay(); // -------DC------- // 9/11/15
             // Slight pause
                 yield return (StartCoroutine(WaitTimer(0.5f)));
             // Is the game over?
@@ -285,8 +298,8 @@ namespace MinionMathMayhem_Ship
         } // SpawnerToggleValue()
 
 
-
         // When invoked, this will return the current Quadratic index used in the Letter Box
+
         private int GetQuadraticEquation_Index()
         {
 

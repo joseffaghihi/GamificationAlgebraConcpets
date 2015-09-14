@@ -1753,13 +1753,31 @@ GameObject:
   - 224: {fileID: 216495169}
   - 222: {fileID: 216495168}
   - 114: {fileID: 216495170}
+  - 95: {fileID: 216495167}
   m_Layer: 5
   m_Name: fb_control
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &216495167
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 216495166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca13688c9b5fe4564b46763a31dcd8c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!222 &216495168
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1784,7 +1802,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -25.2763977}
-  m_SizeDelta: {x: 660, y: 280}
+  m_SizeDelta: {x: 500, y: 280}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &216495170
 MonoBehaviour:
@@ -2054,7 +2072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffd8ef5324995749b8696c54cdb5d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerObject: {fileID: 0}
 --- !u!95 &237376109
 Animator:
   serializedVersion: 3
@@ -2458,7 +2475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seconds: .300000012
-  addedSeconds: .200000003
+  addedSeconds: 1
 --- !u!1001 &314032793
 Prefab:
   m_ObjectHideFlags: 0
@@ -2888,6 +2905,7 @@ GameObject:
   - 114: {fileID: 498031637}
   - 95: {fileID: 498031640}
   - 114: {fileID: 498031641}
+  - 114: {fileID: 498031642}
   m_Layer: 5
   m_Name: fb_letter
   m_TagString: Untagged
@@ -2990,6 +3008,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49c5ecc0cc51b48e1b940bf4ccb0c422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &498031642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 498031635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b873ad4e61b1ae4fa0f93f59b902483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &534369030
@@ -8178,7 +8207,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1413348219}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 56.7999992, y: .300000012, z: 187.699997}
+  m_LocalPosition: {x: 56.7999992, y: 1.10000002, z: 187.699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 670818320}
@@ -8379,6 +8408,8 @@ MonoBehaviour:
   gameSounds: {fileID: 0}
   failSound: {fileID: 8300000, guid: 255a83748e196450ab7e08826f77aa40, type: 3}
   gameOverSound: {fileID: 8300000, guid: 6b2f4111365644f72b2d2c1f949f9103, type: 3}
+  feedbackAnswer: {fileID: 237376103}
+  feedbackLetter: {fileID: 498031635}
   msgWhatIs: {fileID: 491266297}
   EventLetterChange: {fileID: 2021063920}
   feedbackController: {fileID: 304027668}
@@ -11469,8 +11500,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0570346192, y: .0921173617, z: .00527418638, w: .994099438}
-  m_LocalPosition: {x: -31.8751717, y: -17.7241669, z: -71.230751}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}

@@ -100,8 +100,6 @@ namespace MinionMathMayhem_Ship
                 gameTutorialEnded = !gameTutorialEnded;
         } // TutorialMode_Ended()
 
-
-
         // This function is immediately executed once the actor is in the game scene.
         private void Start()
         {
