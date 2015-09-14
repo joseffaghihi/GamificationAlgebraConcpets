@@ -85,7 +85,7 @@ namespace MinionMathMayhem_Ship
         // This function will only merely update the score canvas string that is being displayed in the scene as a HUD
         private void UpdateScoreDisplay()
         {
-            scoreBox.text = "Score: " + scoreCorrect.ToString();
+            scoreBox.text = scoreCorrect.ToString(); // -------------- DC ---------------- // 9/12/15
         } // UpdateScoreDisplay()
 
 
@@ -93,7 +93,7 @@ namespace MinionMathMayhem_Ship
         // This function will update the incorrect score canvas string that is on the HUD
         private void UpdateWrongScoreDisplay()
         {
-            wrongScoreBox.text = "Oopsies: " + scoreIncorrect.ToString();
+			wrongScoreBox.text = scoreIncorrect.ToString(); // -------------- DC ---------------- // 9/12/15
         } // UpdateWrongScoreDisplay()
 
 

@@ -66,6 +66,7 @@ namespace MinionMathMayhem_Ship
 			answerActivator.PlayAnswerAnim();
 			yield return new WaitForSeconds(seconds + addedSeconds);
 			controlActivator.PlayControlAnim();
+			yield return null;
 		}
 
 		// When called, this function displays an animation that gives the user feedback
@@ -73,7 +74,8 @@ namespace MinionMathMayhem_Ship
 		// The value is will be displayed on the screen
 		public void FeedbackAnimsPlay()
 		{
-			StartCoroutine ("FeedbackAnimationsPlay");
+			// seconds in the argument is the global seconds variable
+			StartCoroutine (FeedbackAnimationsPlay(seconds)); 
 		}
 
         // Subscriptions to delegates and events
