@@ -39,8 +39,15 @@ namespace MinionMathMayhem_Ship
                         private Animator eventLetterAnim; // [DC]
             // Feedback Animations Component
                    private FeedbackAnimations feedbackAnims; // -------DC------- // 9/11/15
+			//score and wrongScore animator components
+					private Animator scoreAnim;
+					private Animator wrongScoreAnim;
 
             // GameObjects
+		// Score GameObject
+		public GameObject score;
+		// wrongScore gameObject
+		public GameObject wrongScore;
 				// Feedback answer 
 					public GameObject feedbackAnswer;
 					FeedbackAnswer answerFeed;
@@ -73,6 +80,10 @@ namespace MinionMathMayhem_Ship
                 // Request Grace-Time Period; Broadcast Event
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;
+		public GameObject scoreText;
+		public GameObject wrongScoreText;
+		private Animator scoreTextAnim;
+		private Animator wrongScoreTextAnim;
         // ----
 
 
@@ -113,6 +124,12 @@ namespace MinionMathMayhem_Ship
 					letterFeed = feedbackLetter.GetComponent<FeedbackLetterText>();
             // feedback animation
                     feedbackAnims = feedbackController.GetComponent<FeedbackAnimations>(); // -------DC------- // 9/11/15
+			// score and wrongScore animator initializations;
+					scoreAnim = score.GetComponent<Animator>();
+					wrongScoreAnim = wrongScore.GetComponent<Animator>();
+			// score and wrongScore animators
+			scoreTextAnim = scoreText.GetComponent<Animator>();
+			wrongScoreTextAnim = wrongScoreText.GetComponent<Animator>();
         } // Awake()
 
 
@@ -143,17 +160,23 @@ namespace MinionMathMayhem_Ship
 
         // When the user has the correct answer, this function will be executed
         private IEnumerator AnswerCorrect()
-        {
-			// Changes the fb_answers text to the right number
-			answerFeed.Access_FeedbackNumberChange(GetQuadraticEquation_Index());
-			letterFeed.Access_FeedbackLetterChange(scriptLetterBox.Access_SelectedIndex);
-			Debug.Log ("Too the loom!");
-            // Update the score
+        {	
+			// Activates the scorepop animation on the Score_img gameObject
+			scoreAnim.SetTrigger ("ScorePop");
+			yield return new WaitForSeconds(.05f);
+			scoreTextAnim.SetTrigger ("ScorePop");
                 AnswerCorrect_UpdateScore();
             // Pause the spawners
                 SpawnerToggleValue();
             // Murder the minions!
                 MinionGenocide();
+			// [DC] drops in the correct text
+				textDrop.Drop ();
+			yield return new WaitForSeconds(2.0f);
+			// Changes the fb_answers text to the right number
+			answerFeed.Access_FeedbackNumberChange(GetQuadraticEquation_Index());
+			letterFeed.Access_FeedbackLetterChange(scriptLetterBox.Access_SelectedIndex);
+			// Update the score
 			// Play feedback Animations
 				feedbackAnims.FeedbackAnimsPlay(); // -------DC------- // 9/11/15
             // Slight pause
@@ -163,10 +186,8 @@ namespace MinionMathMayhem_Ship
                 {
                     // Generate a new equation
                         AnswerCorrect_Generate();
-                    // [DC] drops in the correct text
-						textDrop.Drop ();
                     // Delay
-                        yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(2.0f);
                     // Display the 'What-is' messages
                         DisplayWhatIsHUD();
                     // Issue a delay before activating the spawners.
@@ -275,6 +296,8 @@ namespace MinionMathMayhem_Ship
         private void AnswerIncorrect()
         {
             // Update the score
+				wrongScoreAnim.SetTrigger ("OopsiesPop");
+				wrongScoreTextAnim.SetTrigger ("WrongPop");
                 scriptScore.AccessUpdateScoreIncorrect();
             // Play Sounds
                 AnswerIncorrect_Sounds();

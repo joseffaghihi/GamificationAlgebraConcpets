@@ -19,6 +19,8 @@ namespace MinionMathMayhem_Ship
 
 		public float seconds = 0.0f; // initial value for seconds used in Coroutine
 		public float addedSeconds = 0.0f;
+		public float finalSeconds = 0.0f; // finals seconds for the end of the text drop
+										  // should halt the next animation from playing
 
         // Use this for initialization
         // Initializes letter, equals, answer, and control
@@ -66,8 +68,10 @@ namespace MinionMathMayhem_Ship
 			answerActivator.PlayAnswerAnim();
 			yield return new WaitForSeconds(seconds + addedSeconds);
 			controlActivator.PlayControlAnim();
-			yield return null;
+			resetToEmpty();
+			yield return new WaitForSeconds(finalSeconds);
 		}
+
 
 		// When called, this function displays an animation that gives the user feedback
 		// The feedback is when the user gets the correct answer, 'A = 12' or whatever
@@ -80,6 +84,10 @@ namespace MinionMathMayhem_Ship
 
         // Subscriptions to delegates and events
         
-
+		// The purpose of this delegate will have the text of each
+		// feedback animation part, which are the 
+		// fb_control, fb_equals, and fb_answer set back to an empty string
+		public delegate void ResetToEmpty();
+		public static event ResetToEmpty resetToEmpty;
 	} // End class
 } // End namespace

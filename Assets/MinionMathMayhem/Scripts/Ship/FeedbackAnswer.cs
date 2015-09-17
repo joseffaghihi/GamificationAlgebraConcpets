@@ -13,11 +13,35 @@ namespace MinionMathMayhem_Ship
     {
         private Text text;
 
+
+		void OnEnable()
+		{
+			// subscribes the reset function to the deletage
+			// in the FeedbackAnimations class
+			FeedbackAnimations.resetToEmpty += Reset;
+		}
+
+		void OnDisable()
+		{
+			// unsubscribes the reset function from the
+			// resetToEmpty delegate variable
+			FeedbackAnimations.resetToEmpty -= Reset;
+		}
+
         // Use this for initialization
         void Start()
         {
+			// text initialized to the text componenet on
+			// the fb_answer gameObject
             text = GetComponent<Text>();
         }
+
+		// This function empties the text component's
+		// text
+		private void Reset()
+		{
+			text.text = "";
+		}
 
 		// Public functions for other classes
 		// to call Feedback Letter Change
