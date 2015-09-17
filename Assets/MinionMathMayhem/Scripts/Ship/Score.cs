@@ -73,7 +73,9 @@ namespace MinionMathMayhem_Ship
         private void UpdateScoreCorrect()
         {
             // Increment the score of what the user got right.
-                scoreCorrect++;
+			// updated 9/17/15 so the user gets 10 points for
+			// every correct answer instead of just 1 point
+                scoreCorrect+=10;
             // Update the 'Correct' score on the HUD
                 UpdateScoreDisplay();   
             // Get the new percentage of the score

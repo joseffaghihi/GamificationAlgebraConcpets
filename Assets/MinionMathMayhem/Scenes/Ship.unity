@@ -8399,7 +8399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3355969d1b1944d95aae38efced41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScore: 5
+  maxScore: 100
   maxScoreFail: 5
   textWinOrLose: {fileID: 1398285122}
   scriptScore: {fileID: 1430447471}
