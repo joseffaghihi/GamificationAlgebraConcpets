@@ -28,6 +28,12 @@ namespace MinionMathMayhem_Ship
                 private double scoreCorrectPercent = 0.0;
                 private double scoreIncorrectPercent = 0.0;
 
+		// Play Tutorial Again
+		// ---------------------------------
+				private GameObject playTutAgainCanvas;
+				private int trackingScore = 0; // tracker variable used to initialize display of tutorial and view tutorial again options
+				
+
             // Accessors and Communication
                 // HUD: Score box
                     public Text scoreBox;
@@ -58,7 +64,12 @@ namespace MinionMathMayhem_Ship
                 GameController.GameStateRestart -= Reset;
         } // OnDisable()
 
-
+		private void Awake()
+		{
+w			playTutAgainCanvas = GameObject.FindGameObjectWithTag();
+			if (playTutAgainCanvas == null)
+				Debug.Log ("playTutAgainCanvas was not initialized");
+		}
 
         // This function is immediately executed once the actor is in the game scene.
         private void Start()
@@ -105,6 +116,8 @@ namespace MinionMathMayhem_Ship
         {
             // Increment the score of what the user got wrong.
                 scoreIncorrect++;
+			// Increment trackingScore ------------------------------------- DC -------------- // 9/19/15
+				trackingScore++;//----------------------------------------------------------------------------------------------------------
             // Update the 'Incorrect' score on the HUD
                 UpdateWrongScoreDisplay();
             // Get the new percentage of the score
