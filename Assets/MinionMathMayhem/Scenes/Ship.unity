@@ -385,8 +385,9 @@ GameObject:
   - 222: {fileID: 49450191}
   - 114: {fileID: 49450190}
   - 114: {fileID: 49450189}
+  - 114: {fileID: 49450192}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,8 +449,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Press
+      - m_Target: {fileID: 49450192}
+        m_MethodName: Access_ClickExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -494,6 +495,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 49450187}
+--- !u!114 &49450192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 49450187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae823ca5ffb4e9f88469bef067567c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSource: {fileID: 648950080}
 --- !u!1 &58658925 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b760b7975038240539d8daa9a5098b13, type: 3}
@@ -13563,7 +13576,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 151.904373, y: -97.2622223, z: -440.686768}
+  m_LocalPosition: {x: 151.904373, y: -97.2622223, z: -601.247437}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}
