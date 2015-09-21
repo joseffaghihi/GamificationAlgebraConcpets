@@ -4590,6 +4590,7 @@ GameObject:
   - 222: {fileID: 751666635}
   - 114: {fileID: 751666634}
   - 114: {fileID: 751666633}
+  - 114: {fileID: 751666636}
   m_Layer: 5
   m_Name: GoForward
   m_TagString: Untagged
@@ -4688,6 +4689,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751666631}
+--- !u!114 &751666636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751666631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67aaa5fd62212468496e1bf2fdf82b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &778220806
 Prefab:
   m_ObjectHideFlags: 0
@@ -6080,6 +6092,7 @@ GameObject:
   - 222: {fileID: 880269267}
   - 114: {fileID: 880269266}
   - 114: {fileID: 880269265}
+  - 114: {fileID: 880269268}
   m_Layer: 5
   m_Name: GoBack
   m_TagString: Untagged
@@ -6178,6 +6191,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 880269263}
+--- !u!114 &880269268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 880269263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08fbc14fd639349a990684dc9585df63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &899403380
 Prefab:
   m_ObjectHideFlags: 0

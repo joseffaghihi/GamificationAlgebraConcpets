@@ -65,10 +65,11 @@ namespace MinionMathMayhem_Ship
         } // OnDisable()
 
 		private void Awake()
-		{
-w			playTutAgainCanvas = GameObject.FindGameObjectWithTag();
+		{/*
+			playTutAgainCanvas = GameObject.FindGameObjectWithTag();
 			if (playTutAgainCanvas == null)
 				Debug.Log ("playTutAgainCanvas was not initialized");
+				*/ // ------------------ Come Back to this 9/20/15 ------------------------------------------------ //
 		}
 
         // This function is immediately executed once the actor is in the game scene.
