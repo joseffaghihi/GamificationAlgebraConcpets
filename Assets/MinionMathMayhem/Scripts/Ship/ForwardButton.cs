@@ -14,7 +14,7 @@ namespace MinionMathMayhem_Ship
 		public AudioSource clickSource;		// refernce to audio source with click sound
 
 		// Use this for initialization
-		void Start () {
+		void Awake () {
 			// Initializing GameObject references and checking if they are filled
 			// forwardButton = GameObject.Find ("GoForward");
 			// if(forwardButton == null)
@@ -28,6 +28,8 @@ namespace MinionMathMayhem_Ship
 			rulesPgTwo = GameObject.Find ("Rules_pg02");
 			if(rulesPgTwo == null)
 				Debug.Log ("rulesPgTwo was not initialized");
+            if (rulesPgOne != null)
+                Debug.Log("Ok, the initializations are working!");
 		}
 
 
@@ -35,6 +37,11 @@ namespace MinionMathMayhem_Ship
 		{
 			PressForward();
 		}
+
+        public void Press()
+        {
+            PressForward();
+        }
 
 		private void PressForward()
 		{
