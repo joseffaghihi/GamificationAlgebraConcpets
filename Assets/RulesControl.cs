@@ -27,14 +27,18 @@ namespace MinionMathMayhem_Ship {
 			while(control) {
 				yield return new WaitForSeconds(5.0f);
 				Debug.Log (control);
+                // horrible gross hack
+                    yield return new WaitForSeconds(3);
+                    Debug.Log("LIVING ON THE EDGE!");
+                    control = false;
 			}
 		}
 
 
 		// Allows other scripts to start 'WaitForRulesToFinish()'
 		public IEnumerator Access_WaitForRulesToFinish() {
-			// Time.timeScale = 0.2f;
-			StartCoroutine (WaitForRulesToFinish());
+            // Time.timeScale = 0.2f;
+			yield return (StartCoroutine (WaitForRulesToFinish()));
 			// Time.timeScale = 1.0f;
 			yield return null;
 		}

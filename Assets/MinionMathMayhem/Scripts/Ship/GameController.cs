@@ -174,10 +174,10 @@ namespace MinionMathMayhem_Ship
                 yield return null;
             // ----
             // Execute the Tutorial
-                // yield return (StartCoroutine(GameExecute_Tutorial())); ----------------------------------------------------------------------------
+                 yield return (StartCoroutine(GameExecute_Tutorial()));
             // Display the animations and environment settings at the very start of the game
 				// StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
-				Time.timeScale = 0.0f;
+				//Time.timeScale = 0.0f;
 	                scriptGameEvent.Access_FirstRun_Animations();
 	            // Initiate the wait delay on the spawners
 	                RequestGraceTime();
@@ -275,6 +275,7 @@ namespace MinionMathMayhem_Ship
         // Game Tutorial Sequence front-end.
         private IEnumerator GameExecute_Tutorial()
         {
+            /*
             // Enable the tutorial objects
                 objectTutorial_SkipButton.SetActive(true);
                 objectTutorial_Movie.SetActive(true);
@@ -288,8 +289,9 @@ namespace MinionMathMayhem_Ship
                 objectTutorial_Movie.SetActive(false);
                 objectTutorial_Canvas.SetActive(false);
                 objectTutorial_SkipButton.SetActive(false);
+            */
 				yield return (StartCoroutine(rulesControl.Access_WaitForRulesToFinish()));
-			// -----------------------------------------------------------------------------------------------------------------------------------
+                rulesCanvas.SetActive(false);
         } // GameExecute_Tutorial()
 
 
