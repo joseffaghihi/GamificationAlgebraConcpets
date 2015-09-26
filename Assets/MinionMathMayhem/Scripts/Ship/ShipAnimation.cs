@@ -96,12 +96,12 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void AnimationResurrect(bool state)
         {
-            /*
-             * if (state == true)
-             *      shipAnimation.SetBool("NICE_NAME", true);
-             * else
-             *      shipAnimation.SetBool("NICE_NAME", false);
-             */
+
+             if (state == true)
+                   shipAnimation.SetBool("StartOver", true);
+             else
+                 shipAnimation.SetBool("StartOver", false);
+             
         } // AnimationResurrect()
     } // End of Class
 } // Namespace

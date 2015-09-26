@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972a00ac1f90b3948abe1a2a1340e9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flyingNumber: {fileID: 22316198, guid: d16e21ecfa163394da0f45b1f0afba5a, type: 2}
 --- !u!114 &11454676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -404,7 +405,12 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: flyingNumber
+      value: 
+      objectReference: {fileID: 22316198, guid: d16e21ecfa163394da0f45b1f0afba5a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 102542}

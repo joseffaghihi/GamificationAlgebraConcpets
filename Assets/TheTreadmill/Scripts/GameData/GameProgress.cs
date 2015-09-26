@@ -22,7 +22,7 @@ public class GameProgress : MonoBehaviour
     {
         int obstacleNum = GetComponentInChildren<RandomNumberGenerator>().GetRandomNumber(); //Get the number attached to the obstacle
         int answer = GameObject.Find("Equation").GetComponent<EquationGenerator>().GetAnswer(); //Get the answer to the problem
-		
+
         if (collision.gameObject.tag == "Player" && obstacleNum == answer) //Correct Answer
         {
             gameController.clearedRound(); //Update Game Info
@@ -30,9 +30,6 @@ public class GameProgress : MonoBehaviour
             //Instantiate Particle Effect
             (Instantiate(correctCoinEffect, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity) as GameObject).transform.parent =
                             GameObject.FindGameObjectWithTag("Player").transform;
-
-            //Create a new Equation
-            GameObject.Find("Equation").GetComponent<EquationGenerator>().outputEquation();
         }
         else //Wrong Answer
         {   

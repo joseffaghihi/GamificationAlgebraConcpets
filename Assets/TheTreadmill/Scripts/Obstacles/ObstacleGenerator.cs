@@ -39,7 +39,14 @@ public class ObstacleGenerator : MonoBehaviour
 				if(gc.getDelayWave())
 				{
 					i = hazardCount;
-					waveWait = 5;
+					waveWait = 8;
+
+                    //Find all Obstacles on the screen
+                    GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Obstacle");
+
+                    //Destroy all Obstacles on the screen
+                    for (int j = 0; j < gameObjects.Length; j++)
+                        Destroy(gameObjects[j]);
 				}
                 yield return new WaitForSeconds(spawnWait);
             }

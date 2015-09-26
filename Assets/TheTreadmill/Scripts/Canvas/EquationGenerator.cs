@@ -115,4 +115,19 @@ public class EquationGenerator : MonoBehaviour
 
         answer = rightSideNumber - leftSideNumber;
     }
+
+    public int getLeftSide()
+    {
+        return leftSideNumber;
+    }
+
+    public int getRightSide()
+    {
+        return rightSideNumber;
+    }
+
+    public int getAnswer()
+    {
+        return answer;
+    }
 }

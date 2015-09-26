@@ -28,6 +28,12 @@ namespace MinionMathMayhem_Ship
                 private double scoreCorrectPercent = 0.0;
                 private double scoreIncorrectPercent = 0.0;
 
+		// Play Tutorial Again
+		// ---------------------------------
+				private GameObject playTutAgainCanvas;
+				private int trackingScore = 0; // tracker variable used to initialize display of tutorial and view tutorial again options
+				
+
             // Accessors and Communication
                 // HUD: Score box
                     public Text scoreBox;
@@ -65,7 +71,13 @@ namespace MinionMathMayhem_Ship
                 GameController.GameStateRestart -= Reset;
         } // OnDisable()
 
-
+		private void Awake()
+		{/*
+			playTutAgainCanvas = GameObject.FindGameObjectWithTag();
+			if (playTutAgainCanvas == null)
+				Debug.Log ("playTutAgainCanvas was not initialized");
+				*/ // ------------------ Come Back to this 9/20/15 ------------------------------------------------ // 
+		}
 
         // This function is immediately executed once the actor is in the game scene.
         private void Start()
@@ -80,7 +92,9 @@ namespace MinionMathMayhem_Ship
         private void UpdateScoreCorrect()
         {
             // Increment the score of what the user got right.
-                scoreCorrect++;
+			// updated 9/17/15 so the user gets 10 points for
+			// every correct answer instead of just 1 point
+                scoreCorrect+=10;
             // Update the 'Correct' score on the HUD
                 UpdateScoreDisplay();
             // Notify listening classes of the score being updated
@@ -94,7 +108,7 @@ namespace MinionMathMayhem_Ship
         // This function will only merely update the score canvas string that is being displayed in the scene as a HUD
         private void UpdateScoreDisplay()
         {
-            scoreBox.text = "Score: " + scoreCorrect.ToString();
+            scoreBox.text = scoreCorrect.ToString(); // -------------- DC ---------------- // 9/12/15
         } // UpdateScoreDisplay()
 
 
@@ -102,7 +116,7 @@ namespace MinionMathMayhem_Ship
         // This function will update the incorrect score canvas string that is on the HUD
         private void UpdateWrongScoreDisplay()
         {
-            wrongScoreBox.text = "Oopsies: " + scoreIncorrect.ToString();
+			wrongScoreBox.text = scoreIncorrect.ToString(); // -------------- DC ---------------- // 9/12/15
         } // UpdateWrongScoreDisplay()
 
 
@@ -112,6 +126,8 @@ namespace MinionMathMayhem_Ship
         {
             // Increment the score of what the user got wrong.
                 scoreIncorrect++;
+			// Increment trackingScore ------------------------------------- DC -------------- // 9/19/15
+				trackingScore++;//----------------------------------------------------------------------------------------------------------
             // Update the 'Incorrect' score on the HUD
                 UpdateWrongScoreDisplay();
             // Notify listening classes of the score being updated
