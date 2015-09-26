@@ -507,6 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSource: {fileID: 648950080}
+  rulesCanvas: {fileID: 648950075}
 --- !u!1 &58658925 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b760b7975038240539d8daa9a5098b13, type: 3}
@@ -3410,6 +3411,7 @@ GameObject:
   - 114: {fileID: 648950077}
   - 114: {fileID: 648950076}
   - 82: {fileID: 648950080}
+  - 114: {fileID: 648950081}
   m_Layer: 5
   m_Name: Rules Canvas
   m_TagString: Untagged
@@ -3563,6 +3565,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &648950081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 648950075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea56346976b746c996ad1121ff2599d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &670818317
 GameObject:
   m_ObjectHideFlags: 0
@@ -9106,6 +9119,7 @@ MonoBehaviour:
   objectTutorial_Movie: {fileID: 964868980}
   objectTutorial_Canvas: {fileID: 1923049301}
   objectTutorial_SkipButton: {fileID: 231372669}
+  rulesCanvas: {fileID: 648950075}
 --- !u!114 &1430447471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9117,6 +9131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5757599c7686c461cbe5436de65b5c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playTutAgainCanvas: {fileID: 1923049301}
+  viewTutorialAgainCanvas: {fileID: 1834801678}
   scoreBox: {fileID: 1868065507}
   wrongScoreBox: {fileID: 461673502}
   scriptScore_Percentage: {fileID: 1430447479}
@@ -13575,8 +13591,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 151.904373, y: -97.2622223, z: -601.247437}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}

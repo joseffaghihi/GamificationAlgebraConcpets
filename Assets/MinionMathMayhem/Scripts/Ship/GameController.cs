@@ -36,6 +36,9 @@ namespace MinionMathMayhem_Ship
                 private bool spawnMinions = false;
             // [GameManager] Tutorial Ended switch
                 private bool gameTutorialEnded = false;
+			//  Rules Control on the rulesCanvas GameObject  
+
+				private RulesControl rulesControl;
 
             // Accessors and Communication
                 // Win/Lose HUD Message
@@ -71,9 +74,15 @@ namespace MinionMathMayhem_Ship
                     public GameObject objectTutorial_Movie;
                     public GameObject objectTutorial_Canvas;
                     public GameObject objectTutorial_SkipButton;
+				// Rules
+					public GameObject rulesCanvas;
 
 
 
+		private void Awake()
+		{
+			rulesControl = rulesCanvas.GetComponent<RulesControl>();
+		}
 
         // Signal Listener: Detected
         private void OnEnable()
@@ -165,33 +174,35 @@ namespace MinionMathMayhem_Ship
                 yield return null;
             // ----
             // Execute the Tutorial
-                yield return (StartCoroutine(GameExecute_Tutorial()));
+                // yield return (StartCoroutine(GameExecute_Tutorial())); ----------------------------------------------------------------------------
             // Display the animations and environment settings at the very start of the game
-                scriptGameEvent.Access_FirstRun_Animations();
-            // Initiate the wait delay on the spawners
-                RequestGraceTime();
-            // ----
-            while (true) // Always check the state of the game.
-            {
-                // Fetch the scores and compute the scores
-                    CheckScores();
-                // Brief wait time to ease the CPU
-                    yield return new WaitForSeconds(0.5f);
+				// StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
+				Time.timeScale = 0.0f;
+	                scriptGameEvent.Access_FirstRun_Animations();
+	            // Initiate the wait delay on the spawners
+	                RequestGraceTime();
+	            // ----
+	            while (true) // Always check the state of the game.
+	            {
+	                // Fetch the scores and compute the scores
+	                    CheckScores();
+	                // Brief wait time to ease the CPU
+	                    yield return new WaitForSeconds(0.5f);
 
-                // Manage the spawners, if needed.
-                if (gameOver == !true)
-                {
-                    // Spawner toggle: True
-                    if (spawnMinions == !true)
-                        FlipMinionSpawner();
-                }
-                else if (gameOver == !false)
-                {
-                    // Spawner toggle: False
-                    if (spawnMinions == !false)
-                        FlipMinionSpawner();
-                }
-            } // while loop
+	                // Manage the spawners, if needed.
+	                if (gameOver == !true)
+	                {
+	                    // Spawner toggle: True
+	                    if (spawnMinions == !true)
+	                        FlipMinionSpawner();
+	                }
+	                else if (gameOver == !false)
+	                {
+	                    // Spawner toggle: False
+	                    if (spawnMinions == !false)
+	                        FlipMinionSpawner();
+	                }
+	            } // while loop
         } // GameManager()
 
 
@@ -277,6 +288,8 @@ namespace MinionMathMayhem_Ship
                 objectTutorial_Movie.SetActive(false);
                 objectTutorial_Canvas.SetActive(false);
                 objectTutorial_SkipButton.SetActive(false);
+				yield return (StartCoroutine(rulesControl.Access_WaitForRulesToFinish()));
+			// -----------------------------------------------------------------------------------------------------------------------------------
         } // GameExecute_Tutorial()
 
 
