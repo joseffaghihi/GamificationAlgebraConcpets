@@ -36,6 +36,7 @@ namespace MinionMathMayhem_Ship
             // AI Components
                 public AI_UserMastery scriptAI_UserMastery;
                 public AI_UserResponse scriptAI_UserResponse;
+                public AI_SpawnService scriptAI_SpawnServicer;
         // ---------------------------------
 
         
@@ -67,9 +68,11 @@ namespace MinionMathMayhem_Ship
                     scriptAI_UserMastery.Main();
                 // User's generalized response rate
                     scriptAI_UserResponse.Main();
+                // Spawn Servicer
+                    scriptAI_SpawnServicer.Main();
 
 
-                yield return new WaitForSeconds(daemonUpdateFreq);
+            yield return new WaitForSeconds(daemonUpdateFreq);
             } // while
         } // Main()
 
