@@ -7164,6 +7164,7 @@ GameObject:
   - 114: {fileID: 1208330404}
   - 114: {fileID: 1208330403}
   - 114: {fileID: 1208330402}
+  - 114: {fileID: 1208330406}
   m_Layer: 0
   m_Name: Game AI Hub
   m_TagString: AIHub
@@ -7206,6 +7207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptAI_UserMastery: {fileID: 1208330403}
   scriptAI_UserResponse: {fileID: 1208330402}
+  scriptAI_SpawnServicer: {fileID: 1208330406}
 --- !u!4 &1208330405
 Transform:
   m_ObjectHideFlags: 0
@@ -7218,6 +7220,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &1208330406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208330401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627f0227767348342bb2a136731b20b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRate: 20
+  gracePeriodTimer: 2.5
+  scriptGameController: {fileID: 1430447470}
+  scriptGameEvent: {fileID: 1430447472}
 --- !u!1 &1252846938
 GameObject:
   m_ObjectHideFlags: 0
@@ -9127,9 +9144,7 @@ GameObject:
   - 114: {fileID: 1430447475}
   - 114: {fileID: 1430447476}
   - 114: {fileID: 1430447477}
-  - 114: {fileID: 1430447478}
   - 114: {fileID: 1430447479}
-  - 114: {fileID: 1430447480}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -9351,21 +9366,6 @@ MonoBehaviour:
   thatItAud: {fileID: 8300000, guid: 42f81e8024ac5514d90e77091617e36f, type: 3}
   wayToGoAud: {fileID: 8300000, guid: f410804f11a144dce927bd3c179d0608, type: 3}
   randomAud: {fileID: 8300000, guid: f6181421d922bc8459cad0f570f197bb, type: 3}
---- !u!114 &1430447478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1430447468}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a04518035c0388f42a22db8573ae86b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnRate: 20
-  gracePeriodTimer: 2.5
-  scriptGameController: {fileID: 1430447470}
-  scriptGameEvent: {fileID: 1430447472}
 --- !u!114 &1430447479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9377,21 +9377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7bd92c0e8171443b300b0d124fbe3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1430447480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1430447468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1814db5551b1d74ab414a85810e49d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnRate: 20
-  gracePeriodTimer: 2.5
-  scriptGameController: {fileID: 1430447470}
-  scriptGameEvent: {fileID: 1430447472}
 --- !u!1001 &1456280122
 Prefab:
   m_ObjectHideFlags: 0
