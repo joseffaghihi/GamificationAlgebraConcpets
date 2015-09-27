@@ -42,6 +42,10 @@ namespace MinionMathMayhem_Ship
                 // 1 - Minion Speed has changed
                 // 2 - Spawner Frequency
                 private short userPrefChallenge = 0;
+            // Events and Delegates
+                // Minion Speed
+                    public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
+                    public static event MinionSpeedDelegate MinionSpeed;
         // ---------------------------------
 
 
