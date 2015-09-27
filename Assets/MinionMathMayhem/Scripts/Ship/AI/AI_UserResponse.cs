@@ -7,8 +7,8 @@ namespace MinionMathMayhem_Ship
     {
 
 
-        /*                                              GAME ARTIFICIAL INTELLIGENCE
-         *                                                    User Response Rate
+        /*                                                  GAME ARTIFICIAL INTELLIGENCE
+         *                                                      User Response Rate
          * This script is designed to monitor how fast the user responds to the game by seeing how fast (or slow) the user is clicking the minions off from the ladders.
          *  It will be possible to slightly adjust the minions speed or how the minions are being spawned.  If the game to run too fast and the user is slow, this scrip
          *  should help aid this issue - atleast possible to adjust.
@@ -19,30 +19,27 @@ namespace MinionMathMayhem_Ship
          *          |_ Minion_Behavior
          *
          * GOALS:
-         *  Record the user's average time in a small database
-         *  Monitor the user's response time
+         *      Record the user's average time in a small database
+         *      Monitor the user's response time
          */
 
-
-
+        
+        
 
         // Declarations and Initializations
         // ---------------------------------
-        // Minion Lifespan Time Entry Counter
-        // Entry counter within the array
-            private uint counterMinionTime = 0;
-                // Maximum record entries of the minion's life spawn within the array
-                    private const uint counterMinionTimeMax = 5;
-                // Array for holding the time database
-                    private float[] minionTimeArray = new float[counterMinionTimeMax];
-                // Cache the user's average time into one of these identifiers
-                    // Current time
-                        private float avgRecordTime = 0f;
-                    // Previous time
-                        private float avgRecordTime_old = 0f;
+            // Entry counter within the array
+                private uint counterMinionTime = 0;
+            // Maximum record entries of the minion's life spawn within the array
+                private const uint counterMinionTimeMax = 5;
+            // Array for holding the time database
+                private float[] minionTimeArray = new float[counterMinionTimeMax];
+            // Cache the user's average time into one of these identifiers
+                // Current time
+                    private float avgRecordTime = 0f;
+                // Previous time
+                    private float avgRecordTime_old = 0f;
         // ---------------------------------
-
-
 
 
 
@@ -56,9 +53,9 @@ namespace MinionMathMayhem_Ship
             if (counterMinionTime >= (counterMinionTimeMax))
             {
                 // Compute the average time
-                avgRecordTime = Database_MinionLifeSpan_AverageTime();
+                    avgRecordTime = AverageTime();
                 // Reset the array index counter
-                counterMinionTime = 0;
+                    counterMinionTime = 0;
 
                 // Verbose; debug stuff
                 Debug.Log("Current Average Time Collected: " + avgRecordTime);
@@ -72,7 +69,6 @@ namespace MinionMathMayhem_Ship
 
 
 
-
         /// <summary>
         ///     This calculates the average life span of the minions based on the array database.
         ///     Computation is based on the standard average: Add all entries, divide by the index size.
@@ -80,7 +76,7 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     The users average time; float
         /// </returns>
-        private float Database_MinionLifeSpan_AverageTime()
+        private float AverageTime()
         {
             // Cached value
             float timeValue = 0f;
@@ -91,7 +87,7 @@ namespace MinionMathMayhem_Ship
 
             // Divide by the database (or array) size and return the value
             return (timeValue / counterMinionTimeMax);
-        } // Database_MinionLifeSpan_AverageTime()
+        } // AverageTime()
 
 
 
