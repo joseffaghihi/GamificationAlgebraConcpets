@@ -5,30 +5,58 @@ namespace MinionMathMayhem_Ship
 {
     public class SpawnService : MonoBehaviour
     {
-            /*
-             *                                                   SPAWN SERVICE
-             * This script is designed to control the main central line of the spawners and to control their functionality unifyingly.
-             *  As part of the main tasks provided withing this class, this will check the game environment and enable the spawners if possible by using a frequency
-             *  time schedule.
-             *
-             * NOTES:
-             *  This script only broadcasts a message to the SpawnController to do events as necessary; from there - the spawners will have to cooperate
-             *   with the SpawnController.
-             *
-             * STRUCTURAL DEPENDENCY NOTES:
-             *      SpawnService
-             *          |_ <warten...>
-             *
-             * GOALS:
-             *      Checks if the game is ready to fully start
-             *      Determines what spawner to activate; individually or all.
-             *      Pauses between next spawn for the frequency delay rate.
-             */
+        /*
+         *                                                   SPAWN SERVICE
+         * This script is designed to control the main central line of the spawners and to control their functionality unifyingly.
+         *  As part of the main tasks provided withing this class, this will check the game environment and enable the spawners if possible by using a frequency
+         *  time schedule.
+         *
+         * NOTES:
+         *  This script only broadcasts a message to the SpawnController to do events as necessary; from there - the spawners will have to cooperate
+         *   with the SpawnController.
+         *
+         * STRUCTURAL DEPENDENCY NOTES:
+         *      SpawnService
+         *          |_ <warten...>
+         *
+         * GOALS:
+         *      Checks if the game is ready to fully start
+         *      Determines what spawner to activate; individually or all.
+         *      Pauses between next spawn for the frequency delay rate.
+         */
 
 
 
         // Declarations and Initializations
         // ---------------------------------
+            // Time when the next minion should spawn
+                private float nextSpawn;
+            // How many minions are to be spawned within 60 seconds of time
+                // Can be manipulated within Unity's Inspector
+                public float spawnRate;
+            // Grace-Timer for when the spawners should be activated
+                // Lock variable; this will avoid the gracePeriod to be reset in an endless loop.
+                    private bool gracePeriodLockOut = false;
+                // Grace Timer Duration
+                    public float gracePeriodTimer = 2.5f;
+            // Accessors and Communication
+                // GameController
+                    public GameController scriptGameController;
+                // Game Event
+                    public GameEvent scriptGameEvent;
+                // Spawn Controller Specifics
+                // Send Signal: Instantiate only one minion
+                    public delegate void SummonMinionSignal();
+                    public static event SummonMinionSignal SummonMinion_OnlyOne;
+                // Send Signal: Instantiate minions
+                    public delegate void SummonMinionBatchSignal();
+                    public static event SummonMinionBatchSignal SummonMinion_Batches;
+                // Spawner Frequency
+                    public delegate void SpawnerFequencyDelegate(int frequencyLevel);
+                    public static event SpawnerFequencyDelegate SpawnerFrequency;
+        // ---------------------------------
+
+
 
 
         /// <summary>
