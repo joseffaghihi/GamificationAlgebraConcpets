@@ -9242,9 +9242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a55973fe734044da6a8cb190956af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerObject0: {fileID: 0}
-  spawnerObject1: {fileID: 0}
-  spawnerObject2: {fileID: 0}
+  spawnerObject0: {fileID: 1695659192}
+  spawnerObject1: {fileID: 1087691907}
+  spawnerObject2: {fileID: 2044786453}
 --- !u!82 &1430447474
 AudioSource:
   m_ObjectHideFlags: 0
