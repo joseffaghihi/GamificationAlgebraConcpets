@@ -45,8 +45,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            UserAI.SummonMinion_Batches += SpawnMinionBatch;
-            UserAI.SummonMinion_OnlyOne += SpawnMinion;
+            AI_SpawnService.SummonMinion_Batches += SpawnMinionBatch;
+            AI_SpawnService.SummonMinion_OnlyOne += SpawnMinion;
         } // OnEnable()
 
 
@@ -54,8 +54,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            UserAI.SummonMinion_Batches -= SpawnMinionBatch;
-            UserAI.SummonMinion_OnlyOne -= SpawnMinion;
+            AI_SpawnService.SummonMinion_Batches -= SpawnMinionBatch;
+            AI_SpawnService.SummonMinion_OnlyOne -= SpawnMinion;
         } // OnDisable()
 
 

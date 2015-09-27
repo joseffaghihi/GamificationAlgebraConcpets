@@ -58,7 +58,7 @@ namespace MinionMathMayhem_Ship
                 // Minion Life Span
                     private Minion_LifeSpan scriptMinion_LifeSpan;
                 // User AI integration
-                    private UserAI scriptUserAI;
+                    private AI_UserResponse scriptAI_UserResponse;
         // ----
 
 
@@ -74,10 +74,10 @@ namespace MinionMathMayhem_Ship
 
                 // Find the GameController tag, and then find the attached script 'Minion_controller'.
                     scriptMinionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_Controller>();
-                // Find the GameController tag, and then find the attached script 'UserAI'.
-                    scriptUserAI = GameObject.FindGameObjectWithTag("GameController").GetComponent<UserAI>();
-                // Initialize the Life Span script
-                    scriptMinion_LifeSpan = gameObject.GetComponent<Minion_LifeSpan>();
+                // Find the AIHub tag, and then find the attached script 'UserAI'.
+                    scriptAI_UserResponse = GameObject.FindGameObjectWithTag("AIHub").GetComponent<AI_UserResponse>();
+            // Initialize the Life Span script
+                scriptMinion_LifeSpan = gameObject.GetComponent<Minion_LifeSpan>();
 
         } // Awake()
 
@@ -314,7 +314,7 @@ namespace MinionMathMayhem_Ship
 
             // Report the minion's life span to the Daemon Service
                 if (reportToDaemon)
-                    scriptUserAI.Access_Database_MinionLifeSpan(scriptMinion_LifeSpan.Access_OutputLifeSpan);
+                    scriptAI_UserResponse.Access_Database_MinionLifeSpan(scriptMinion_LifeSpan.Access_OutputLifeSpan);
 
             // Rest of the algoritm
                 particleActivation.Emit();
@@ -346,8 +346,8 @@ namespace MinionMathMayhem_Ship
         {
             if (scriptMinionController == null)
                 MissingReferenceError("Minion Controller");
-            if (scriptUserAI == null)
-                MissingReferenceError("User AI Daemon Servicer");
+            if (scriptAI_UserResponse == null)
+                MissingReferenceError("User AI Daemon Servicer for User Response");
             if (scriptMinion_LifeSpan == null)
                 MissingReferenceError("Minion Life Span");
         } // CheckReferences()

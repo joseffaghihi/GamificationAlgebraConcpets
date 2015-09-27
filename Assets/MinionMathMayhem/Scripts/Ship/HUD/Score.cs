@@ -45,6 +45,13 @@ namespace MinionMathMayhem_Ship
                     public Score_Precentage scriptScore_Percentage;
                 // Game Controller
                     public GameController scriptGameController;
+                // Broadcast the score for those classes listen
+                    // Correct Score
+                        public delegate void BroadcastScoreUpdated_Correct();
+                        public static event BroadcastScoreUpdated_Correct ScoreUpdate_Correct;
+                    // Incorrect Score
+                        public delegate void BroadcastScoreUpdated_Incorrect();
+                        public static event BroadcastScoreUpdated_Incorrect ScoreUpdate_Incorrect;
         // ----
 
 
@@ -90,7 +97,9 @@ namespace MinionMathMayhem_Ship
 			// Resets the tracking score to 0
 				trackingScore =0;
             // Update the 'Correct' score on the HUD
-                UpdateScoreDisplay();   
+                UpdateScoreDisplay();
+            // Notify listening classes of the score being updated
+                ScoreUpdate_Correct();
             // Get the new percentage of the score
                 UpdateScoreCorrect_Percentage();
         } // UpdateScore()
@@ -123,6 +132,8 @@ namespace MinionMathMayhem_Ship
 					trackingScore++;
             // Update the 'Incorrect' score on the HUD
                 UpdateWrongScoreDisplay();
+            // Notify listening classes of the score being updated
+                ScoreUpdate_Incorrect();
             // Get the new percentage of the score
                 UpdateScoreIncorrect_Percentage();
         } // UpdateScoreIncorrect()

@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - GameMenu
   - RandomNumberGenerator
+  - AIHub
   layers:
   - Default
   - TransparentFX
