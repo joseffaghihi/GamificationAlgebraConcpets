@@ -17,7 +17,10 @@ namespace MinionMathMayhem_Ship
          *
          * STRUCTURAL DEPENDENCY NOTES:
          *      SpawnService
-         *          |_ <warten...>
+         *          |_ SpawnController [GameController]
+         *              |_Spawner [Spawner Actors]
+         *          |_ GameController [GameController]
+         *          |_ GameEvent [GameController]
          *
          * GOALS:
          *      Checks if the game is ready to fully start
@@ -56,8 +59,8 @@ namespace MinionMathMayhem_Ship
                     public static event SpawnerFequencyDelegate SpawnerFrequency;
         // ---------------------------------
 
-
-
+        
+        
         /// <summary>
         ///     Unity Function
         ///     Signal Listener: Detected (or heard)
@@ -84,11 +87,7 @@ namespace MinionMathMayhem_Ship
 
         /// <summary>
         ///     This is a service function for managing how the minion actors will spawn within the scene.
-        ///     NOTE: This function is DEPENDENT on the Daemon update frequency!
         /// </summary>
-        /// <returns>
-        ///     Nothing is returned
-        /// </returns>
         private void Main()
         {
             // Check the values for potential faults
@@ -101,13 +100,13 @@ namespace MinionMathMayhem_Ship
                 gracePeriodLockOut != true)
             {
                 // Safe to spawn minions within the virtual world
-                SpawnController_Service();
+                SpawnDriver();
             }
             else
             {
                 // Not safe to spawn the minions within the virtual world
             }
-        } // Daemon_SpawnerServicer()
+        } // Main()
 
 
 
@@ -116,27 +115,27 @@ namespace MinionMathMayhem_Ship
         ///     This function will first check to see if the next batch of minions can be spawned yet.
         ///      When true, the batch full of minions will be spawned and the next spawn time will be recalculated.
         /// </summary>
-        private void SpawnController_Service()
+        private void SpawnDriver()
         {
             if (Time.time >= nextSpawn)
             {
                 // Batch signal to summon minion actors.
-                SpawnController_SummonActor_Batch();
+                    SummonActor_Batch();
                 // Determine the next time to summon a new minion creature
-                SpawnController_GetNextSpawnTime();
-            }
-        } // SpawnController_Service()
+                    GetNextSpawnTime();
+            } // If
+        } // SpawnDriver()
 
 
 
         /// <summary>
         ///     Send a event message to the spawners, specifically, to spawn the minions.  (NOT Forcefully)
         /// </summary>
-        private void SpawnController_SummonActor_Batch()
+        private void SummonActor_Batch()
         {
             // Broadcast event
-            SummonMinion_Batches();
-        } // SpawnController_SummonActor_Batch()
+                SummonMinion_Batches();
+        } // SummonActor_Batch()
 
 
 
@@ -149,10 +148,10 @@ namespace MinionMathMayhem_Ship
         ///         This should determine the next spawn ratio in which the minions should be summoned within the environment.
         ///         Credit to Bob for this code, that still exists today ;)
         /// </summary>
-        private void SpawnController_GetNextSpawnTime()
+        private void GetNextSpawnTime()
         {
             nextSpawn = (Time.time + Random.Range(0, 2 * (60 / spawnRate)));
-        } // SpawnController_GetNextSpawnTime()
+        } // GetNextSpawnTime()
 
 
 
@@ -181,8 +180,6 @@ namespace MinionMathMayhem_Ship
         } //GraceTimer_InitiateTimer()
 
 
-
-        // This function will kindly tell delay the signal to start instantiating the minions.
 
         /// <summary>
         ///     This function will push a delay before another event can be broadcasted.  This is a public set function, use carefully.
