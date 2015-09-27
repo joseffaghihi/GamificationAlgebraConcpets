@@ -7,8 +7,8 @@ namespace MinionMathMayhem_Ship
     {
 
         /*
-         *                                              GAME ARTIFICIAL INTELLIGENCE
-         *                                                     USER MASTERY
+         *                                                   GAME ARTIFICIAL INTELLIGENCE
+         *                                                          USER MASTERY
          * This script monitors the user's performance with the material and tries to adjust based on the user's mastery.  If the user is doing exceptionally well, then this will try to enforce a more challenge for the user.  If the user is not
          *  well or failing, this AI component will try at best to keep the user in the game and try to enforce the material on the user.
          *
@@ -17,7 +17,7 @@ namespace MinionMathMayhem_Ship
          *
          * STRUCTURAL DEPENDENCY NOTES:
          *      User Mastery [AI]
-         *          |_ <warten...>
+         *          |_ Score [Score]
          *
          * GOALS:
          *      Tries to keep the player invulved and motivated
@@ -29,26 +29,29 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            private int userPrefScoreCorrect = 0;
-            private int userPrefScoreWrong = 0;
-            private int userPrefScorePossible = 0;
-            private static short userPrefScorePossible_EnableAI = 10;
+            // User's current scores
+                private int userPrefScoreCorrect = 0;
+                private int userPrefScoreWrong = 0;
+            // Possible Scores
+                private int userPrefScorePossible = 0;
+            // Activate the mastery when possible score reached at defined: {VALUE}
+                private static short userPrefScorePossible_EnableAI = 10;
             // User Performance Array
                 private static short userPrefArrayIndexSize = 3;
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
                 private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
-            // BITFIELD EMULATED IDENTIFIER
-                // 0 - Empty or Default
-                // 1 - Minion Speed has changed
-                // 2 - Spawner Frequency
-                private short userPrefChallenge = 0;
+            // Challenge Game Environment
+                // BITFIELD EMULATED IDENTIFIER
+                    // 0 - Empty or Default
+                    // 1 - Minion Speed has changed
+                    // 2 - Spawner Frequency
+                    private short userPrefChallenge = 0;
             // Events and Delegates
                 // Minion Speed
                     public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
                     public static event MinionSpeedDelegate MinionSpeed;
         // ---------------------------------
-
-
+        
 
 
 
@@ -58,8 +61,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            Score.ScoreUpdate_Correct += Daemon_UserPerformance_IncrementCorrectScore;
-            Score.ScoreUpdate_Incorrect += Daemon_UserPerformance_IncrementWrongScore;
+            Score.ScoreUpdate_Correct += IncrementCorrectScore;
+            Score.ScoreUpdate_Incorrect += IncrementWrongScore;
         } // OnEnable()
 
 
@@ -70,10 +73,9 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-            Score.ScoreUpdate_Correct -= Daemon_UserPerformance_IncrementCorrectScore;
-            Score.ScoreUpdate_Incorrect -= Daemon_UserPerformance_IncrementWrongScore;
+            Score.ScoreUpdate_Correct -= IncrementCorrectScore;
+            Score.ScoreUpdate_Incorrect -= IncrementWrongScore;
         } // OnDisable()
-
 
 
 
@@ -96,8 +98,8 @@ namespace MinionMathMayhem_Ship
             if (userPrefScorePossible >= userPrefScorePossible_EnableAI)
             {
                 // User understands the material thus far
-                if (!Daemon_UserPerformance_Array())
-                    Daemon_UserPerformance_PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
+                if (!UserPerformance_Array())
+                    PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
 
                 // User may not understand the material
                 else
@@ -109,11 +111,10 @@ namespace MinionMathMayhem_Ship
 
 
 
-
         /// <summary>
         ///     This function will scan its internal library and determine how to control the environment based on the user's grade.
         /// </summary>
-        private void Daemon_UserPerformance_PerformanceGradingLibrary(int userGrade)
+        private void PerformanceGradingLibrary(int userGrade)
         {
             // Sorry for this long conditional, I couldn't find a nicer way to do this with a Switch statement :(
             if (95 < userGrade && userGrade <= 100)
@@ -167,7 +168,7 @@ namespace MinionMathMayhem_Ship
                 Debug.Log("<!> ATTENTION: RUN AWAY DETECTED <!>");
                 Debug.Log("Using grade value of: " + userGrade);
             }
-        } // Daemon_UserPerformance_PerformanceGradingLibrary()
+        } // PerformanceGradingLibrary()
 
 
 
@@ -179,7 +180,7 @@ namespace MinionMathMayhem_Ship
         ///     True = User did not understand the material\n
         ///     False = User understands the material
         /// </returns>
-        private bool Daemon_UserPerformance_Array()
+        private bool UserPerformance_Array()
         {
             short userIncorrectAnswers = 0;
             // Read the array and make sure that the user understands the material
@@ -192,7 +193,7 @@ namespace MinionMathMayhem_Ship
                 return true;
             else
                 return false;
-        } // Daemon_UserPerformance_Array()
+        } // UserPerformance_Array()
 
 
 
@@ -203,7 +204,7 @@ namespace MinionMathMayhem_Ship
         ///     True = Correct Answer
         ///     False = Wrong Answer
         /// </summary>
-        private void Daemon_UserPerformance_ArrayUpdateField(bool userFeedback)
+        private void ArrayUpdateField(bool userFeedback)
         {
             // Make sure that we're not overflowing the array, move the highlight to the start of the index if needed.
             if (userPrefArrayIndex_HighLight >= userPrefArrayIndexSize)
@@ -213,59 +214,59 @@ namespace MinionMathMayhem_Ship
             userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
             // Highlight the next index
             userPrefArrayIndex_HighLight++;
-        } // Daemon_UserPerformance_ArrayUpdateField()
+        } // ArrayUpdateField()
 
 
 
         /// <summary>
         ///     Update the correct score for the Daemon service
         /// </summary>
-        private void Daemon_UserPerformance_IncrementCorrectScore()
+        private void IncrementCorrectScore()
         {
             userPrefScoreCorrect++;
 
             // Update the array that holds the user performance
-            Daemon_UserPerformance_ArrayUpdateField(true);
+            ArrayUpdateField(true);
             // Update the possible score
-            Daemon_UserPerformance_UpdatePossibleScore();
+            UpdatePossibleScore();
 
-        } // Daemon_UserPerformance_IncrementCorrectScore()
+        } // IncrementCorrectScore()
 
 
 
         /// <summary>
         ///     Update the incorrect score for the Daemon service
         /// </summary>
-        private void Daemon_UserPerformance_IncrementWrongScore()
+        private void IncrementWrongScore()
         {
             userPrefScoreWrong++;
 
             // Update the array that holds the user performance
-            Daemon_UserPerformance_ArrayUpdateField(false);
+            ArrayUpdateField(false);
             // Update the possible score
-            Daemon_UserPerformance_UpdatePossibleScore();
-        } // Daemon_UserPerformance_IncrementWrongScore()
+            UpdatePossibleScore();
+        } // IncrementWrongScore()
 
 
 
         /// <summary>
         ///     Update the possible score possible by adding the scores.
         /// </summary>
-        private void Daemon_UserPerformance_UpdatePossibleScore()
+        private void UpdatePossibleScore()
         {
             userPrefScorePossible = (userPrefScoreCorrect + userPrefScoreWrong);
-        } // Daemon_UserPerformance_UpdatePossibleScore()
+        } // UpdatePossibleScore()
 
 
 
         /// <summary>
         ///     This will reset the scores; game restarted
         /// </summary>
-        private void Daemon_UserPerformance_ResetAllScores()
+        private void ResetAllScores()
         {
             userPrefScorePossible = 0;
             userPrefScoreCorrect = 0;
             userPrefScoreWrong = 0;
-        } // Daemon_UserPerformance_ResetAllScores()
+        } // ResetAllScores()
     } // End of Class
 } // Namespace
