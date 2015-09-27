@@ -30,9 +30,11 @@ namespace MinionMathMayhem_Ship
 
 		// Play Tutorial Again
 		// ---------------------------------
-				private GameObject playTutAgainCanvas;
-				private int trackingScore = 0; // tracker variable used to initialize display of tutorial and view tutorial again options
-				
+				// 
+				public GameObject playTutAgainCanvas;			// tutorial movie canvas
+				public GameObject viewTutorialAgainCanvas;		// view tutorial again options		 
+				private int trackingScore = 0;					// tracker variable used to initialize display of tutorial and view tutorial again options
+				private bool isTrackingWrongScore;
 
             // Accessors and Communication
                 // HUD: Score box
@@ -72,11 +74,8 @@ namespace MinionMathMayhem_Ship
         } // OnDisable()
 
 		private void Awake()
-		{/*
-			playTutAgainCanvas = GameObject.FindGameObjectWithTag();
-			if (playTutAgainCanvas == null)
-				Debug.Log ("playTutAgainCanvas was not initialized");
-				*/ // ------------------ Come Back to this 9/20/15 ------------------------------------------------ // 
+		{
+			viewTutorialAgainCanvas.SetActive(false);
 		}
 
         // This function is immediately executed once the actor is in the game scene.
@@ -95,6 +94,8 @@ namespace MinionMathMayhem_Ship
 			// updated 9/17/15 so the user gets 10 points for
 			// every correct answer instead of just 1 point
                 scoreCorrect+=10;
+			// Resets the tracking score to 0
+				trackingScore =0;
             // Update the 'Correct' score on the HUD
                 UpdateScoreDisplay();
             // Notify listening classes of the score being updated
@@ -126,8 +127,9 @@ namespace MinionMathMayhem_Ship
         {
             // Increment the score of what the user got wrong.
                 scoreIncorrect++;
-			// Increment trackingScore ------------------------------------- DC -------------- // 9/19/15
-				trackingScore++;//----------------------------------------------------------------------------------------------------------
+			// Increment trackingScore
+				if(isTrackingWrongScore)
+					trackingScore++;
             // Update the 'Incorrect' score on the HUD
                 UpdateWrongScoreDisplay();
             // Notify listening classes of the score being updated
@@ -146,6 +148,8 @@ namespace MinionMathMayhem_Ship
                 scoreIncorrect = 0;
                 scoreCorrectPercent = 0.0;
                 scoreIncorrectPercent = 0.0;
+				trackingScore = 0;
+				isTrackingWrongScore = false;
             // Update the score on the HUD.
                 UpdateScoreDisplay();
                 UpdateWrongScoreDisplay();
