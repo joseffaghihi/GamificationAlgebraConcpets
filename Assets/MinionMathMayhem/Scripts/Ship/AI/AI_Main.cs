@@ -6,8 +6,8 @@ namespace MinionMathMayhem_Ship
     public class AI_Main : MonoBehaviour
     {
         /*
-         *                                              GAME ARTIFICIAL INTELLIGENCE
-         *                                                          MAIN
+         *                                                  GAME ARTIFICIAL INTELLIGENCE
+         *                                                              MAIN
          * This is the forefront of controlling the environment based on the user's performance and mastery.  This script is a 'always alive' and monitoring
          *  as to how the user is responding to the game and how well they perform.  This is the main part of the AI that centralizes all of the AI components, 
          *  and enforces the AI components to execute by the main heartbeat fequency defined.
@@ -33,9 +33,9 @@ namespace MinionMathMayhem_Ship
             // Daemon Service Update Frequency
                 // LOGIC: PERIOD = 1/clock;  200 KHz ~> P = 1/2x10^5 --> P == 5x10^(-6)
                 private const float daemonUpdateFreq = 0.000005f;
-        // AI Components
-            public AI_UserMastery scriptAI_UserMastery;
-            public AI_UserResponse scriptAI_UserResponse;
+            // AI Components
+                public AI_UserMastery scriptAI_UserMastery;
+                public AI_UserResponse scriptAI_UserResponse;
         // ---------------------------------
 
         
@@ -72,6 +72,13 @@ namespace MinionMathMayhem_Ship
                 yield return new WaitForSeconds(daemonUpdateFreq);
             } // while
         } // Main()
+
+
+
+
+        // =======================================================================
+        //                          ERROR CHECKING
+        // =======================================================================
 
 
 
