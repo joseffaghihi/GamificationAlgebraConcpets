@@ -58,6 +58,29 @@ namespace MinionMathMayhem_Ship
 
 
 
+        /// <summary>
+        ///     Unity Function
+        ///     Signal Listener: Detected (or heard)
+        /// </summary>
+        private void OnEnable()
+        {
+            GameEvent.RequestGraceTime += GraceTimer;
+            GameController.RequestGraceTime += GraceTimer;
+        } // OnEnable()
+
+
+
+        /// <summary>
+        ///     Unity Function
+        ///     Signal Listener: Deactivated
+        /// </summary>
+        private void OnDisable()
+        {
+            GameEvent.RequestGraceTime -= GraceTimer;
+            GameController.RequestGraceTime -= GraceTimer;
+        } // OnDisable()
+
+
 
         /// <summary>
         ///     This is a service function for managing how the minion actors will spawn within the scene.
@@ -68,6 +91,9 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private void Main()
         {
+            // Check the values for potential faults
+                CheckValues();
+                CheckReferences();
             // Is it safe to spawn the minions within the map?
             if (scriptGameController.SpawnMinions == !false &&
                 scriptGameController.GameOver != true &&
@@ -166,5 +192,56 @@ namespace MinionMathMayhem_Ship
         {
             gracePeriodLockOut = true;
         } // GracePeriodTimeOut_Request()
+
+
+
+
+        // =======================================================================
+        //                          ERROR CHECKING
+        // =======================================================================
+
+
+
+
+        /// <summary>
+        ///     Assure that no variables have been initialized with bad values.
+        /// </summary>
+        private void CheckValues()
+        {
+            if (nextSpawn < 0)
+                nextSpawn = (nextSpawn * -1);
+            if (spawnRate < 0)
+                spawnRate = (spawnRate * -1);
+            if (gracePeriodTimer < 0)
+                gracePeriodTimer = (gracePeriodTimer * -1);
+        } // CheckValues()
+
+
+
+        /// <summary>
+        ///     Make sure that the dependent references have been initialized properly.
+        /// </summary>
+        private void CheckReferences()
+        {
+            if (scriptGameController == null)
+                MissingReferenceError("Game Controller");
+            if (scriptGameEvent == null)
+                MissingReferenceError("Game Event");
+        } // CheckReferences()
+
+
+
+        /// <summary>
+        ///     When a reference has not been properly initialized, this function will display the message within the console and stop the game.
+        /// </summary>
+        /// <param name="refLink">
+        ///     The name of the reference link that is missing.
+        /// </param>
+        private void MissingReferenceError(string refLink = "UNKNOWN_REFERENCE_NOT_DEFINED")
+        {
+            Debug.LogError("Critical Error: Could not find a reference to [ " + refLink + " ]!");
+            Debug.LogError("  Can not continue further execution until the internal issues has been resolved!");
+            Time.timeScale = 0; // Halt the game
+        } // MissingReferenceError()
     } // End of Class
 } // Namespace
