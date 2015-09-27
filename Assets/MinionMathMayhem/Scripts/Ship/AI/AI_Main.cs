@@ -64,7 +64,7 @@ namespace MinionMathMayhem_Ship
             while (true)
             {
                 // User's Mastery over the material
-                    scriptAI_UserMastery.Main();
+                    //scriptAI_UserMastery.Main();
                 // User's generalized response rate
                     scriptAI_UserResponse.Main();
 
