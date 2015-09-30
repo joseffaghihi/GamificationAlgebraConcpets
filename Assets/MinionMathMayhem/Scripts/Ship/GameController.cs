@@ -275,7 +275,7 @@ namespace MinionMathMayhem_Ship
         // Game Tutorial Sequence front-end.
         private IEnumerator GameExecute_Tutorial()
         {
-            /*
+            
             // Enable the tutorial objects
                 objectTutorial_SkipButton.SetActive(true);
                 objectTutorial_Movie.SetActive(true);
@@ -289,7 +289,7 @@ namespace MinionMathMayhem_Ship
                 objectTutorial_Movie.SetActive(false);
                 objectTutorial_Canvas.SetActive(false);
                 objectTutorial_SkipButton.SetActive(false);
-            */
+            
 				yield return (StartCoroutine(rulesControl.Access_WaitForRulesToFinish()));
                 rulesCanvas.SetActive(false);
         } // GameExecute_Tutorial()
