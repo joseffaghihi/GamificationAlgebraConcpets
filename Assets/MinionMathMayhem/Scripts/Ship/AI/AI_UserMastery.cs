@@ -116,61 +116,50 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void PerformanceGradingLibrary(int userGrade)
         {
-            // DEBUG STUFF
-            string debugString = "failed to initialize";
             // Sorry for this long conditional, I couldn't find a nicer way to do this with a Switch statement :(
             if (95 < userGrade && userGrade <= 100)
             {
                 // Skill Level: Very-High
-                debugString = "Very-High";
             }
 
             else if (90 < userGrade && userGrade <= 95)
             {
                 // Skill Level: Medium-High
-                debugString = "Medium-High";
             }
 
             else if (85 < userGrade && userGrade <= 90)
             {
                 // Skill Level: Medium
-                debugString = "Medium";
             }
 
             else if (80 < userGrade && userGrade <= 85)
             {
                 //   Skill Level: Medium-Low
-                debugString = "Medium-Low";
             }
 
             else if (75 < userGrade && userGrade <= 80)
             {
                 //  Skill Level: Low
-                debugString = "Low";
             }
 
             else if (70 < userGrade && userGrade <= 75)
             {
                 //  Skill Level: WeakFoundation - Low
-                debugString = "WeakFoundation - Low";
             }
 
             else if (65 < userGrade && userGrade <= 70)
             {
                 //  Skill Level: WeakFoundation - Medium
-                debugString = "WeakFoundation - Medium";
             }
 
             else if (60 < userGrade && userGrade <= 65)
             {
                 //  Skill Level: WeakFoundation - High
-                debugString = "WeakFoundation - High";
             }
 
             else if (userGrade <= 60)
             {
                 //  Skill Level: WeakFoundation - Failed
-                debugString = "WeakFoundation - Failed";
             }
 
             else
@@ -179,9 +168,6 @@ namespace MinionMathMayhem_Ship
                 Debug.Log("<!> ATTENTION: RUN AWAY DETECTED <!>");
                 Debug.Log("Using grade value of: " + userGrade);
             }
-
-            // DEBUG
-            Debug.Log("User Master is: " + debugString);
         } // PerformanceGradingLibrary()
 
 
