@@ -9,6 +9,12 @@ namespace MinionMathMayhem_Ship {
 //********************************************************************************************** //
 
 		public static bool control;		// control variable for the function WaitForRulesToFinish
+		
+		public GameObject pg1;
+		public GameObject pg2;
+		public GameObject forward;
+		public GameObject backward;
+		public GameObject close;
 
 
 // ----------------------------------- Unity Event Functions ----------------------------------- //
@@ -18,12 +24,24 @@ namespace MinionMathMayhem_Ship {
 			control = true;
 		}
 
+		void Start() {
+			pg1.SetActive(false);
+			pg2.SetActive(false);
+			forward.SetActive(false);
+			backward.SetActive(false);
+			close.SetActive(false);
+		}
 // ----------------------------------- User Defined Functions Private and Public -------------------------- //
 // ******************************************************************************************************** //
 
 		// This function will constantly loop and return until the 'control'
 		// variable is set to true
 		private IEnumerator WaitForRulesToFinish() {
+			pg1.SetActive(true);
+			pg2.SetActive(true);
+			forward.SetActive(true);
+			backward.SetActive(true);
+			close.SetActive(true);
 			while(control) {
 				yield return new WaitForSeconds(5.0f);
 				Debug.Log (control);
@@ -37,9 +55,7 @@ namespace MinionMathMayhem_Ship {
 
 		// Allows other scripts to start 'WaitForRulesToFinish()'
 		public IEnumerator Access_WaitForRulesToFinish() {
-            // Time.timeScale = 0.2f;
 			yield return (StartCoroutine (WaitForRulesToFinish()));
-			// Time.timeScale = 1.0f;
 			yield return null;
 		}
 
