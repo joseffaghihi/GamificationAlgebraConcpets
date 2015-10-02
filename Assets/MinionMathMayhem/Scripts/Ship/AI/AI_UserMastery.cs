@@ -203,7 +203,7 @@ namespace MinionMathMayhem_Ship
         {
             short userIncorrectAnswers = 0;
             // Read the array and make sure that the user understands the material
-            for (short i = 0; i <= userPrefArrayIndexSize; ++i)
+            for (short i = 0; i <= (userPrefArrayIndexSize - 1); ++i)
                 if (userPrefArray[i] == false)
                     userIncorrectAnswers++;
 
