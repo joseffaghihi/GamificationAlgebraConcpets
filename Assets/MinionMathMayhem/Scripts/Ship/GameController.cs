@@ -50,8 +50,12 @@ namespace MinionMathMayhem_Ship
                 // Game Controller
                     public GameEvent scriptGameEvent;
                 // Tutorial State
-                    public delegate void TutorialStateEventStart();
-                    public static event TutorialStateEventStart TutorialStateStart;
+                    // Tutorial is running
+                        public delegate void TutorialStateEventStart();
+                        public static event TutorialStateEventStart TutorialStateStart;
+                    // Tutorial has ended
+                        public delegate void TutorialStateEventEnded();
+                        public static event TutorialStateEventStart TutorialStateEnd;
                 // Game Over
                     public delegate void GameStateEventEnded();
                     public static event GameStateEventEnded GameStateEnded;
@@ -332,6 +336,7 @@ namespace MinionMathMayhem_Ship
             
 				yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
                 rulesCanvas.SetActive(false);
+                TutorialStateEnd();
         } // GameExecute_Tutorial()
 
 
