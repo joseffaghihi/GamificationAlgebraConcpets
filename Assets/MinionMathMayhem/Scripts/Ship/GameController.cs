@@ -173,54 +173,41 @@ namespace MinionMathMayhem_Ship
             // In-Scope Variables
                 // This will help avoid some spam in the console when the heartbeat has been enabled.
                 // Message Monitor
-                    bool heartbeatMSG = false;
+                    //bool heartbeatMSG = false;
                 // Previous heartbeat timer
-                    float oldHeartbeatTimer = heartbeatTimer;
+                    //float oldHeartbeatTimer = heartbeatTimer;
             // ----
             while (true)
             {
                 // If the heartbeat has been enabled
                 if (heartbeat == true)
                 {
-                    if (HeartbeatTimerCorrection(heartbeatTimer) == oldHeartbeatTimer)
+                    // Is the new value matched up with the current game speed value.
+                    if (HeartbeatTimerCorrection(heartbeatTimer) != Time.timeScale)
                     {
-
-                    }
+                        // Make sure that the heartbeat has the correct value set
+                            heartbeatTimer = HeartbeatTimerCorrection(heartbeatTimer);
+                        // Update the game speed to match with the assigned value
+                            Time.timeScale = heartbeatTimer;
+                        // Output that the game speed has been altered to the new value
+                            Debug.Log("ATTN: Heartbeat has been changed to value: " + heartbeatTimer);
+                    } // If game speed has been change
                 } // Heartbeat is enabled
 
 
-
-
-                /*
-
-                    // Make sure the value is not negated
-                    if (heartbeatTimer < 0)
-                        // Flip the sign
-                        heartbeatTimer = heartbeatTimer * -1;
-                    // If the heatbeat timer is null, slightly increase the timer.  If it is set to zero, the game will freeze completely.
-                    if (heartbeatTimer == 0)
-                        heartbeatTimer += 0.0001f;
-
-
-                    Time.timeScale = heartbeatTimer;
-                        oldHeartbeatTimer = heartbeatTimer;
-
-                        // Output that the heartbeat has been updated, but 
-                        if (heartbeatMSG == true)
-                        {
-                            heartbeatMSG = true; // Avoid the console being spammed
-                            Debug.Log("ATTN: Heartbeat has been changed to value: " + heartbeatTimer);
-                        } // Console Spam protection
-                    } // if
-
-                // Restore the heartbeat to it's original value
-                    else if (heartbeat == false && Time.timeScale != 1f)
+                // If the heartbeat has been disabled
+                else if (!heartbeat)
+                {
+                    // If the game speed has been altered
+                    if (HeartbeatTimerCorrection(heartbeatTimer) != Time.timeScale)
                     {
-                        Time.timeScale = 1f;
-                        Debug.Log("ATTN: Heartbeat has been restored to its default setting.");
-                    } // else-if
+                        // Update the game speed
+                            Time.timeScale = 1f;
+                        // Restore the game speed back to it's default setting
+                            Debug.Log("ATTN: Heartbeat has been restored to its default setting.");
+                    } // If game speed has been changed, previously
+                } // Heartbeat is disabled
 
-                */
                 // Wait before re-looping
                     yield return new WaitForSeconds(0.5f);
             } // while
