@@ -9,6 +9,25 @@ public class GameControl
     static private int currentRound = 1;
     static private bool answerIsCorrect = false; //Keep check of whether the right answer was given
 	static private bool delayWave = false; //Delays wave
+    static private int currentRoundTime = 0; //Keep check of how long the player has been in the same round (couldn't think of a better name)
+
+    //Return time of the user being in the current round (time measured in waves)
+    public int getCurrentRoundTime()
+    {
+        return currentRoundTime; 
+    }
+
+    //Adds another wave in the current round
+    public void addCurrentRoundTime()
+    {
+        currentRoundTime++;
+    }
+
+    //Set the wave counter
+    public void setCurrentRoundTime(int num)
+    {
+        currentRoundTime = num;
+    }
 
 	public void DelayWave(bool state)
 	{
