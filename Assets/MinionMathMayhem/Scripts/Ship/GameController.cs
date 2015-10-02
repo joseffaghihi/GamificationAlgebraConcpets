@@ -122,9 +122,54 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // When enabled through the Unity's inspector, this gives the ability to slow down the game.
+        // DEPRECATED!  DO NOT USE UNLESS FOR COMPATIBILITY REASONS
+        // SERIOUSLY, THIS IS DEPRECATED NOW
         private IEnumerator HeartbeatTimer()
         {
+            while (true)
+            {
+                // Make sure the value is not negated
+                if (heartbeatTimer < 0)
+                    // Flip the sign
+                    heartbeatTimer = heartbeatTimer * -1;
+                // If the heatbeat timer is null, slightly increase the timer.  If it is set to zero, the game will freeze completely.
+                if (heartbeatTimer == 0)
+                    heartbeatTimer += 0.0001f;
+                // Change the heartbeat to a new value
+                if (heartbeat == true)
+                {
+                    Time.timeScale = heartbeatTimer;
+                    Debug.Log("ATTN: Heartbeat has been changed to value: " + heartbeatTimer);
+                } // if
+
+                // Restore the heartbeat to it's original value
+                else if (heartbeat == false && Time.timeScale != 1f)
+                {
+                    Time.timeScale = 1f;
+                    Debug.Log("ATTN: Heartbeat has been restored to its default setting.");
+                } // else-if
+
+                // Wait before re-looping
+                yield return new WaitForSeconds(0.5f);
+            } // while
+        } // HeartbeatTimer()
+
+
+
+        /// <summary>
+        ///     When enabled via Unity's Inspector, this gives the developer the ability to change the game's speed depending on the float value.
+        ///         Default: 1
+        ///         Increase speed iif: x > 1
+        ///         Decrease speed iif: x < 1
+        /// </summary>
+        /// <returns>
+        ///     Nothing is returned
+        /// </returns>
+        private IEnumerator _HeartbeatTimer()
+        {
+            // TODO: Unfuck code
+
+
             // In-Scope Variables
                 // This will help avoid some spam in the console when the heartbeat has been enabled.
                 // Message Monitor
@@ -132,20 +177,32 @@ namespace MinionMathMayhem_Ship
                 // Previous heartbeat timer
                     float oldHeartbeatTimer = heartbeatTimer;
             // ----
-
             while (true)
             {
-                // Make sure the value is not negated
+                // If the heartbeat has been enabled
+                if (heartbeat == true)
+                {
+                    if (HeartbeatTimerCorrection(heartbeatTimer) == oldHeartbeatTimer)
+                    {
+
+                    }
+                } // Heartbeat is enabled
+
+
+
+
+                /*
+
+                    // Make sure the value is not negated
                     if (heartbeatTimer < 0)
                         // Flip the sign
                         heartbeatTimer = heartbeatTimer * -1;
-                // If the heatbeat timer is null, slightly increase the timer.  If it is set to zero, the game will freeze completely.
+                    // If the heatbeat timer is null, slightly increase the timer.  If it is set to zero, the game will freeze completely.
                     if (heartbeatTimer == 0)
                         heartbeatTimer += 0.0001f;
-                // Change the heartbeat to a new value
-                    if (heartbeat == true)
-                    {
-                        Time.timeScale = heartbeatTimer;
+
+
+                    Time.timeScale = heartbeatTimer;
                         oldHeartbeatTimer = heartbeatTimer;
 
                         // Output that the heartbeat has been updated, but 
@@ -163,10 +220,35 @@ namespace MinionMathMayhem_Ship
                         Debug.Log("ATTN: Heartbeat has been restored to its default setting.");
                     } // else-if
 
+                */
                 // Wait before re-looping
                     yield return new WaitForSeconds(0.5f);
             } // while
         } // HeartbeatTimer()
+
+
+
+        /// <summary>
+        ///     This function will try to correct the value of the heartbeat value to be a valid float value as the program expects it to be.
+        /// </summary>
+        /// <param name="heartbeatValue">
+        ///     New Heartbeat Value
+        /// </param>
+        /// <returns>
+        ///     Corrected (if it was corrected) value of the heartbeat timer.
+        /// </returns>
+        private float HeartbeatTimerCorrection(float heartbeatValue)
+        {
+            if (heartbeatValue < 0f)
+                // Flip the sign
+                heartbeatValue = heartbeatValue * -1;
+            else
+                // If the heatbeat timer is null, slightly increase the timer.  If it is set to zero, the game will freeze completely.
+                if (heartbeatValue == 0)
+                    heartbeatValue += 0.0001f;
+
+            return heartbeatValue;
+        } // HeartbeatTimerCorrection()
 
 
 
