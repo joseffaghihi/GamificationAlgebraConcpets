@@ -29,6 +29,8 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
+            // DEBUG MODE [INTERNAL]
+                private static bool _debugMode_ = true;
             // User's current scores
                 private int userPrefScoreCorrect = 0;
                 private int userPrefScoreWrong = 0;
@@ -97,9 +99,16 @@ namespace MinionMathMayhem_Ship
             // Only run when the possible points has reached a certain value.
             if (userPrefScorePossible >= userPrefScorePossible_EnableAI)
             {
-                Debug.Log("Correct: " + userPrefScoreCorrect);
-                Debug.Log("Incorrect: " + userPrefScoreWrong);
-                Debug.Log("Possible Score: " + userPrefScorePossible);
+                // DEBUG MODE
+                if (_debugMode_ == true)
+                {
+                    // Debug Stats
+                        Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
+                        Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
+                        Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
+                        Debug.Log("AI Mastery_User's Score: " + ((userPrefScoreCorrect / userPrefScorePossible * 100)));
+                } // DEBUG MODE
+
 
                 // User understands the material thus far
                 if (!UserPerformance_Array())
@@ -127,55 +136,64 @@ namespace MinionMathMayhem_Ship
             if (95 < userGrade && userGrade <= 100)
             {
                 // Skill Level: Very-High
-                debugString = "Very-High";
+                if (_debugMode_ == true)
+                    debugString = "Very-High";
             }
 
             else if (90 < userGrade && userGrade <= 95)
             {
                 // Skill Level: Medium-High
-                debugString = "Medium-High";
+                if (_debugMode_ == true)
+                    debugString = "Medium-High";
             }
 
             else if (85 < userGrade && userGrade <= 90)
             {
                 // Skill Level: Medium
-                debugString = "Medium";
+                if (_debugMode_ == true)
+                    debugString = "Medium";
             }
 
             else if (80 < userGrade && userGrade <= 85)
             {
                 //   Skill Level: Medium-Low
-                debugString = "Medium-Low";
+                if (_debugMode_ == true)
+                    debugString = "Medium-Low";
             }
 
             else if (75 < userGrade && userGrade <= 80)
             {
                 //  Skill Level: Low
-                debugString = "Low";
+                if (_debugMode_ == true)
+                    debugString = "Low";
             }
 
             else if (70 < userGrade && userGrade <= 75)
             {
                 //  Skill Level: WeakFoundation - Low
-                debugString = "WeakFoundation - Low";
+                if (_debugMode_ == true)
+                    debugString = "WeakFoundation - Low";
             }
 
             else if (65 < userGrade && userGrade <= 70)
             {
                 //  Skill Level: WeakFoundation - Medium
-                debugString = "WeakFoundation - Medium";
+                if (_debugMode_ == true)
+                    debugString = "WeakFoundation - Medium";
             }
 
             else if (60 < userGrade && userGrade <= 65)
             {
                 //  Skill Level: WeakFoundation - High
-                debugString = "WeakFoundation - High";
+                if (_debugMode_ == true)
+                    debugString = "WeakFoundation - High";
             }
 
             else if (userGrade <= 60)
             {
                 //  Skill Level: WeakFoundation - Failed
-                debugString = "WeakFoundation - Failed";
+                if (_debugMode_ == true)
+                    debugString = "WeakFoundation - Failed";
             }
 
             else
@@ -186,7 +204,8 @@ namespace MinionMathMayhem_Ship
             }
 
             // DEBUG
-                Debug.Log("User Master is: " + debugString);
+                if (_debugMode_ == true)
+                    Debug.Log("User Master is: " + debugString);
         } // PerformanceGradingLibrary()
 
 
