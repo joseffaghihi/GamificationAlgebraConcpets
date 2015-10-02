@@ -180,7 +180,7 @@ namespace MinionMathMayhem_Ship
             while (true)
             {
                 // If the heartbeat has been enabled
-                if (heartbeat == true)
+                if (heartbeat)
                 {
                     // Is the new value matched up with the current game speed value.
                     if (HeartbeatTimerCorrection(heartbeatTimer) != Time.timeScale)
