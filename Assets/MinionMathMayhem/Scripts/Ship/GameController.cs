@@ -188,7 +188,7 @@ namespace MinionMathMayhem_Ship
             else
                 // If the heatbeat timer is null, slightly increase the timer.  If it is set to zero, the game will freeze completely.
                 if (heartbeatValue == 0)
-                    heartbeatValue += 0.0001f;
+                    heartbeatValue += 0.1f;
 
             return heartbeatValue;
         } // HeartbeatTimerCorrection()
