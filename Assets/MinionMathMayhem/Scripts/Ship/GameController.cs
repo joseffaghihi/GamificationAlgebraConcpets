@@ -189,7 +189,7 @@ namespace MinionMathMayhem_Ship
                 else if (!heartbeat)
                 {
                     // If the game speed has been altered
-                    if (HeartbeatTimerCorrection(heartbeatTimer) != Time.timeScale)
+                    if (Time.timeScale != 1f) // The default value is 1f.
                     {
                         // Update the game speed
                             Time.timeScale = 1f;
