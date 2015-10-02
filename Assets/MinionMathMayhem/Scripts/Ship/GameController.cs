@@ -167,16 +167,6 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private IEnumerator _HeartbeatTimer()
         {
-            // TODO: Unfuck code
-
-
-            // In-Scope Variables
-                // This will help avoid some spam in the console when the heartbeat has been enabled.
-                // Message Monitor
-                    //bool heartbeatMSG = false;
-                // Previous heartbeat timer
-                    //float oldHeartbeatTimer = heartbeatTimer;
-            // ----
             while (true)
             {
                 // If the heartbeat has been enabled
