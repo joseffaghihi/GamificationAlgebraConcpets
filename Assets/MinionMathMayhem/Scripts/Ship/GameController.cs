@@ -125,6 +125,14 @@ namespace MinionMathMayhem_Ship
         // When enabled through the Unity's inspector, this gives the ability to slow down the game.
         private IEnumerator HeartbeatTimer()
         {
+            // In-Scope Variables
+                // This will help avoid some spam in the console when the heartbeat has been enabled.
+                // Message Monitor
+                    bool heartbeatMSG = false;
+                // Previous heartbeat timer
+                    float oldHeartbeatTimer = heartbeatTimer;
+            // ----
+
             while (true)
             {
                 // Make sure the value is not negated
@@ -138,7 +146,14 @@ namespace MinionMathMayhem_Ship
                     if (heartbeat == true)
                     {
                         Time.timeScale = heartbeatTimer;
-                        Debug.Log("ATTN: Heartbeat has been changed to value: " + heartbeatTimer);
+                        oldHeartbeatTimer = heartbeatTimer;
+
+                        // Output that the heartbeat has been updated, but 
+                        if (heartbeatMSG == true)
+                        {
+                            heartbeatMSG = true; // Avoid the console being spammed
+                            Debug.Log("ATTN: Heartbeat has been changed to value: " + heartbeatTimer);
+                        } // Console Spam protection
                     } // if
 
                 // Restore the heartbeat to it's original value
