@@ -165,7 +165,7 @@ namespace MinionMathMayhem_Ship
                 } // Heartbeat is disabled
 
                 // Wait before re-looping
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.2f);
             } // while
         } // HeartbeatTimer()
 
