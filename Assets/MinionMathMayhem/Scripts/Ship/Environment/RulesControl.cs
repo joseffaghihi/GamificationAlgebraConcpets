@@ -45,12 +45,6 @@ namespace MinionMathMayhem_Ship {
 			while(control) {
 				yield return null;
 				Debug.Log (control);
-                // horrible gross hack
-				/*
-                    yield return new WaitForSeconds(3);
-                    Debug.Log("LIVING ON THE EDGE!");
-                    control = false;
-				*/
 			}
 		}
 
