@@ -43,19 +43,21 @@ namespace MinionMathMayhem_Ship {
 			backward.SetActive(true);
 			close.SetActive(true);
 			while(control) {
-				yield return new WaitForSeconds(5.0f);
+				yield return null;
 				Debug.Log (control);
                 // horrible gross hack
+				/*
                     yield return new WaitForSeconds(3);
                     Debug.Log("LIVING ON THE EDGE!");
                     control = false;
+				*/
 			}
 		}
 
 
 		// Allows other scripts to start 'WaitForRulesToFinish()'
 		public IEnumerator Access_WaitForRulesToFinish() {
-			yield return (StartCoroutine (WaitForRulesToFinish()));
+			yield return StartCoroutine (WaitForRulesToFinish());
 			yield return null;
 		}
 

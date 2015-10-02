@@ -62,6 +62,7 @@ namespace MinionMathMayhem_Ship {
 		// Deactivates all Components of the rules canvas besides the rules canvas itself
 		private void ClickExit() {
 			clickSource.Play ();
+			rulesControl.SetControl();
 			next.SetActive (false);
 			back.SetActive (false);
 			pgOne.SetActive(false);
