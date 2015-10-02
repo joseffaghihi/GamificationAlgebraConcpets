@@ -122,40 +122,6 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // DEPRECATED!  DO NOT USE UNLESS FOR COMPATIBILITY REASONS
-        // SERIOUSLY, THIS IS DEPRECATED NOW
-        private IEnumerator HeartbeatTimer()
-        {
-            while (true)
-            {
-                // Make sure the value is not negated
-                if (heartbeatTimer < 0)
-                    // Flip the sign
-                    heartbeatTimer = heartbeatTimer * -1;
-                // If the heatbeat timer is null, slightly increase the timer.  If it is set to zero, the game will freeze completely.
-                if (heartbeatTimer == 0)
-                    heartbeatTimer += 0.0001f;
-                // Change the heartbeat to a new value
-                if (heartbeat == true)
-                {
-                    Time.timeScale = heartbeatTimer;
-                    Debug.Log("ATTN: Heartbeat has been changed to value: " + heartbeatTimer);
-                } // if
-
-                // Restore the heartbeat to it's original value
-                else if (heartbeat == false && Time.timeScale != 1f)
-                {
-                    Time.timeScale = 1f;
-                    Debug.Log("ATTN: Heartbeat has been restored to its default setting.");
-                } // else-if
-
-                // Wait before re-looping
-                yield return new WaitForSeconds(0.5f);
-            } // while
-        } // HeartbeatTimer()
-
-
-
         /// <summary>
         ///     When enabled via Unity's Inspector, this gives the developer the ability to change the game's speed depending on the float value.
         ///         Default: 1
@@ -165,7 +131,7 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Nothing is returned
         /// </returns>
-        private IEnumerator _HeartbeatTimer()
+        private IEnumerator HeartbeatTimer()
         {
             while (true)
             {
