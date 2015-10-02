@@ -16,20 +16,25 @@ public class ObstacleGenerator : MonoBehaviour
     public float waveWait;
 	private float initWaveWait;
 
+    private int tempRound; //Store the round the user is on
+
 	GameControl gc = new GameControl();
 
+    //Start spawning the waves
     void Start()
     {
+        tempRound = gc.GetCurrentRound(); //Set the tempRound to the current round
 		initWaveWait = waveWait; //Set the initial spawnWait
         StartCoroutine(SpawnWaves());
     }
 
+    //Function for specific events during spawn phase
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
         while (true)
         {
-			gc.DelayWave(false); //Reset Delay
+            gc.DelayWave(false); //Reset Delay
 			waveWait = initWaveWait; //Reset waveWait
             for (int i = 0; i < hazardCount; i++)
             {
@@ -38,6 +43,9 @@ public class ObstacleGenerator : MonoBehaviour
                 Instantiate(obstacle, spawnPosition, spawnRotation);
 				if(gc.getDelayWave())
 				{
+                    //Reset Current Round Time whenever the player hits any obstacle
+                    gc.setCurrentRoundTime(-1);
+
 					i = hazardCount;
 					waveWait = 8;
 
@@ -50,6 +58,10 @@ public class ObstacleGenerator : MonoBehaviour
 				}
                 yield return new WaitForSeconds(spawnWait);
             }
+
+            //Add Current Round
+            gc.addCurrentRoundTime(); //Add another wave the user has been in the same round
+
             yield return new WaitForSeconds(waveWait);
         }
     }
