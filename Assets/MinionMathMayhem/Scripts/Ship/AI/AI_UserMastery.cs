@@ -52,6 +52,9 @@ namespace MinionMathMayhem_Ship
                 // Minion Speed
                     public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
                     public static event MinionSpeedDelegate MinionSpeed;
+                // Tutorial session (if the user isn't understanding the material)
+                    public delegate void TutorialSessionDelegate();
+                    public static event TutorialSessionDelegate TutorialSession;
         // ---------------------------------
         
 
@@ -117,7 +120,7 @@ namespace MinionMathMayhem_Ship
                 // User may not understand the material
                 else
                 {
-                    // Do something
+                    TutorialSession();
                 }
             } // if
         } // Main()
@@ -249,9 +252,9 @@ namespace MinionMathMayhem_Ship
                 userPrefArrayIndex_HighLight = 0;
 
             // Update the array at the highlighted index
-            userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
+                userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
             // Highlight the next index
-            userPrefArrayIndex_HighLight++;
+                userPrefArrayIndex_HighLight++;
         } // ArrayUpdateField()
 
 
@@ -264,9 +267,9 @@ namespace MinionMathMayhem_Ship
             userPrefScoreCorrect++;
 
             // Update the array that holds the user performance
-            ArrayUpdateField(true);
+                ArrayUpdateField(true);
             // Update the possible score
-            UpdatePossibleScore();
+                UpdatePossibleScore();
 
         } // IncrementCorrectScore()
 
@@ -280,9 +283,9 @@ namespace MinionMathMayhem_Ship
             userPrefScoreWrong++;
 
             // Update the array that holds the user performance
-            ArrayUpdateField(false);
+                ArrayUpdateField(false);
             // Update the possible score
-            UpdatePossibleScore();
+                UpdatePossibleScore();
         } // IncrementWrongScore()
 
 
