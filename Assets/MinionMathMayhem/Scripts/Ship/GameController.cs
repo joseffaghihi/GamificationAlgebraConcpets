@@ -228,11 +228,12 @@ namespace MinionMathMayhem_Ship
 	            // ----
 	            while (true) // Always check the state of the game.
 	            {
-	                // Fetch the scores and compute the scores
-	                    CheckScores();
+                    // Fetch the scores and compute the scores, iif the game is not over
+                        if (!gameOver)
+                            CheckScores();
 
-	                // Manage the spawners, if needed.
-	                    if (gameOver == !true)
+                    // Manage the spawners, if needed.
+                        if (gameOver == !true)
 	                    {
 	                        // Spawner toggle: True
 	                        if (spawnMinions == !true)
