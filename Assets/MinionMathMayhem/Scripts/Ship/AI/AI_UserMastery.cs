@@ -125,9 +125,7 @@ namespace MinionMathMayhem_Ship
 
                     // User may not understand the material
                     else
-                    {
                         TutorialSession();
-                    }
                 } // if AI active and monitoring
             } // If AI component is enabled
         } // Main()
