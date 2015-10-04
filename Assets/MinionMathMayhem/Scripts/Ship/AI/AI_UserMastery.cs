@@ -36,7 +36,10 @@ namespace MinionMathMayhem_Ship
                 private int userPrefScoreWrong = 0;
             // Possible Scores
                 private int userPrefScorePossible = 0;
-            // Activate the mastery when possible score reached at defined: {VALUE}
+            // Activate this AI component when the possible score has reached been reached by specific value
+                // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
+                //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
+                //          Set to -1 to disable the AI component or unlink from AI Main.
                 private static short userPrefScorePossible_EnableAI = 10;
             // User Performance Array
                 private static short userPrefArrayIndexSize = 3;
@@ -99,30 +102,34 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         public void Main()
         {
-            // Only run when the possible points has reached a certain value.
-            if (userPrefScorePossible >= userPrefScorePossible_EnableAI)
+            // If the AI Component is turned on
+            if (userPrefScorePossible_EnableAI != -1)
             {
-                // DEBUG MODE
-                if (_debugMode_ == true)
+                // Only run when the possible points has reached a certain value.
+                if (userPrefScorePossible >= userPrefScorePossible_EnableAI)
                 {
-                    // Debug Stats
+                    // DEBUG MODE
+                    if (_debugMode_ == true)
+                    {
+                        // Debug Stats
                         Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
                         Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
                         Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
                         Debug.Log("AI Mastery_User's Score: " + ((userPrefScoreCorrect / userPrefScorePossible * 100)));
-                } // DEBUG MODE
+                    } // DEBUG MODE
 
 
-                // User understands the material thus far
-                if (!UserPerformance_Array())
-                    PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
+                    // User understands the material thus far
+                    if (!UserPerformance_Array())
+                        PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
 
-                // User may not understand the material
-                else
-                {
-                    TutorialSession();
-                }
-            } // if
+                    // User may not understand the material
+                    else
+                    {
+                        TutorialSession();
+                    }
+                } // if AI active and monitoring
+            } // If AI component is enabled
         } // Main()
 
 
