@@ -115,7 +115,7 @@ namespace MinionMathMayhem_Ship
                         Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
                         Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
                         Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
-                        Debug.Log("AI Mastery_User's Score: " + ((userPrefScoreCorrect / userPrefScorePossible * 100)));
+                        Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
                     } // DEBUG MODE
 
 
