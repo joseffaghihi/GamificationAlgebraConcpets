@@ -18,6 +18,7 @@ namespace MinionMathMayhem_Ship
          * STRUCTURAL DEPENDENCY NOTES:
          *      User Mastery [AI]
          *          |_ Score [Score]
+         *          |_ GameController [GameController]
          *
          * GOALS:
          *      Tries to keep the player invulved and motivated
