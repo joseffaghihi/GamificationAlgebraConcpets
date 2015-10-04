@@ -74,6 +74,7 @@ namespace MinionMathMayhem_Ship
             Score.ScoreUpdate_Correct += IncrementCorrectScore;
             Score.ScoreUpdate_Incorrect += IncrementWrongScore;
             GameController.GameStateEnded += GameState_ToggleGameOver;
+            GameController.GameStateRestart += ResetAllScores;
         } // OnEnable()
 
 
@@ -87,6 +88,7 @@ namespace MinionMathMayhem_Ship
             Score.ScoreUpdate_Correct -= IncrementCorrectScore;
             Score.ScoreUpdate_Incorrect -= IncrementWrongScore;
             GameController.GameStateEnded -= GameState_ToggleGameOver;
+            GameController.GameStateRestart -= ResetAllScores;
         } // OnDisable()
 
 
