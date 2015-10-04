@@ -93,6 +93,9 @@ namespace MinionMathMayhem_Ship
         {
             // Tutorial movie ended
                 MoviePlay.TutorialStateEnded += TutorialMode_Ended;
+            // AI Listeners
+                // User Mastery
+                    AI_UserMastery.TutorialSession += GamePlay_Tutorial;
         } // OnEnable()
 
 
@@ -102,6 +105,9 @@ namespace MinionMathMayhem_Ship
         {
             // Tutorial movie ended
                 MoviePlay.TutorialStateEnded -= TutorialMode_Ended;
+            // AI Listeners
+                // User Mastery
+                    AI_UserMastery.TutorialSession -= GamePlay_Tutorial;
         } // OnDisable()
 
 
@@ -112,6 +118,8 @@ namespace MinionMathMayhem_Ship
             // Toggle this variable; this is used to tell the other functions that the tutorial is over.
                 gameTutorialEnded = !gameTutorialEnded;
         } // TutorialMode_Ended()
+
+
 
         // This function is immediately executed once the actor is in the game scene.
         private void Start()
@@ -248,6 +256,18 @@ namespace MinionMathMayhem_Ship
 	                }
 	            } // while loop
         } // GameManager()
+
+
+
+
+        /// <summary>
+        ///     When the AI Mastery reports that the user needs more re-enforcement demonstrations; backend-protocol
+        /// </summary>
+        private void GamePlay_Tutorial()
+        {
+            // DEBUG
+                Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
+        } // GamePlay_Tutorial()
 
 
 
