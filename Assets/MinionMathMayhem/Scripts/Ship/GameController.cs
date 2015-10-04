@@ -236,25 +236,27 @@ namespace MinionMathMayhem_Ship
 	            // ----
 	            while (true) // Always check the state of the game.
 	            {
-	                // Fetch the scores and compute the scores
-	                    CheckScores();
-	                // Brief wait time to ease the CPU
-	                    yield return new WaitForSeconds(0.5f);
+                    // Fetch the scores and compute the scores, iif the game is not over
+                        if (!gameOver)
+                            CheckScores();
 
-	                // Manage the spawners, if needed.
-	                if (gameOver == !true)
-	                {
-	                    // Spawner toggle: True
-	                    if (spawnMinions == !true)
-	                        FlipMinionSpawner();
-	                }
-	                else if (gameOver == !false)
-	                {
-	                    // Spawner toggle: False
-	                    if (spawnMinions == !false)
-	                        FlipMinionSpawner();
-	                }
-	            } // while loop
+                    // Manage the spawners, if needed.
+                        if (gameOver == !true)
+	                    {
+	                        // Spawner toggle: True
+	                        if (spawnMinions == !true)
+	                            FlipMinionSpawner();
+	                    }
+	                    else if (gameOver == !false)
+	                    {
+	                        // Spawner toggle: False
+	                        if (spawnMinions == !false)
+	                            FlipMinionSpawner();
+	                    }
+
+                    // Brief wait time to ease the CPU
+                        yield return new WaitForSeconds(0.5f);
+            } // while loop
         } // GameManager()
 
 
