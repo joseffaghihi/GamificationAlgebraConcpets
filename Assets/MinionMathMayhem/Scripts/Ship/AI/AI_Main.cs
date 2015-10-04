@@ -98,6 +98,8 @@ namespace MinionMathMayhem_Ship
                 MissingReferenceError("AI Component: " + "User Mastery [AI]");
             if (scriptAI_UserResponse == null)
                 MissingReferenceError("AI Component: " + "User Response [AI]");
+            if (scriptAI_SpawnServicer == null)
+                MissingReferenceError("AI Component: " + "Spawn Servicer [AI]");
         } // CheckReferences()
 
 
