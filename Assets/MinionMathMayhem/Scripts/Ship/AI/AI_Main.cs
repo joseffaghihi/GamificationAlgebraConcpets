@@ -7,6 +7,8 @@ namespace MinionMathMayhem_Ship
     {
         /*
          *                                                  GAME ARTIFICIAL INTELLIGENCE
+         *                                                      AI Codename: Nachtregen
+         *                                                         Version: 1.00.0
          *                                                              MAIN
          * This is the forefront of controlling the environment based on the user's performance and mastery.  This script is a 'always alive' and monitoring
          *  as to how the user is responding to the game and how well they perform.  This is the main part of the AI that centralizes all of the AI components, 
