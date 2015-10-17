@@ -262,11 +262,7 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // TODO:
-        //      When activated:
-        //          Stop spawner
-        //          Break from Spine
-        //      Resume game once deactivated
+        // TODO: When activated: Stop spawner, Break from Spine, then Resume game once deactivated
         /// <summary>
         ///     When the AI Mastery reports that the user needs more re-enforcement demonstrations; backend-protocol
         /// </summary>
@@ -345,6 +341,7 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // TODO: I think my main focus will be setting up which tutorial to execute, restructure the tutorial algorithm, then push a minor change in the spine that will stop the game properly. [NG]
         /// <summary>
         ///     Game Tutorial; this function will merely run through the tutorial sequence.
         /// </summary>
