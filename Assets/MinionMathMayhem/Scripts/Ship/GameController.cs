@@ -262,6 +262,11 @@ namespace MinionMathMayhem_Ship
 
 
 
+        // TODO:
+        //      When activated:
+        //          Stop spawner
+        //          Break from Spine
+        //      Resume game once deactivated
         /// <summary>
         ///     When the AI Mastery reports that the user needs more re-enforcement demonstrations; backend-protocol
         /// </summary>
