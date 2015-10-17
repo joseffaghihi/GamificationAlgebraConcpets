@@ -32,23 +32,20 @@ namespace MinionMathMayhem_Ship
                 Debug.Log("Ok, the initializations are working!");
 		}
 
-
-		void OnTriggerEnter()
-		{
-			PressForward();
-		}
-
         public void Press()
         {
             PressForward();
         }
 
-		private void PressForward()
-		{
-			clickSource.Play ();			// Plays click sound
-			rulesPgOne.SetActive(false);	// Deactivates 'rulesPgOne'
-			rulesPgTwo.SetActive (true);	// Activates 'rulesPgTwo'
-		}
+		public void PressForward()
+        {
+			clickSource.Play();
+            if(BackButton.iterator >= 1 && BackButton.iterator < 4)
+			{
+				BackButton.iterator++;
+				BackButton.RulesPageFlip();
+			}
+        }
 
 	} // end class
 } // end namespace

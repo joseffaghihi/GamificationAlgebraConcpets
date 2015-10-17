@@ -11,6 +11,8 @@ namespace MinionMathMayhem_Ship {
 		private GameObject back;			// reference to 'Rules Canvas/GoBack'
 		private GameObject pgOne;			// reference to 'Rules Canvas/Rules_pg01'
 		private GameObject pgTwo;			// reference to 'Rules Canvas/Rules_pg02'
+		private GameObject pgThree;			// reference to 'Rules Canvas/Rules_pg03'
+		private GameObject pgFour;			// reference to 'Rules Canvas/Rules_pg04'
 		private GameObject exit;	
 		private RulesControl rulesControl;
 
@@ -35,6 +37,9 @@ namespace MinionMathMayhem_Ship {
 			pgTwo = GameObject.Find ("Rules_pg02");
 			if(pgTwo == null)
 				print("pgTwo was not initialized");
+			pgThree = GameObject.Find("Rules_pg03");
+			if(pgThree == null)
+				print("pgThree was not initialized");
 			exit = GameObject.Find ("ExitButton");
 				if(exit == null)
 				print ("exitbutton was not initialized");

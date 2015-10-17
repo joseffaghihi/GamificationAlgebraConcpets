@@ -10,8 +10,10 @@ namespace MinionMathMayhem_Ship {
 
 		public static bool control;		// control variable for the function WaitForRulesToFinish
 		
-		public GameObject pg1;
-		public GameObject pg2;
+		public static GameObject pg1;
+		public static GameObject pg2;
+		public static GameObject pg3;
+		public static GameObject pg4;
 		public GameObject forward;
 		public GameObject backward;
 		public GameObject close;
@@ -25,8 +27,7 @@ namespace MinionMathMayhem_Ship {
 		}
 
 		void Start() {
-			pg1.SetActive(false);
-			pg2.SetActive(false);
+			DisableRules();
 			forward.SetActive(false);
 			backward.SetActive(false);
 			close.SetActive(false);
@@ -38,13 +39,14 @@ namespace MinionMathMayhem_Ship {
 		// variable is set to true
 		private IEnumerator WaitForRulesToFinish() {
 			pg1.SetActive(true);
-			pg2.SetActive(true);
+			//pg2.SetActive(true);
+			//pg3.SetActive(true);
+			//pg4.SetActive(true);
 			forward.SetActive(true);
 			backward.SetActive(true);
 			close.SetActive(true);
 			while(control) {
 				yield return null;
-				Debug.Log (control);
 			}
 		}
 
@@ -53,6 +55,14 @@ namespace MinionMathMayhem_Ship {
 		public IEnumerator Access_WaitForRulesToFinish() {
 			yield return StartCoroutine (WaitForRulesToFinish());
 			yield return null;
+		}
+		
+		// This method will disable all rules canvas pages
+		public static void DisableRules() {
+			pg1.SetActive(false);
+			pg2.SetActive(false);
+			pg3.SetActive(false);
+			pg4.SetActive(false);
 		}
 
 
