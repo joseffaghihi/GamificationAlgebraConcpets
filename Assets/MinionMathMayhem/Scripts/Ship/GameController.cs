@@ -95,7 +95,7 @@ namespace MinionMathMayhem_Ship
                 MoviePlay.TutorialStateEnded += TutorialMode_Ended;
             // AI Listeners
                 // User Mastery
-                    AI_UserMastery.TutorialSession += GamePlay_Tutorial;
+                    AI_UserMastery.TutorialSession += AI_OnDemandRequest_Tutorial;
         } // OnEnable()
 
 
@@ -107,7 +107,7 @@ namespace MinionMathMayhem_Ship
                 MoviePlay.TutorialStateEnded -= TutorialMode_Ended;
             // AI Listeners
                 // User Mastery
-                    AI_UserMastery.TutorialSession -= GamePlay_Tutorial;
+                    AI_UserMastery.TutorialSession -= AI_OnDemandRequest_Tutorial;
         } // OnDisable()
 
 
@@ -270,10 +270,12 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     When the AI Mastery reports that the user needs more re-enforcement demonstrations; backend-protocol
         /// </summary>
-        private void GamePlay_Tutorial()
+        private void AI_OnDemandRequest_Tutorial()
         {
             // DEBUG
                 Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
+            // Execute the backend
+                StartCoroutine(GameExecute_Tutorial());
         } // GamePlay_Tutorial()
 
 
@@ -343,8 +345,13 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Game Tutorial Sequence front-end.
-        private IEnumerator GameExecute_Tutorial()
+        /// <summary>
+        ///     Game Tutorial; this function will merely run through the tutorial sequence.
+        /// </summary>
+        /// <returns>
+        ///     Nothing is returned
+        /// </returns>
+        private IEnumerator GameExecute_Tutorial(int tutorialMode=0)
         {
             
             // Enable the tutorial objects
@@ -360,9 +367,10 @@ namespace MinionMathMayhem_Ship
                 objectTutorial_Movie.SetActive(false);
                 objectTutorial_Canvas.SetActive(false);
                 objectTutorial_SkipButton.SetActive(false);
-            
+            // Slide Show
 				yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
                 rulesCanvas.SetActive(false);
+            // End
                 TutorialStateEnd();
         } // GameExecute_Tutorial()
 
