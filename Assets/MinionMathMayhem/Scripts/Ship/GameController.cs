@@ -350,7 +350,12 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private IEnumerator GameExecute_Tutorial(int tutorialMode=0)
         {
-            
+            // TODO: Thrash work around solution
+            // Temporary work around
+                yield return null;
+
+            // TODO: Push this unto a dedicated script
+            /*
             // Enable the tutorial objects
                 objectTutorial_SkipButton.SetActive(true);
                 objectTutorial_Movie.SetActive(true);
@@ -369,6 +374,7 @@ namespace MinionMathMayhem_Ship
                 rulesCanvas.SetActive(false);
             // End
                 TutorialStateEnd();
+            */
         } // GameExecute_Tutorial()
 
 
