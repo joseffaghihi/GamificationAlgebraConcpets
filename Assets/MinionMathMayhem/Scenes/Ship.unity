@@ -261,16 +261,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voiceOver:
-  - {fileID: 8300000, guid: d2b6683f5db0d624e89ec0f09a611b44, type: 3}
-  - {fileID: 8300000, guid: 06c43208d2a2d824fbfacab176003ded, type: 3}
-  - {fileID: 8300000, guid: 08e205e54de26354e92ee35e5f5ef7ce, type: 3}
-  - {fileID: 8300000, guid: b22f5c7e6bda30e4a82249207179638f, type: 3}
-  - {fileID: 8300000, guid: 63a1c96af146f02499d7775cdb80800f, type: 3}
-  - {fileID: 8300000, guid: d44a6644f6b6cf040bc211a660609be2, type: 3}
-  - {fileID: 8300000, guid: f1264d92bc261514fa2ffa4f1bf75988, type: 3}
-  - {fileID: 8300000, guid: 5ab55075b8b6dc84abf35ead6568224b, type: 3}
-  - {fileID: 8300000, guid: 298a8ee02df36974a9bfa57604dda925, type: 3}
-  - {fileID: 8300000, guid: d04a6f425127e7440ad7cd3827a93732, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   tutorialSkip: 0
 --- !u!82 &33354904
 AudioSource:
@@ -507,7 +507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSource: {fileID: 648950080}
-  rulesCanvas: {fileID: 648950075}
 --- !u!1 &58658925 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b760b7975038240539d8daa9a5098b13, type: 3}
@@ -533,12 +532,6 @@ Animator:
 GameObject:
   m_PrefabParentObject: {fileID: 100376, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
   m_PrefabInternal: {fileID: 1733703669}
---- !u!114 &63528817 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1733703669}
-  m_Script: {fileID: 11500000, guid: 0520a781d2fda4c759aa1106b7b918ff, type: 3}
 --- !u!82 &63528818
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1835,7 +1828,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 648950079}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1972,7 +1965,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 648950079}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2740,9 +2733,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e175721305573c4e8eddf0f867dad32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: .300000012
-  addedSeconds: 2
-  finalSeconds: 1
+  seconds: 0
+  addedSeconds: 0
+  finalSeconds: 0
 --- !u!1001 &314032793
 Prefab:
   m_ObjectHideFlags: 0
@@ -3483,10 +3476,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 199409079}
-  - {fileID: 189286234}
-  - {fileID: 1027229566}
   - {fileID: 2079910936}
+  - {fileID: 1027229566}
+  - {fileID: 189286234}
+  - {fileID: 199409079}
   - {fileID: 880269264}
   - {fileID: 751666632}
   - {fileID: 49450188}
@@ -3578,13 +3571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea56346976b746c996ad1121ff2599d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pg1: {fileID: 199409078}
-  pg2: {fileID: 189286233}
-  pg3: {fileID: 1027229565}
-  pg4: {fileID: 2079910935}
-  forward: {fileID: 751666631}
-  backward: {fileID: 880269263}
-  close: {fileID: 49450187}
 --- !u!1 &670818317
 GameObject:
   m_ObjectHideFlags: 0
@@ -7065,10 +7051,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
---- !u!1 &1006633162 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 114380, guid: 7e62b51a070a94a3bbab1362bb1a6b08, type: 2}
-  m_PrefabInternal: {fileID: 960536866}
 --- !u!1 &1027229565
 GameObject:
   m_ObjectHideFlags: 0
@@ -7097,7 +7079,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 648950079}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 6.10351562e-05, y: -1.52587891e-05}
@@ -7175,7 +7157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
+  actor: {fileID: 0}
 --- !u!1 &1090173774
 GameObject:
   m_ObjectHideFlags: 0
@@ -7294,9 +7276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d40677d659f7740aef9d2125cab690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptAI_UserMastery: {fileID: 1208330403}
-  scriptAI_UserResponse: {fileID: 1208330402}
-  scriptAI_SpawnServicer: {fileID: 1208330406}
+  scriptAI_UserMastery: {fileID: 0}
+  scriptAI_UserResponse: {fileID: 0}
+  scriptAI_SpawnServicer: {fileID: 0}
 --- !u!4 &1208330405
 Transform:
   m_ObjectHideFlags: 0
@@ -7320,10 +7302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627f0227767348342bb2a136731b20b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 20
+  spawnRate: 0
   gracePeriodTimer: 2.5
-  scriptGameController: {fileID: 1430447470}
-  scriptGameEvent: {fileID: 1430447472}
+  scriptGameController: {fileID: 0}
+  scriptGameEvent: {fileID: 0}
 --- !u!1 &1252846938
 GameObject:
   m_ObjectHideFlags: 0
@@ -7494,7 +7476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf507ec97150c9b4d846414490fcb0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeNormal: .800000012
+  volumeNormal: 1
   volumeTutorial: .0500000007
 --- !u!1 &1333129013 stripped
 GameObject:
@@ -9264,18 +9246,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3355969d1b1944d95aae38efced41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScore: 100
+  maxScore: 10
   maxScoreFail: 5
-  textWinOrLose: {fileID: 1398285122}
-  scriptScore: {fileID: 1430447471}
-  scriptTutorial: {fileID: 33354903}
-  scriptGameEvent: {fileID: 1430447472}
-  scriptSpawnController: {fileID: 1430447473}
+  textWinOrLose: {fileID: 0}
+  scriptScore: {fileID: 0}
+  scriptTutorial: {fileID: 0}
+  scriptGameEvent: {fileID: 0}
+  scriptSpawnController: {fileID: 0}
   heartbeat: 0
-  heartbeatTimer: 2
-  objectTutorial_Movie: {fileID: 964868980}
-  objectTutorial_Canvas: {fileID: 1923049301}
-  objectTutorial_SkipButton: {fileID: 231372669}
+  heartbeatTimer: 1
+  objectTutorial_Movie: {fileID: 0}
+  objectTutorial_Canvas: {fileID: 0}
+  objectTutorial_SkipButton: {fileID: 0}
   rulesCanvas: {fileID: 648950075}
 --- !u!114 &1430447471
 MonoBehaviour:
@@ -9288,12 +9270,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5757599c7686c461cbe5436de65b5c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playTutAgainCanvas: {fileID: 1923049301}
-  viewTutorialAgainCanvas: {fileID: 1834801678}
-  scoreBox: {fileID: 1868065507}
-  wrongScoreBox: {fileID: 461673502}
-  scriptScore_Percentage: {fileID: 1430447479}
-  scriptGameController: {fileID: 1430447470}
+  playTutAgainCanvas: {fileID: 0}
+  viewTutorialAgainCanvas: {fileID: 0}
+  scoreBox: {fileID: 0}
+  wrongScoreBox: {fileID: 0}
+  scriptScore_Percentage: {fileID: 0}
+  scriptGameController: {fileID: 0}
 --- !u!114 &1430447472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9306,23 +9288,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSounds: {fileID: 0}
-  failSound: {fileID: 8300000, guid: 255a83748e196450ab7e08826f77aa40, type: 3}
-  gameOverSound: {fileID: 8300000, guid: 6b2f4111365644f72b2d2c1f949f9103, type: 3}
-  score: {fileID: 255394972}
-  wrongScore: {fileID: 1739067480}
-  feedbackAnswer: {fileID: 237376103}
-  feedbackLetter: {fileID: 498031635}
-  msgWhatIs: {fileID: 491266297}
-  EventLetterChange: {fileID: 2021063920}
-  feedbackController: {fileID: 304027668}
-  scriptFinalDestroyer: {fileID: 63528817}
-  scriptLetterBox: {fileID: 1750759271}
-  scriptEventLetterChange: {fileID: 2021063926}
-  scriptProblemBox: {fileID: 1715427619}
-  scriptScore: {fileID: 1430447471}
-  scriptGameController: {fileID: 1430447470}
-  scoreText: {fileID: 1868065504}
-  wrongScoreText: {fileID: 461673499}
+  failSound: {fileID: 0}
+  gameOverSound: {fileID: 0}
+  score: {fileID: 0}
+  wrongScore: {fileID: 0}
+  feedbackAnswer: {fileID: 0}
+  feedbackLetter: {fileID: 0}
+  msgWhatIs: {fileID: 0}
+  EventLetterChange: {fileID: 0}
+  feedbackController: {fileID: 0}
+  scriptFinalDestroyer: {fileID: 0}
+  scriptLetterBox: {fileID: 0}
+  scriptEventLetterChange: {fileID: 0}
+  scriptProblemBox: {fileID: 0}
+  scriptScore: {fileID: 0}
+  scriptGameController: {fileID: 0}
+  scoreText: {fileID: 0}
+  wrongScoreText: {fileID: 0}
 --- !u!114 &1430447473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9334,9 +9316,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a55973fe734044da6a8cb190956af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerObject0: {fileID: 1695659192}
-  spawnerObject1: {fileID: 1087691907}
-  spawnerObject2: {fileID: 2044786453}
+  spawnerObject0: {fileID: 0}
+  spawnerObject1: {fileID: 0}
+  spawnerObject2: {fileID: 0}
 --- !u!82 &1430447474
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9418,8 +9400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d20483946f524b2e9f681cc023f6045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsTextbox: {fileID: 491266297}
-  eventLetterTextbox: {fileID: 2021063920}
+  whatIsTextbox: {fileID: 0}
+  eventLetterTextbox: {fileID: 0}
 --- !u!114 &1430447476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9431,12 +9413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023910942ee571c45b810b4b7c1cd199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedClimbLadder_Minimum: 3.5
-  speedClimbLadder_Maximum: 7
-  speedRunning_Minimum: 9
-  speedRunning_Maximum: 12
-  thrustForce: 2000
-  thrustDirection: {x: 1, y: 1, z: 0}
+  speedClimbLadder_Minimum: 0
+  speedClimbLadder_Maximum: 0
+  speedRunning_Minimum: 0
+  speedRunning_Maximum: 0
+  thrustForce: 0
+  thrustDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1430447477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9448,16 +9430,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f6cd32d597344548d489c431727cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greatJob: {fileID: 58658925}
-  nice: {fileID: 222575598}
-  thatsIt: {fileID: 809622345}
-  wayToGo: {fileID: 1390142858}
-  correct: {fileID: 1006633162}
-  greatJobAud: {fileID: 8300000, guid: 84862ee425f9b564b958378105143e41, type: 3}
-  niceAud: {fileID: 8300000, guid: 2575fcb018fe8f849bb0997425394a01, type: 3}
-  thatItAud: {fileID: 8300000, guid: 42f81e8024ac5514d90e77091617e36f, type: 3}
-  wayToGoAud: {fileID: 8300000, guid: f410804f11a144dce927bd3c179d0608, type: 3}
-  randomAud: {fileID: 8300000, guid: f6181421d922bc8459cad0f570f197bb, type: 3}
+  greatJob: {fileID: 0}
+  nice: {fileID: 0}
+  thatsIt: {fileID: 0}
+  wayToGo: {fileID: 0}
+  correct: {fileID: 0}
+  greatJobAud: {fileID: 0}
+  niceAud: {fileID: 0}
+  thatItAud: {fileID: 0}
+  wayToGoAud: {fileID: 0}
+  randomAud: {fileID: 0}
 --- !u!114 &1430447479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9957,7 +9939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
+  actor: {fileID: 0}
 --- !u!224 &1715427615 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22415348, guid: 500a1a609963c7d4283a573a8a0530f7,
@@ -12456,7 +12438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6c7f7afa3b2430c993d04f1c0493db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptLetterBox: {fileID: 1750759271}
+  scriptLetterBox: {fileID: 0}
 --- !u!1 &2022404233
 GameObject:
   m_ObjectHideFlags: 0
@@ -13675,7 +13657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
+  actor: {fileID: 0}
 --- !u!1 &2066281924
 GameObject:
   m_ObjectHideFlags: 0
@@ -13733,8 +13715,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 113.943787, y: -81.6863327, z: -574.391846}
+  m_LocalRotation: {x: .0142669352, y: .528649986, z: .00888730865, w: -.848673463}
+  m_LocalPosition: {x: 522.119812, y: -87.9691238, z: -218.224548}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}
@@ -13775,7 +13757,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 648950079}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 3.05175781e-05, y: -1.52587891e-05}
@@ -13869,7 +13851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c99ce8a51522c448b010fb5abc4eb74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alphaChangeSpeed: .0599999987
+  alphaChangeSpeed: .0299999993
 --- !u!225 &2102308313
 CanvasGroup:
   m_ObjectHideFlags: 0
