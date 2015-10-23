@@ -12107,6 +12107,7 @@ GameObject:
   - 92: {fileID: 1939987169}
   - 124: {fileID: 1939987168}
   - 81: {fileID: 1939987167}
+  - 114: {fileID: 1939987172}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12182,6 +12183,21 @@ Transform:
   - {fileID: 1312877625}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1939987172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1939987166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de676d8ba104941299d6f3ccdbc2aaf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeFlick: {fileID: 2800000, guid: 3a5cff1a23a504c56abcd4b0953e5eb5, type: 3}
+  openFlick: {fileID: 2800000, guid: d1c525476280e4378be0265a35fa888b, type: 3}
+  cursorSize: 64
+  waitTime: .200000003
 --- !u!1001 &1962403907
 Prefab:
   m_ObjectHideFlags: 0
@@ -12502,8 +12518,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: .0259701479, y: .308842629, z: .00843652897, w: -.950721085}
-  m_LocalPosition: {x: 11.4748688, y: -6.53536177, z: -55.7832222}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
@@ -13721,8 +13737,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: -.106388949, y: .0634955093, z: .00680779293, w: .992271841}
-  m_LocalPosition: {x: -2.52468514, y: -9.63307095, z: -58.9598427}
+  m_LocalRotation: {x: .161893889, y: .30864948, z: .0533978939, w: -.935774863}
+  m_LocalPosition: {x: -15.3711376, y: -1.0219388, z: -46.9374809}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}
