@@ -9287,24 +9287,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787595e402c7e16498a7a826785eec23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSounds: {fileID: 0}
-  failSound: {fileID: 0}
-  gameOverSound: {fileID: 0}
-  score: {fileID: 0}
-  wrongScore: {fileID: 0}
-  feedbackAnswer: {fileID: 0}
-  feedbackLetter: {fileID: 0}
-  msgWhatIs: {fileID: 0}
-  EventLetterChange: {fileID: 0}
-  feedbackController: {fileID: 0}
-  scriptFinalDestroyer: {fileID: 0}
-  scriptLetterBox: {fileID: 0}
-  scriptEventLetterChange: {fileID: 0}
-  scriptProblemBox: {fileID: 0}
-  scriptScore: {fileID: 0}
-  scriptGameController: {fileID: 0}
-  scoreText: {fileID: 0}
-  wrongScoreText: {fileID: 0}
+  gameSounds: {fileID: 996319882}
+  failSound: {fileID: 8300000, guid: 255a83748e196450ab7e08826f77aa40, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 6b2f4111365644f72b2d2c1f949f9103, type: 3}
+  score: {fileID: 255394972}
+  wrongScore: {fileID: 1739067480}
+  feedbackAnswer: {fileID: 237376103}
+  feedbackLetter: {fileID: 498031635}
+  msgWhatIs: {fileID: 491266297}
+  EventLetterChange: {fileID: 2021063920}
+  feedbackController: {fileID: 304027668}
+  scriptFinalDestroyer: {fileID: 1733703670}
+  scriptLetterBox: {fileID: 1750759271}
+  scriptEventLetterChange: {fileID: 2021063926}
+  scriptProblemBox: {fileID: 1715427619}
+  scriptScore: {fileID: 1430447471}
+  scriptGameController: {fileID: 1430447470}
+  scoreText: {fileID: 1868065504}
+  wrongScoreText: {fileID: 461673499}
 --- !u!114 &1430447473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10073,6 +10073,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1733703670 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11447654, guid: 9f4b051f2c4b34ecaa0f4f0daf0ceba4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1733703669}
+  m_Script: {fileID: 11500000, guid: 0520a781d2fda4c759aa1106b7b918ff, type: 3}
 --- !u!1 &1739067480
 GameObject:
   m_ObjectHideFlags: 0
@@ -12496,8 +12502,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
+  m_LocalRotation: {x: .0259701479, y: .308842629, z: .00843652897, w: -.950721085}
+  m_LocalPosition: {x: 11.4748688, y: -6.53536177, z: -55.7832222}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
@@ -13715,8 +13721,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: .0142669352, y: .528649986, z: .00888730865, w: -.848673463}
-  m_LocalPosition: {x: 522.119812, y: -87.9691238, z: -218.224548}
+  m_LocalRotation: {x: -.106388949, y: .0634955093, z: .00680779293, w: .992271841}
+  m_LocalPosition: {x: -2.52468514, y: -9.63307095, z: -58.9598427}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}

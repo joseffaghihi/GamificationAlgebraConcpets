@@ -25,8 +25,8 @@ namespace MinionMathMayhem_Ship {
 		/// </summary>
 		private void ClickExit() {
 			clickSource.Play ();
-			RulesControl.DisableAll();
 			RulesControl.control = false;
+			RulesControl.DisableAll();
 		}
 
 	} // end class

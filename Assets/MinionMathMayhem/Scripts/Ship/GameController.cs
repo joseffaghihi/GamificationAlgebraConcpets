@@ -330,13 +330,13 @@ namespace MinionMathMayhem_Ship
                 TutorialStateStart();
             // Run a signal detector; once the signal has been detected, the tutorial is finished.
             //    Once the tutorial is finished, the rest of the game can execute.
-                yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
+                yield return StartCoroutine(GameExecute_Tutorial_ScanSignal());
             // Disable the tutorial objects
                 objectTutorial_Movie.SetActive(false);
                 objectTutorial_Canvas.SetActive(false);
                 objectTutorial_SkipButton.SetActive(false);
             
-				yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
+				yield return StartCoroutine (rulesControl.Access_WaitForRulesToFinish());
                 rulesCanvas.SetActive(false);
                 TutorialStateEnd();
         } // GameExecute_Tutorial()
