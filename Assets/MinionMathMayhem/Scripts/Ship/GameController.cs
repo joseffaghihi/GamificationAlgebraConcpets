@@ -336,8 +336,10 @@ namespace MinionMathMayhem_Ship
                 objectTutorial_Canvas.SetActive(false);
                 objectTutorial_SkipButton.SetActive(false);
             
-				yield return StartCoroutine (rulesControl.Access_WaitForRulesToFinish());
-                rulesCanvas.SetActive(false);
+				yield return null;
+                
+                rulesControl.Access_WaitForRulesToFinish();
+    //            rulesCanvas.SetActive(false);
                 TutorialStateEnd();
         } // GameExecute_Tutorial()
 

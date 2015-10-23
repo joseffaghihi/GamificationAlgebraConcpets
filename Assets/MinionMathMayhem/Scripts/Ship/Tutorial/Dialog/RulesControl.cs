@@ -18,12 +18,19 @@ namespace MinionMathMayhem_Ship {
 		public static GameObject close;			// refernce to 'ExitButton' gameObject
 		public static int iterator = 1;			// control variable for cycling through
 												// Rules pages to display
+												
+		public static RulesControl instance;
 
 
 // ----------------------------------- Unity Event Functions ----------------------------------- //
 //  ******************************************************************************************** //
 
 		void Awake() {
+			if(instance == null) { 
+				instance = this;
+			} else {
+				Destroy(gameObject);
+			}
 			GetRulesReferences();
 			control = true;
 		}
@@ -52,9 +59,8 @@ namespace MinionMathMayhem_Ship {
 		/// <summary>
 		/// Allows other scripts to start 'WaitForRulesToFinish()'
 		/// </summary>
-		public IEnumerator Access_WaitForRulesToFinish() {
-			yield return StartCoroutine (WaitForRulesToFinish());
-			yield return null;
+		public void Access_WaitForRulesToFinish() {
+			StartCoroutine (WaitForRulesToFinish());
 		}
 		
 		/// <summary>
