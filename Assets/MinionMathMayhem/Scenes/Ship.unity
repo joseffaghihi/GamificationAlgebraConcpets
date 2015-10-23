@@ -7261,7 +7261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 0}
+  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!1 &1090173774
 GameObject:
   m_ObjectHideFlags: 0
@@ -7380,9 +7380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d40677d659f7740aef9d2125cab690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptAI_UserMastery: {fileID: 0}
-  scriptAI_UserResponse: {fileID: 0}
-  scriptAI_SpawnServicer: {fileID: 0}
+  scriptAI_UserMastery: {fileID: 1208330403}
+  scriptAI_UserResponse: {fileID: 1208330402}
+  scriptAI_SpawnServicer: {fileID: 1208330406}
 --- !u!4 &1208330405
 Transform:
   m_ObjectHideFlags: 0
@@ -7408,8 +7408,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRate: 0
   gracePeriodTimer: 2.5
-  scriptGameController: {fileID: 0}
-  scriptGameEvent: {fileID: 0}
+  scriptGameController: {fileID: 1430447470}
+  scriptGameEvent: {fileID: 1430447472}
 --- !u!1 &1252846938
 GameObject:
   m_ObjectHideFlags: 0
@@ -10043,7 +10043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 0}
+  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!224 &1715427615 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22415348, guid: 500a1a609963c7d4283a573a8a0530f7,
@@ -13783,7 +13783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a5e5dbfe4d6f94eb88f1782fa2a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 0}
+  actor: {fileID: 157540, guid: 4b25978b00db8405786be6bc628ab449, type: 2}
 --- !u!1 &2066281924
 GameObject:
   m_ObjectHideFlags: 0
