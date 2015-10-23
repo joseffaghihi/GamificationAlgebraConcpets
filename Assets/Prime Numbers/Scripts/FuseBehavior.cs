@@ -1,40 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FuseBehavior : MonoBehaviour 
+namespace PrimeNumbers
 {
-	//public GameObject cube;
-	//public DestructionController script_DestructionController;//Nicholas had me create this variable to use 
-	//for our event.
 
-	public float shrinkSpeed = 1f;
-	public float size = 1f;
-	bool shrinking = true;
-
-
-	void Start () 
+	public class FuseBehavior : MonoBehaviour 
 	{
+		//public GameObject cube;
+		//public DestructionController script_DestructionController;//Nicholas had me create this variable to use 
+		//for our event.
 
-	}
+		public float shrinkSpeed = 1f;
+		public float size = 1f;
+		bool shrinking = true;
 
-    private void Awake()//Nicholas told me to make this function and everything inside of it.
-	{
-		//script_DestructionController = cube.GetComponent<DestructionController>();
-	}
 
-	void Update () 
-	{
-
-		if (shrinking == true) 
+		void Start () 
 		{
-			transform.localScale -= Vector3.up*Time.deltaTime*shrinkSpeed;
-			size = transform.localScale.y;
-				if (size < .25)
-				{
-					shrinking = false;
-					Destroy (gameObject);
-					//script_DestructionController.Access_MyMethod();
-				}
+
+		}
+
+	    private void Awake()//Nicholas told me to make this function and everything inside of it.
+		{
+			//script_DestructionController = cube.GetComponent<DestructionController>();
+		}
+
+		void Update () 
+		{
+
+			if (shrinking == true) 
+			{
+				transform.localScale -= Vector3.up*Time.deltaTime*shrinkSpeed;
+				size = transform.localScale.y;
+					if (size < .25)
+					{
+						shrinking = false;
+						Destroy (gameObject);
+						//script_DestructionController.Access_MyMethod();
+					}
+			}
 		}
 	}
-}
+}//end of namespace
