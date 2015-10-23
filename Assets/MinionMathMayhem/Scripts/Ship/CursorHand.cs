@@ -36,7 +36,7 @@ public class CursorHand : MonoBehaviour {
 	
 	void OnMouseDown() {
 		print("Flick() was called");
-		_Flick();
+		// StartCoroutine(_Flick());
 	}
 	
 	/// <summary>

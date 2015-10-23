@@ -460,6 +460,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1939987172}
+        m_MethodName: Flick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &49450190
@@ -4878,6 +4889,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1939987172}
+        m_MethodName: Flick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &751666634
@@ -6392,6 +6414,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1939987172}
+        m_MethodName: Flick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &880269266
@@ -6655,6 +6688,77 @@ CanvasRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 479826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
   m_PrefabInternal: {fileID: 1358912439}
+--- !u!1 &932787145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 932787148}
+  - 20: {fileID: 932787147}
+  - 45: {fileID: 932787146}
+  m_Layer: 0
+  m_Name: Water4Example (Advanced)ReflectionPreview Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!45 &932787146
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 932787145}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
+--- !u!20 &932787147
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 932787145}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .300000012
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967279
+  m_RenderingPath: 1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
+--- !u!4 &932787148
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 932787145}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: 48.3013039, y: -13.6293802, z: 67.238533}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
 --- !u!4 &954177113 stripped
 Transform:
   m_PrefabParentObject: {fileID: 479826, guid: 49a4a47329d6447cbb5c94ffa62342fc, type: 2}
@@ -9248,16 +9352,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScore: 10
   maxScoreFail: 5
-  textWinOrLose: {fileID: 0}
-  scriptScore: {fileID: 0}
-  scriptTutorial: {fileID: 0}
-  scriptGameEvent: {fileID: 0}
-  scriptSpawnController: {fileID: 0}
+  textWinOrLose: {fileID: 1398285122}
+  scriptScore: {fileID: 1430447471}
+  scriptTutorial: {fileID: 33354903}
+  scriptGameEvent: {fileID: 1430447472}
+  scriptSpawnController: {fileID: 1430447473}
   heartbeat: 0
   heartbeatTimer: 1
-  objectTutorial_Movie: {fileID: 0}
-  objectTutorial_Canvas: {fileID: 0}
-  objectTutorial_SkipButton: {fileID: 0}
+  objectTutorial_Movie: {fileID: 964868980}
+  objectTutorial_Canvas: {fileID: 1090173774}
+  objectTutorial_SkipButton: {fileID: 231372669}
   rulesCanvas: {fileID: 648950075}
 --- !u!114 &1430447471
 MonoBehaviour:
@@ -9270,12 +9374,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5757599c7686c461cbe5436de65b5c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playTutAgainCanvas: {fileID: 0}
-  viewTutorialAgainCanvas: {fileID: 0}
-  scoreBox: {fileID: 0}
-  wrongScoreBox: {fileID: 0}
-  scriptScore_Percentage: {fileID: 0}
-  scriptGameController: {fileID: 0}
+  playTutAgainCanvas: {fileID: 1923049301}
+  viewTutorialAgainCanvas: {fileID: 1834801678}
+  scoreBox: {fileID: 1868065507}
+  wrongScoreBox: {fileID: 461673502}
+  scriptScore_Percentage: {fileID: 1430447479}
+  scriptGameController: {fileID: 1430447470}
 --- !u!114 &1430447472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9316,9 +9420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a55973fe734044da6a8cb190956af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerObject0: {fileID: 0}
-  spawnerObject1: {fileID: 0}
-  spawnerObject2: {fileID: 0}
+  spawnerObject0: {fileID: 1695659192}
+  spawnerObject1: {fileID: 1087691907}
+  spawnerObject2: {fileID: 2044786453}
 --- !u!82 &1430447474
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9400,8 +9504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d20483946f524b2e9f681cc023f6045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsTextbox: {fileID: 0}
-  eventLetterTextbox: {fileID: 0}
+  whatIsTextbox: {fileID: 491266297}
+  eventLetterTextbox: {fileID: 2021063920}
 --- !u!114 &1430447476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9413,12 +9517,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023910942ee571c45b810b4b7c1cd199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedClimbLadder_Minimum: 0
-  speedClimbLadder_Maximum: 0
-  speedRunning_Minimum: 0
-  speedRunning_Maximum: 0
-  thrustForce: 0
-  thrustDirection: {x: 0, y: 0, z: 0}
+  speedClimbLadder_Minimum: 3.5
+  speedClimbLadder_Maximum: 7
+  speedRunning_Minimum: 9
+  speedRunning_Maximum: 12
+  thrustForce: 2000
+  thrustDirection: {x: 1, y: 1, z: 0}
 --- !u!114 &1430447477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9430,16 +9534,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f6cd32d597344548d489c431727cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greatJob: {fileID: 0}
-  nice: {fileID: 0}
-  thatsIt: {fileID: 0}
-  wayToGo: {fileID: 0}
-  correct: {fileID: 0}
-  greatJobAud: {fileID: 0}
-  niceAud: {fileID: 0}
-  thatItAud: {fileID: 0}
-  wayToGoAud: {fileID: 0}
-  randomAud: {fileID: 0}
+  greatJob: {fileID: 58658925}
+  nice: {fileID: 100000, guid: 282071e0735094994a8f33a8bdf5019b, type: 3}
+  thatsIt: {fileID: 100020, guid: 63a6694f3f6684b65958ebe4dcea46c5, type: 3}
+  wayToGo: {fileID: 100018, guid: ad4754a2bdc464b9bbf74ac79fed64e3, type: 3}
+  correct: {fileID: 100000, guid: c1106f99ac0ab4d2690d19a08ec5b36c, type: 3}
+  greatJobAud: {fileID: 8300000, guid: 84862ee425f9b564b958378105143e41, type: 3}
+  niceAud: {fileID: 8300000, guid: 2575fcb018fe8f849bb0997425394a01, type: 3}
+  thatItAud: {fileID: 8300000, guid: 42f81e8024ac5514d90e77091617e36f, type: 3}
+  wayToGoAud: {fileID: 8300000, guid: f410804f11a144dce927bd3c179d0608, type: 3}
+  randomAud: {fileID: 8300000, guid: f6181421d922bc8459cad0f570f197bb, type: 3}
 --- !u!114 &1430447479
 MonoBehaviour:
   m_ObjectHideFlags: 0
