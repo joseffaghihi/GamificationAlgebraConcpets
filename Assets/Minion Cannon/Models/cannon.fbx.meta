@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: 5e4cec46cf7c341fa96f4af95d19d675
+timeCreated: 1431459833
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: back
+    100002: //RootNode
+    100004: cannon_body
+    100006: cannon_end
+    100008: cannon_end_detail
+    100010: cannon_end_knob
+    100012: cannon_end_shell
+    100014: cannon_latch
+    100016: cannon_latch 1
+    100018: cannon_mount_bigWood_01
+    100020: cannon_mount_bigWood_01 1
+    100022: cannon_mount_bolt
+    100024: cannon_mount_bolt 1
+    100026: cannon_mount_sideTrim
+    100028: cannon_mount_sideTrim 1
+    100030: cannon_mount_smallWood_01
+    100032: cannon_mount_smallWood_01 1
+    100034: cannon_muzzle
+    100036: cannon_side1
+    100038: cannon_side2
+    100040: cannon_side3
+    100042: cannon_smallDetail_01
+    100044: cannon_smallDetail_02
+    100046: cannon_wheel1
+    100048: cannon_wheel2
+    100050: cannon_wheel3
+    100052: cannon_wheel4
+    100054: cannon_wheel5
+    100056: cannon_wheel_01
+    100058: cannon_wheel_01 1
+    100060: cannon_wheel_01 2
+    100062: left
+    100064: transform1
+    100066: transform10
+    100068: transform2
+    100070: transform3
+    100072: transform4
+    100074: transform5
+    100076: transform6
+    100078: transform7
+    100080: transform8
+    100082: transform9
+    400000: back
+    400002: //RootNode
+    400004: cannon_body
+    400006: cannon_end
+    400008: cannon_end_detail
+    400010: cannon_end_knob
+    400012: cannon_end_shell
+    400014: cannon_latch
+    400016: cannon_latch 1
+    400018: cannon_mount_bigWood_01
+    400020: cannon_mount_bigWood_01 1
+    400022: cannon_mount_bolt
+    400024: cannon_mount_bolt 1
+    400026: cannon_mount_sideTrim
+    400028: cannon_mount_sideTrim 1
+    400030: cannon_mount_smallWood_01
+    400032: cannon_mount_smallWood_01 1
+    400034: cannon_muzzle
+    400036: cannon_side1
+    400038: cannon_side2
+    400040: cannon_side3
+    400042: cannon_smallDetail_01
+    400044: cannon_smallDetail_02
+    400046: cannon_wheel1
+    400048: cannon_wheel2
+    400050: cannon_wheel3
+    400052: cannon_wheel4
+    400054: cannon_wheel5
+    400056: cannon_wheel_01
+    400058: cannon_wheel_01 1
+    400060: cannon_wheel_01 2
+    400062: left
+    400064: transform1
+    400066: transform10
+    400068: transform2
+    400070: transform3
+    400072: transform4
+    400074: transform5
+    400076: transform6
+    400078: transform7
+    400080: transform8
+    400082: transform9
+    2300000: cannon_end_detail
+    2300002: cannon_end_knob
+    2300004: cannon_end_shell
+    2300006: cannon_muzzle
+    2300008: cannon_side3
+    2300010: cannon_smallDetail_01
+    2300012: cannon_smallDetail_02
+    2300014: cannon_wheel4
+    2300016: cannon_wheel5
+    3300000: cannon_end_detail
+    3300002: cannon_end_knob
+    3300004: cannon_end_shell
+    3300006: cannon_muzzle
+    3300008: cannon_side3
+    3300010: cannon_smallDetail_01
+    3300012: cannon_smallDetail_02
+    3300014: cannon_wheel4
+    3300016: cannon_wheel5
+    4300000: cannon_muzzle
+    4300002: cannon_smallDetail_01
+    4300004: cannon_smallDetail_02
+    4300006: cannon_end_shell
+    4300008: cannon_end_detail
+    4300010: cannon_end_knob
+    4300012: cannon_wheel4
+    4300014: cannon_wheel5
+    4300016: cannon_side3
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
