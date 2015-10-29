@@ -1,13 +1,24 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System.Collections.Generic; //needed for lists
 
 namespace PrimeNumbers
 {
+	//Add an array that holds the numbers 1-5. When the cube that corrisodes to that number is 
+	//deleted that is set to 0. if the number for the cubes != 0 then check to see if that number
+	//is prime, and if the 2 remaining numbers multiplied = start number then spawn a prefab that corrisonds
+	//with the correct number of remaining factors. 
 
 	public class StartNumber : MonoBehaviour 
 	{
+		public DeleteCube script_DeleteCube;
+
 		public Transform prefabWires;//to spawn wire prefab
+
 		public GameObject MainCamera;//access to mainCamera
+
+		public List<GameObject> Wires = new List<GameObject>();
+		//Holds the 5 wires in a list to keep track of which ones have been deleted
 
 		public GameObject[] CubeArray; //holds the cubes
 		public TextMesh[] FArray; //Holds the textMeshes in the inspector in an array
@@ -31,18 +42,33 @@ namespace PrimeNumbers
 		public int lastBox =0;//used to display a random number that isn't already displayed
 		public int start = 0;//used when making pairs of factors.
 
+		public static int deletedCounter=0; //keeps track of objects deleted
+
 		public int displayCounter=0;
 
-		public int deletedCounter=0; //keeps track of objects deleted
+		public bool[] cubesRemaining;//true = cube not deleted false = cube deleted.
+
+		public int total=0; // Check to see two remaining numbers = start number
+		public int[] remainingNumbers;
+
+		public int dummyCounter=0;//running out of names for counters
+
+		public int setNumber =5;
 
 		void Start () 
 		{
 			ArrayB = new int[5];
 			FactorArray = new int[20];
 			Choices = new int[6,2];
+			cubesRemaining = new bool[5];
+			for (int i =0; i<5; i++) 
+			{
+				cubesRemaining [i] = true;
+			}
+			remainingNumbers = new int[2];
 
 			RN = Random.Range(1,100);
-			//RN = 96;
+			//RN = 81;
 			//Check to see if the random number is prime.
 			if (isPrime (RN) == true) 
 			{
@@ -50,6 +76,7 @@ namespace PrimeNumbers
 					RN = Random.Range (1, 100);
 					} while(isPrime (RN)==true);
 			}
+			Debug.Log ("SN=" + RN);
 
 			//Display the starting number on starting cube.
 			TextMesh t = (TextMesh)gameObject.GetComponent(typeof(TextMesh));
@@ -60,18 +87,33 @@ namespace PrimeNumbers
 			{
 				if(RN%i==0)
 				{
-					FactorArray[counter] = i;
-					counter++;
+					if(i*i==RN)
+					{
+						FactorArray[counter] = i;
+						Debug.Log (FactorArray[counter]);
+						counter++;
+						FactorArray[counter] = i;
+						Debug.Log (FactorArray[counter]);
+						counter++;;
+					}
+					else
+					{
+						FactorArray[counter] = i;
+						Debug.Log (FactorArray[counter]);
+						counter++;
+					}
 				}
 			}
 
 			//puts the choices of factors that go together in a 2d array holding the numbers.
+			Debug.Log ("Choice:");
 			choiceCounter = counter-1;
 			for (int i=1; i<=((counter)/2); i++) 
 			{
 				Choices[num1,num2] = FactorArray[start];
 				num2++;
 				Choices[num1,num2] = FactorArray[choiceCounter];
+				Debug.Log (Choices[num1,num2-1] + " " + Choices[num1,num2]);
 				choiceCounter--;
 				num1++;
 				num2=0;
@@ -79,20 +121,21 @@ namespace PrimeNumbers
 			}
 
 			//two random numbers to choose which 2 combinations will be selected. 
-			if (((counter + 1) / 2) % 2 == 0) 
+			if (((counter + 1) / 2) % 2 == 0) //check to see if the number of choices is odd(here would be even)
 			{
 				RandomChoice1 = Random.Range (0, ((counter + 1) / 2));
 				do {
 					RandomChoice2 = Random.Range (0, ((counter + 1) / 2));
 				} while(RandomChoice2==RandomChoice1);
 			}
-			else if(((counter + 1) / 2) % 2 != 0) 
+			else if(((counter + 1) / 2) % 2 != 0)  //Here it would be odd
 			{
 				RandomChoice1 = Random.Range (0, ((counter) / 2));
 				do {
 					RandomChoice2 = Random.Range (0, ((counter) / 2));
 				} while(RandomChoice2==RandomChoice1);
 			}
+			Debug.Log ("RandomChoice1= " + RandomChoice1 + " RandomChoice2= " + RandomChoice2);
 
 			//put the chosen numbers to display in an array of 5
 			ArrayB [0] = Choices [RandomChoice1, 0];
@@ -100,16 +143,15 @@ namespace PrimeNumbers
 			ArrayB [2] = Choices [RandomChoice2, 0];
 			ArrayB [3] = Choices [RandomChoice2, 1];
 
-			lastBox = Random.Range (1,RN);
+			ArrayB[4] = Random.Range (1,RN);
 			for(int i=0;i<counter+1;i++)
 			{
-				if (lastBox == FactorArray [i]) 
+				if (ArrayB[4] == FactorArray [i]) 
 				{
-					lastBox = Random.Range (1,RN);
+					ArrayB[4] = Random.Range (7,RN);
 					i=0;
 				}
 			}
-			ArrayB [4] = lastBox;
 
 			//Mixes up the numbres in the Array
 			ShuffleArray(ArrayB);
@@ -117,6 +159,7 @@ namespace PrimeNumbers
 			//displays the random choices in the two dimentional array.
 			foreach(TextMesh text in FArray)
 			{
+				Debug.Log (ArrayB[displayCounter]);
 				text.text  = ArrayB[displayCounter].ToString();
 				displayCounter++;
 			}
@@ -134,32 +177,48 @@ namespace PrimeNumbers
 				RaycastHit hit;
 				// Casts the ray and get the first game object hit
 				Physics.Raycast (ray, out hit);
-				Destroy (GameObject.Find (hit.transform.name));
-				deletedCounter++;
+				for(int i=0;i<setNumber;i++)
+				{
+					if(hit.collider.name == Wires[i].name)
+					{
+						Debug.Log (i);
+						Destroy(GameObject.Find(hit.transform.name));
+						//run corountine that deleted cube.
+						script_DeleteCube = CubeArray[i].GetComponent<DeleteCube>();
+						script_DeleteCube.Access_MyMethod();
+						//i starts over at 0 each time becuase setnumber is being decreased in this for loop.
+						deletedCounter++;
+						cubesRemaining[i]=false;
+						Wires.RemoveAt(i);
+						setNumber--;
+					}
+				}
 
 				if(deletedCounter==3)
 				{
+					for(int i=0;i<5;i++)
+					{
+						if(cubesRemaining[i]==true)
+						{
+							remainingNumbers[dummyCounter] = ArrayB[i];
+							dummyCounter++;
+						}
+					}
 
-					Instantiate(prefabWires, CubeArray[2].transform.position + CubeArray[2].transform.position * distance,
-					            transform.rotation);
-					MainCamera.transform.position = new Vector3(0,-3,-8);
-				}
-			}
-		}
+					total = remainingNumbers[0] * remainingNumbers[1];
 
-		public void acess_updateArray(int factorNumber)
-		{
-			updateAraay (factorNumber);
-		}
+					if(total != RN )
+					{
+						Debug.Log ("Total != RN");
+					}
+					else if(total==RN)
+					{
 
-		//Sets the number in the array of the deleted cube to 0
-		private void updateAraay(int number)
-		{
-			for(int i =0;i<5;i++)
-			{
-				if(number == ArrayB[i])
-				{
-					ArrayB[i] = 0;
+						/*Instantiate(prefabWires, CubeArray[2].transform.position + CubeArray[2].transform.position * distance,
+					         	   transform.rotation);
+						MainCamera.transform.position = new Vector3(0,-3,-8);*/
+						Debug.Log ("Total == RN");
+					}
 				}
 			}
 		}
@@ -184,5 +243,5 @@ namespace PrimeNumbers
 			}
 			return true;
 		}
-	}
+	}//end of StartNumber
 }//end namespace

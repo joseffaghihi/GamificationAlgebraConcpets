@@ -3,7 +3,6 @@ using System.Collections;
 
 namespace PrimeNumbers
 {
-
 	public class FuseBehavior : MonoBehaviour 
 	{
 		//public GameObject cube;
@@ -40,5 +39,5 @@ namespace PrimeNumbers
 					}
 			}
 		}
-	}
+	}//end of Fusebehavior
 }//end of namespace

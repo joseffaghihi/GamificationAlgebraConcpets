@@ -3,22 +3,22 @@ using System.Collections;
 
 namespace PrimeNumbers
 {
-
-	public class DeleteCube : MonoBehaviour {
-
+	public class DeleteCube : MonoBehaviour 
+	{
 		public TextMesh CubeText;
 
-		void Start () 
+		IEnumerator MyMethod()
 		{
-		
+			yield return new WaitForSeconds(0); 
+			Destroy (gameObject);
 		}
 
-		void Update () 
+		
+		public void Access_MyMethod()
 		{
-				if (transform.position.y < -20) 
-				{
-					Destroy (gameObject);
-				}
-			}
+			StartCoroutine(MyMethod());
+			Debug.Log("asdf");
+		}
+
 	}
 }//end of namespace
