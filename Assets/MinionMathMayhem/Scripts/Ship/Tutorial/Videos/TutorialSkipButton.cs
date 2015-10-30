@@ -22,8 +22,6 @@ namespace MinionMathMayhem_Ship
                 public static event SkipTutorial SkipTutorialDemand;
         // ----
 
-
-
         // When the object is preparing to be removed from the virtual world; broadcast a signal (event) that the tutorial squence needs to be skipped.
         private void OnDisable()
         {

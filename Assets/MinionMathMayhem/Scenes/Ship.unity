@@ -4676,7 +4676,7 @@ RectTransform:
   - {fileID: 491266300}
   - {fileID: 2021063921}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 43.6100006, y: 13.1800003}
@@ -7394,7 +7394,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
 --- !u!114 &1208330406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8051,7 +8051,7 @@ RectTransform:
   - {fileID: 2000418823}
   - {fileID: 2102308311}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -9338,7 +9338,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
 --- !u!114 &1430447470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9350,7 +9350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3355969d1b1944d95aae38efced41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScore: 10
+  maxScore: 100
   maxScoreFail: 5
   textWinOrLose: {fileID: 1398285122}
   scriptScore: {fileID: 1430447471}
@@ -12198,7 +12198,7 @@ Transform:
   - {fileID: 1784469597}
   - {fileID: 1623233786}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!1 &1939987166
 GameObject:
   m_ObjectHideFlags: 0

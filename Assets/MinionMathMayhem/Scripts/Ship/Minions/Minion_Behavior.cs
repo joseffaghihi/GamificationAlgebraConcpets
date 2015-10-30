@@ -59,6 +59,8 @@ namespace MinionMathMayhem_Ship
                     private Minion_LifeSpan scriptMinion_LifeSpan;
                 // User AI integration
                     private AI_UserResponse scriptAI_UserResponse;
+                // CursorHand component on main camera in ship scene
+                    private CursorHand cursor;
         // ----
 
 
@@ -78,6 +80,8 @@ namespace MinionMathMayhem_Ship
                     scriptAI_UserResponse = GameObject.FindGameObjectWithTag("AIHub").GetComponent<AI_UserResponse>();
             // Initialize the Life Span script
                 scriptMinion_LifeSpan = gameObject.GetComponent<Minion_LifeSpan>();
+                // initialize cursor hand
+                cursor = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CursorHand>();
 
         } // Awake()
 
@@ -292,6 +296,8 @@ namespace MinionMathMayhem_Ship
             // Only possible when the minion is on the ladder
             if (isClimbing != false)
             {
+                // mouse cursor flick animation
+               cursor.Flick();
                 // Selected action
                     Flick();
                 // Play sound
