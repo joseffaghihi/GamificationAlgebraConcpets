@@ -181,6 +181,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flyingNumber: {fileID: 22316198, guid: d16e21ecfa163394da0f45b1f0afba5a, type: 2}
+  Original: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  EqualTo: {fileID: 21300000, guid: aaab89ecc28e31042b6bc9aec3807702, type: 3}
+  GreaterThan: {fileID: 21300000, guid: dd3d2ae99e332b048827a8e9a6242213, type: 3}
+  LessThan: {fileID: 21300000, guid: 2bf8843bb46a15e4cb66a8c318073a0c, type: 3}
 --- !u!114 &11454676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,6 +209,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 65
@@ -276,6 +286,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 65
@@ -411,6 +427,25 @@ Prefab:
       value: 
       objectReference: {fileID: 22316198, guid: d16e21ecfa163394da0f45b1f0afba5a,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: EqualTo
+      value: 
+      objectReference: {fileID: 21300000, guid: aaab89ecc28e31042b6bc9aec3807702,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: GreaterThan
+      value: 
+      objectReference: {fileID: 21300000, guid: dd3d2ae99e332b048827a8e9a6242213,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: LessThan
+      value: 
+      objectReference: {fileID: 21300000, guid: 2bf8843bb46a15e4cb66a8c318073a0c,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Original
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 102542}

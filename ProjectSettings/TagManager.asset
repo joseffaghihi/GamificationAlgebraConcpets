@@ -12,6 +12,7 @@ TagManager:
   - GameMenu
   - RandomNumberGenerator
   - AIHub
+  - Feedback
   layers:
   - Default
   - TransparentFX
