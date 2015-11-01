@@ -20,15 +20,9 @@ public class RandomNumberGenerator : MonoBehaviour
         //Lower the limits between which the numbers can fall the longer (lowest it can narrow down to is 2 below and above the actual answer)
         if (min + gc.getCurrentRoundTime() <= answer - 2) //decrease minimum until 2 away from actual answer
             min += gc.getCurrentRoundTime();
-        else
-            min = answer - 2;
 
         if (max - gc.getCurrentRoundTime() >= answer + 2)
             max -= gc.getCurrentRoundTime();
-        else
-            max = answer + 2;
-
-        Debug.Log(gc.getCurrentRoundTime());
 
         randomNumber = Random.Range(min, max);
         front.text = back.text = randomNumber.ToString();
