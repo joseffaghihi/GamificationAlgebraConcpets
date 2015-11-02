@@ -54,6 +54,12 @@ namespace PrimeNumbers
 		public int dummyCounter=0;//running out of names for counters
 
 		public int setNumber =5;
+		public bool flag0 = true;
+		public bool flag1 = true;
+		public bool flag2 = true;
+		public bool flag3 = true;
+		public bool flag4 = true;
+
 
 		void Start () 
 		{
@@ -177,7 +183,74 @@ namespace PrimeNumbers
 				RaycastHit hit;
 				// Casts the ray and get the first game object hit
 				Physics.Raycast (ray, out hit);
-				for(int i=0;i<setNumber;i++)
+
+				if(flag0==true)
+				{
+					if(hit.collider.name == Wires[0].name)
+					{
+						Destroy(GameObject.Find(hit.transform.name));
+						script_DeleteCube = CubeArray[0].GetComponent<DeleteCube>();
+						script_DeleteCube.Access_MyMethod();
+						deletedCounter++;
+						cubesRemaining[0]=false;
+						flag0=false;
+					}
+				}
+
+				if(flag1==true)
+				{
+					if(hit.collider.name == Wires[1].name)
+					{
+						Destroy(GameObject.Find(hit.transform.name));
+						script_DeleteCube = CubeArray[1].GetComponent<DeleteCube>();
+						script_DeleteCube.Access_MyMethod();
+						deletedCounter++;
+						cubesRemaining[1]=false;
+						flag1=false;
+					}
+				}
+
+				if(flag2==true)
+				{
+					if(hit.collider.name == Wires[2].name)
+					{
+						Destroy(GameObject.Find(hit.transform.name));
+						script_DeleteCube = CubeArray[2].GetComponent<DeleteCube>();
+						script_DeleteCube.Access_MyMethod();
+						deletedCounter++;
+						cubesRemaining[2]=false;
+						flag2=false;
+					}
+				}
+
+				if(flag3==true)
+				{
+					if(hit.collider.name == Wires[3].name)
+					{
+						Destroy(GameObject.Find(hit.transform.name));
+						script_DeleteCube = CubeArray[3].GetComponent<DeleteCube>();
+						script_DeleteCube.Access_MyMethod();
+						deletedCounter++;
+						cubesRemaining[3]=false;
+						flag3=false;
+					}
+				}
+
+				if(flag4==true)
+				{
+					if(hit.collider.name == Wires[4].name)
+					{
+						Destroy(GameObject.Find(hit.transform.name));
+						script_DeleteCube = CubeArray[4].GetComponent<DeleteCube>();
+						script_DeleteCube.Access_MyMethod();
+						deletedCounter++;
+						cubesRemaining[4]=false;
+						flag4=false;
+					}
+				}
+
+
+				/*for(int i=0;i<setNumber;i++)
 				{
 					if(hit.collider.name == Wires[i].name)
 					{
@@ -186,13 +259,12 @@ namespace PrimeNumbers
 						//run corountine that deleted cube.
 						script_DeleteCube = CubeArray[i].GetComponent<DeleteCube>();
 						script_DeleteCube.Access_MyMethod();
-						//i starts over at 0 each time becuase setnumber is being decreased in this for loop.
 						deletedCounter++;
 						cubesRemaining[i]=false;
 						Wires.RemoveAt(i);
 						setNumber--;
 					}
-				}
+				}*/
 
 				if(deletedCounter==3)
 				{
@@ -215,8 +287,8 @@ namespace PrimeNumbers
 					{
 
 						/*Instantiate(prefabWires, CubeArray[2].transform.position + CubeArray[2].transform.position * distance,
-					         	   transform.rotation);
-						MainCamera.transform.position = new Vector3(0,-3,-8);*/
+					         	   transform.rotation);*/
+						MainCamera.transform.position = new Vector3(0,-3,-8);
 						Debug.Log ("Total == RN");
 					}
 				}
