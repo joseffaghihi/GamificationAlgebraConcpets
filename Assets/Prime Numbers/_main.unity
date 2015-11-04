@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fda47914f5a4f4ba2bc90aec6dfff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script_DeleteCube: {fileID: 0}
   FiveCubes: {fileID: 441688, guid: 491c769962e3044239ded51575b80e99, type: 2}
   LoseScreen: {fileID: 403764, guid: 46df2209391d34a4bb04e1c07d28390a, type: 2}
   CubePreFab: {fileID: 495094, guid: 73a41134dcf9e41a1a0a25715c623648, type: 2}

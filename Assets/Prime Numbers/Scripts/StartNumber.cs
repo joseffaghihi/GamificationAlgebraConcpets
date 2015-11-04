@@ -6,8 +6,6 @@ namespace PrimeNumbers
 {
 	public class StartNumber : MonoBehaviour 
 	{
-		public DeleteCube script_DeleteCube; //gives access to delete cube coroutine
-
 		public Transform FiveCubes;//access to 5 wires/cubes prefab
 		public Transform LoseScreen;//to spawn losing screen
 		public Transform CubePreFab;//Acess to cube prefab
