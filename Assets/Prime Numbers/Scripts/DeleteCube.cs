@@ -17,7 +17,6 @@ namespace PrimeNumbers
 		public void Access_MyMethod()
 		{
 			StartCoroutine(MyMethod());
-			Debug.Log("asdf");
 		}
 
 	}
