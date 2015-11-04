@@ -19,7 +19,6 @@ namespace PrimeNumbers
 
 			if(_hingeJoint.connectedBody.gameObject.name == "Wire1")
 			{
-				Debug.Log("HERE");
 				StartNumber_script.cubesRemaining [0] = false;
 				Destroy (_hingeJoint.connectedBody.gameObject);
 				Destroy (gameObject);

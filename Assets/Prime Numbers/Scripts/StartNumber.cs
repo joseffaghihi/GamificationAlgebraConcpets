@@ -55,7 +55,7 @@ namespace PrimeNumbers
 		public Vector3[] cubePosition = new Vector3[2];
 		
 		void Start () 
-		{				
+		{			
 			CameraPosition = MainCamera.transform.position;
 			
 			RN = Random.Range(1,100);

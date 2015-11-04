@@ -51,7 +51,6 @@ GameObject:
   - 23: {fileID: 2367808}
   - 54: {fileID: 5435316}
   - 59: {fileID: 5988520}
-  - 114: {fileID: 11457230}
   - 114: {fileID: 11441710}
   m_Layer: 0
   m_Name: Cube3
@@ -1671,18 +1670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartNumber_script: {fileID: 0}
---- !u!114 &11457230
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e04f5d643ec44ca870db6503f85ffc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CubeText: {fileID: 0}
 --- !u!114 &11470618
 MonoBehaviour:
   m_ObjectHideFlags: 1
