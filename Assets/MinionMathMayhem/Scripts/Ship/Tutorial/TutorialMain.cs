@@ -39,7 +39,7 @@ namespace MinionMathMayhem_Ship
         /// <param name="PlayIndex">
         ///     Forcibly play or display the window within the exact index.  Default is 0.
         /// </param>
-        /// <param name="randomSwitch">
+        /// <param name="randomIndex">
         ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
         /// </param>
         /// <param name="tutorialCategory">
@@ -48,7 +48,7 @@ namespace MinionMathMayhem_Ship
         private void TutorialMain_Driver(bool tutorialMovie = false,
                                         bool tutorialWindow = false,
                                         int PlayIndex = 0,
-                                        bool randomSwitch = false,
+                                        bool randomIndex = false,
                                         uint tutorialCategory = 0)
         {
 
