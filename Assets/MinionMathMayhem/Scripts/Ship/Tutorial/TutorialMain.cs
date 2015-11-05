@@ -105,6 +105,7 @@ namespace MinionMathMayhem_Ship
                 // Make sure that either the window or movie has been selected
                     if (TutorialMain_CheckCallErrors(tutorialMovie, tutorialWindow))
                     {
+                        TutorialMain_Error(1);
                         TutorialMain_FinishedSignal();
                         return;
                     }
@@ -126,5 +127,36 @@ namespace MinionMathMayhem_Ship
         } // TutorialMain_FinishedSignal()
 
 
+
+        /// <summary>
+        ///     Output an error message to the console
+        /// </summary>
+        /// <param name="errType">
+        ///     Type of error:
+        ///         0 = no error (default)
+        ///         1 = No tutorial type was selected (movie nor window)
+        /// </param>
+        /// <param name="message">
+        ///     Specific message used for the console along with the initial generic message.  Default is "".
+        /// </param>
+        private void TutorialMain_Error(ushort errType = 0, string message = "")
+        {
+            // Initalize a cache string var; we will use this for constructing the message.
+                string consoleMessage = "SOMETHING_HAPPENED!"; // I decided to add Microsoft's famous error message!  I think this is verbose enough and is very clear as to how we can address the problems! :D [NG]
+            
+            // Construct the error message by scanning through the error library
+                switch (errType)
+                {
+                    case 0:
+                        consoleMessage = "Well this is odd; this shouldn't happen!  There is _NO_ error";
+                        break;
+                    case 1:
+                        consoleMessage = "Tutorial protocol was called without playing any tutorials";
+                        break;
+                } // switch()
+
+            // Output the error message
+                Debug.LogError("<!> ERROR <!> \n" + consoleMessage);
+        }
     } // End of Class
 } // Namespace
