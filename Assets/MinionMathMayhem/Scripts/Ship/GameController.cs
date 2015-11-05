@@ -68,7 +68,7 @@ namespace MinionMathMayhem_Ship
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;
                 // Tutorial
-                    public delegate void TutorialSequenceSig(bool tutorialMovie, bool tutorialWindow, int playIndex, bool randomIndex, uint tutorialCategory);
+                    public delegate void TutorialSequenceSig(bool tutorialMovie, bool tutorialWindow, int playIndex, bool randomIndex);
                     public static event TutorialSequenceSig TutorialSequence;
 
             // Debug Tools
