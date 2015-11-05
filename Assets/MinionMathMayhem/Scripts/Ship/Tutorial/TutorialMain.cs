@@ -103,12 +103,27 @@ namespace MinionMathMayhem_Ship
         {
             // Make sure there is no errors
                 // Make sure that either the window or movie has been selected
-                     TutorialMain_CheckCallErrors(tutorialMovie, tutorialWindow);
+                    if (TutorialMain_CheckCallErrors(tutorialMovie, tutorialWindow))
+                    {
+                        TutorialMain_FinishedSignal();
+                        return;
+                    }
             // ----
 
             // Finished tutorial
-                TutorialFinished();
+                TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
+
+
+
+
+        /// <summary>
+        ///     Once the tutorial sequence is finished, notify all classes\scripts that the tutorial ended.
+        /// </summary>
+        private void TutorialMain_FinishedSignal()
+        {
+            TutorialFinished();
+        } // TutorialMain_FinishedSignal()
 
 
     } // End of Class
