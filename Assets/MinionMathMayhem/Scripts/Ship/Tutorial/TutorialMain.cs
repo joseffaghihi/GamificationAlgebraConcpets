@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace MinionMathMayhem_Ship
 {
@@ -8,6 +9,12 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
+        // Category Tutorials
+            // Category 0
+                // Window
+                    public List<GameObject> tutorialWindowArray = new List<GameObject>();
+                // Movie
+                    public List<GameObject> tutorialMovieArray = new List<GameObject>();
         // Accessors and Communication
             // Finished tutorial sequence signal
                 public delegate void TutorialSequenceFinishedSig();
