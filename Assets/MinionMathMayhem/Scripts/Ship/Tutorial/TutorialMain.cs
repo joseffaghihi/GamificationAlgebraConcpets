@@ -5,6 +5,18 @@ namespace MinionMathMayhem_Ship
 {
     public class TutorialMain : MonoBehaviour
     {
+
+        // Declarations and Initializations
+        // ---------------------------------
+        // Accessors and Communication
+            // Finished tutorial sequence signal
+                public delegate void TutorialSequenceFinishedSig();
+                public static event TutorialSequenceFinishedSig TutorialFinished;
+        // ---------------------------------
+
+
+
+
         /// <summary>
         ///     Unity Function
         ///     Signal Listener: Detected (or heard)
@@ -24,6 +36,7 @@ namespace MinionMathMayhem_Ship
         {
             GameController.TutorialSequence -= TutorialMain_Driver;
         } // OnDisable()
+
 
 
         /// <summary>
@@ -77,6 +90,9 @@ namespace MinionMathMayhem_Ship
                 // Make sure that either the window or movie has been selected
                      TutorialMain_CheckCallErrors(tutorialMovie, tutorialWindow);
             // ----
+
+            // Finished tutorial
+                TutorialFinished();
         } // TutorialMain_Driver()
 
 
