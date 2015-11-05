@@ -117,7 +117,6 @@ namespace MinionMathMayhem_Ship
 
 
 
-
         /// <summary>
         ///     Once the tutorial sequence is finished, notify all classes\scripts that the tutorial ended.
         /// </summary>
