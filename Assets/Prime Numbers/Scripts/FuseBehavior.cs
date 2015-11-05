@@ -5,10 +5,6 @@ namespace PrimeNumbers
 {
 	public class FuseBehavior : MonoBehaviour 
 	{
-		//public GameObject cube;
-		//public DestructionController script_DestructionController;//Nicholas had me create this variable to use 
-		//for our event.
-
 		public float shrinkSpeed = 1f;
 		public float size = 1f;
 		bool shrinking = true;
@@ -19,9 +15,9 @@ namespace PrimeNumbers
 
 		}
 
-	    private void Awake()//Nicholas told me to make this function and everything inside of it.
+	    private void Awake()
 		{
-			//script_DestructionController = cube.GetComponent<DestructionController>();
+
 		}
 
 		void Update () 
@@ -35,7 +31,7 @@ namespace PrimeNumbers
 					{
 						shrinking = false;
 						Destroy (gameObject);
-						//script_DestructionController.Access_MyMethod();
+						
 					}
 			}
 		}
