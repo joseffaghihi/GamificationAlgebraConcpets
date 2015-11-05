@@ -6,6 +6,19 @@ namespace MinionMathMayhem_Ship
 {
     public class TutorialMain : MonoBehaviour
     {
+        /*                                                      TUTORIAL MAIN
+         * This class is designed to manage and render the requested tutorial or tutorials -- as it is possible to run atleast one movie tutorial and one window tutorial.  As designed, -
+         *  this will manage how the movie and window sequences work and make sure that they are set-up properly for an easy transition from the virtual world environment.  This class -
+         *  can only be called by broadcasted events, and will broadcast an event signal when finished.
+         *
+         *  GOALS:
+         *   Setup the environment for the requested Movie or Window.
+         *   Select (or randomly select) the movie or window from the array list
+         *   Play the tutorial(s)
+         *   When finished, let listening classes\scripts know.
+         */
+
+
 
         // Declarations and Initializations
         // ---------------------------------
