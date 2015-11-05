@@ -9,12 +9,11 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-        // Category Tutorials
-            // Category 0
-                // Window
-                    public List<GameObject> tutorialWindowArray = new List<GameObject>();
-                // Movie
-                    public List<GameObject> tutorialMovieArray = new List<GameObject>();
+        // Tutorial Arrays
+            // Window
+                public List<GameObject> tutorialWindowArray = new List<GameObject>();
+            // Movie
+                public List<GameObject> tutorialMovieArray = new List<GameObject>();
         // Accessors and Communication
             // Finished tutorial sequence signal
                 public delegate void TutorialSequenceFinishedSig();
@@ -84,14 +83,10 @@ namespace MinionMathMayhem_Ship
         /// <param name="randomIndex">
         ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
         /// </param>
-        /// <param name="tutorialCategory">
-        ///     Select an index category for which to play or display the tutorial.  Default is 0.
-        /// </param>
         private void TutorialMain_Driver(bool tutorialMovie = false,
                                         bool tutorialWindow = false,
                                         int PlayIndex = 0,
-                                        bool randomIndex = false,
-                                        uint tutorialCategory = 0)
+                                        bool randomIndex = false)
         {
             // Make sure there is no errors
                 // Make sure that either the window or movie has been selected
