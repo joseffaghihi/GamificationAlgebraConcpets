@@ -11,8 +11,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-
-        }
+            GameController.TutorialSequence += TutorialMain_Driver;
+        } // OnEnable()
 
 
 
@@ -22,8 +22,30 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
+            GameController.TutorialSequence -= TutorialMain_Driver;
+        } // OnDisable()
 
-        }
+
+        /// <summary>
+        ///     Make sure that either (or both) the tutorial movie or window has been selected.
+        /// </summary>
+        /// <param name="tutorialNovie">
+        ///     Tutorial movie switch
+        /// </param>
+        /// <param name="tutorialWindow">
+        ///     Tutorial window switch
+        /// </param>
+        /// <returns>
+        ///     False; if there was no error
+        ///     True; if there was an error.  Nothing was selected.
+        /// </returns>
+        private bool TutorialMain_CheckCallErrors(bool tutorialNovie, bool tutorialWindow)
+        {
+            if (!tutorialNovie && !tutorialWindow)
+                return true;
+            else
+                return false;
+        } // TutorialMain_CheckCallErrors()
 
 
 
@@ -51,9 +73,12 @@ namespace MinionMathMayhem_Ship
                                         bool randomIndex = false,
                                         uint tutorialCategory = 0)
         {
+            // Make sure there is no errors
+                // Make sure that either the window or movie has been selected
+                     TutorialMain_CheckCallErrors(tutorialMovie, tutorialWindow);
+            // ----
+        } // TutorialMain_Driver()
 
-        }
 
-
-    }
-}
+    } // End of Class
+} // Namespace
