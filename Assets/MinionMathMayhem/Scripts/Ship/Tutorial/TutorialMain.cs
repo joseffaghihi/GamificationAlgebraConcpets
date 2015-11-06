@@ -102,30 +102,8 @@ namespace MinionMathMayhem_Ship
                                         bool randomIndex = false)
         {
             // Make sure there is no errors
-                // Make sure that either the window or movie has been selected
-                    if (TutorialMain_CheckCallErrors(tutorialMovie, tutorialWindow))
-                    {
-                        TutorialMain_Error(1);
-                        TutorialMain_FinishedSignal();
-                        return;
-                    }
-
-                // Make sure that there is a tutorial to be rendered
-                    if (tutorialMovie && tutorialMovieArray[PlayIndex] == null)
-                    {
-                        // The requested index doesn't exist
-                        TutorialMain_Error(2, PlayIndex.ToString());
-                        TutorialMain_FinishedSignal();
-                        return;
-                    }
-
-                    else if (tutorialWindow && tutorialWindowArray[PlayIndex] == null)
-                    {
-                        // The requested index doesn't exist
-                        TutorialMain_Error(3, PlayIndex.ToString());
-                        TutorialMain_FinishedSignal();
-                        return;
-                    }
+            if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
+                return;
             // ----
 
             // Finished tutorial
@@ -133,6 +111,56 @@ namespace MinionMathMayhem_Ship
         } // TutorialMain_Driver()
 
 
+
+        /// <summary>
+        ///     This function is used to check for possible errors that could commonly occur if the setup is incorrect.
+        /// </summary>
+        /// <param name="tutorialMovie">
+        ///     When true, this will display a movie [can be concurrent with tutorialWindow].  Default is false.
+        /// </param>
+        /// <param name="tutorialWindow">
+        ///     When true, this will display a window [can be concurrent with tutorialMovie].  Default is false.
+        /// </param>
+        /// <param name="PlayIndex">
+        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        /// </param>
+        /// <returns>
+        ///     true = Failure or there was error.
+        ///     false = No errors detected.
+        /// </returns>
+        private bool TutorialMain_CheckErrors(bool tutorialMovie,
+                                                bool tutorialWindow,
+                                                int PlayIndex)
+        {
+            // Make sure that either the window or movie has been selected
+            if (TutorialMain_CheckCallErrors(tutorialMovie, tutorialWindow))
+            {
+                TutorialMain_Error(1);
+                TutorialMain_FinishedSignal();
+                return true;
+            }
+
+            // Make sure that there is a tutorial to be rendered
+            if (tutorialMovie && tutorialMovieArray[PlayIndex] == null)
+            {
+                // The requested index doesn't exist
+                TutorialMain_Error(2, PlayIndex.ToString());
+                TutorialMain_FinishedSignal();
+                return true;
+            }
+
+            else if (tutorialWindow && tutorialWindowArray[PlayIndex] == null)
+            {
+                // The requested index doesn't exist
+                TutorialMain_Error(3, PlayIndex.ToString());
+                TutorialMain_FinishedSignal();
+                return true;
+            }
+
+
+            // No errors detected
+                return false;
+        }
 
         /// <summary>
         ///     Once the tutorial sequence is finished, notify all classes\scripts that the tutorial ended.
