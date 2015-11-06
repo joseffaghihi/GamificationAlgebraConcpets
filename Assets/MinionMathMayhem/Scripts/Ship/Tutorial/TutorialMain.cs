@@ -109,6 +109,23 @@ namespace MinionMathMayhem_Ship
                         TutorialMain_FinishedSignal();
                         return;
                     }
+
+                // Make sure that there is a tutorial to be rendered
+                    if (tutorialMovie && tutorialMovieArray[PlayIndex] == null)
+                    {
+                        // The requested index doesn't exist
+                        TutorialMain_Error(2, PlayIndex.ToString());
+                        TutorialMain_FinishedSignal();
+                        return;
+                    }
+
+                    else if (tutorialWindow && tutorialWindowArray[PlayIndex] == null)
+                    {
+                        // The requested index doesn't exist
+                        TutorialMain_Error(3, PlayIndex.ToString());
+                        TutorialMain_FinishedSignal();
+                        return;
+                    }
             // ----
 
             // Finished tutorial
@@ -134,6 +151,8 @@ namespace MinionMathMayhem_Ship
         ///     Type of error:
         ///         0 = no error (default)
         ///         1 = No tutorial type was selected (movie nor window)
+        ///         2 = The movie tutorial index is not valid or was never initialized within the Unity's Inspector.
+        ///         3 = The dialog window tutorial index is not valid or was never initialized within the Unity's Inspector.
         /// </param>
         /// <param name="message">
         ///     Specific message used for the console along with the initial generic message.  Default is "".
@@ -151,6 +170,12 @@ namespace MinionMathMayhem_Ship
                         break;
                     case 1:
                         consoleMessage = "Tutorial protocol was called without playing any tutorials";
+                        break;
+                    case 2:
+                        consoleMessage = "The movie tutorial index [" + message + "] does not exist!";
+                        break;
+                    case 3:
+                        consoleMessage = "The dialog window tutorial index [" + message + "] does not exist!";
                         break;
                 } // switch()
 
