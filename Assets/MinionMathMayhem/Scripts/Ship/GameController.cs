@@ -356,7 +356,7 @@ namespace MinionMathMayhem_Ship
             // TODO: Thrash work around solution
             // Temporary work around
                 yield return null;
-
+            TutorialSequence(true, true, 0, false);
             // TODO: Push this unto a dedicated script
             /*
             // Enable the tutorial objects
