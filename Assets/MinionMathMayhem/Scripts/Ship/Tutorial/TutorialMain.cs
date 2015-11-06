@@ -160,7 +160,9 @@ namespace MinionMathMayhem_Ship
 
             // No errors detected
                 return false;
-        }
+        } // TutorialMain_CheckErrors()
+
+
 
         /// <summary>
         ///     Once the tutorial sequence is finished, notify all classes\scripts that the tutorial ended.
@@ -209,6 +211,6 @@ namespace MinionMathMayhem_Ship
 
             // Output the error message
                 Debug.LogError("<!> ERROR <!> \n" + consoleMessage);
-        }
+        } // TutorialMain_Error()
     } // End of Class
 } // Namespace
