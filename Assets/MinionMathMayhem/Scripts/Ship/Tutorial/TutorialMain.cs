@@ -113,7 +113,7 @@ namespace MinionMathMayhem_Ship
                 StartCoroutine(TutorialMain_Play_Window(PlayIndex, randomIndex));
 
             // Finished tutorial
-                TutorialMain_FinishedSignal();
+                //TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
 
 
