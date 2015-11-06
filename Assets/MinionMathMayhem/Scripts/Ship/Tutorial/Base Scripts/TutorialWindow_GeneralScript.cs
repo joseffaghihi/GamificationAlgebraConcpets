@@ -29,5 +29,22 @@ namespace MinionMathMayhem_Ship
         {
             rulesControl = rulesCanvas.GetComponent<RulesControl>();
         } // Awake()
+
+
+        public void asdf()
+        {
+            Debug.LogWarning("asdf");
+        }
+        /// <summary>
+        ///     Renders the dialog window at the specific index
+        /// </summary>
+        /// <returns>
+        ///     Returns nothing useful
+        /// </returns>
+        public IEnumerator RenderObject()
+        {
+            yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
+            rulesCanvas.SetActive(false);
+        } // RenderObject()
     } // End of Class
 } // Namespace

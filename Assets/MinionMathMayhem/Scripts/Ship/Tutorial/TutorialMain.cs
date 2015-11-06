@@ -106,9 +106,56 @@ namespace MinionMathMayhem_Ship
                 return;
             // ----
 
+            // Play the tutorials as requested
+            if (tutorialMovie)
+                StartCoroutine(TutorialMain_Play_Movie(PlayIndex, randomIndex));
+            if (tutorialWindow)
+                StartCoroutine(TutorialMain_Play_Window(PlayIndex, randomIndex));
+
             // Finished tutorial
                 TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
+
+
+
+        /// <summary>
+        ///     Select or randomly select the movie, and then play the desired movie tutorial
+        /// </summary>
+        /// <param name="playIndex">
+        ///     Select the index inwhich to play the movie
+        /// </param>
+        /// <param name="randomIndex">
+        ///     Randomly select an index
+        /// </param>
+        /// <returns>
+        ///     Returns nothing useful
+        /// </returns>
+        private IEnumerator TutorialMain_Play_Movie(int playIndex, bool randomIndex)
+        {
+            yield return null;
+
+            tutorialMovieArray[playIndex].GetComponent<TutorialMovie_GeneralScript>().asdf();
+        } // TutorialMain_Play_Movie()
+
+
+
+        /// <summary>
+        ///     Select or randomly select the dialog window, and then render the desired window tutorial
+        /// </summary>
+        /// <param name="playIndex">
+        ///     Select the index inwhich to display the dialog window
+        /// </param>
+        /// <param name="randomIndex">
+        ///     Randomly select an index
+        /// </param>
+        /// <returns>
+        ///     Returns nothing useful
+        /// </returns>
+        private IEnumerator TutorialMain_Play_Window(int playIndex, bool randomIndex)
+        {
+            yield return null;
+            tutorialWindowArray[playIndex].GetComponent<TutorialWindow_GeneralScript>().asdf();
+        } // TutorialMain_Play_Window()
 
 
 
