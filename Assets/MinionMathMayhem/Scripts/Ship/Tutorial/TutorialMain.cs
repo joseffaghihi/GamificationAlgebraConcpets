@@ -116,13 +116,13 @@ namespace MinionMathMayhem_Ship
         ///     This function is used to check for possible errors that could commonly occur if the setup is incorrect.
         /// </summary>
         /// <param name="tutorialMovie">
-        ///     When true, this will display a movie [can be concurrent with tutorialWindow].  Default is false.
+        ///     When true, this will display a movie [can be concurrent with tutorialWindow].
         /// </param>
         /// <param name="tutorialWindow">
-        ///     When true, this will display a window [can be concurrent with tutorialMovie].  Default is false.
+        ///     When true, this will display a window [can be concurrent with tutorialMovie].
         /// </param>
         /// <param name="PlayIndex">
-        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        ///     Forcibly play or display the window within the exact index.
         /// </param>
         /// <returns>
         ///     true = Failure or there was error.
