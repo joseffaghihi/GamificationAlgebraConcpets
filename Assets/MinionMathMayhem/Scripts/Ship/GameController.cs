@@ -94,8 +94,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            // Tutorial movie ended
-                MoviePlay.TutorialStateEnded += TutorialMode_Ended;
+            // Tutorial ended
+                TutorialMain.TutorialFinished += TutorialMode_Ended;
             // AI Listeners
                 // User Mastery
                     AI_UserMastery.TutorialSession += AI_OnDemandRequest_Tutorial;
@@ -106,8 +106,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            // Tutorial movie ended
-                MoviePlay.TutorialStateEnded -= TutorialMode_Ended;
+            // Tutorial ended
+                TutorialMain.TutorialFinished -= TutorialMode_Ended;
             // AI Listeners
                 // User Mastery
                     AI_UserMastery.TutorialSession -= AI_OnDemandRequest_Tutorial;
