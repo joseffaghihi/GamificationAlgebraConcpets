@@ -195,10 +195,15 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private IEnumerator RunTimeExecution(bool tutorialMovie, bool tutorialWindow, int index)
         {
+            // If function schedule Timeout is enabled, then run the scheduler
             if (enableForceTimeOut)
                 StartCoroutine(TimedOutFunction(tutorialMovie, tutorialWindow, index));
 
             yield return null;
+            
+            // If the function schedule Timeout is enabled, then stop the scheduler
+            if (enableForceTimeOut)
+                StopCoroutine(TimedOutFunction(tutorialMovie, tutorialWindow, index));
         } // RunTimeExecution()
 
 
