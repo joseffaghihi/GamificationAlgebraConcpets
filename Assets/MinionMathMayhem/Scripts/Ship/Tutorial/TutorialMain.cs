@@ -402,7 +402,7 @@ namespace MinionMathMayhem_Ship
                         consoleMessage = "The dialog window tutorial index [" + message + "] does not exist!";
                         break;
                     case 4:
-                        consoleMessage = "Timed_Out: Run away function was terminated";
+                        consoleMessage = "Timed_Out: Runaway function was terminated";
                         break;
                 } // switch()
 
