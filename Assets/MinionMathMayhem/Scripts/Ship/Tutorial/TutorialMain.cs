@@ -221,6 +221,7 @@ namespace MinionMathMayhem_Ship
             yield return new WaitForSeconds(timedOut_Minutes);
             StopCoroutine(RunTimeExecution(tutorialMovie, tutorialWindow, index));
             ForcibleKillSignal(tutorialMovie, tutorialWindow, index);
+            TutorialMain_Error(4);
         } // TimedOutFunction()
 
 
