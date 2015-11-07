@@ -15,22 +15,33 @@ namespace MinionMathMayhem_Ship
         // Declarations and Initializations
         // ---------------------------------
             public GameObject objectTutorial_Movie, objectTutorial_Canvas, objectTutorial_SkipButton;
+
+            // Broadcast tutorial ended
+                public delegate void TutorialEndedSignal();
+                public static event TutorialEndedSignal TutorialEnded;
         // ---------------------------------
 
 
         
-            public void asdf()
+        /// <summary>
+        ///     Front-End Function to activate the movie tutorial
+        /// </summary>
+            public void ActivateTutorial()
         {
-            Debug.LogWarning("asdf");
-        }
+            StartCoroutine(RenderObject());
+        } // ActivateTutorial()
+
+
+
         /// <summary>
         ///     Plays the movie at the specific index
         /// </summary>
         /// <returns>
         ///     Returns nothing useful
         /// </returns>
-        public IEnumerator RenderObject()
+        private IEnumerator RenderObject()
         {
+            Debug.LogWarning("asdfasdf");
             yield return null;
             // Enable the tutorial objects
             objectTutorial_SkipButton.SetActive(true);
@@ -45,6 +56,39 @@ namespace MinionMathMayhem_Ship
             objectTutorial_Movie.SetActive(false);
             objectTutorial_Canvas.SetActive(false);
             objectTutorial_SkipButton.SetActive(false);
+
+            CloseTutorial();
         } // RenderObject()
+
+
+
+        /// <summary>
+        ///     This will terminate the tutorial.
+        /// </summary>
+        private void Destroy()
+        {
+
+        } // Destroy()
+
+
+
+        /// <summary>
+        ///     When called by other scripts\classes, this will activate a forcible kill of the tutorial.
+        /// </summary>
+        public void Access_Destroy()
+        {
+            Destroy();
+        } // Access_Destroy()
+
+
+
+        /// <summary>
+        ///     Notify the Tutorial Main that this script is ready to self-terminate.
+        /// </summary>
+        private void CloseTutorial()
+        {
+            // Broadcast signal that we're done
+                TutorialEnded();
+        } // CloseTutorial()
     } // End of Class
 } // Namespace

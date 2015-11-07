@@ -27,6 +27,16 @@ namespace MinionMathMayhem_Ship
                 public List<GameObject> tutorialWindowArray = new List<GameObject>();
             // Movie
                 public List<GameObject> tutorialMovieArray = new List<GameObject>();
+        // Switches
+            // Movie Tutorial state
+                private bool tutorialMovieState = false;
+            // Dialog Window Tutorial state
+                private bool tutorialWindowState = false;
+        // Timed-Out Controlls
+            // Enable Feature
+                public bool enableForceTimeOut = true;
+            // Minutes to forcibly time out
+                public float timedOut_Minutes = 3.5f;
         // Accessors and Communication
             // Finished tutorial sequence signal
                 public delegate void TutorialSequenceFinishedSig();
@@ -43,6 +53,8 @@ namespace MinionMathMayhem_Ship
         private void OnEnable()
         {
             GameController.TutorialSequence += TutorialMain_Driver;
+            TutorialMovie_GeneralScript.TutorialEnded += ToggleMovieState;
+            TutorialWindow_GeneralScript.TutorialEnded += ToggleWindowState;
         } // OnEnable()
 
 
@@ -54,6 +66,8 @@ namespace MinionMathMayhem_Ship
         private void OnDisable()
         {
             GameController.TutorialSequence -= TutorialMain_Driver;
+            TutorialMovie_GeneralScript.TutorialEnded += ToggleMovieState;
+            TutorialWindow_GeneralScript.TutorialEnded += ToggleWindowState;
         } // OnDisable()
 
 
@@ -101,6 +115,13 @@ namespace MinionMathMayhem_Ship
                                         int PlayIndex = 0,
                                         bool randomIndex = false)
         {
+            // Declarations
+            // ----
+                // Used for determining the index of the array that has been highlighted.
+                    int index;
+            // ----
+
+
             // Make sure there is no errors
             if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
                 return;
@@ -108,13 +129,118 @@ namespace MinionMathMayhem_Ship
 
             // Play the tutorials as requested
             if (tutorialMovie)
-                StartCoroutine(TutorialMain_Play_Movie(PlayIndex, randomIndex));
+            {
+                index = Randomized(PlayIndex, randomIndex, tutorialMovieArray);
+                ToggleMovieState();
+                TutorialMain_Play_Movie(PlayIndex, randomIndex);
+                StartCoroutine(RunTimeExecution(true, false, index));
+            }
             if (tutorialWindow)
-                StartCoroutine(TutorialMain_Play_Window(PlayIndex, randomIndex));
+            {
+                index = Randomized(PlayIndex, randomIndex, tutorialWindowArray);
+                ToggleWindowState();
+                TutorialMain_Play_Window(PlayIndex, randomIndex);
+                StartCoroutine(RunTimeExecution(false, true, index));
+            }
 
             // Finished tutorial
-                //TutorialMain_FinishedSignal();
+                TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
+
+
+
+        /// <summary>
+        ///     Calculates the index pointer when the randomization has been toggled.
+        /// </summary>
+        /// <param name="playIndex">
+        ///     Requested index to be highlighted [ignored if randomIndex is TRUE]
+        /// </param>
+        /// <param name="randomIndex">
+        ///     Randomize the highlighted index by taking the length of the List<>.
+        /// </param>
+        /// <param name="array">
+        ///     List<> of the type of tutorial being used in this instance.
+        /// </param>
+        /// <returns>
+        ///     Randomized value between 0 - List<> length.  Default is playIndex if randomization is not enabled.
+        /// </returns>
+        private int Randomized(int playIndex, bool randomIndex, List<GameObject> array)
+        {
+            // If randomization is not true, then return the default requested highlighted index
+            if (!randomIndex)
+                return playIndex;
+
+            // With randomization enabled:
+            // Make sure that the length of the list<> is atleast greater than '0', if not return index of '0'.
+                if (array.Count == 0)
+                    return 0;
+
+            // Generate and return the randomized range.
+                return Random.Range(0, array.Count);
+        } // Randomized()
+
+
+
+        /// <summary>
+        ///     Monitors and holds until the tutorial has finished
+        /// </summary>
+        /// <param name="tutorialMovie">
+        ///     When true, this will check if the tutorial movie state variable has been flipped. 
+        /// </param>
+        /// <param name="tutorialWindow">
+        ///     When true, this will check if the tutorial dialog window state variable has been flipped. 
+        /// </param>
+        /// <returns>
+        ///     Nothing
+        /// </returns>
+        private IEnumerator RunTimeExecution(bool tutorialMovie, bool tutorialWindow, int index)
+        {
+            if (enableForceTimeOut)
+                StartCoroutine(TimedOutFunction(tutorialMovie, tutorialWindow, index));
+
+            yield return null;
+        } // RunTimeExecution()
+
+
+
+        /// <summary>
+        ///     This allots a function so much time in order to run the tutorial.
+        ///     This function is a stand-alone is hard-coded to forcibly terminate 'RunTimeExecution'.
+        /// </summary>
+        /// <param name="tutorialMovie">
+        ///     Stored value; used for focibly killing tutorial.
+        /// </param>
+        /// <param name="tutorialWindow">
+        ///     Stored value; used for focibly killing tutorial.  
+        /// </param>
+        /// <returns>
+        ///     Nothing
+        /// </returns>
+        private IEnumerator TimedOutFunction(bool tutorialMovie, bool tutorialWindow, int index)
+        {
+            yield return new WaitForSeconds(timedOut_Minutes);
+            StopCoroutine(RunTimeExecution(tutorialMovie, tutorialWindow, index));
+            ForcibleKillSignal(tutorialMovie, tutorialWindow, index);
+        } // TimedOutFunction()
+
+
+
+        /// <summary>
+        ///     When a timeout occurs, this function will signal the running tutorial to terminate.
+        /// </summary>
+        /// <param name="tutorialMovie">
+        ///     When true, this will be used for focibly killing the tutorial.
+        /// </param>
+        /// <param name="tutorialWindow">
+        ///     When true, this will be used for focibly killing the tutorial.
+        /// </param>
+        private void ForcibleKillSignal(bool tutorialMovie, bool tutorialWindow, int index)
+        {
+            if (tutorialMovie)
+                tutorialMovieArray[index].GetComponent<TutorialMovie_GeneralScript>().Access_Destroy();
+            if (tutorialWindow)
+                tutorialWindowArray[index].GetComponent<TutorialWindow_GeneralScript>().Access_Destroy();
+        } // ForcibleKillSignal()
 
 
 
@@ -130,11 +256,9 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Returns nothing useful
         /// </returns>
-        private IEnumerator TutorialMain_Play_Movie(int playIndex, bool randomIndex)
+        private void TutorialMain_Play_Movie(int playIndex, bool randomIndex)
         {
-            yield return null;
-
-            tutorialMovieArray[playIndex].GetComponent<TutorialMovie_GeneralScript>().asdf();
+            tutorialMovieArray[playIndex].GetComponent<TutorialMovie_GeneralScript>().ActivateTutorial();
         } // TutorialMain_Play_Movie()
 
 
@@ -151,10 +275,9 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Returns nothing useful
         /// </returns>
-        private IEnumerator TutorialMain_Play_Window(int playIndex, bool randomIndex)
+        private void TutorialMain_Play_Window(int playIndex, bool randomIndex)
         {
-            yield return null;
-            tutorialWindowArray[playIndex].GetComponent<TutorialWindow_GeneralScript>().asdf();
+            tutorialWindowArray[playIndex].GetComponent<TutorialWindow_GeneralScript>().ActivateTutorial();
         } // TutorialMain_Play_Window()
 
 
@@ -222,6 +345,28 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
+        ///     Toggles the variable 'tutorialMovieState'
+        ///     Controls wither or not the movie tutorial is running
+        /// </summary>
+        private void ToggleMovieState()
+        {
+            tutorialMovieState = !tutorialMovieState;
+        } // ToggleMovieState()
+
+
+
+        /// <summary>
+        ///     Toggles the variable 'tutorialWindowState'
+        ///     Controls wither or not the dialog window tutorial is running
+        /// </summary>
+        private void ToggleWindowState()
+        {
+            tutorialWindowState = !tutorialWindowState;
+        } // ToggleWindowState()
+
+
+
+        /// <summary>
         ///     Output an error message to the console
         /// </summary>
         /// <param name="errType">
@@ -230,6 +375,7 @@ namespace MinionMathMayhem_Ship
         ///         1 = No tutorial type was selected (movie nor window)
         ///         2 = The movie tutorial index is not valid or was never initialized within the Unity's Inspector.
         ///         3 = The dialog window tutorial index is not valid or was never initialized within the Unity's Inspector.
+        ///         4 = Function timed out; prevented run-away (never ending) function
         /// </param>
         /// <param name="message">
         ///     Specific message used for the console along with the initial generic message.  Default is "".
@@ -253,6 +399,9 @@ namespace MinionMathMayhem_Ship
                         break;
                     case 3:
                         consoleMessage = "The dialog window tutorial index [" + message + "] does not exist!";
+                        break;
+                    case 4:
+                        consoleMessage = "Timed_Out: Run away function was terminated";
                         break;
                 } // switch()
 
