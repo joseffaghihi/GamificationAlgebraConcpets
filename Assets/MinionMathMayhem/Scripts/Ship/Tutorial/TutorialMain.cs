@@ -32,6 +32,8 @@ namespace MinionMathMayhem_Ship
                 private bool tutorialMovieState = false;
             // Dialog Window Tutorial state
                 private bool tutorialWindowState = false;
+            // This variable will help assure the state of the tutorial execution.
+                private bool tutorialExecutionState = false;
         // Timed-Out Controlls
             // Enable Feature
                 public bool enableForceTimeOut = true;
@@ -52,7 +54,7 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            GameController.TutorialSequence += TutorialMain_Driver;
+            GameController.TutorialSequence += TutorialMain_Driver_Accessor;
             TutorialMovie_GeneralScript.TutorialEnded += ToggleMovieState;
             TutorialWindow_GeneralScript.TutorialEnded += ToggleWindowState;
         } // OnEnable()
@@ -65,7 +67,7 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-            GameController.TutorialSequence -= TutorialMain_Driver;
+            GameController.TutorialSequence -= TutorialMain_Driver_Accessor;
             TutorialMovie_GeneralScript.TutorialEnded += ToggleMovieState;
             TutorialWindow_GeneralScript.TutorialEnded += ToggleWindowState;
         } // OnDisable()
@@ -96,6 +98,31 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
+        ///     This is a bridge function to call the 'TutorialMain_Driver'
+        /// </summary>
+        /// <param name="tutorialMovie">
+        ///     When true, this will display a movie [can be concurrent with tutorialWindow].  Default is false.
+        /// </param>
+        /// <param name="tutorialWindow">
+        ///     When true, this will display a window [can be concurrent with tutorialMovie].  Default is false.
+        /// </param>
+        /// <param name="PlayIndex">
+        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        /// </param>
+        /// <param name="randomIndex">
+        ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
+        /// </param>
+        private void TutorialMain_Driver_Accessor(bool tutorialMovie = false,
+                                        bool tutorialWindow = false,
+                                        int PlayIndex = 0,
+                                        bool randomIndex = false)
+        {
+            StartCoroutine(TutorialMain_Driver(tutorialMovie, tutorialWindow, PlayIndex, randomIndex));
+        } // TutorialMain_Driver_Accessor()
+
+
+
+        /// <summary>
         ///     Main tutorial sequence driver that manages how the tutorials are to be displayed and what type.
         /// </summary>
         /// <param name="tutorialMovie">
@@ -110,7 +137,7 @@ namespace MinionMathMayhem_Ship
         /// <param name="randomIndex">
         ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
         /// </param>
-        private void TutorialMain_Driver(bool tutorialMovie = false,
+        private IEnumerator TutorialMain_Driver(bool tutorialMovie = false,
                                         bool tutorialWindow = false,
                                         int PlayIndex = 0,
                                         bool randomIndex = false)
@@ -124,24 +151,33 @@ namespace MinionMathMayhem_Ship
 
             // Make sure there is no errors
             if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
-                return;
+                yield break;
             // ----
 
             // Play the tutorials as requested
             if (tutorialMovie)
             {
-                index = Randomized(PlayIndex, randomIndex, tutorialMovieArray);
-                ToggleMovieState();
-                TutorialMain_Play_Movie(PlayIndex, randomIndex);
-                StartCoroutine(RunTimeExecution(true, false, index));
-            }
+                // Fetch the index
+                    index = Randomized(PlayIndex, randomIndex, tutorialMovieArray);
+                // Filp the movie tutorial state variable
+                    ToggleMovieState();
+                // Play the movie
+                    TutorialMain_Play_Movie(PlayIndex, randomIndex);
+                // Check the tutorial state
+                    yield return (StartCoroutine(RunTimeExecution_BackEnd(true, false, index)));
+            } // Movie Tutorial
+
             if (tutorialWindow)
             {
-                index = Randomized(PlayIndex, randomIndex, tutorialWindowArray);
-                ToggleWindowState();
-                TutorialMain_Play_Window(PlayIndex, randomIndex);
-                StartCoroutine(RunTimeExecution(false, true, index));
-            }
+                // Fetch the index
+                    index = Randomized(PlayIndex, randomIndex, tutorialWindowArray);
+                // Flip the window tutorial state variable
+                    ToggleWindowState();
+                // Render the dialog window
+                    TutorialMain_Play_Window(PlayIndex, randomIndex);
+                // Check the tutorial state
+                    yield return (StartCoroutine(RunTimeExecution_BackEnd(false, true, index)));
+            } // Dialog Window Tutorial
 
             // Finished tutorial
                 TutorialMain_FinishedSignal();
@@ -182,6 +218,56 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
+        ///     Backend spine that works with the timeout scheduler and tutorial session
+        /// </summary>
+        /// <returns>
+        ///     Nothing
+        /// </returns>
+        private IEnumerator RunTimeExecution_BackEnd(bool tutorialMovie, bool tutorialWindow, int index)
+        {
+            // Declarations and intializations
+            // ----
+                IEnumerator runTimeExecution = RunTimeExecution(tutorialMovie, tutorialWindow);
+                IEnumerator timeOutScheduler = TimedOutFunction(runTimeExecution, tutorialMovie, tutorialWindow, index);
+                IEnumerator runTimeExecutionState = RunTimeExecution_StatusCheck();
+            // ----
+
+            // Start the coroutines
+                StartCoroutine(timeOutScheduler);
+                StartCoroutine(runTimeExecution);
+
+            yield return StartCoroutine(runTimeExecutionState);
+
+            // if the Timed-Out scheduler is running, destroy the instance
+                if (enableForceTimeOut)
+                    StopCoroutine(timeOutScheduler);
+            
+            // Finished
+                yield break;
+        } // RunTimeExecution_BackEnd()
+
+
+
+        /// <summary>
+        ///     Checks the value of the status variable and then closes once the executation state is false.
+        /// </summary>
+        /// <returns>
+        ///     Nothing
+        /// </returns>
+        private IEnumerator RunTimeExecution_StatusCheck()
+        {
+
+            do
+            {
+                yield return new WaitForSeconds(0.3f);
+            } while (tutorialExecutionState);
+
+            yield break;
+        } // RunTimeExecution_StatusCheck()
+
+
+
+        /// <summary>
         ///     Monitors and holds until the tutorial has finished
         /// </summary>
         /// <param name="tutorialMovie">
@@ -193,17 +279,12 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Nothing
         /// </returns>
-        private IEnumerator RunTimeExecution(bool tutorialMovie, bool tutorialWindow, int index)
+        private IEnumerator RunTimeExecution(bool tutorialMovie, bool tutorialWindow)
         {
-            // If function schedule Timeout is enabled, then run the scheduler
-            if (enableForceTimeOut)
-                StartCoroutine(TimedOutFunction(tutorialMovie, tutorialWindow, index));
-
-            yield return null;
-            
-            // If the function schedule Timeout is enabled, then stop the scheduler
-            if (enableForceTimeOut)
-                StopCoroutine(TimedOutFunction(tutorialMovie, tutorialWindow, index));
+            do
+            {
+                yield return new WaitForSeconds(0.3f);
+            } while (tutorialMovie && tutorialWindow);
         } // RunTimeExecution()
 
 
@@ -221,12 +302,26 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Nothing
         /// </returns>
-        private IEnumerator TimedOutFunction(bool tutorialMovie, bool tutorialWindow, int index)
+        private IEnumerator TimedOutFunction(IEnumerator coroutineFunction, bool tutorialMovie, bool tutorialWindow, int index)
         {
-            yield return new WaitForSeconds(timedOut_Minutes);
-            StopCoroutine(RunTimeExecution(tutorialMovie, tutorialWindow, index));
-            ForcibleKillSignal(tutorialMovie, tutorialWindow, index);
-            TutorialMain_Error(4);
+            // Is Time-Out scheduler allowed to run?
+                if (!enableForceTimeOut)
+                    yield break; // Stop
+
+            // Wait for the requested timed-out time schedule
+                yield return new WaitForSeconds(timedOut_Minutes);
+
+            // Is the tutorials still running?
+            if (tutorialMovieState || tutorialWindowState)
+            {
+                StopCoroutine(coroutineFunction);
+                ForcibleKillSignal(tutorialMovie, tutorialWindow, index);
+                TutorialMain_Error(4);
+            }
+
+            // No tutorials are running, stop.
+            else
+                yield break;
         } // TimedOutFunction()
 
 
