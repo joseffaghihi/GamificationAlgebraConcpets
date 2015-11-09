@@ -31,7 +31,6 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private IEnumerator RenderObject()
         {
-            Debug.LogWarning("asdfasdf");
             yield return null;
             // Enable the tutorial objects
                 Object_Activation(true);
