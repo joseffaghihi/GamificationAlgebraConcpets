@@ -22,16 +22,6 @@ namespace MinionMathMayhem_Ship
         // ---------------------------------
 
 
-        
-        /// <summary>
-        ///     Front-End Function to activate the movie tutorial
-        /// </summary>
-            public void ActivateTutorial()
-        {
-            StartCoroutine(RenderObject());
-        } // ActivateTutorial()
-
-
 
         /// <summary>
         ///     Plays the movie at the specific index
@@ -44,21 +34,38 @@ namespace MinionMathMayhem_Ship
             Debug.LogWarning("asdfasdf");
             yield return null;
             // Enable the tutorial objects
-            objectTutorial_SkipButton.SetActive(true);
-            objectTutorial_Movie.SetActive(true);
-            objectTutorial_Canvas.SetActive(true);
+                Object_Activation(true);
+
             // Send the 'Tutorial Active' signal
             //TutorialStateStart();
             // Run a signal detector; once the signal has been detected, the tutorial is finished.
             //    Once the tutorial is finished, the rest of the game can execute.
             //yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
-            // Disable the tutorial objects
-            objectTutorial_Movie.SetActive(false);
-            objectTutorial_Canvas.SetActive(false);
-            objectTutorial_SkipButton.SetActive(false);
 
-            CloseTutorial();
+            // Disable the tutorial objects
+             Object_Activation(false);
+
+        CloseTutorial();
         } // RenderObject()
+
+
+
+        /// <summary>
+        ///     Changes the actor's activation
+        /// </summary>
+        /// <param name="state">
+        ///     true = Actor is activated in the Virtual World
+        ///     false = Actor is unactivated in the Virtual World
+        /// </param>
+        private void Object_Activation(bool state)
+        {
+            // Skip Button
+                objectTutorial_SkipButton.SetActive(state);
+            // Movie Box
+                objectTutorial_Movie.SetActive(state);
+            // Movie Canvas
+                objectTutorial_Canvas.SetActive(state);
+        } // Object_Activation()
 
 
 
@@ -73,16 +80,6 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     When called by other scripts\classes, this will activate a forcible kill of the tutorial.
-        /// </summary>
-        public void Access_Destroy()
-        {
-            Destroy();
-        } // Access_Destroy()
-
-
-
-        /// <summary>
         ///     Notify the Tutorial Main that this script is ready to self-terminate.
         /// </summary>
         private void CloseTutorial()
@@ -90,5 +87,33 @@ namespace MinionMathMayhem_Ship
             // Broadcast signal that we're done
                 TutorialEnded();
         } // CloseTutorial()
+
+
+
+
+        // -------------------------------------------------
+        //              PUBLIC BRIDGES
+        // -------------------------------------------------
+
+
+
+
+        /// <summary>
+        ///     Front-End Function to activate the movie tutorial
+        /// </summary>
+        public void ActivateTutorial()
+        {
+            StartCoroutine(RenderObject());
+        } // ActivateTutorial()
+
+
+
+        /// <summary>
+        ///     When called by other scripts\classes, this will activate a forcible kill of the tutorial.
+        /// </summary>
+        public void Access_Destroy()
+        {
+            Destroy();
+        } // Access_Destroy()
     } // End of Class
 } // Namespace
