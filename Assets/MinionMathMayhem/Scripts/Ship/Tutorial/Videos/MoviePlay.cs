@@ -10,6 +10,11 @@ namespace MinionMathMayhem_Ship
          *  on screen tutorial movie.  In addition, this script is also designed to listen an event to abort any movie that is being currently executed.  As well as, send a broad event signal that a movie has ended for active scripts listening.
          * 
          * 
+         * Important Notes:
+         *      Execution Order
+         *          http://docs.unity3d.com/Manual/class-ScriptExecution.html
+         *
+         *
          * Dependencies:
          *      QuickTime
          *          Source Download: http://www.apple.com/quicktime/
@@ -38,35 +43,54 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Signal Listener: Detected
+        /// <summary>
+        ///     Built-In Unity function
+        ///     Automatically executes as soon as the actor is activated within the virtual world.
+        /// 
+        ///     NOTE:
+        ///         This is the SECOND function to be called; the first is typically the Awake() function.
+        /// </summary>
         private void OnEnable()
         {
-            // Activate the tutorial movie
-                GameController.TutorialStateStart += EnableTutorial;
-            // The Skip Button was toggled
-                TutorialSkipButton.SkipTutorialDemand += SkipTutorial;
+
+            // Subscribe to the event
+                // Activate the tutorial movie
+                    GameController.TutorialStateStart += EnableTutorial;
+                // The Skip Button was toggled
+                    TutorialSkipButton.SkipTutorialDemand += SkipTutorial;
         } // OnEnable()
 
 
 
-        // Signal Listener: Deactivate
+        /// <summary>
+        ///     Built-In Unity function
+        ///     Automatically executes when the actor is about to be deactivated.
+        /// </summary>
         private void OnDisable()
         {
-            // Tutorial movie
-                GameController.TutorialStateStart -= EnableTutorial;
-            // Skip Button was toggled
-                TutorialSkipButton.SkipTutorialDemand -= SkipTutorial;
+
+            // Subscribe to the event
+                // Tutorial movie
+                    GameController.TutorialStateStart -= EnableTutorial;
+                // Skip Button was toggled
+                    TutorialSkipButton.SkipTutorialDemand -= SkipTutorial;
         } // OnDisable()
 
+        
 
-
-        // Start-Up execution
+        /// <summary>
+        ///     Built-In Unity function
+        ///     Automatically executes as soon as the actor is activated within the virtual world
+        /// 
+        ///     NOTE:
+        ///         This is the FIRST function to be called; although this time span might be a few nanoseconds before the next sequential function is also called.
+        /// </summary>
         private void Awake()
         {
             // Initialization objects for the movie sequence
                 movieRenderer = GetComponent<Renderer>();
                 movieTexture = (MovieTexture)movieRenderer.material.mainTexture;
-        } // Start()
+        } // Awake()
 
 
 

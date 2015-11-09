@@ -43,7 +43,7 @@ namespace MinionMathMayhem_Ship
             //yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
 
             // Disable the tutorial objects
-             Object_Activation(false);
+                Object_Activation(false);
 
         CloseTutorial();
         } // RenderObject()
