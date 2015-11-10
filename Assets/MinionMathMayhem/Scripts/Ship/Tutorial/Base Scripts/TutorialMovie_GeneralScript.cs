@@ -39,7 +39,7 @@ namespace MinionMathMayhem_Ship
             // Subscribe to TutorialSkipButton event
                 TutorialSkipButton.SkipTutorialDemand += MovieTutorial_Destroy;
             // Subscribe to the Movie script
-                MoviePlay.MovieEnded += MovieTutorial_Destroy;
+                MoviePlay.TutorialStateEnded += MovieTutorial_Destroy;
         } // OnEnable()
 
 
@@ -53,7 +53,7 @@ namespace MinionMathMayhem_Ship
             // Unsubscribe to the TutorialSkipButton event
                 TutorialSkipButton.SkipTutorialDemand -= MovieTutorial_Destroy;
             // Unsubscribe to the Movie script
-                MoviePlay.MovieEnded -= MovieTutorial_Destroy;
+                MoviePlay.TutorialStateEnded -= MovieTutorial_Destroy;
         } // OnDisable()
 
 
