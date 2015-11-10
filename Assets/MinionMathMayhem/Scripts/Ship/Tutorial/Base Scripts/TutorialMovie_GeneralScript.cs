@@ -120,5 +120,15 @@ namespace MinionMathMayhem_Ship
         {
             Activate_Object();
         } // ActivateTutorial()
+
+
+
+        /// <summary>
+        ///     A public bridge function to forcibly destroy the tutorial immediately.
+        /// </summary>
+        public void Access_Destroy()
+        {
+            MovieTutorial_Destroy();
+        } // Access_Destroy()
     } // End of Class
 } // Namespace
