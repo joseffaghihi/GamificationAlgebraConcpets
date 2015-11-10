@@ -6,8 +6,7 @@ namespace MinionMathMayhem_Ship
     public class MoviePlay : MonoBehaviour
     {
         /*                                  TUTORIAL MOVIE
-         * This script will manage the movie tutorial sequence of the game.  This script is designed to listen for an event and activate the desired -
-         *  on screen tutorial movie.  In addition, this script is also designed to listen an event to abort any movie that is being currently executed.  As well as, send a broad event signal that a movie has ended for active scripts listening.
+         * This script will run the movie tutorial when activated - automatically
          * 
          * 
          * Important Notes:
@@ -20,11 +19,9 @@ namespace MinionMathMayhem_Ship
          *          Source Download: http://www.apple.com/quicktime/
          * 
          * Goals:
-         *      Play the desired movie sequence
+         *      Play the desired movie tutorial
          *      Send an event signal that the movie has ended.
-         *      Listen for the 'Skip' button being activate.
          */
-
 
 
         // Declarations and Initializations
@@ -33,13 +30,12 @@ namespace MinionMathMayhem_Ship
                 public Renderer movieRenderer;
             // Movie Texture
                 public MovieTexture movieTexture;
-            // Tutorial skip signal
-                public bool tutorialSkip = false;
-            // Accessors and Communication
-                // Tutorial State: Finished
-                    public delegate void TutorialStateEventEnded();
-                    public static event TutorialStateEventEnded TutorialStateEnded;
-        // ----
+
+            // Tutorial State: Finished
+                public delegate void TutorialStateEventEnded();
+                public static event TutorialStateEventEnded TutorialStateEnded;
+        // ---------------------------------
+
 
 
 
@@ -52,12 +48,7 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-
-            // Subscribe to the event
-                // Activate the tutorial movie
-                    GameController.TutorialStateStart += EnableTutorial;
-                // The Skip Button was toggled
-                    TutorialSkipButton.SkipTutorialDemand += SkipTutorial;
+            Movie_Play();
         } // OnEnable()
 
 
@@ -68,15 +59,10 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-
-            // Subscribe to the event
-                // Tutorial movie
-                    GameController.TutorialStateStart -= EnableTutorial;
-                // Skip Button was toggled
-                    TutorialSkipButton.SkipTutorialDemand -= SkipTutorial;
+            Movie_Stop();
         } // OnDisable()
 
-        
+
 
         /// <summary>
         ///     Built-In Unity function
@@ -94,69 +80,42 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // When triggered by the event, initiate the movie tutorial sequence.
-        private void EnableTutorial()
+        /// <summary>
+        ///     Plays the tutorial movie
+        /// </summary>
+        private void Movie_Play()
         {
-            StartCoroutine(PlayTutorial());
-        } // EnableTutorial()
+            movieTexture.Play();
+        } // Movie_Play()
 
 
 
-        // When the signal has been detected, flip the bit 
-        private void SkipTutorial()
+        /// <summary>
+        ///     Stops the tutorial movie
+        /// </summary>
+        private void Movie_Stop()
         {
-            tutorialSkip = !tutorialSkip;
-        } // SkipTutorial()
-
-
-
-        // This function will execute the tutorial movie sequence.
-        private IEnumerator PlayTutorial()
-        {
-            // Play the movie
-                Movie_Execute(movieTexture);
-            // ----
-
-            // Wait for the movie to end
-                yield return (StartCoroutine(Movie_Ended_Check(movieTexture)));
-            // ----
-
-            // Stop the movie
-                Movie_Stop(movieTexture);
-            // ----
-
-            // turn off the tutorial mode
-                TutorialStateEnded();
-        } // PlayTutorial()
-
-
-
-        // Play the movie
-        private void Movie_Execute(MovieTexture onScreenMovie)
-        {
-            onScreenMovie.Play();
-        } // ExecuteMovie()
-
-
-
-        // Stop the movie
-        private void Movie_Stop(MovieTexture onScreenMovie)
-        {
-            onScreenMovie.Stop();
+            movieTexture.Stop();
         } // Movie_Stop()
 
 
 
-        // Periodically check if the movie ended or was skipped.
-        private IEnumerator Movie_Ended_Check(MovieTexture onScreenMovie)
+        /// <summary>
+        ///     Monitors the status of the movie; once the movie has finished (hits End of Line), close the tutorial.
+        /// </summary>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator Movie_RoutineCheckup()
         {
             do
             {
-                // A loop-wait to ease on the CPU without being abundantly excessive on resources.
-                    yield return new WaitForSeconds(.5f);
-            } while (onScreenMovie.isPlaying == !false && tutorialSkip == !true);
+                // Brief pause
+                yield return new WaitForSeconds(.3f);
+            } while (movieTexture.isPlaying);
 
-            yield return null;
-        } // Movie_Ended_Check()
+            // Close the tutorial
+                TutorialStateEnded();
+        } // Movie_RoutineCheckup()
     } // End of Class
 } // Namespace
