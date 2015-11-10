@@ -100,9 +100,9 @@ namespace MinionMathMayhem_Ship
         private void MovieTutorial_Destroy()
         {
             // Turn off the objects
-            Object_Activation(false);
+                Object_Activation(false);
             // Broadcast that we're finished
-            TutorialEnded();
+                TutorialEnded();
         } // MovieTutorial_Finished()
 
 
