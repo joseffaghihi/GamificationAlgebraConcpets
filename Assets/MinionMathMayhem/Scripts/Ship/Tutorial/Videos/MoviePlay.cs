@@ -48,7 +48,11 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            Movie_Play();
+            // Execute the routine check-up; assure that the tutorial is playing
+                StartCoroutine(Movie_RoutineCheckup());
+            
+            // Play the move
+                Movie_Play();
         } // OnEnable()
 
 
@@ -59,7 +63,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-            Movie_Stop();
+            // Stop the movie
+                Movie_Stop();
         } // OnDisable()
 
 
