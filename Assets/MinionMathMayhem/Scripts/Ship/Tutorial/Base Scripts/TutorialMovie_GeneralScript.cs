@@ -10,42 +10,51 @@ namespace MinionMathMayhem_Ship
          *
          * GOALS:
          *  Initalizations for the specific movie object
+         *  Execute the fundamental tutorials as required
+         *  Close the tutorial if user skips it
+         *  Close the tutorial if the movie ended
          */
+
 
         // Declarations and Initializations
         // ---------------------------------
-            public GameObject objectTutorial_Movie, objectTutorial_Canvas, objectTutorial_SkipButton;
-
-            // Broadcast tutorial ended
+            // Specific movie objects
+                public GameObject objectTutorial_Movie;
+                public GameObject objectTutorial_Canvas;
+                public GameObject objectTutorial_SkipButton;
+        
+            // Delegate Event's: Tutorial ended
                 public delegate void TutorialEndedSignal();
                 public static event TutorialEndedSignal TutorialEnded;
         // ---------------------------------
 
 
+        
+        /// <summary>
+        ///     Built-In Unity Function
+        ///     Automatically executes once the actor has been activated within the virtual world
+        /// </summary>
+        private void OnEnable()
+        {
+            // Subscribe to TutorialSkipButton event
+                TutorialSkipButton.SkipTutorialDemand += MovieTutorial_Destroy;
+            // Subscribe to the Movie script
+                MoviePlay.MovieEnded += MovieTutorial_Destroy;
+        } // OnEnable()
+
+
 
         /// <summary>
-        ///     Plays the movie at the specific index
+        ///     Built-In Unity Function
+        ///     Automatically executes once the actor has been deactivated within the virtual world
         /// </summary>
-        /// <returns>
-        ///     Returns nothing useful
-        /// </returns>
-        private IEnumerator RenderObject()
+        private void OnDisable()
         {
-            yield return null;
-            // Enable the tutorial objects
-                Object_Activation(true);
-
-            // Send the 'Tutorial Active' signal
-            //TutorialStateStart();
-            // Run a signal detector; once the signal has been detected, the tutorial is finished.
-            //    Once the tutorial is finished, the rest of the game can execute.
-            //yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
-
-            // Disable the tutorial objects
-                Object_Activation(false);
-
-        CloseTutorial();
-        } // RenderObject()
+            // Unsubscribe to the TutorialSkipButton event
+                TutorialSkipButton.SkipTutorialDemand -= MovieTutorial_Destroy;
+            // Unsubscribe to the Movie script
+                MoviePlay.MovieEnded -= MovieTutorial_Destroy;
+        } // OnDisable()
 
 
 
@@ -69,32 +78,39 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     This will terminate the tutorial.
+        ///     Front-End function to activating and controlling the movie
         /// </summary>
-        private void Destroy()
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private void Activate_Object()
         {
+            // Enable the objects
+                Object_Activation(true);
 
-        } // Destroy()
+            // Finished
+                return;
+        } // RenderObject()
 
 
 
         /// <summary>
-        ///     Notify the Tutorial Main that this script is ready to self-terminate.
+        ///     Close the tutorial sequence as it was terminated (or skipped)
         /// </summary>
-        private void CloseTutorial()
+        private void MovieTutorial_Destroy()
         {
-            // Broadcast signal that we're done
-                TutorialEnded();
-        } // CloseTutorial()
+            // Turn off the objects
+            Object_Activation(false);
+            // Broadcast that we're finished
+            TutorialEnded();
+        } // MovieTutorial_Finished()
 
 
 
 
         // -------------------------------------------------
-        //              PUBLIC BRIDGES
+        //                 PUBLIC BRIDGES
         // -------------------------------------------------
-
-
 
 
         /// <summary>
@@ -102,17 +118,7 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         public void ActivateTutorial()
         {
-            StartCoroutine(RenderObject());
+            Activate_Object();
         } // ActivateTutorial()
-
-
-
-        /// <summary>
-        ///     When called by other scripts\classes, this will activate a forcible kill of the tutorial.
-        /// </summary>
-        public void Access_Destroy()
-        {
-            Destroy();
-        } // Access_Destroy()
     } // End of Class
 } // Namespace
