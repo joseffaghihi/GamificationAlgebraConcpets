@@ -344,7 +344,6 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // TODO: I think my main focus will be setting up which tutorial to execute, restructure the tutorial algorithm, then push a minor change in the spine that will stop the game properly. [NG]
         /// <summary>
         ///     Game Tutorial; this function will merely run through the tutorial sequence.
         /// </summary>
@@ -353,30 +352,21 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private IEnumerator GameExecute_Tutorial(int tutorialMode=0)
         {
-            // TODO: Thrash work around solution
-            // Temporary work around
-                yield return null;
-            TutorialSequence(true, true, 0, false);
-            // TODO: Push this unto a dedicated script
-            /*
-            // Enable the tutorial objects
-                objectTutorial_SkipButton.SetActive(true);
-                objectTutorial_Movie.SetActive(true);
-                objectTutorial_Canvas.SetActive(true);
-            // Send the 'Tutorial Active' signal
-                TutorialStateStart();
-            // Run a signal detector; once the signal has been detected, the tutorial is finished.
-            //    Once the tutorial is finished, the rest of the game can execute.
+            // Activate the tutorials
+                TutorialSequence(true, true, 0, false);
+
+            // Wait for the tutorials to end
                 yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
-            // Disable the tutorial objects
-                objectTutorial_Movie.SetActive(false);
-                objectTutorial_Canvas.SetActive(false);
-                objectTutorial_SkipButton.SetActive(false);
-            // Slide Show
-				yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
-                rulesCanvas.SetActive(false);
+
+            // Debug
+            Debug.Log("For some reason, we're done");
             // End
                 TutorialStateEnd();
+
+            /*
+            // Slide Show
+				//yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
+                //rulesCanvas.SetActive(false);
             */
         } // GameExecute_Tutorial()
 
