@@ -272,7 +272,7 @@ namespace MinionMathMayhem_Ship
             // DEBUG
                 Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
             // Execute the backend
-                StartCoroutine(GameExecute_Tutorial(true, true, 0, false));
+                StartCoroutine(GameExecute_Tutorial(true, true, 0, true));
         } // GamePlay_Tutorial()
 
 
