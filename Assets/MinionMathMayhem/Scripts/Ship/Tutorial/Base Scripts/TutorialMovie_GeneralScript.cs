@@ -80,9 +80,6 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Front-End function to activating and controlling the movie
         /// </summary>
-        /// <returns>
-        ///     Nothing useful
-        /// </returns>
         private void Activate_Object()
         {
             // Enable the objects
@@ -90,7 +87,7 @@ namespace MinionMathMayhem_Ship
 
             // Finished
                 return;
-        } // RenderObject()
+        } // Activate_Object()
 
 
 
@@ -103,7 +100,7 @@ namespace MinionMathMayhem_Ship
                 Object_Activation(false);
             // Broadcast that we're finished
                 TutorialEnded();
-        } // MovieTutorial_Finished()
+        } // MovieTutorial_Destroy()
 
 
 
