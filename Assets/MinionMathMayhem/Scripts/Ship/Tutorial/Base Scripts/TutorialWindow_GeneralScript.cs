@@ -35,8 +35,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            // Subscribe to the Movie script
-            WindowPlay.TutorialStateEnded += WindowTutorial_Destroy;
+            // Subscribe to the Window script
+                WindowPlay.TutorialStateEnded += WindowTutorial_Destroy;
         } // OnEnable()
 
 
@@ -47,8 +47,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-            // Unsubscribe to the Movie script
-            WindowPlay.TutorialStateEnded -= WindowTutorial_Destroy;
+            // Unsubscribe to the Window script
+                WindowPlay.TutorialStateEnded -= WindowTutorial_Destroy;
         } // OnDisable()
 
 
@@ -75,22 +75,19 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Front-End function to activating and controlling the window dialog
         /// </summary>
-        /// <returns>
-        ///     Nothing useful
-        /// </returns>
         private void Activate_Object()
         {
             // Enable the objects
                 Object_Activation(true);
 
             // Finished
-            return;
-        } // RenderObject()
+                return;
+        } // Activate_Object()
 
 
 
         /// <summary>
-        ///     Close the tutorial sequence as it was terminated (or skipped)
+        ///     Close the tutorial sequence as it was terminated
         /// </summary>
         private void WindowTutorial_Destroy()
         {
@@ -98,7 +95,7 @@ namespace MinionMathMayhem_Ship
                 Object_Activation(false);
             // Broadcast that we're finished
                 TutorialEnded();
-        } // MovieTutorial_Finished()
+        } // WindowTutorial_Destroy()
 
 
 
