@@ -23,9 +23,8 @@ namespace MinionMathMayhem_Ship
         // Declarations and Initializations
         // ---------------------------------
             // Specific window dialog components
-                public GameObject rulesCanvas;
-            //  Rules Control on the rulesCanvas GameObject
-                private RulesControl rulesControl;
+                //  Rules Control on the rulesCanvas GameObject
+                    private RulesControl rulesControl;
 
             // Tutorial State: Finished
                 public delegate void TutorialStateEventEnded();
@@ -59,7 +58,7 @@ namespace MinionMathMayhem_Ship
         private void Awake()
         {
             // Initialization objects for the movie sequence
-                rulesControl = rulesCanvas.GetComponent<RulesControl>();
+                rulesControl = gameObject.GetComponent<RulesControl>();
         } // Awake()
 
 
