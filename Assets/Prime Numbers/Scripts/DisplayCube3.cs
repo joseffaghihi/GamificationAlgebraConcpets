@@ -1,0 +1,27 @@
+﻿using UnityEngine;
+using System.Collections;
+
+namespace PrimeNumbers
+{
+	public class DisplayCube3 : MonoBehaviour 
+	{
+		public TextMesh text; 
+		public bool flag = true;
+		
+		public StartNumber StartNumber_script;
+		
+		private void Awake()
+		{
+			StartNumber_script = GameObject.Find("StartCube").GetComponentInChildren<StartNumber>();
+		}
+		
+		void Update () 
+		{
+			if (flag) {
+				text.text = StartNumber_script.ArrayB [2].ToString ();
+				StartNumber_script.CubeArray [3] = this.gameObject;
+				flag=false;
+			}
+		}
+	}
+}

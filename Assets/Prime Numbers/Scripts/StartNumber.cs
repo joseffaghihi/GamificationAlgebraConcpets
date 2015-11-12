@@ -53,14 +53,19 @@ namespace PrimeNumbers
 		public int FactorIsPrime =0;
 
 		public Vector3[] cubePosition = new Vector3[2];
+
+		public DisplayNumber DisplayNumber_script;
+
+		private void Awake()
+		{
+			DisplayNumber_script = GameObject.Find("Cube1").GetComponentInChildren<DisplayNumber>();
+		}
 		
 		void Start () 
 		{			
 			CameraPosition = MainCamera.transform.position;
-			
 			RN = Random.Range(1,100);
-			RN = 10;
-			
+			RN = 81;
 			//Check to see if the random number is prime.
 			if (isPrime (RN) == true) 
 			{
@@ -89,9 +94,6 @@ namespace PrimeNumbers
 			//Mixes up the numbres in the Array
 			ShuffleArray(ArrayB);
 			
-			//displays the random choices in the two dimentional array.
-			//displayTextmeshes ();
-			
 		}//end of Start
 		
 		void Update () 
@@ -102,9 +104,9 @@ namespace PrimeNumbers
 				{
 					if(cubesRemaining[i]==true)
 					{
-						Debug.Log (i);
-						remainingNumbers[dummyCounter] = int.Parse(FArray[i].text);
-						cubePosition[dummyCounter] = FArray[i].transform.position; //recording position of boxes
+						remainingNumbers[dummyCounter] = ArrayB[i];
+//FArray is set in inspector to be the first 5 textmeshes cuase this to fail second time through.
+						cubePosition[dummyCounter] = CubeArray[i].transform.position;
 						cubePosition[dummyCounter].x += .7f;  //lining up the prefab wit the box
 						cubePosition[dummyCounter].y -= 6.7f;//lowering prefab to approp level
 						dummyCounter++;
@@ -113,7 +115,9 @@ namespace PrimeNumbers
 				
 				if(checkProduct(remainingNumbers[0],remainingNumbers[1])==true)//if the two factors == the startnumber
 				{
-					MainCamera.transform.position = new Vector3(0,-6,-11);
+					CameraPosition = MainCamera.transform.position;
+					CameraPosition.y -=6;
+					MainCamera.transform.position = CameraPosition;//move camera down 8
 					CameraPosition = MainCamera.transform.position;
 
 					//check to see if the left number is prime and the right is not
@@ -129,6 +133,7 @@ namespace PrimeNumbers
 					}
 					else if(isPrime(remainingNumbers[0])==false)
 					{
+						RN=remainingNumbers[0];
 						getFacters(remainingNumbers[0]);
 						makeChoices (); 
 						getRandomChoices ();
@@ -150,6 +155,7 @@ namespace PrimeNumbers
 					}
 					else if(isPrime(remainingNumbers[1])==false)
 					{
+						RN=remainingNumbers[1];
 						getFacters(remainingNumbers[1]);
 						makeChoices (); 
 						getRandomChoices ();
