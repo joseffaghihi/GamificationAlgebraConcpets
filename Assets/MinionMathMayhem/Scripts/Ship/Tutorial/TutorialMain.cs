@@ -161,24 +161,28 @@ namespace MinionMathMayhem_Ship
                     index = Randomized(PlayIndex, randomIndex, tutorialMovieArray);
                 // Filp the movie tutorial state variable
                     ToggleMovieState();
+                // Flip the Tutorial State
+                    ToggleTutorialState();
                 // Play the movie
                     TutorialMain_Play_Movie(PlayIndex, randomIndex);
                 // Check the tutorial state
                     yield return (StartCoroutine(RunTimeExecution_BackEnd(true, false, index)));
             } // Movie Tutorial
 
-            if (tutorialWindow)
+            /*if (tutorialWindow)
             {
                 // Fetch the index
                     index = Randomized(PlayIndex, randomIndex, tutorialWindowArray);
                 // Flip the window tutorial state variable
                     ToggleWindowState();
+                // Flip the Tutorial State
+                    ToggleTutorialState();
                 // Render the dialog window
-                    TutorialMain_Play_Window(PlayIndex, randomIndex);
+                TutorialMain_Play_Window(PlayIndex, randomIndex);
                 // Check the tutorial state
                     yield return (StartCoroutine(RunTimeExecution_BackEnd(false, true, index)));
             } // Dialog Window Tutorial
-
+            */
             // Finished tutorial
                 TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
@@ -236,8 +240,9 @@ namespace MinionMathMayhem_Ship
                 StartCoroutine(timeOutScheduler);
                 StartCoroutine(runTimeExecution);
 
+            Debug.Log("Too the loom!!!");
             yield return StartCoroutine(runTimeExecutionState);
-
+            Debug.Log("Return to Sender!");
             // if the Timed-Out scheduler is running, destroy the instance
                 if (enableForceTimeOut)
                     StopCoroutine(timeOutScheduler);
@@ -262,6 +267,7 @@ namespace MinionMathMayhem_Ship
                 yield return new WaitForSeconds(0.3f);
             } while (tutorialExecutionState);
 
+            Debug.Log("Passed");
             yield break;
         } // RunTimeExecution_StatusCheck()
 
@@ -284,7 +290,19 @@ namespace MinionMathMayhem_Ship
             do
             {
                 yield return new WaitForSeconds(0.3f);
-            } while (tutorialMovie && tutorialWindow);
+                if (tutorialMovie)
+                {
+                    if (!tutorialMovieState)
+                        ToggleTutorialState();
+                }
+
+                else if (tutorialWindow)
+                {
+                    if (!tutorialWindowState)
+                        ToggleTutorialState();
+                }
+
+            } while (tutorialExecutionState);
         } // RunTimeExecution()
 
 
@@ -442,6 +460,17 @@ namespace MinionMathMayhem_Ship
         {
             TutorialFinished();
         } // TutorialMain_FinishedSignal()
+
+
+
+        /// <summary>
+        ///     When called, flips the Tutorial Execution State value to it's opposite value.
+        /// </summary>
+        private void ToggleTutorialState()
+        {
+            Debug.Log("ToggleTutorialState was called");
+            tutorialExecutionState = !tutorialExecutionState;
+        } // ToggleTutorialState()
 
 
 
