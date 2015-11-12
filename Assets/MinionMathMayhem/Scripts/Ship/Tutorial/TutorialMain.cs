@@ -145,6 +145,7 @@ namespace MinionMathMayhem_Ship
                                         int PlayIndex = 0,
                                         bool randomIndex = false)
         {
+            Debug.Log("Movie: " + tutorialMovie + "\n" + "Window: " + tutorialWindow);
             // Make sure there is no errors
             if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
                 yield break;
@@ -483,31 +484,38 @@ namespace MinionMathMayhem_Ship
                 TutorialMain_Error(1);
                 TutorialMain_FinishedSignal();
                 return true;
-            }
+            } // if (Tutorial Mode error)
 
-            // Make sure that the range is accessible
-            if (PlayIndex <= tutorialMovieArray.Count && PlayIndex >= 0)
+            // Make sure that the range is accessible; I.E. prevent out of range error
+            if (tutorialMovie)
             {
-                // Nothing todo; this statement is true and there is no error.
-            }
-            else
-            {
-                TutorialMain_Error(5, "Movie Tutorial using index [" + PlayIndex + "]");
-                TutorialMain_FinishedSignal();
-                return true;
-            }
+                if (PlayIndex <= tutorialMovieArray.Count && PlayIndex >= 0)
+                {
+                    // Nothing todo; this statement is true and there is no error.
+                }
+                else
+                {
+                    TutorialMain_Error(5, "Movie Tutorial using index [" + PlayIndex + "]");
+                    TutorialMain_FinishedSignal();
+                    return true;
+                }
 
-            // Make sure that the range is accessible
-            if (PlayIndex <= tutorialWindowArray.Count && PlayIndex >= 0)
+            } // Tutorial Movie index length error
+
+            // Make sure that the range is accessible; I.E. prevent out of range error
+            if (tutorialWindow)
             {
-                // Nothing todo; this statement is true and there is no error.
-            }
-            else
-            {
-                TutorialMain_Error(5, "Dialog Window Tutorial using index [" + PlayIndex + "]");
-                TutorialMain_FinishedSignal();
-                return true;
-            }
+                if (tutorialWindow && PlayIndex <= tutorialWindowArray.Count && PlayIndex >= 0)
+                {
+                    // Nothing todo; this statement is true and there is no error.
+                }
+                else
+                {
+                    TutorialMain_Error(5, "Dialog Window Tutorial using index [" + PlayIndex + "]");
+                    TutorialMain_FinishedSignal();
+                    return true;
+                }
+            } // Tutorial Window index length error
 
 
             // Make sure that there is a tutorial to be played
@@ -517,7 +525,7 @@ namespace MinionMathMayhem_Ship
                 TutorialMain_Error(2, PlayIndex.ToString());
                 TutorialMain_FinishedSignal();
                 return true;
-            }
+            } // Tutorial Movie, make sure that the index location has been initialized
 
             // Make sure that there is a tutorial to be rendered
             else if (tutorialWindow && tutorialWindowArray[PlayIndex] == null)
@@ -526,7 +534,7 @@ namespace MinionMathMayhem_Ship
                 TutorialMain_Error(3, PlayIndex.ToString());
                 TutorialMain_FinishedSignal();
                 return true;
-            }
+            } // Tutorial Window, make sure that the index location has been initialized
 
 
             // No errors detected
