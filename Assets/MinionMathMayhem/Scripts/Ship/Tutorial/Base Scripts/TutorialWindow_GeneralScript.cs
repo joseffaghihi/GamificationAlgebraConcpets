@@ -19,6 +19,8 @@ namespace MinionMathMayhem_Ship
         // ---------------------------------
             // Specific window dialog components
                 public GameObject rulesCanvas;
+                public GameObject feedBackCanvas;
+                public GameObject viewTutorialAgainCanvas;
 
             // Delegate Event's: Tutorial ended
                 public delegate void TutorialEndedSignal();
@@ -60,6 +62,10 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void Object_Activation(bool state)
         {
+            // User Response Components
+                feedBackCanvas.SetActive(state);
+            // View Tutorial Again
+                //viewTutorialAgainCanvas.SetActive(state);
             // Main Canvas
                 rulesCanvas.SetActive(state);
         } // Object_Activation()
