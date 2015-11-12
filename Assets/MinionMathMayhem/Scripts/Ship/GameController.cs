@@ -229,7 +229,7 @@ namespace MinionMathMayhem_Ship
                 yield return null;
             // ----
             // Execute the Tutorial
-                 yield return (StartCoroutine(GameExecute_Tutorial()));
+                 yield return (StartCoroutine(GameExecute_Tutorial(true, true, 0, false)));
             // Display the animations and environment settings at the very start of the game
 	                scriptGameEvent.Access_FirstRun_Animations();
 	            // Initiate the wait delay on the spawners
@@ -272,7 +272,7 @@ namespace MinionMathMayhem_Ship
             // DEBUG
                 Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
             // Execute the backend
-                StartCoroutine(GameExecute_Tutorial());
+                StartCoroutine(GameExecute_Tutorial(true, true, 0, false));
         } // GamePlay_Tutorial()
 
 
@@ -343,21 +343,39 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     Game Tutorial; this function will merely run through the tutorial sequence.
+        ///     Provides requested tutorials to be displayed to the user.
+        ///     This feeds the request to the tutorial algorithm.
         /// </summary>
+        /// <param name="tutorialMovie">
+        ///     If true, this will allow the tutorial movie to be executed.
+        ///         It is possible to also have the Tutorial Window set to 'true' aswell.
+        ///         However, the movie will always be the first to execute.
+        /// </param>
+        /// <param name="tutorialWindow">
+        ///     If true, this will allow the tutorial window to be displayed.
+        ///         It is possible to also have the Tutorial Movie set to 'true' aswell.
+        ///         However, the movie will always be the first to execute.
+        /// </param>
+        /// <param name="tutorialIndexSelect">
+        ///     Plays the requested index of the tutorial(s) from the List<>
+        ///         NOTE: If tutorialMove && tutorialWindow has different List<> sizes and selecting from a -
+        ///             range that is not possible from one category to another category, this will cause the -
+        ///             tutorial that is out of range to not play at all.
+        /// </param>
+        /// <param name="randomSwitch">
+        ///     Randomly selects an index by the length of the List<>.
+        /// </param>
         /// <returns>
-        ///     Nothing is returned
+        ///     Nothing useful
         /// </returns>
-        private IEnumerator GameExecute_Tutorial(int tutorialMode=0)
+        private IEnumerator GameExecute_Tutorial(bool tutorialMovie, bool tutorialWindow, int tutorialIndexSelect, bool randomSwitch=false)
         {
             // Activate the tutorials
-                TutorialSequence(true, true, 0, false);
+                TutorialSequence(tutorialMovie, tutorialWindow, tutorialIndexSelect, randomSwitch);
 
             // Wait for the tutorials to end
                 yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
 
-            // Debug
-            Debug.Log("For some reason, we're done");
             // End
                 TutorialStateEnd();
         } // GameExecute_Tutorial()
