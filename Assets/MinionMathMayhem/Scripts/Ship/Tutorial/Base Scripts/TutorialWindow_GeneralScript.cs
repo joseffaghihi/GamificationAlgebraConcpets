@@ -6,82 +6,118 @@ namespace MinionMathMayhem_Ship
     public class TutorialWindow_GeneralScript : MonoBehaviour
     {
         /*                                          TUTORIAL WINDOW [GENERAL SCRIPT]
-         * This class is designed to offer a standard base as to how the dialog windows will work with the tutorial protocol.
+         * This class is designed to offer a standard base as to how the window dialogs will work with the tutorial protocol.
          *
          * GOALS:
-         *  Initalizations for the specific dialog window object
+         *  Initalizations for the specific window dialog components
+         *  Execute the fundamental tutorials as required
+         *  Close the tutorial when finished
          */
+
 
         // Declarations and Initializations
         // ---------------------------------
-            public GameObject rulesCanvas;
-            //  Rules Control on the rulesCanvas GameObject  
-                private RulesControl rulesControl;
+            // Specific window dialog components
+                public GameObject rulesCanvas;
 
-        // Broadcast tutorial ended
-            public delegate void TutorialEndedSignal();
-            public static event TutorialEndedSignal TutorialEnded;
+            // Delegate Event's: Tutorial ended
+                public delegate void TutorialEndedSignal();
+                public static event TutorialEndedSignal TutorialEnded;
         // ---------------------------------
 
 
 
         /// <summary>
-        /// Unity function
-        /// When this object is active, this function will be called automatically.
+        ///     Built-In Unity Function
+        ///     Automatically executes once the actor has been activated within the virtual world
         /// </summary>
-        private void Awake()
+        private void OnEnable()
         {
-            rulesControl = rulesCanvas.GetComponent<RulesControl>();
-        } // Awake()
+            // Subscribe to the Movie script
+            WindowPlay.TutorialStateEnded += WindowTutorial_Destroy;
+        } // OnEnable()
 
 
-        public void ActivateTutorial()
-        {
-            Debug.LogWarning("asdf");
-        }
+
         /// <summary>
-        ///     Renders the dialog window at the specific index
+        ///     Built-In Unity Function
+        ///     Automatically executes once the actor has been deactivated within the virtual world
+        /// </summary>
+        private void OnDisable()
+        {
+            // Unsubscribe to the Movie script
+            WindowPlay.TutorialStateEnded -= WindowTutorial_Destroy;
+        } // OnDisable()
+
+
+
+        /// <summary>
+        ///     Changes the actor's activation
+        /// </summary>
+        /// <param name="state">
+        ///     true = Actor is activated in the Virtual World
+        ///     false = Actor is unactivated in the Virtual World
+        /// </param>
+        private void Object_Activation(bool state)
+        {
+            // Main Canvas
+                rulesCanvas.SetActive(state);
+        } // Object_Activation()
+
+
+
+        /// <summary>
+        ///     Front-End function to activating and controlling the window dialog
         /// </summary>
         /// <returns>
-        ///     Returns nothing useful
+        ///     Nothing useful
         /// </returns>
-        public IEnumerator RenderObject()
+        private void Activate_Object()
         {
-            yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
-            rulesCanvas.SetActive(false);
+            // Enable the objects
+                Object_Activation(true);
 
-            CloseTutorial();
+            // Finished
+            return;
         } // RenderObject()
 
 
 
         /// <summary>
-        ///     This will terminate the tutorial.
+        ///     Close the tutorial sequence as it was terminated (or skipped)
         /// </summary>
-        private void Destroy()
+        private void WindowTutorial_Destroy()
         {
+            // Turn off the objects
+                Object_Activation(false);
+            // Broadcast that we're finished
+                TutorialEnded();
+        } // MovieTutorial_Finished()
 
-        } // Destroy()
+
+
+
+        // -------------------------------------------------
+        //                 PUBLIC BRIDGES
+        // -------------------------------------------------
+
+
+        /// <summary>
+        ///     Front-End Function to activate the movie tutorial
+        /// </summary>
+        public void ActivateTutorial()
+        {
+            Activate_Object();
+        } // ActivateTutorial()
 
 
 
         /// <summary>
-        ///     When called by other scripts\classes, this will activate a forcible kill of the tutorial.
+        ///     A public bridge function to forcibly destroy the tutorial immediately.
         /// </summary>
         public void Access_Destroy()
         {
-            Destroy();
+            WindowTutorial_Destroy();
         } // Access_Destroy()
-
-
-
-        /// <summary>
-        ///     Notify the Tutorial Main that this script is ready to self-terminate.
-        /// </summary>
-        private void CloseTutorial()
-        {
-            // Broadcast signal that we're done
-            TutorialEnded();
-        } // CloseTutorial()
     } // End of Class
 } // Namespace
