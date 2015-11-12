@@ -6,7 +6,7 @@ namespace MinionMathMayhem_Ship
 {
     public class TutorialMain : MonoBehaviour
     {
-        /*                                                      TUTORIAL MAIN
+        /*                                                                      TUTORIAL MAIN
          * This class is designed to manage and render the requested tutorial or tutorials -- as it is possible to run atleast one movie tutorial and one window tutorial.  As designed, -
          *  this will manage how the movie and window sequences work and make sure that they are set-up properly for an easy transition from the virtual world environment.  This class -
          *  can only be called by broadcasted events, and will broadcast an event signal when finished.
@@ -137,6 +137,9 @@ namespace MinionMathMayhem_Ship
         /// <param name="randomIndex">
         ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
         /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
         private IEnumerator TutorialMain_Driver(bool tutorialMovie = false,
                                         bool tutorialWindow = false,
                                         int PlayIndex = 0,
@@ -224,8 +227,17 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Backend spine that works with the timeout scheduler and tutorial session
         /// </summary>
+        /// <param name="tutorialMovie">
+        ///     When true, this will execute the movie tutorial
+        /// </param>
+        /// <param name="tutorialWindow">
+        ///     When true, this will run the Window Dialog tutorial
+        /// </param>
+        /// <param name="index">
+        ///     Selects what highlighted index from the array is selected
+        /// </param>
         /// <returns>
-        ///     Nothing
+        ///     Nothing useful
         /// </returns>
         private IEnumerator RunTimeExecution_BackEnd(bool tutorialMovie, bool tutorialWindow, int index)
         {
@@ -240,9 +252,8 @@ namespace MinionMathMayhem_Ship
                 StartCoroutine(timeOutScheduler);
                 StartCoroutine(runTimeExecution);
 
-            Debug.Log("Too the loom!!!");
             yield return StartCoroutine(runTimeExecutionState);
-            Debug.Log("Return to Sender!");
+
             // if the Timed-Out scheduler is running, destroy the instance
                 if (enableForceTimeOut)
                     StopCoroutine(timeOutScheduler);
@@ -257,17 +268,15 @@ namespace MinionMathMayhem_Ship
         ///     Checks the value of the status variable and then closes once the executation state is false.
         /// </summary>
         /// <returns>
-        ///     Nothing
+        ///     Nothing useful
         /// </returns>
         private IEnumerator RunTimeExecution_StatusCheck()
         {
-
             do
             {
                 yield return new WaitForSeconds(0.3f);
             } while (tutorialExecutionState);
 
-            Debug.Log("Passed");
             yield break;
         } // RunTimeExecution_StatusCheck()
 
@@ -283,7 +292,7 @@ namespace MinionMathMayhem_Ship
         ///     When true, this will check if the tutorial dialog window state variable has been flipped. 
         /// </param>
         /// <returns>
-        ///     Nothing
+        ///     Nothing useful
         /// </returns>
         private IEnumerator RunTimeExecution(bool tutorialMovie, bool tutorialWindow)
         {
@@ -311,14 +320,20 @@ namespace MinionMathMayhem_Ship
         ///     This allots a function so much time in order to run the tutorial.
         ///     This function is a stand-alone is hard-coded to forcibly terminate 'RunTimeExecution'.
         /// </summary>
+        /// <param name="coroutineFunction">
+        ///     Stored value used for termination of a instance of a coroutine
+        /// </param>
         /// <param name="tutorialMovie">
         ///     Stored value; used for focibly killing tutorial.
         /// </param>
         /// <param name="tutorialWindow">
         ///     Stored value; used for focibly killing tutorial.  
         /// </param>
+        /// <param name="index">
+        ///     Stored value; use for focibly killing tutorial
+        /// </param>
         /// <returns>
-        ///     Nothing
+        ///     Nothing useful
         /// </returns>
         private IEnumerator TimedOutFunction(IEnumerator coroutineFunction, bool tutorialMovie, bool tutorialWindow, int index)
         {
@@ -353,6 +368,9 @@ namespace MinionMathMayhem_Ship
         /// <param name="tutorialWindow">
         ///     When true, this will be used for focibly killing the tutorial.
         /// </param>
+        /// <param name="index">
+        ///     Selects the index that is currently highlighted
+        /// </param>
         private void ForcibleKillSignal(bool tutorialMovie, bool tutorialWindow, int index)
         {
             if (tutorialMovie)
@@ -364,7 +382,7 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     Select or randomly select the movie, and then play the desired movie tutorial
+        ///     Calls the desired movie tutorial
         /// </summary>
         /// <param name="playIndex">
         ///     Select the index inwhich to play the movie
@@ -372,9 +390,6 @@ namespace MinionMathMayhem_Ship
         /// <param name="randomIndex">
         ///     Randomly select an index
         /// </param>
-        /// <returns>
-        ///     Returns nothing useful
-        /// </returns>
         private void TutorialMain_Play_Movie(int playIndex, bool randomIndex)
         {
             tutorialMovieArray[playIndex].GetComponent<TutorialMovie_GeneralScript>().ActivateTutorial();
@@ -383,7 +398,7 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     Select or randomly select the dialog window, and then render the desired window tutorial
+        ///     Calls the desired window dialog tutorial
         /// </summary>
         /// <param name="playIndex">
         ///     Select the index inwhich to display the dialog window
@@ -391,9 +406,6 @@ namespace MinionMathMayhem_Ship
         /// <param name="randomIndex">
         ///     Randomly select an index
         /// </param>
-        /// <returns>
-        ///     Returns nothing useful
-        /// </returns>
         private void TutorialMain_Play_Window(int playIndex, bool randomIndex)
         {
             tutorialWindowArray[playIndex].GetComponent<TutorialWindow_GeneralScript>().ActivateTutorial();
@@ -468,7 +480,6 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void ToggleTutorialState()
         {
-            Debug.Log("ToggleTutorialState was called");
             tutorialExecutionState = !tutorialExecutionState;
         } // ToggleTutorialState()
 
@@ -513,7 +524,7 @@ namespace MinionMathMayhem_Ship
         private void TutorialMain_Error(ushort errType = 0, string message = "")
         {
             // Initalize a cache string var; we will use this for constructing the message.
-                string consoleMessage = "SOMETHING_HAPPENED!"; // I decided to add Microsoft's famous error message!  I think this is verbose enough and is very clear as to how we can address the problems! :D [NG]
+                string consoleMessage = "Something happened"; // I decided to add Microsoft's famous error message!  I think this is verbose enough and is very clear as to how we can address the problems! :D [NG]
             
             // Construct the error message by scanning through the error library
                 switch (errType)
