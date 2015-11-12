@@ -5,7 +5,7 @@ namespace MinionMathMayhem_Ship
 {
     public class MoviePlay : MonoBehaviour
     {
-        /*                                  TUTORIAL MOVIE
+        /*                          TUTORIAL MOVIE
          * This script will run the movie tutorial when activated - automatically
          * 
          * 
