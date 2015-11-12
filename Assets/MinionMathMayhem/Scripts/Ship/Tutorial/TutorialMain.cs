@@ -178,7 +178,7 @@ namespace MinionMathMayhem_Ship
                 // Flip the Tutorial State
                     ToggleTutorialState();
                 // Render the dialog window
-                TutorialMain_Play_Window(PlayIndex, randomIndex);
+                    TutorialMain_Play_Window(PlayIndex, randomIndex);
                 // Check the tutorial state
                     yield return (StartCoroutine(RunTimeExecution_BackEnd(false, true, index)));
             } // Dialog Window Tutorial
