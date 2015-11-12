@@ -38,7 +38,7 @@ namespace MinionMathMayhem_Ship {
 			close.SetActive(true);
 			while(control) {
 				yield return null;
-				Debug.Log (control);
+				//Debug.Log (control);
 			}
 		}
 
