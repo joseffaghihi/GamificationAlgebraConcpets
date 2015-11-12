@@ -169,7 +169,7 @@ namespace MinionMathMayhem_Ship
                     yield return (StartCoroutine(RunTimeExecution_BackEnd(true, false, index)));
             } // Movie Tutorial
 
-            /*if (tutorialWindow)
+            if (tutorialWindow)
             {
                 // Fetch the index
                     index = Randomized(PlayIndex, randomIndex, tutorialWindowArray);
@@ -182,7 +182,7 @@ namespace MinionMathMayhem_Ship
                 // Check the tutorial state
                     yield return (StartCoroutine(RunTimeExecution_BackEnd(false, true, index)));
             } // Dialog Window Tutorial
-            */
+            
             // Finished tutorial
                 TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
