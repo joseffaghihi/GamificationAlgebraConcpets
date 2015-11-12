@@ -5,7 +5,7 @@ namespace MinionMathMayhem_Ship
 {
     public class WindowPlay : MonoBehaviour
     {
-        /*                                      TUTORIAL WINDOW DIALOG
+        /*                          TUTORIAL WINDOW DIALOG
          * This script will run the window dialog tutorial when activated - automatically
          * 
          * 
@@ -57,7 +57,7 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void Awake()
         {
-            // Initialization objects for the movie sequence
+            // Initialization objects for the tutorial sequence
                 rulesControl = gameObject.GetComponent<RulesControl>();
         } // Awake()
 
@@ -84,10 +84,8 @@ namespace MinionMathMayhem_Ship
         private IEnumerator Tutorial_Play_Yield()
         {
             // Call the tutorial
-            Debug.Log("Window was called!");
                 yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
 
-            Debug.Log("Declared finished for window");
             // Finished tutorial
                 TutorialStateEnded();
 
