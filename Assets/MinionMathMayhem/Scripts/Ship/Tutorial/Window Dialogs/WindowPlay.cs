@@ -89,7 +89,7 @@ namespace MinionMathMayhem_Ship
             // Finished tutorial
                 TutorialStateEnded();
 
-            // Close
+            // Close 
                 yield break;
         } // Tutorial_Play_Yield()
     } // End of Class
