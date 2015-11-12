@@ -145,13 +145,6 @@ namespace MinionMathMayhem_Ship
                                         int PlayIndex = 0,
                                         bool randomIndex = false)
         {
-            // Declarations
-            // ----
-                // Used for determining the index of the array that has been highlighted.
-                    int index;
-            // ----
-
-
             // Make sure there is no errors
             if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
                 yield break;
@@ -159,36 +152,87 @@ namespace MinionMathMayhem_Ship
 
             // Play the tutorials as requested
             if (tutorialMovie)
-            {
-                // Fetch the index
-                    index = Randomized(PlayIndex, randomIndex, tutorialMovieArray);
-                // Filp the movie tutorial state variable
-                    ToggleMovieState();
-                // Flip the Tutorial State
-                    ToggleTutorialState();
-                // Play the movie
-                    TutorialMain_Play_Movie(PlayIndex, randomIndex);
-                // Check the tutorial state
-                    yield return (StartCoroutine(RunTimeExecution_BackEnd(true, false, index)));
-            } // Movie Tutorial
+                yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Movie(PlayIndex, randomIndex)));
 
             if (tutorialWindow)
-            {
-                // Fetch the index
-                    index = Randomized(PlayIndex, randomIndex, tutorialWindowArray);
-                // Flip the window tutorial state variable
-                    ToggleWindowState();
-                // Flip the Tutorial State
-                    ToggleTutorialState();
-                // Render the dialog window
-                    TutorialMain_Play_Window(PlayIndex, randomIndex);
-                // Check the tutorial state
-                    yield return (StartCoroutine(RunTimeExecution_BackEnd(false, true, index)));
-            } // Dialog Window Tutorial
-            
+                yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Window(PlayIndex, randomIndex)));
+            // ----
+
             // Finished tutorial
                 TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
+
+
+
+        /// <summary>
+        ///     Main tutorial sequence driver that manages how the tutorials are to be displayed and what type.
+        /// </summary>
+        /// <param name="PlayIndex">
+        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        /// </param>
+        /// <param name="randomIndex">
+        ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
+        /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator TutorialMain_Driver_RunTutorial_Movie(int PlayIndex, bool randomIndex)
+        {
+            // Declarations
+            // ----
+                // Used for determining the index of the array that has been highlighted.
+                    int index;
+            // ----
+
+            // Fetch the index
+                index = Randomized(PlayIndex, randomIndex, tutorialMovieArray);
+            // Filp the movie tutorial state variable
+                ToggleMovieState();
+            // Flip the Tutorial State
+                ToggleTutorialState();
+            // Play the movie
+                TutorialMain_Play_Movie(PlayIndex, randomIndex);
+            // Check the tutorial state
+                yield return (StartCoroutine(RunTimeExecution_BackEnd(true, false, index)));
+        } // TutorialMain_Driver_RunTutorial_Movie()
+
+
+
+        /// <summary>
+        ///     Main tutorial sequence driver that manages how the tutorials are to be displayed and what type.
+        /// </summary>
+        /// <param name="PlayIndex">
+        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        /// </param>
+        /// <param name="randomIndex">
+        ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
+        /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator TutorialMain_Driver_RunTutorial_Window(int PlayIndex, bool randomIndex)
+        {
+            // Declarations
+            // ----
+                // Used for determining the index of the array that has been highlighted.
+                    int index;
+            // ----
+
+            // Fetch the index
+                index = Randomized(PlayIndex, randomIndex, tutorialWindowArray);
+
+            // Make sure that there was no error
+                if (index == 255)
+                    yield break;
+            // Flip the window tutorial state variable
+                ToggleWindowState();
+            // Flip the Tutorial State
+                ToggleTutorialState();
+            // Render the dialog window
+                TutorialMain_Play_Window(PlayIndex, randomIndex);
+            // Check the tutorial state
+                yield return (StartCoroutine(RunTimeExecution_BackEnd(false, true, index)));
+        } // TutorialMain_Driver_RunTutorial_Window()
 
 
 
@@ -441,7 +485,32 @@ namespace MinionMathMayhem_Ship
                 return true;
             }
 
-            // Make sure that there is a tutorial to be rendered
+            // Make sure that the range is accessible
+            if (PlayIndex <= tutorialMovieArray.Count && PlayIndex >= 0)
+            {
+                // Nothing todo; this statement is true and there is no error.
+            }
+            else
+            {
+                TutorialMain_Error(5, "Movie Tutorial using index [" + PlayIndex + "]");
+                TutorialMain_FinishedSignal();
+                return true;
+            }
+
+            // Make sure that the range is accessible
+            if (PlayIndex <= tutorialWindowArray.Count && PlayIndex >= 0)
+            {
+                // Nothing todo; this statement is true and there is no error.
+            }
+            else
+            {
+                TutorialMain_Error(5, "Dialog Window Tutorial using index [" + PlayIndex + "]");
+                TutorialMain_FinishedSignal();
+                return true;
+            }
+
+
+            // Make sure that there is a tutorial to be played
             if (tutorialMovie && tutorialMovieArray[PlayIndex] == null)
             {
                 // The requested index doesn't exist
@@ -450,6 +519,7 @@ namespace MinionMathMayhem_Ship
                 return true;
             }
 
+            // Make sure that there is a tutorial to be rendered
             else if (tutorialWindow && tutorialWindowArray[PlayIndex] == null)
             {
                 // The requested index doesn't exist
@@ -543,6 +613,9 @@ namespace MinionMathMayhem_Ship
                         break;
                     case 4:
                         consoleMessage = "Timed_Out: Runaway function was terminated";
+                        break;
+                    case 5:
+                        consoleMessage = "Index was invalid and is out of range: " + message;
                         break;
                 } // switch()
 
