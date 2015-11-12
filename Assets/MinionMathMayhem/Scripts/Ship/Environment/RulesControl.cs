@@ -24,13 +24,7 @@ namespace MinionMathMayhem_Ship {
 			control = true;
 		}
 
-		void Start() {
-			pg1.SetActive(false);
-			pg2.SetActive(false);
-			forward.SetActive(false);
-			backward.SetActive(false);
-			close.SetActive(false);
-		}
+
 // ----------------------------------- User Defined Functions Private and Public -------------------------- //
 // ******************************************************************************************************** //
 
