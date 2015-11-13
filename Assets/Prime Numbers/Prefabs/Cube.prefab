@@ -31,7 +31,6 @@ GameObject:
   - 23: {fileID: 2383966}
   - 54: {fileID: 5460838}
   - 59: {fileID: 5989952}
-  - 114: {fileID: 11444674}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -58,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143772}
   m_LocalRotation: {x: 0, y: .382683277, z: 0, w: -.923879623}
-  m_LocalPosition: {x: -7.66568232, y: 2.26475573, z: 3}
+  m_LocalPosition: {x: -8.61224174, y: 2.34579158, z: -2.32269478}
   m_LocalScale: {x: 1.29999995, y: 1.29999995, z: 1.29999995}
   m_Children:
   - {fileID: 433250}
@@ -144,7 +143,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -8.75854301, y: 3.60778952, z: 3}
+  m_ConnectedAnchor: {x: -8.61224174, y: 2.99579144, z: -2.32269478}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -199,18 +198,6 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
---- !u!114 &11444674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e04f5d643ec44ca870db6503f85ffc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CubeText: {fileID: 10235958}
 --- !u!114 &11479728
 MonoBehaviour:
   m_ObjectHideFlags: 1

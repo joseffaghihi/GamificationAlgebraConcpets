@@ -65,7 +65,7 @@ namespace PrimeNumbers
 		{			
 			CameraPosition = MainCamera.transform.position;
 			RN = Random.Range(1,100);
-			RN = 81;
+			//RN = 81;
 			//Check to see if the random number is prime.
 			if (isPrime (RN) == true) 
 			{
