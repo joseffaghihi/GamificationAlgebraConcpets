@@ -7393,7 +7393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d40677d659f7740aef9d2125cab690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableMainAI: 0
+  enableMainAI: 1
   scriptAI_UserMastery: {fileID: 1208330403}
   scriptAI_UserResponse: {fileID: 1208330402}
   scriptAI_SpawnServicer: {fileID: 1208330406}
