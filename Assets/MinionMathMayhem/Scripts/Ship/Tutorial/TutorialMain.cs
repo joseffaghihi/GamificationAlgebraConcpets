@@ -51,8 +51,8 @@ namespace MinionMathMayhem_Ship
         private void OnEnable()
         {
             GameController.TutorialSequence += TutorialMain_Driver_Accessor;
-            TutorialMovie_GeneralScript.TutorialEnded += ToggleTutorialState;
-            TutorialWindow_GeneralScript.TutorialEnded += ToggleTutorialState;
+            TutorialMovie_BridgeScript.TutorialEnded += ToggleTutorialState;
+            TutorialWindow_BridgeScript.TutorialEnded += ToggleTutorialState;
         } // OnEnable()
 
 
@@ -64,8 +64,8 @@ namespace MinionMathMayhem_Ship
         private void OnDisable()
         {
             GameController.TutorialSequence -= TutorialMain_Driver_Accessor;
-            TutorialMovie_GeneralScript.TutorialEnded -= ToggleTutorialState;
-            TutorialWindow_GeneralScript.TutorialEnded -= ToggleTutorialState;
+            TutorialMovie_BridgeScript.TutorialEnded -= ToggleTutorialState;
+            TutorialWindow_BridgeScript.TutorialEnded -= ToggleTutorialState;
         } // OnDisable()
 
 
@@ -374,9 +374,9 @@ namespace MinionMathMayhem_Ship
         private void ForcibleKillSignal(bool tutorialMovie, bool tutorialWindow, int index)
         {
             if (tutorialMovie)
-                tutorialMovieArray[index].GetComponent<TutorialMovie_GeneralScript>().Access_Destroy();
+                tutorialMovieArray[index].GetComponent<TutorialMovie_BridgeScript>().Access_Destroy();
             if (tutorialWindow)
-                tutorialWindowArray[index].GetComponent<TutorialWindow_GeneralScript>().Access_Destroy();
+                tutorialWindowArray[index].GetComponent<TutorialWindow_BridgeScript>().Access_Destroy();
         } // ForcibleKillSignal()
 
 
@@ -392,7 +392,7 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void TutorialMain_Play_Movie(int playIndex, bool randomIndex)
         {
-            tutorialMovieArray[playIndex].GetComponent<TutorialMovie_GeneralScript>().ActivateTutorial();
+            tutorialMovieArray[playIndex].GetComponent<TutorialMovie_BridgeScript>().ActivateTutorial();
         } // TutorialMain_Play_Movie()
 
 
@@ -408,7 +408,7 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void TutorialMain_Play_Window(int playIndex, bool randomIndex)
         {
-            tutorialWindowArray[playIndex].GetComponent<TutorialWindow_GeneralScript>().ActivateTutorial();
+            tutorialWindowArray[playIndex].GetComponent<TutorialWindow_BridgeScript>().ActivateTutorial();
         } // TutorialMain_Play_Window()
 
 

@@ -3,9 +3,9 @@ using System.Collections;
 
 namespace MinionMathMayhem_Ship
 {
-    public class TutorialTemplate_BridgeScript : MonoBehaviour
+    public class TutorialWindow_BridgeScript : MonoBehaviour
     {
-        /*                                          TUTORIAL TEMPLATE [GENERAL SCRIPT]
+        /*                                          TUTORIAL WINDOW DIALOG [GENERAL SCRIPT]
          * This class is designed to offer a standard base as to how the tutorials will work with the tutorial protocol.
          *
          * HOW TO USE THIS TEMPLATE:
@@ -59,7 +59,7 @@ namespace MinionMathMayhem_Ship
                 private void OnEnable()
                 {
                     // Subscribe to the Movie script
-                         MoviePlay.TutorialStateEnded += MovieTutorial_Destroy;
+                         WindowRender.TutorialStateEnded += WindowTutorial_Destroy;
                 } // OnEnable()
 
 
@@ -71,7 +71,7 @@ namespace MinionMathMayhem_Ship
                 private void OnDisable()
                 {
                     // Unsubscribe to the Movie script
-                        MoviePlay.TutorialStateEnded -= MovieTutorial_Destroy;
+                        WindowRender.TutorialStateEnded -= WindowTutorial_Destroy;
                 } // OnDisable()
 
 
