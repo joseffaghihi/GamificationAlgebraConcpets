@@ -34,11 +34,6 @@ public class CursorHand : MonoBehaviour {
 		GUI.DrawTexture(new Rect(Event.current.mousePosition.x - (cursorSize/2), Event.current.mousePosition.y - (cursorSize / 2), sizeX, sizeY), cursorTex);
 	}
 	
-	void OnMouseDown() {
-		print("Flick() was called");
-		// StartCoroutine(_Flick());
-	}
-	
 	/// <summary>
 	/// public access to call _Flick()
 	/// </summary>
