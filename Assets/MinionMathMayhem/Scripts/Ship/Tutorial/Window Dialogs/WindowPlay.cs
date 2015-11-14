@@ -84,7 +84,7 @@ namespace MinionMathMayhem_Ship
         private IEnumerator Tutorial_Play_Yield()
         {
             // Call the tutorial
-                yield return StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
+                yield return (StartCoroutine(rulesControl.Access_WaitForRulesToFinish()));
 
             // Finished tutorial
                 TutorialStateEnded();

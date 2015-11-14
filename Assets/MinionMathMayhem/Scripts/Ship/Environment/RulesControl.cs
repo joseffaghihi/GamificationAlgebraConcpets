@@ -31,6 +31,7 @@ namespace MinionMathMayhem_Ship {
 		// This function will constantly loop and return until the 'control'
 		// variable is set to true
 		private IEnumerator WaitForRulesToFinish() {
+            yield return null;
 			pg1.SetActive(true);
 			pg2.SetActive(true);
 			forward.SetActive(true);

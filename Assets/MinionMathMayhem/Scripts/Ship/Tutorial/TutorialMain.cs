@@ -28,10 +28,6 @@ namespace MinionMathMayhem_Ship
             // Movie
                 public List<GameObject> tutorialMovieArray = new List<GameObject>();
         // Switches
-            // Movie Tutorial state
-                private bool tutorialMovieState = false;
-            // Dialog Window Tutorial state
-                private bool tutorialWindowState = false;
             // This variable will help assure the state of the tutorial execution.
                 private bool tutorialExecutionState = false;
         // Timed-Out Controlls
@@ -55,8 +51,8 @@ namespace MinionMathMayhem_Ship
         private void OnEnable()
         {
             GameController.TutorialSequence += TutorialMain_Driver_Accessor;
-            TutorialMovie_GeneralScript.TutorialEnded += ToggleMovieState;
-            TutorialWindow_GeneralScript.TutorialEnded += ToggleWindowState;
+            TutorialMovie_GeneralScript.TutorialEnded += ToggleTutorialState;
+            TutorialWindow_GeneralScript.TutorialEnded += ToggleTutorialState;
         } // OnEnable()
 
 
@@ -68,8 +64,8 @@ namespace MinionMathMayhem_Ship
         private void OnDisable()
         {
             GameController.TutorialSequence -= TutorialMain_Driver_Accessor;
-            TutorialMovie_GeneralScript.TutorialEnded += ToggleMovieState;
-            TutorialWindow_GeneralScript.TutorialEnded += ToggleWindowState;
+            TutorialMovie_GeneralScript.TutorialEnded += ToggleTutorialState;
+            TutorialWindow_GeneralScript.TutorialEnded += ToggleTutorialState;
         } // OnDisable()
 
 
@@ -187,8 +183,6 @@ namespace MinionMathMayhem_Ship
 
             // Fetch the index
                 index = Randomized(PlayIndex, randomIndex, tutorialMovieArray);
-            // Filp the movie tutorial state variable
-                ToggleMovieState();
             // Flip the Tutorial State
                 ToggleTutorialState();
             // Play the movie
@@ -222,11 +216,6 @@ namespace MinionMathMayhem_Ship
             // Fetch the index
                 index = Randomized(PlayIndex, randomIndex, tutorialWindowArray);
 
-            // Make sure that there was no error
-                if (index == 255)
-                    yield break;
-            // Flip the window tutorial state variable
-                ToggleWindowState();
             // Flip the Tutorial State
                 ToggleTutorialState();
             // Render the dialog window
@@ -288,14 +277,12 @@ namespace MinionMathMayhem_Ship
         {
             // Declarations and intializations
             // ----
-                IEnumerator runTimeExecution = RunTimeExecution(tutorialMovie, tutorialWindow);
-                IEnumerator timeOutScheduler = TimedOutFunction(runTimeExecution, tutorialMovie, tutorialWindow, index);
+                IEnumerator timeOutScheduler = TimedOutFunction(tutorialMovie, tutorialWindow, index);
                 IEnumerator runTimeExecutionState = RunTimeExecution_StatusCheck();
             // ----
 
             // Start the coroutines
                 StartCoroutine(timeOutScheduler);
-                StartCoroutine(runTimeExecution);
 
             yield return StartCoroutine(runTimeExecutionState);
 
@@ -328,40 +315,6 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     Monitors and holds until the tutorial has finished
-        /// </summary>
-        /// <param name="tutorialMovie">
-        ///     When true, this will check if the tutorial movie state variable has been flipped. 
-        /// </param>
-        /// <param name="tutorialWindow">
-        ///     When true, this will check if the tutorial dialog window state variable has been flipped. 
-        /// </param>
-        /// <returns>
-        ///     Nothing useful
-        /// </returns>
-        private IEnumerator RunTimeExecution(bool tutorialMovie, bool tutorialWindow)
-        {
-            do
-            {
-                yield return new WaitForSeconds(0.3f);
-                if (tutorialMovie)
-                {
-                    if (!tutorialMovieState)
-                        ToggleTutorialState();
-                }
-
-                else if (tutorialWindow)
-                {
-                    if (!tutorialWindowState)
-                        ToggleTutorialState();
-                }
-
-            } while (tutorialExecutionState);
-        } // RunTimeExecution()
-
-
-
-        /// <summary>
         ///     This allots a function so much time in order to run the tutorial.
         ///     This function is a stand-alone is hard-coded to forcibly terminate 'RunTimeExecution'.
         /// </summary>
@@ -380,7 +333,7 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Nothing useful
         /// </returns>
-        private IEnumerator TimedOutFunction(IEnumerator coroutineFunction, bool tutorialMovie, bool tutorialWindow, int index)
+        private IEnumerator TimedOutFunction(bool tutorialMovie, bool tutorialWindow, int index)
         {
             // Is Time-Out scheduler allowed to run?
                 if (!enableForceTimeOut)
@@ -390,11 +343,14 @@ namespace MinionMathMayhem_Ship
                 yield return new WaitForSeconds(timedOut_Minutes);
 
             // Is the tutorials still running?
-            if (tutorialMovieState || tutorialWindowState)
+            if (tutorialExecutionState)
             {
-                StopCoroutine(coroutineFunction);
                 ForcibleKillSignal(tutorialMovie, tutorialWindow, index);
                 TutorialMain_Error(4);
+
+                // Flip the tutorial execution state
+                if (tutorialExecutionState)
+                    ToggleTutorialState();
             }
 
             // No tutorials are running, stop.
@@ -560,28 +516,6 @@ namespace MinionMathMayhem_Ship
         {
             tutorialExecutionState = !tutorialExecutionState;
         } // ToggleTutorialState()
-
-
-
-        /// <summary>
-        ///     Toggles the variable 'tutorialMovieState'
-        ///     Controls wither or not the movie tutorial is running
-        /// </summary>
-        private void ToggleMovieState()
-        {
-            tutorialMovieState = !tutorialMovieState;
-        } // ToggleMovieState()
-
-
-
-        /// <summary>
-        ///     Toggles the variable 'tutorialWindowState'
-        ///     Controls wither or not the dialog window tutorial is running
-        /// </summary>
-        private void ToggleWindowState()
-        {
-            tutorialWindowState = !tutorialWindowState;
-        } // ToggleWindowState()
 
 
 
