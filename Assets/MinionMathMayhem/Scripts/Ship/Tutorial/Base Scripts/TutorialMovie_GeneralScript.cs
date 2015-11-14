@@ -67,8 +67,6 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void Object_Activation(bool state)
         {
-            // Skip Button
-                objectTutorial_SkipButton.SetActive(state);
             // Movie Box
                 objectTutorial_Movie.SetActive(state);
             // Movie Canvas
