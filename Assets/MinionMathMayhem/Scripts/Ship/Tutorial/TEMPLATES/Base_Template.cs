@@ -38,112 +38,114 @@ namespace MinionMathMayhem_Ship
          *  Execute the fundamental tutorials as required
          *  Close the tutorial once finised
          */
-/* ----- REMOVE ME!!!
+        /* ----- REMOVE ME!!!
 
-        // Declarations and Initializations
-        // ---------------------------------
-            // Example:
-                // Specific movie objects
-                    // public GameObject objectTutorial_Movie;
-        
-            // Delegate Event's: Tutorial ended
-                 public delegate void TutorialEndedSignal();
-                 public static event TutorialEndedSignal TutorialEnded;
-        // ---------------------------------
+                // Declarations and Initializations
+                // ---------------------------------
+                    // Example:
+                        // Specific movie objects
+                            // public GameObject objectTutorial_Movie;
 
-
-        
-        /// <summary>
-        ///     Built-In Unity Function
-        ///     Automatically executes once the actor has been activated within the virtual world
-        /// </summary>
-        private void OnEnable()
-        {
-            // Subscribe to the Movie script
-                 MoviePlay.TutorialStateEnded += MovieTutorial_Destroy;
-        } // OnEnable()
+                    // Delegate Event's: Tutorial ended
+                         public delegate void TutorialEndedSignal();
+                         public static event TutorialEndedSignal TutorialEnded;
+                // ---------------------------------
 
 
 
-        /// <summary>
-        ///     Built-In Unity Function
-        ///     Automatically executes once the actor has been deactivated within the virtual world
-        /// </summary>
-        private void OnDisable()
-        {
-            // Unsubscribe to the Movie script
-                MoviePlay.TutorialStateEnded -= MovieTutorial_Destroy;
-        } // OnDisable()
+                /// <summary>
+                ///     Built-In Unity Function
+                ///     Automatically executes once the actor has been activated within the virtual world
+                /// </summary>
+                private void OnEnable()
+                {
+                    // Subscribe to the Movie script
+                         MoviePlay.TutorialStateEnded += MovieTutorial_Destroy;
+                } // OnEnable()
 
 
 
-        /// <summary>
-        ///     Changes the actor's activation
-        /// </summary>
-        /// <param name="state">
-        ///     true = Actor is activated in the Virtual World
-        ///     false = Actor is unactivated in the Virtual World
-        /// </param>
-        private void Object_Activation(bool state)
-        {
-            // Example: 
-                // Movie Box
-                    //objectTutorial_Movie.SetActive(state);
-        } // Object_Activation()
+                /// <summary>
+                ///     Built-In Unity Function
+                ///     Automatically executes once the actor has been deactivated within the virtual world
+                /// </summary>
+                private void OnDisable()
+                {
+                    // Unsubscribe to the Movie script
+                        MoviePlay.TutorialStateEnded -= MovieTutorial_Destroy;
+                } // OnDisable()
 
 
 
-        /// <summary>
-        ///     Front-End function to activating and controlling the movie
-        /// </summary>
-        private void Activate_Object()
-        {
-            // Enable the objects
-                Object_Activation(true);
-
-            // Finished
-                return;
-        } // Activate_Object()
-
-
-
-        /// <summary>
-        ///     Close the tutorial sequence as it was terminated (or skipped)
-        /// </summary>
-        private void MovieTutorial_Destroy()
-        {
-            // Turn off the objects
-                Object_Activation(false);
-            // Broadcast that we're finished
-                TutorialEnded();
-        } // MovieTutorial_Destroy()
+                /// <summary>
+                ///     Changes the actor's activation
+                /// </summary>
+                /// <param name="state">
+                ///     true = Actor is activated in the Virtual World
+                ///     false = Actor is unactivated in the Virtual World
+                /// </param>
+                private void Object_Activation(bool state)
+                {
+                    // Example: 
+                        // Movie Box
+                            //objectTutorial_Movie.SetActive(state);
+                } // Object_Activation()
 
 
 
+                /// <summary>
+                ///     Front-End function to activating and controlling the movie
+                /// </summary>
+                private void Activate_Object()
+                {
+                    // Enable the objects
+                        Object_Activation(true);
 
-        // -------------------------------------------------
-        //                 PUBLIC BRIDGES
-        // -------------------------------------------------
-        // DON'T TOUCH ME!
-
-        /// <summary>
-        ///     Front-End Function to activate the movie tutorial
-        /// </summary>
-        public void ActivateTutorial()
-        {
-            Activate_Object();
-        } // ActivateTutorial()
+                    // Finished
+                        return;
+                } // Activate_Object()
 
 
 
-        /// <summary>
-        ///     A public bridge function to forcibly destroy the tutorial immediately.
-        /// </summary>
-        public void Access_Destroy()
-        {
-            MovieTutorial_Destroy();
-        } // Access_Destroy()
+                /// <summary>
+                ///     Close the tutorial sequence as it was terminated (or skipped)
+                /// </summary>
+                private void MovieTutorial_Destroy()
+                {
+                    // Turn off the objects
+                        Object_Activation(false);
+                    // Broadcast that we're finished
+                        TutorialEnded();
+                } // MovieTutorial_Destroy()
+
+
+
+
+                // -------------------------------------------------
+                //                 PUBLIC BRIDGES
+                // -------------------------------------------------
+                // DON'T TOUCH ME!
+
+                /// <summary>
+                ///     Front-End Function to activate the movie tutorial
+                /// </summary>
+                public void ActivateTutorial()
+                {
+                    Activate_Object();
+                } // ActivateTutorial()
+
+
+
+                /// <summary>
+                ///     A public bridge function to forcibly destroy the tutorial immediately.
+                /// </summary>
+                public void Access_Destroy()
+                {
+                    MovieTutorial_Destroy();
+                } // Access_Destroy()
+
+
+
+----- REMOVE ME!!!!!! ----- */
     } // End of Class
 } // Namespace
-
------ REMOVE ME!!! */
