@@ -34,7 +34,7 @@ namespace MinionMathMayhem_Ship
             // Enable Feature
                 public bool enableForceTimeOut = true;
             // Minutes to forcibly time out
-                public float timedOut_Minutes = 3.5f;
+                public float timedOut_Minutes = 210f;
         // Accessors and Communication
             // Finished tutorial sequence signal
                 public delegate void TutorialSequenceFinishedSig();
