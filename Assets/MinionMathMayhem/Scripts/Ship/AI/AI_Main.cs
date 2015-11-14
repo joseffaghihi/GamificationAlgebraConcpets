@@ -34,7 +34,7 @@ namespace MinionMathMayhem_Ship
         // Declarations and Initializations
         // ---------------------------------
             // Switch [ON|OFF]
-                public bool enableMainAI = true;
+                public bool enableAIKeyFeatures = true;
             // Daemon Service Update Frequency
                 // LOGIC: PERIOD = 1/clock;  200 KHz ~> P = 1/2x10^5 --> P == 5x10^(-6)
                 private const float daemonUpdateFreq = 0.000005f;
@@ -53,9 +53,8 @@ namespace MinionMathMayhem_Ship
         {
             // Make sure that all of the components are all properly initialized.
                 CheckReferences();
-            // Run the Daemon Servicer for the game environment IFF (if and only if) the AI is enabled with the bool variable 'enableMainAI'
-                if (enableMainAI)
-                        StartCoroutine(AI_Driver());
+            // Run the Daemon Servicer for the game environment
+                StartCoroutine(AI_Driver());
         } // Start()
 
 
@@ -70,13 +69,17 @@ namespace MinionMathMayhem_Ship
         {
                 while (true)
                 {
-                    // User's Mastery over the material
-                    scriptAI_UserMastery.Main();
-                    // User's generalized response rate
-                    scriptAI_UserResponse.Main();
-                    // Spawn Servicer
-                    scriptAI_SpawnServicer.Main();
+                    // Run the AI specialized key features IFF (if and only if) the AI is enabled with the bool variable 'enableMainAI'
+                    if (enableAIKeyFeatures)
+                    {
+                        // User's Mastery over the material
+                            scriptAI_UserMastery.Main();
+                        // User's generalized response rate
+                            scriptAI_UserResponse.Main();
+                    }
 
+                    // Spawn Servicer [Required]
+                        scriptAI_SpawnServicer.Main();
 
                     yield return new WaitForSeconds(daemonUpdateFreq);
                 } // while
