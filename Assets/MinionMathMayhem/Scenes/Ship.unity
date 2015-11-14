@@ -9617,7 +9617,7 @@ MonoBehaviour:
   tutorialMovieArray:
   - {fileID: 1023917450}
   enableForceTimeOut: 0
-  timedOut_Minutes: 3.5
+  timedOut_Minutes: 210
 --- !u!114 &1430447479
 MonoBehaviour:
   m_ObjectHideFlags: 0
