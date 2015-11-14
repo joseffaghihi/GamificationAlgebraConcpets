@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace MinionMathMayhem_Ship
 {
-    public class Tutorial_GeneralScript_Template : MonoBehaviour
+    public class TutorialTemplate_BridgeScript : MonoBehaviour
     {
         /*                                          TUTORIAL TEMPLATE [GENERAL SCRIPT]
          * This class is designed to offer a standard base as to how the tutorials will work with the tutorial protocol.
@@ -17,11 +17,10 @@ namespace MinionMathMayhem_Ship
          *
          * STEPS
          *  1) Copy this template to your tutorial directory
-         *  2) Rename the script to your personal preference
-         *  3) Tutorial objects should be 'disabled' via Unity's inspector
-         *  4) Declare the important tutorial GameObject's under 'Declarations and Initializations'.
-         *  5) Put the Declarations (initialized via Unity's Inspector) of the GameObject's in 'Object_Activation' function so there 'SetActive' set can be toggled.
-         *  6) DONE!
+         *  2) Tutorial objects should be 'disabled' via Unity's inspector
+         *  3) Declare the important tutorial GameObject's under 'Declarations and Initializations'.
+         *  4) Put the Declarations (initialized via Unity's Inspector) of the GameObject's in 'Object_Activation' function so there 'SetActive' set can be toggled.
+         *  5) DONE!
          *
          *  Just be sure to use Delegate Event for 'TutorialStateEnded'; this will formally close the script.
          *
