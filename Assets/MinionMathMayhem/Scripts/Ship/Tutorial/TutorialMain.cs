@@ -141,7 +141,6 @@ namespace MinionMathMayhem_Ship
                                         int PlayIndex = 0,
                                         bool randomIndex = false)
         {
-            Debug.Log("Movie: " + tutorialMovie + "\n" + "Window: " + tutorialWindow);
             // Make sure there is no errors
             if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
                 yield break;
