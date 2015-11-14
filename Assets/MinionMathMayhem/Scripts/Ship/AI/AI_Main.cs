@@ -7,6 +7,8 @@ namespace MinionMathMayhem_Ship
     {
         /*
          *                                                  GAME ARTIFICIAL INTELLIGENCE
+         *                                                      AI Codename: Nachtregen
+         *                                                         Version: 1.00.0
          *                                                              MAIN
          * This is the forefront of controlling the environment based on the user's performance and mastery.  This script is a 'always alive' and monitoring
          *  as to how the user is responding to the game and how well they perform.  This is the main part of the AI that centralizes all of the AI components, 
@@ -19,6 +21,7 @@ namespace MinionMathMayhem_Ship
          *      MAIN [AI]
          *          |_ AI_UserResponse
          *          |_ AI_UserMastery
+         *          |_ AI_SpawnServicer
          *
          * GOALS:
          *      Always running service; depends on the heartbeat frequency.
@@ -26,10 +29,12 @@ namespace MinionMathMayhem_Ship
          *      Try to aid the user, based on their mastery over the material, by either assisting them to learn or to challenge them.
          */
 
-        
-        
+
+
         // Declarations and Initializations
         // ---------------------------------
+            // Switch [ON|OFF]
+                public bool enableMainAI = true;
             // Daemon Service Update Frequency
                 // LOGIC: PERIOD = 1/clock;  200 KHz ~> P = 1/2x10^5 --> P == 5x10^(-6)
                 private const float daemonUpdateFreq = 0.000005f;
@@ -48,8 +53,9 @@ namespace MinionMathMayhem_Ship
         {
             // Make sure that all of the components are all properly initialized.
                 CheckReferences();
-            // Run the daemon servicer
-                StartCoroutine(Main());
+            // Run the Daemon Servicer for the game environment IFF (if and only if) the AI is enabled with the bool variable 'enableMainAI'
+                if (enableMainAI)
+                        StartCoroutine(AI_Driver());
         } // Start()
 
 
@@ -60,20 +66,20 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Returns nothing useful.
         /// </returns>
-        private IEnumerator Main()
+        private IEnumerator AI_Driver()
         {
-            while (true)
-            {
-                // User's Mastery over the material
+                while (true)
+                {
+                    // User's Mastery over the material
                     scriptAI_UserMastery.Main();
-                // User's generalized response rate
+                    // User's generalized response rate
                     scriptAI_UserResponse.Main();
-                // Spawn Servicer
+                    // Spawn Servicer
                     scriptAI_SpawnServicer.Main();
 
 
-            yield return new WaitForSeconds(daemonUpdateFreq);
-            } // while
+                    yield return new WaitForSeconds(daemonUpdateFreq);
+                } // while
         } // Main()
 
 
@@ -95,6 +101,8 @@ namespace MinionMathMayhem_Ship
                 MissingReferenceError("AI Component: " + "User Mastery [AI]");
             if (scriptAI_UserResponse == null)
                 MissingReferenceError("AI Component: " + "User Response [AI]");
+            if (scriptAI_SpawnServicer == null)
+                MissingReferenceError("AI Component: " + "Spawn Servicer [AI]");
         } // CheckReferences()
 
 

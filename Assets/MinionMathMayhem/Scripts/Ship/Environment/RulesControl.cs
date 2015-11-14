@@ -24,19 +24,14 @@ namespace MinionMathMayhem_Ship {
 			control = true;
 		}
 
-		void Start() {
-			pg1.SetActive(false);
-			pg2.SetActive(false);
-			forward.SetActive(false);
-			backward.SetActive(false);
-			close.SetActive(false);
-		}
+
 // ----------------------------------- User Defined Functions Private and Public -------------------------- //
 // ******************************************************************************************************** //
 
 		// This function will constantly loop and return until the 'control'
 		// variable is set to true
 		private IEnumerator WaitForRulesToFinish() {
+            yield return null;
 			pg1.SetActive(true);
 			pg2.SetActive(true);
 			forward.SetActive(true);
@@ -44,7 +39,7 @@ namespace MinionMathMayhem_Ship {
 			close.SetActive(true);
 			while(control) {
 				yield return null;
-				Debug.Log (control);
+				//Debug.Log (control);
 			}
 		}
 
