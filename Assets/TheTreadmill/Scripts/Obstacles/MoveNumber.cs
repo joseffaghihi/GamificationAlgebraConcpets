@@ -7,6 +7,7 @@ public class MoveNumber : MonoBehaviour
 	public float speed = 20;
     int num;
 
+    //Convert the number to a string
     void Start()
     {
         GetComponentInChildren<Text>().text = num.ToString();
@@ -15,10 +16,12 @@ public class MoveNumber : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+
+        //Set Local Position
         gameObject.GetComponent<Transform>().localPosition = Vector3.Lerp(gameObject.GetComponent<Transform>().localPosition, new Vector3(-42, 21, 34), speed * Time.deltaTime);
 
        
-        if(gameObject.GetComponent<Transform>().localPosition == new Vector3(-42,21,34))
+        if(gameObject.GetComponent<Transform>().localPosition == new Vector3(-42,21,34)) //Check to see if the numbers arrived at the location
         {
             int leftSide, rightSide, answer;
             GameControl gameState = new GameControl();
@@ -45,7 +48,7 @@ public class MoveNumber : MonoBehaviour
 
             Destroy(gameObject);
         }
-	}
+    }
 
     public void setNumber(int number)
     {

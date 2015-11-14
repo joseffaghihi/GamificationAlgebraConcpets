@@ -24,7 +24,7 @@ public class GenerateCogWheel : MonoBehaviour
 
     void SpawnObstacle()
     {
-		if (!gameControl.getDelayWave ()) 
+		if (!gameControl.getDelayWave ()) //Spawn Obstacles only during the waves
 		{
 			Instantiate (obstacle, new Vector3 (playerPosition.x + 40, playerPosition.y + 7, playerPosition.z), Quaternion.identity);
 			Instantiate (dangerSign, new Vector3 (0.0f, 1.55f, playerPosition.z), Quaternion.identity);

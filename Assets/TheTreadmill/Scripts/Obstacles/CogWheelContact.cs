@@ -9,6 +9,7 @@ public class CogWheelContact : MonoBehaviour
         {
             //Update gameController
             GameControl gameController = new GameControl();
+            gameController.DelayWave(true);
             gameController.LostLife(); //Lost life
         }
         if(collision.gameObject.tag != "Player")
