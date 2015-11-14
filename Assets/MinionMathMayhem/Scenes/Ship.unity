@@ -9614,9 +9614,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialWindowArray:
-  - {fileID: 665352033}
+  - {fileID: 1059013158}
   tutorialMovieArray:
-  - {fileID: 1023917450}
+  - {fileID: 1397695628}
   enableForceTimeOut: 0
   timedOut_Minutes: 210
 --- !u!114 &1430447479
