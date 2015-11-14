@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace MinionMathMayhem_Ship
 {
-    public class TutorialWindow_GeneralScript : MonoBehaviour
+    public class TutorialWindow_BridgeScript : MonoBehaviour
     {
         /*                                          TUTORIAL WINDOW [GENERAL SCRIPT]
          * This class is designed to offer a standard base as to how the window dialogs will work with the tutorial protocol.

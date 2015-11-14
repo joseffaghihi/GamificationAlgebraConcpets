@@ -3628,7 +3628,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 665352034}
-  - 114: {fileID: 665352035}
   m_Layer: 0
   m_Name: Window_0
   m_TagString: Untagged
@@ -3651,20 +3650,6 @@ Transform:
   - {fileID: 648950079}
   m_Father: {fileID: 1059013159}
   m_RootOrder: 0
---- !u!114 &665352035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 665352033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857b6b8c0545ac44aa17bc94912ae69e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rulesCanvas: {fileID: 648950075}
-  feedBackCanvas: {fileID: 304027668}
-  viewTutorialAgainCanvas: {fileID: 1834801678}
 --- !u!1 &670818317
 GameObject:
   m_ObjectHideFlags: 0
@@ -7186,7 +7171,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1023917451}
-  - 114: {fileID: 1023917452}
   m_Layer: 0
   m_Name: Movie_0
   m_TagString: Untagged
@@ -7208,20 +7192,6 @@ Transform:
   - {fileID: 1923049302}
   m_Father: {fileID: 1397695629}
   m_RootOrder: 0
---- !u!114 &1023917452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1023917450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545417cf53909e343bc6354130e430a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectTutorial_Movie: {fileID: 964868980}
-  objectTutorial_Canvas: {fileID: 1923049301}
-  objectTutorial_SkipButton: {fileID: 231372669}
 --- !u!1 &1059013158
 GameObject:
   m_ObjectHideFlags: 0
@@ -7230,6 +7200,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1059013159}
+  - 114: {fileID: 1059013160}
   m_Layer: 0
   m_Name: Windows
   m_TagString: Untagged
@@ -7250,6 +7221,20 @@ Transform:
   - {fileID: 665352034}
   m_Father: {fileID: 918589594}
   m_RootOrder: 1
+--- !u!114 &1059013160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1059013158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39b79774814b984994a80049abde781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rulesCanvas: {fileID: 648950075}
+  feedBackCanvas: {fileID: 304027668}
+  viewTutorialAgainCanvas: {fileID: 1834801678}
 --- !u!1 &1087691905
 GameObject:
   m_ObjectHideFlags: 0
@@ -7408,6 +7393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d40677d659f7740aef9d2125cab690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableMainAI: 1
   scriptAI_UserMastery: {fileID: 1208330403}
   scriptAI_UserResponse: {fileID: 1208330402}
   scriptAI_SpawnServicer: {fileID: 1208330406}
@@ -7961,6 +7947,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1397695629}
+  - 114: {fileID: 1397695630}
   m_Layer: 0
   m_Name: Movies
   m_TagString: Untagged
@@ -7981,6 +7968,20 @@ Transform:
   - {fileID: 1023917451}
   m_Father: {fileID: 918589594}
   m_RootOrder: 0
+--- !u!114 &1397695630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1397695628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49dfdf533b76294593ff9125cf43278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectTutorial_Movie: {fileID: 964868980}
+  objectTutorial_Canvas: {fileID: 1923049301}
+  objectTutorial_SkipButton: {fileID: 231372669}
 --- !u!1 &1398285120
 GameObject:
   m_ObjectHideFlags: 0
@@ -12674,8 +12675,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022404233}
-  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
-  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
+  m_LocalRotation: {x: .087172322, y: .899590552, z: .210452542, w: -.372622699}
+  m_LocalPosition: {x: -11.3105879, y: -3.71688008, z: -41.7318382}
   m_LocalScale: {x: .319887072, y: .319887012, z: .319886982}
   m_Children: []
   m_Father: {fileID: 871709228}
