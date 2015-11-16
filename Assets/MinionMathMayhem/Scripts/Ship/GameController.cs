@@ -36,6 +36,8 @@ namespace MinionMathMayhem_Ship
                 private bool spawnMinions = false;
             // [GameManager] Tutorial Ended switch
                 private bool gameTutorialEnded = false;
+            // [GameManager] Game Manager Function via Interface
+                private static IEnumerator gameManager;
 
             // Accessors and Communication
                 // Win/Lose HUD Message
@@ -68,7 +70,18 @@ namespace MinionMathMayhem_Ship
                 // Heartbeat Timer
                     public bool heartbeat = false;
                     public float heartbeatTimer = 1f;
+        // ----
 
+
+
+        /// <summary>
+        ///     Internal Constructor
+        /// </summary>
+        private GameController()
+        {
+            // Spine of the game
+                gameManager = GameManager();
+        } // INTERNAL CONSTRUCTOR
 
 
 
@@ -113,8 +126,33 @@ namespace MinionMathMayhem_Ship
             // Debug Timer; when enabled, this can slow down the heartbeat of the game.
                 StartCoroutine(HeartbeatTimer());
             // Start the main game manager
-                StartCoroutine(GameManager());
+                StartCoroutine(FirstRun());
         } // Start()
+
+
+
+        /// <summary>
+        ///     Start up sequence for the game environment
+        /// </summary>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator FirstRun()
+        {
+            // Execute the Tutorial
+                yield return (StartCoroutine(GameExecute_Tutorial(true, true, 0, false)));
+            // Display the animations and environment settings at the very start of the game
+                scriptGameEvent.Access_FirstRun_Animations();
+            // Initiate the wait delay on the spawners
+                RequestGraceTime();
+            // ----
+
+            // Start the GameManager
+                StartCoroutine(gameManager);
+
+            // Finished
+                yield break;
+        } // FirstRun()
 
 
 
@@ -208,16 +246,11 @@ namespace MinionMathMayhem_Ship
         private IEnumerator GameManager()
         {
                 yield return null;
-            // ----
-            // Execute the Tutorial
-                 yield return (StartCoroutine(GameExecute_Tutorial(true, true, 0, false)));
-            // Display the animations and environment settings at the very start of the game
-	                scriptGameEvent.Access_FirstRun_Animations();
-	            // Initiate the wait delay on the spawners
-	                RequestGraceTime();
-	            // ----
 	            while (true) // Always check the state of the game.
 	            {
+                    // If the tutorial is running, pause
+                        if (!gameTutorialEnded)
+                            StartCoroutine(GameExecute_Tutorial_ScanSignal());
                     // Fetch the scores and compute the scores, iif the game is not over
                         if (!gameOver)
                             CheckScores();
@@ -238,6 +271,7 @@ namespace MinionMathMayhem_Ship
 
                     // Brief wait time to ease the CPU
                         yield return new WaitForSeconds(0.5f);
+                Debug.Log("GAMEMANAGER: Looping");
             } // while loop
         } // GameManager()
 
@@ -252,6 +286,11 @@ namespace MinionMathMayhem_Ship
         {
             // DEBUG
                 Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
+            // Stop the GameManager with this variable
+                TutorialMode_Ended();
+                Debug.Log("TutorialMode = " + gameTutorialEnded);
+            // Kill Game Manager
+                StopCoroutine(gameManager);
             // Execute the backend
                 StartCoroutine(GameExecute_Tutorial(true, true, 0, true));
         } // GamePlay_Tutorial()
