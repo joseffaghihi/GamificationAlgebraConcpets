@@ -108,10 +108,14 @@ namespace MinionMathMayhem_Ship
         /// <param name="randomIndex">
         ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
         /// </param>
+        /// <param name="randomTutorialType">
+        ///     When true, this will randomly select the other tutorial types in which to play or display.  This requires atleast two or more tutorial types.
+        /// </param>
         private void TutorialMain_Driver_Accessor(bool tutorialMovie = false,
                                         bool tutorialWindow = false,
                                         int PlayIndex = 0,
-                                        bool randomIndex = false)
+                                        bool randomIndex = false,
+                                        bool randomTutorialType = false)
         {
             StartCoroutine(TutorialMain_Driver(tutorialMovie, tutorialWindow, PlayIndex, randomIndex));
         } // TutorialMain_Driver_Accessor()
@@ -139,7 +143,8 @@ namespace MinionMathMayhem_Ship
         private IEnumerator TutorialMain_Driver(bool tutorialMovie = false,
                                         bool tutorialWindow = false,
                                         int PlayIndex = 0,
-                                        bool randomIndex = false)
+                                        bool randomIndex = false,
+                                        bool randomTutorialType = false)
         {
             // Make sure there is no errors
             if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
