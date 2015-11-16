@@ -36,17 +36,12 @@ namespace MinionMathMayhem_Ship
                 private bool spawnMinions = false;
             // [GameManager] Tutorial Ended switch
                 private bool gameTutorialEnded = false;
-			//  Rules Control on the rulesCanvas GameObject  
-
-				private RulesControl rulesControl;
 
             // Accessors and Communication
                 // Win/Lose HUD Message
                     public Text textWinOrLose;
                 // Scores
                     public Score scriptScore;
-                // Tutorial
-                    public VoiceOver scriptTutorial;
                 // Game Controller
                     public GameEvent scriptGameEvent;
                 // Tutorial State
@@ -62,8 +57,6 @@ namespace MinionMathMayhem_Ship
                 // Game Restarted
                     public delegate void GameStateEventRestart();
                     public static event GameStateEventRestart GameStateRestart;
-                // Spawn Controller
-                    public SpawnController scriptSpawnController;
                 // Request Grace-Time Period; Broadcast Event
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;
@@ -76,20 +69,8 @@ namespace MinionMathMayhem_Ship
                     public bool heartbeat = false;
                     public float heartbeatTimer = 1f;
 
-            // GameObjects
-                // Tutorial
-                    public GameObject objectTutorial_Movie;
-                    public GameObject objectTutorial_Canvas;
-                    public GameObject objectTutorial_SkipButton;
-				// Rules
-					public GameObject rulesCanvas;
 
 
-
-		private void Awake()
-		{
-			rulesControl = rulesCanvas.GetComponent<RulesControl>();
-		}
 
         // Signal Listener: Detected
         private void OnEnable()
@@ -485,10 +466,6 @@ namespace MinionMathMayhem_Ship
         {
             if (scriptScore == null)
                 MissingReferenceError("Score");
-            if (scriptTutorial == null)
-                MissingReferenceError("Tutorial");
-            if (objectTutorial_Movie == null)
-                MissingReferenceError("Tutorial Actor");
             if (scriptGameEvent == null)
                 MissingReferenceError("Game Event");
             if (textWinOrLose == null)
