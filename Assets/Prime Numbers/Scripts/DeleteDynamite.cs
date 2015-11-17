@@ -17,31 +17,31 @@ namespace PrimeNumbers
 		{
 			if(gameObject.name == "Dynamite1")
 			{
-				StartNumber_script.cubesRemaining [0] = false;
+				StartNumber_script.DynamitesRemaining [0] = false;
 				Destroy (gameObject);
 				StartNumber_script.deletedCounter++;
 			}
 			else if(gameObject.name == "Dynamite2")
 			{
-				StartNumber_script.cubesRemaining [1] = false;
+				StartNumber_script.DynamitesRemaining [1] = false;
 				Destroy (gameObject);
 				StartNumber_script.deletedCounter++;
 			}
 			else if(gameObject.name == "Dynamite3")
 			{
-				StartNumber_script.cubesRemaining [2] = false;
+				StartNumber_script.DynamitesRemaining [2] = false;
 				Destroy (gameObject);
 				StartNumber_script.deletedCounter++;
 			}
 			else if(gameObject.name == "Dynamite4")
 			{
-				StartNumber_script.cubesRemaining [3] = false;
+				StartNumber_script.DynamitesRemaining [3] = false;
 				Destroy (gameObject);
 				StartNumber_script.deletedCounter++;
 			}
 			else if(gameObject.name == "Dynamite5")
 			{
-				StartNumber_script.cubesRemaining [4] = false;
+				StartNumber_script.DynamitesRemaining [4] = false;
 				Destroy (gameObject);
 				StartNumber_script.deletedCounter++;
 			}

@@ -3,11 +3,11 @@ using System.Collections;
 
 namespace PrimeNumbers
 {
-	public class DisplayCube2 : MonoBehaviour 
+	public class DisplayDynamite4 : MonoBehaviour 
 	{
 		public TextMesh text; 
 		public bool flag = true;
-
+		
 		public StartNumber StartNumber_script;
 		
 		private void Awake()
@@ -18,8 +18,8 @@ namespace PrimeNumbers
 		void Update () 
 		{
 			if (flag) {
-				text.text = StartNumber_script.ArrayB [1].ToString ();
-				StartNumber_script.CubeArray [1] = this.gameObject;
+				text.text = StartNumber_script.DisplayedNumbers [3].ToString ();
+				StartNumber_script.DynamiteArray[3] = this.gameObject;
 				flag=false;
 			}
 		}
