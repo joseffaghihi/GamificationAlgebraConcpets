@@ -59,8 +59,8 @@ namespace MinionMathMayhem_Ship {
 		/// <summary>
 		/// Allows other scripts to start 'WaitForRulesToFinish()'
 		/// </summary>
-		public void Access_WaitForRulesToFinish() {
-			StartCoroutine (WaitForRulesToFinish());
+		public IEnumerator Access_WaitForRulesToFinish() {
+			yield return (StartCoroutine (WaitForRulesToFinish()));
 		}
 		
 		/// <summary>
