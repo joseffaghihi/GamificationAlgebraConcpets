@@ -6,10 +6,14 @@ namespace PrimeNumbers
 {
 	public class StartNumber : MonoBehaviour 
 	{
+		public Transform FiveCubes;//access to 5 wires/cubes prefab
 		public Transform LoseScreen;//to spawn losing screen
 		public Transform CubePreFab;//Acess to cube prefab
-		public Transform FiveDynamitePreFab;//Acess to Dynamite PreFab
+		
 		public GameObject MainCamera;//access to mainCamera
+		
+		public List<GameObject> Wires = new List<GameObject>();
+		//Holds the 5 wires in a list to keep track of which ones have been deleted
 		
 		public GameObject[] CubeArray; //holds the cubes
 		public TextMesh[] FArray; //Holds the textMeshes in the inspector in an array
@@ -49,6 +53,13 @@ namespace PrimeNumbers
 		public int FactorIsPrime =0;
 
 		public Vector3[] cubePosition = new Vector3[2];
+
+		public DisplayNumber DisplayNumber_script;
+
+		private void Awake()
+		{
+			DisplayNumber_script = GameObject.Find("Cube1").GetComponentInChildren<DisplayNumber>();
+		}
 		
 		void Start () 
 		{			
@@ -62,7 +73,6 @@ namespace PrimeNumbers
 					RN = Random.Range (1, 100);
 				} while(isPrime (RN)==true);
 			}
-			RN = 56;
 			Debug.Log ("SN=" + RN);
 			
 			//Display the starting number on starting cube.
@@ -96,7 +106,8 @@ namespace PrimeNumbers
 					{
 						remainingNumbers[dummyCounter] = ArrayB[i];
 						cubePosition[dummyCounter] = CubeArray[i].transform.position;
-						cubePosition[dummyCounter].y -= 6f;//lowering prefab to approp level
+						cubePosition[dummyCounter].x += .7f;  //lining up the prefab wit the box
+						cubePosition[dummyCounter].y -= 6.7f;//lowering prefab to approp level
 						dummyCounter++;
 					}
 				}
@@ -120,13 +131,13 @@ namespace PrimeNumbers
 					{
 						RN=remainingNumbers[0];
 						getFacters(remainingNumbers[0]);
-						makeChoices(); 
-						getRandomChoices();
-						setArrayB();
+						makeChoices (); 
+						getRandomChoices ();
+						setArrayB ();
 						ShuffleArray(ArrayB);
-						Instantiate(FiveDynamitePreFab,cubePosition[0],FiveDynamitePreFab.transform.rotation);
+						Instantiate(FiveCubes,cubePosition[0],FiveCubes.transform.rotation);
 					}
-
+					
 					//check to see if the left number is prime and the right is not
 					if(isPrime(remainingNumbers[1])==true)
 					{
@@ -146,7 +157,7 @@ namespace PrimeNumbers
 						getRandomChoices ();
 						setArrayB ();
 						ShuffleArray(ArrayB);
-						Instantiate(FiveDynamitePreFab,cubePosition[1],FiveDynamitePreFab.transform.rotation);
+						Instantiate(FiveCubes,cubePosition[1],FiveCubes.transform.rotation);
 					}
 				}	
 
