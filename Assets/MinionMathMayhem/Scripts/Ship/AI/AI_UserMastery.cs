@@ -18,6 +18,7 @@ namespace MinionMathMayhem_Ship
          * STRUCTURAL DEPENDENCY NOTES:
          *      User Mastery [AI]
          *          |_ Score [Score]
+         *          |_ GameController [GameController]
          *
          * GOALS:
          *      Tries to keep the player invulved and motivated
@@ -36,7 +37,12 @@ namespace MinionMathMayhem_Ship
                 private int userPrefScoreWrong = 0;
             // Possible Scores
                 private int userPrefScorePossible = 0;
-            // Activate the mastery when possible score reached at defined: {VALUE}
+            // Game State; is the game over?
+                private bool gameOver = false;
+            // Activate this AI component when the possible score has reached been reached by specific value
+                // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
+                //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
+                //          Set to -1 to disable the AI component or unlink from AI Main.
                 private static short userPrefScorePossible_EnableAI = 10;
             // User Performance Array
                 private static short userPrefArrayIndexSize = 3;
@@ -52,6 +58,9 @@ namespace MinionMathMayhem_Ship
                 // Minion Speed
                     public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
                     public static event MinionSpeedDelegate MinionSpeed;
+                // Tutorial session (if the user isn't understanding the material)
+                    public delegate void TutorialSessionDelegate();
+                    public static event TutorialSessionDelegate TutorialSession;
         // ---------------------------------
         
 
@@ -65,6 +74,8 @@ namespace MinionMathMayhem_Ship
         {
             Score.ScoreUpdate_Correct += IncrementCorrectScore;
             Score.ScoreUpdate_Incorrect += IncrementWrongScore;
+            GameController.GameStateEnded += GameState_ToggleGameOver;
+            GameController.GameStateRestart += ResetAllScores;
         } // OnEnable()
 
 
@@ -77,6 +88,8 @@ namespace MinionMathMayhem_Ship
         {
             Score.ScoreUpdate_Correct -= IncrementCorrectScore;
             Score.ScoreUpdate_Incorrect -= IncrementWrongScore;
+            GameController.GameStateEnded -= GameState_ToggleGameOver;
+            GameController.GameStateRestart -= ResetAllScores;
         } // OnDisable()
 
 
@@ -96,30 +109,32 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         public void Main()
         {
-            // Only run when the possible points has reached a certain value.
-            if (userPrefScorePossible >= userPrefScorePossible_EnableAI)
+            // If the AI Component is turned on
+            if (userPrefScorePossible_EnableAI != -1)
             {
-                // DEBUG MODE
-                if (_debugMode_ == true)
+                // Only run when the possible points has reached a certain value and if the game isn't over.
+                if (userPrefScorePossible >= userPrefScorePossible_EnableAI && !gameOver)
                 {
-                    // Debug Stats
+                    // DEBUG MODE
+                    if (_debugMode_ == true)
+                    {
+                        // Debug Stats
                         Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
                         Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
                         Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
-                        Debug.Log("AI Mastery_User's Score: " + ((userPrefScoreCorrect / userPrefScorePossible * 100)));
-                } // DEBUG MODE
+                        Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
+                    } // DEBUG MODE
 
 
-                // User understands the material thus far
-                if (!UserPerformance_Array())
-                    PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
+                    // User understands the material thus far
+                    if (!UserPerformance_Array())
+                        PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
 
-                // User may not understand the material
-                else
-                {
-                    // Do something
-                }
-            } // if
+                    // User may not understand the material
+                    else
+                        TutorialSession();
+                } // if AI active and monitoring
+            } // If AI component is enabled
         } // Main()
 
 
@@ -249,9 +264,9 @@ namespace MinionMathMayhem_Ship
                 userPrefArrayIndex_HighLight = 0;
 
             // Update the array at the highlighted index
-            userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
+                userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
             // Highlight the next index
-            userPrefArrayIndex_HighLight++;
+                userPrefArrayIndex_HighLight++;
         } // ArrayUpdateField()
 
 
@@ -264,9 +279,9 @@ namespace MinionMathMayhem_Ship
             userPrefScoreCorrect++;
 
             // Update the array that holds the user performance
-            ArrayUpdateField(true);
+                ArrayUpdateField(true);
             // Update the possible score
-            UpdatePossibleScore();
+                UpdatePossibleScore();
 
         } // IncrementCorrectScore()
 
@@ -280,9 +295,9 @@ namespace MinionMathMayhem_Ship
             userPrefScoreWrong++;
 
             // Update the array that holds the user performance
-            ArrayUpdateField(false);
+                ArrayUpdateField(false);
             // Update the possible score
-            UpdatePossibleScore();
+                UpdatePossibleScore();
         } // IncrementWrongScore()
 
 
@@ -305,6 +320,19 @@ namespace MinionMathMayhem_Ship
             userPrefScorePossible = 0;
             userPrefScoreCorrect = 0;
             userPrefScoreWrong = 0;
+
+            // Flip the value
+            GameState_ToggleGameOver();
         } // ResetAllScores()
+
+
+
+        /// <summary>
+        ///     Toggles the gameOver variable when the game has reached it's end.
+        /// </summary>
+        private void GameState_ToggleGameOver()
+        {
+            gameOver = !gameOver;
+        } // GameState_GameOver()
     } // End of Class
 } // Namespace
