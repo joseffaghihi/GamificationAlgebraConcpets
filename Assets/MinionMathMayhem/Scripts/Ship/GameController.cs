@@ -67,9 +67,6 @@ namespace MinionMathMayhem_Ship
                 // Request Grace-Time Period; Broadcast Event
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;
-                // Tutorial
-                    public delegate void TutorialSequenceSig(bool tutorialMovie, bool tutorialWindow, int playIndex, bool randomIndex);
-                    public static event TutorialSequenceSig TutorialSequence;
 
             // Debug Tools
                 // Heartbeat Timer
@@ -94,11 +91,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Detected
         private void OnEnable()
         {
-            // Tutorial ended
-                TutorialMain.TutorialFinished += TutorialMode_Ended;
-            // AI Listeners
-                // User Mastery
-                    AI_UserMastery.TutorialSession += AI_OnDemandRequest_Tutorial;
+            // Tutorial movie ended
+                MoviePlay.TutorialStateEnded += TutorialMode_Ended;
         } // OnEnable()
 
 
@@ -106,11 +100,8 @@ namespace MinionMathMayhem_Ship
         // Signal Listener: Deactivate
         private void OnDisable()
         {
-            // Tutorial ended
-                TutorialMain.TutorialFinished -= TutorialMode_Ended;
-            // AI Listeners
-                // User Mastery
-                    AI_UserMastery.TutorialSession -= AI_OnDemandRequest_Tutorial;
+            // Tutorial movie ended
+                MoviePlay.TutorialStateEnded -= TutorialMode_Ended;
         } // OnDisable()
 
 
@@ -121,8 +112,6 @@ namespace MinionMathMayhem_Ship
             // Toggle this variable; this is used to tell the other functions that the tutorial is over.
                 gameTutorialEnded = !gameTutorialEnded;
         } // TutorialMode_Ended()
-
-
 
         // This function is immediately executed once the actor is in the game scene.
         private void Start()
@@ -229,8 +218,10 @@ namespace MinionMathMayhem_Ship
                 yield return null;
             // ----
             // Execute the Tutorial
-                 yield return (StartCoroutine(GameExecute_Tutorial(true, true, 0, false)));
+                 yield return (StartCoroutine(GameExecute_Tutorial()));
             // Display the animations and environment settings at the very start of the game
+				// StartCoroutine(rulesControl.Access_WaitForRulesToFinish());
+				//Time.timeScale = 0.0f;
 	                scriptGameEvent.Access_FirstRun_Animations();
 	            // Initiate the wait delay on the spawners
 	                RequestGraceTime();
@@ -259,21 +250,6 @@ namespace MinionMathMayhem_Ship
                         yield return new WaitForSeconds(0.5f);
             } // while loop
         } // GameManager()
-
-
-
-
-        // TODO: When activated: Stop spawner, Break from Spine, then Resume game once deactivated
-        /// <summary>
-        ///     When the AI Mastery reports that the user needs more re-enforcement demonstrations; backend-protocol
-        /// </summary>
-        private void AI_OnDemandRequest_Tutorial()
-        {
-            // DEBUG
-                Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
-            // Execute the backend
-                StartCoroutine(GameExecute_Tutorial(true, true, 0, true));
-        } // GamePlay_Tutorial()
 
 
 
@@ -342,41 +318,28 @@ namespace MinionMathMayhem_Ship
 
 
 
-        /// <summary>
-        ///     Provides requested tutorials to be displayed to the user.
-        ///     This feeds the request to the tutorial algorithm.
-        /// </summary>
-        /// <param name="tutorialMovie">
-        ///     If true, this will allow the tutorial movie to be executed.
-        ///         It is possible to also have the Tutorial Window set to 'true' aswell.
-        ///         However, the movie will always be the first to execute.
-        /// </param>
-        /// <param name="tutorialWindow">
-        ///     If true, this will allow the tutorial window to be displayed.
-        ///         It is possible to also have the Tutorial Movie set to 'true' aswell.
-        ///         However, the movie will always be the first to execute.
-        /// </param>
-        /// <param name="tutorialIndexSelect">
-        ///     Plays the requested index of the tutorial(s) from the List<>
-        ///         NOTE: If tutorialMove && tutorialWindow has different List<> sizes and selecting from a -
-        ///             range that is not possible from one category to another category, this will cause the -
-        ///             tutorial that is out of range to not play at all.
-        /// </param>
-        /// <param name="randomSwitch">
-        ///     Randomly selects an index by the length of the List<>.
-        /// </param>
-        /// <returns>
-        ///     Nothing useful
-        /// </returns>
-        private IEnumerator GameExecute_Tutorial(bool tutorialMovie, bool tutorialWindow, int tutorialIndexSelect, bool randomSwitch=false)
+        // Game Tutorial Sequence front-end.
+        private IEnumerator GameExecute_Tutorial()
         {
-            // Activate the tutorials
-                TutorialSequence(tutorialMovie, tutorialWindow, tutorialIndexSelect, randomSwitch);
-
-            // Wait for the tutorials to end
-                yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
-
-            // End
+            
+            // Enable the tutorial objects
+                objectTutorial_SkipButton.SetActive(true);
+                objectTutorial_Movie.SetActive(true);
+                objectTutorial_Canvas.SetActive(true);
+            // Send the 'Tutorial Active' signal
+                TutorialStateStart();
+            // Run a signal detector; once the signal has been detected, the tutorial is finished.
+            //    Once the tutorial is finished, the rest of the game can execute.
+                yield return StartCoroutine(GameExecute_Tutorial_ScanSignal());
+            // Disable the tutorial objects
+                objectTutorial_Movie.SetActive(false);
+                objectTutorial_Canvas.SetActive(false);
+                objectTutorial_SkipButton.SetActive(false);
+            
+				yield return null;
+                
+                rulesControl.Access_WaitForRulesToFinish();
+    //            rulesCanvas.SetActive(false);
                 TutorialStateEnd();
         } // GameExecute_Tutorial()
 

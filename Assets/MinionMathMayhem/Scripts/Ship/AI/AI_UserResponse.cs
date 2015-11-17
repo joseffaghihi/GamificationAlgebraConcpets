@@ -58,8 +58,8 @@ namespace MinionMathMayhem_Ship
                     counterMinionTime = 0;
 
                 // Verbose; debug stuff
-                    Debug.Log("Current Average Time Collected: " + avgRecordTime);
-                    Debug.Log("Previous Average Time Collected: " + avgRecordTime_old);
+                Debug.Log("Current Average Time Collected: " + avgRecordTime);
+                Debug.Log("Previous Average Time Collected: " + avgRecordTime_old);
                 // ------
 
                 // Calculate the user's current average and previously stored average time.

@@ -65,7 +65,7 @@ namespace PrimeNumbers
 		{			
 			CameraPosition = MainCamera.transform.position;
 			RN = Random.Range(1,100);
-
+			//RN = 81;
 			//Check to see if the random number is prime.
 			if (isPrime (RN) == true) 
 			{
@@ -105,6 +105,7 @@ namespace PrimeNumbers
 					if(cubesRemaining[i]==true)
 					{
 						remainingNumbers[dummyCounter] = ArrayB[i];
+//FArray is set in inspector to be the first 5 textmeshes cuase this to fail second time through.
 						cubePosition[dummyCounter] = CubeArray[i].transform.position;
 						cubePosition[dummyCounter].x += .7f;  //lining up the prefab wit the box
 						cubePosition[dummyCounter].y -= 6.7f;//lowering prefab to approp level
@@ -114,6 +115,9 @@ namespace PrimeNumbers
 				
 				if(checkProduct(remainingNumbers[0],remainingNumbers[1])==true)//if the two factors == the startnumber
 				{
+					CameraPosition = MainCamera.transform.position;
+					CameraPosition.y -=6;
+					MainCamera.transform.position = CameraPosition;//move camera down 8
 					CameraPosition = MainCamera.transform.position;
 
 					//check to see if the left number is prime and the right is not

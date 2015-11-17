@@ -12,7 +12,7 @@ namespace PrimeNumbers
 		
 		private void Awake()
 		{
-			StartNumber_script = GameObject.Find("Start Dynamite").GetComponentInChildren<StartNumber>();
+			StartNumber_script = GameObject.Find("StartCube").GetComponentInChildren<StartNumber>();
 		}
 		
 		void Update () 

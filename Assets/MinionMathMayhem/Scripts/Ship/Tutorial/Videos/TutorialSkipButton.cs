@@ -22,25 +22,10 @@ namespace MinionMathMayhem_Ship
                 public static event SkipTutorial SkipTutorialDemand;
         // ----
 
-
-
-        /// <summary>
-        ///     Send signal to stop the tutorial for those listening scripts.
-        /// </summary>
-        private void Destroy()
+        // When the object is preparing to be removed from the virtual world; broadcast a signal (event) that the tutorial squence needs to be skipped.
+        private void OnDisable()
         {
             SkipTutorialDemand();
-        } // Destroy()
-
-
-
-        /// <summary>
-        ///     A public access-bridge which will allow the call to the 'Destroy()' function.
-        ///     This is accessed by the Unity UI Button controls via Inspector.
-        /// </summary>
-        public void Access_Destroy()
-        {
-            Destroy();
-        } // Access_Destroy
+        } // OnDisable()
     } // End of Class
 } // Namespace

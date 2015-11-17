@@ -11,7 +11,7 @@ namespace PrimeNumbers
 		public void Awake () 
 		{
 			_hingeJoint = GetComponent<HingeJoint>();
-			StartNumber_script = GameObject.Find("Start Dynamite").GetComponentInChildren<StartNumber>();
+			StartNumber_script = GameObject.Find("StartCube").GetComponentInChildren<StartNumber>();
 		}
 		
 		public void OnMouseDown() 
@@ -51,11 +51,6 @@ namespace PrimeNumbers
 				Destroy (_hingeJoint.connectedBody.gameObject);
 				Destroy (gameObject);
 				StartNumber_script.deletedCounter++;
-			}
-			else if(_hingeJoint.connectedBody.gameObject.name == "dynamite_fuse")
-			{
-				Destroy (_hingeJoint.connectedBody.gameObject);
-				Destroy (gameObject);
 			}
 		}
 
