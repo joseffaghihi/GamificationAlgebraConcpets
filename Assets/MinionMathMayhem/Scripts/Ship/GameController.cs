@@ -292,7 +292,7 @@ namespace MinionMathMayhem_Ship
             // Kill Game Manager
                 StopCoroutine(gameManager);
             // Execute the backend
-                StartCoroutine(GameExecute_Tutorial(true, true, 0, true));
+                StartCoroutine(GameExecute_Tutorial(true, true, 0, true, true));
         } // GamePlay_Tutorial()
 
 
@@ -388,10 +388,10 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Nothing useful
         /// </returns>
-        private IEnumerator GameExecute_Tutorial(bool tutorialMovie, bool tutorialWindow, int tutorialIndexSelect, bool randomSwitch=false)
+        private IEnumerator GameExecute_Tutorial(bool tutorialMovie, bool tutorialWindow, int tutorialIndexSelect, bool randomSwitch=false, bool randomTutorialType=false)
         {
             // Activate the tutorials
-                TutorialSequence(tutorialMovie, tutorialWindow, tutorialIndexSelect, randomSwitch);
+                TutorialSequence(tutorialMovie, tutorialWindow, tutorialIndexSelect, randomSwitch, randomTutorialType);
 
             // Wait for the tutorials to end
                 yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));

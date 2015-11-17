@@ -145,23 +145,75 @@ namespace MinionMathMayhem_Ship
                                         int PlayIndex = 0,
                                         bool randomIndex = false,
                                         bool randomTutorialType = false)
-        {
+        {           
             // Make sure there is no errors
             if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
                 yield break;
             // ----
 
-            // Play the tutorials as requested
-            if (tutorialMovie)
-                yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Movie(PlayIndex, randomIndex)));
-
-            if (tutorialWindow)
-                yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Window(PlayIndex, randomIndex)));
-            // ----
+            // If randomized tutorial type was requested
+            if (randomTutorialType && (tutorialMovie && tutorialWindow))
+            {
+                
+                if (System.Convert.ToBoolean(UnityEngine.Random.Range(0, 2)))
+                    // Movie
+                    yield return (StartCoroutine(TutorialMain_Driver_Play_Movie(PlayIndex, randomIndex)));
+                else
+                    // Window
+                    yield return (StartCoroutine(TutorialMain_Driver_Play_Window(PlayIndex, randomIndex)));
+            }
+            // If randomized tutorial was not requested
+            else
+            {
+                // Play the tutorials as requested
+                    if (tutorialMovie)
+                        yield return (StartCoroutine(TutorialMain_Driver_Play_Movie(PlayIndex, randomIndex)));
+                    if (tutorialWindow)
+                        yield return (StartCoroutine(TutorialMain_Driver_Play_Window(PlayIndex, randomIndex)));
+            }
+            
 
             // Finished tutorial
                 TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
+
+
+
+        /// <summary>
+        ///     Execute the movie tutorial protocol
+        /// </summary>
+        /// <param name="PlayIndex">
+        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        /// </param>
+        /// <param name="randomIndex">
+        ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
+        /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator TutorialMain_Driver_Play_Movie(int PlayIndex, bool randomIndex)
+        {
+            yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Movie(PlayIndex, randomIndex)));
+        } // TutorialMain_Driver_Play_Movie()
+
+
+
+        /// <summary>
+        ///     Execute the window dialog tutorial protocol
+        /// </summary>
+        /// <param name="PlayIndex">
+        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        /// </param>
+        /// <param name="randomIndex">
+        ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
+        /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator TutorialMain_Driver_Play_Window(int PlayIndex, bool randomIndex)
+        {
+            yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Window(PlayIndex, randomIndex)));
+        } // TutorialMain_Driver_Play_Window()
 
 
 
