@@ -267,6 +267,10 @@ Material:
         second: {r: 1, g: 1, b: .100000001, a: .100000001}
       data:
         first:
+          name: _BumpMap_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
           name: _RefrColor
         second: {r: .523390472, g: .947761178, b: .912149608, a: 1}
       data:

@@ -373,7 +373,7 @@ Transform:
   - {fileID: 790340097}
   - {fileID: 1839939938}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 15
 --- !u!1 &49450187
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,6 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSource: {fileID: 648950080}
+  rulesCanvas: {fileID: 648950075}
 --- !u!1 &58658925 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b760b7975038240539d8daa9a5098b13, type: 3}
@@ -3437,8 +3438,8 @@ GameObject:
   - 114: {fileID: 648950077}
   - 114: {fileID: 648950076}
   - 82: {fileID: 648950080}
-  - 114: {fileID: 648950082}
   - 114: {fileID: 648950081}
+  - 114: {fileID: 648950082}
   m_Layer: 5
   m_Name: Rules Canvas
   m_TagString: Untagged
@@ -3600,9 +3601,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 648950075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f47829083d501be4097ed8bf594463e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ea56346976b746c996ad1121ff2599d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pg1: {fileID: 199409078}
+  pg2: {fileID: 189286233}
+  forward: {fileID: 751666631}
+  backward: {fileID: 880269263}
+  close: {fileID: 49450187}
 --- !u!114 &648950082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7385,7 +7391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d40677d659f7740aef9d2125cab690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableAIKeyFeatures: 1
+  enableAIKeyFeatures: 0
   scriptAI_UserMastery: {fileID: 1208330403}
   scriptAI_UserResponse: {fileID: 1208330402}
   scriptAI_SpawnServicer: {fileID: 1208330406}
@@ -13967,3 +13973,4 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+
