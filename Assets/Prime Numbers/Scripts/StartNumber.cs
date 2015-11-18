@@ -6,61 +6,55 @@ namespace PrimeNumbers
 {
 	public class StartNumber : MonoBehaviour 
 	{
-		public Transform FiveCubes;//access to 5 wires/cubes prefab
+		//-****************************************************************************************-//
 		public Transform LoseScreen;//to spawn losing screen
 		public Transform CubePreFab;//Acess to cube prefab
-		
+		public Transform FiveDynamitePreFab;//Acess to Dynamite PreFab
 		public GameObject MainCamera;//access to mainCamera
-		
-		public List<GameObject> Wires = new List<GameObject>();
-		//Holds the 5 wires in a list to keep track of which ones have been deleted
-		
-		public GameObject[] CubeArray; //holds the cubes
-		public TextMesh[] FArray; //Holds the textMeshes in the inspector in an array
-		
-		public static int RN; //our starting number
-		
+		public GameObject[] DynamiteArray; //holds the 5 dynamites in an array to keep 
+		//track of which ones have been deleted
+		public TextMesh[] TextMeshArray; //Holds the textMeshes in the inspector in an array
+		//-****************************************************************************************-//
+
+
+		//-****************************************************************************************-//
 		public int[] FactorArray; //an array to hold all of the factors of starting number
-		public int[,] Choices; //A 2d array to hold all the combinations that go into start number.
-		
-		public int[] ArrayB;//Array that holds the selected numbers to display. 
-		
-		public int counter; //keeps track of number of factors
+		public int[,] Choices; //A 2d array to hold all the combinations that go into start number
+		public int[] remainingNumbers;//Holds the 2 numbers the user didnt delete
+		public int[] DisplayedNumbers;//Array that holds the selected numbers to display
+		public bool[] DynamitesRemaining;//Array of bools || true = dynamite not deleted || false = dynamite deleted
+		//-****************************************************************************************-//
+
+
+		//-****************************************************************************************-//
 		public int num1=0;//used to access 2d array
-		
 		public int num2=0;//used to access 2d array
-		public int choiceCounter=0;//used to put the last number with the first number when making pairs
-		
 		public int RandomChoice1=0;//chooses a random pair to display
 		public int RandomChoice2=0;//chooses a second random pair to display
-		
-		public int lastBox =0;//used to display a random number that isn't already displayed
-		public int start;//used when making pairs of factors.
-		
-		public int deletedCounter=0; //keeps track of objects deleted
-		
-		public int displayCounter=0;//counter to display the Facors on the cubes.
-		
-		public bool[] cubesRemaining;//true = cube not deleted false = cube deleted.
+		public int start;//used when making pairs of factors
 		public int spacing =0;//used to space the prime numbers
-		
-		public int[] remainingNumbers;
-		
-		public int dummyCounter=0;//running out of names for counters
-		
-		public Vector3 CameraPosition = new Vector3(0,0,0);
-		
-		public int FactorIsPrime =0;
+		public int FactorIsPrime =0;//Tells prime number script which of the two remaining dynamites are prime
+		//-****************************************************************************************-//
 
-		public Vector3[] cubePosition = new Vector3[2];
 
-		public DisplayNumber DisplayNumber_script;
+		//-****************************************************************************************-//
+		public Vector3 CameraPosition = new Vector3(0,0,0);//Used to keep track of the position of camera
+		public Vector3[] cubePosition = new Vector3[2];//Array of 2 to keep the position
+		//of the 2 cubes the user doesn't delete
+		//-****************************************************************************************-//
 
-		private void Awake()
-		{
-			DisplayNumber_script = GameObject.Find("Cube1").GetComponentInChildren<DisplayNumber>();
-		}
-		
+
+		//-****************************************************************************************-//
+		public int deletedCounter=0; //keeps track of objects deleted
+		public int displayCounter=0;//counter to display the Facors on the cubes
+		public int choiceCounter=0;//used to put the last number with the first number when making pairs
+		public int counter; //keeps track of the number of factors
+		public int usersChoiceCounter=0;//goes from 0->1 and back to 0 to keep track of the 2
+		//dynamites the user did not delete
+		//-****************************************************************************************-//
+
+		public static int RN; //our starting number
+
 		void Start () 
 		{			
 			CameraPosition = MainCamera.transform.position;
@@ -73,26 +67,22 @@ namespace PrimeNumbers
 					RN = Random.Range (1, 100);
 				} while(isPrime (RN)==true);
 			}
+			RN = 56;
 			Debug.Log ("SN=" + RN);
 			
 			//Display the starting number on starting cube.
 			TextMesh t = (TextMesh)gameObject.GetComponent(typeof(TextMesh));
 			t.text = RN.ToString();
-			
-			//puts all of the factors in an array
-			getFacters (RN);
-			
-			//puts the choices of factors that go together in a 2d array holding the numbers.
-			makeChoices ();
-			
-			//two random numbers to choose which 2 combinations will be selected. 
-			getRandomChoices ();
-			
-			//put the chosen numbers to display in an array of 5
-			setArrayB ();
-			
-			//Mixes up the numbres in the Array
-			ShuffleArray(ArrayB);
+
+			getFacters (RN); //puts all of the factors in an array
+
+			makeChoices ();//puts the choices of factors that go together in a 2d array holding the numbers.
+
+			getRandomChoices ();//two random numbers to choose which 2 combinations will be selected. 
+
+			setDisplayedNumbers ();//put the chosen numbers to display in an array of 5
+
+			ShuffleArray(DisplayedNumbers);//Mixes up the numbres in the Array
 			
 		}//end of Start
 		
@@ -102,13 +92,16 @@ namespace PrimeNumbers
 			{
 				for(int i=0;i<5;i++)
 				{
-					if(cubesRemaining[i]==true)
+					if(DynamitesRemaining[i]==true)
 					{
-						remainingNumbers[dummyCounter] = ArrayB[i];
-						cubePosition[dummyCounter] = CubeArray[i].transform.position;
-						cubePosition[dummyCounter].x += .7f;  //lining up the prefab wit the box
-						cubePosition[dummyCounter].y -= 6.7f;//lowering prefab to approp level
-						dummyCounter++;
+						Debug.Log(usersChoiceCounter);
+						remainingNumbers[usersChoiceCounter] = DisplayedNumbers[i];
+						cubePosition[usersChoiceCounter] = DynamiteArray[i].transform.position;
+						//adujusting where next row of dynamites will be spawned.
+						cubePosition[usersChoiceCounter].y -= 6f;
+						cubePosition[usersChoiceCounter].z =7f;
+						cubePosition[usersChoiceCounter].x+=.8f;
+						usersChoiceCounter++;
 					}
 				}
 				
@@ -131,13 +124,13 @@ namespace PrimeNumbers
 					{
 						RN=remainingNumbers[0];
 						getFacters(remainingNumbers[0]);
-						makeChoices (); 
-						getRandomChoices ();
-						setArrayB ();
-						ShuffleArray(ArrayB);
-						Instantiate(FiveCubes,cubePosition[0],FiveCubes.transform.rotation);
+						makeChoices(); 
+						getRandomChoices();
+						setDisplayedNumbers();
+						ShuffleArray(DisplayedNumbers);
+						Instantiate(FiveDynamitePreFab,cubePosition[0],FiveDynamitePreFab.transform.rotation);
 					}
-					
+
 					//check to see if the left number is prime and the right is not
 					if(isPrime(remainingNumbers[1])==true)
 					{
@@ -155,9 +148,9 @@ namespace PrimeNumbers
 						getFacters(remainingNumbers[1]);
 						makeChoices (); 
 						getRandomChoices ();
-						setArrayB ();
-						ShuffleArray(ArrayB);
-						Instantiate(FiveCubes,cubePosition[1],FiveCubes.transform.rotation);
+						setDisplayedNumbers ();
+						ShuffleArray(DisplayedNumbers);
+						Instantiate(FiveDynamitePreFab,cubePosition[1],FiveDynamitePreFab.transform.rotation);
 					}
 				}	
 
@@ -166,7 +159,7 @@ namespace PrimeNumbers
 					SpawnLoseScreen();
 				
 				deletedCounter=0;
-				dummyCounter=0;
+				usersChoiceCounter=0;
 			}//end of if counter==3
 		}//end of update
 		
@@ -214,6 +207,7 @@ namespace PrimeNumbers
 		public void SpawnLoseScreen()
 		{
 			float temp;
+			CameraPosition = MainCamera.transform.position;
 			temp = CameraPosition.z;
 			temp = temp +5;
 			CameraPosition.z = temp;
@@ -246,12 +240,12 @@ namespace PrimeNumbers
 					}
 				}
 			}
-			cubesRemaining = new bool[5];
+			DynamitesRemaining = new bool[5];
 			remainingNumbers = new int[2];
 			
 			for (int i =0; i<5; i++) 
 			{
-				cubesRemaining [i] = true;
+				DynamitesRemaining [i] = true;
 			}
 		}
 		
@@ -297,20 +291,20 @@ namespace PrimeNumbers
 			Debug.Log ("RandomChoice1= " + RandomChoice1 + " RandomChoice2= " + RandomChoice2);
 		}
 		
-		public void setArrayB()
+		public void setDisplayedNumbers()
 		{
-			ArrayB = new int[5];
-			ArrayB [0] = Choices [RandomChoice1, 0];
-			ArrayB [1] = Choices [RandomChoice1, 1];
-			ArrayB [2] = Choices [RandomChoice2, 0];
-			ArrayB [3] = Choices [RandomChoice2, 1];
+			DisplayedNumbers = new int[5];
+			DisplayedNumbers [0] = Choices [RandomChoice1, 0];
+			DisplayedNumbers [1] = Choices [RandomChoice1, 1];
+			DisplayedNumbers [2] = Choices [RandomChoice2, 0];
+			DisplayedNumbers [3] = Choices [RandomChoice2, 1];
 			
-			ArrayB[4] = Random.Range (1,RN);
+			DisplayedNumbers[4] = Random.Range (1,RN);
 			for(int i=0;i<counter+1;i++)
 			{
-				if (ArrayB[4] == FactorArray [i]) 
+				if (DisplayedNumbers[4] == FactorArray [i]) 
 				{
-					ArrayB[4] = Random.Range (7,RN);
+					DisplayedNumbers[4] = Random.Range (7,RN);
 					i=0;
 				}
 			}
@@ -318,15 +312,13 @@ namespace PrimeNumbers
 		
 		public void displayTextmeshes()
 		{
-			foreach(TextMesh text in FArray)
+			foreach(TextMesh text in TextMeshArray)
 			{
-				Debug.Log (ArrayB[displayCounter]);
-				text.text  = ArrayB[displayCounter].ToString();
+				Debug.Log (DisplayedNumbers[displayCounter]);
+				text.text  = DisplayedNumbers[displayCounter].ToString();
 				displayCounter++;
 			}
 			
 		}
-		
-		
 	}//end of StartNumber
 }//end namespace
