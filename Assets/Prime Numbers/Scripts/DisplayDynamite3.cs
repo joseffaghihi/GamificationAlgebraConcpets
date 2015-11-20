@@ -19,7 +19,7 @@ namespace PrimeNumbers
 		{
 			if (flag) {
 				text.text = StartNumber_script.DisplayedNumbers [2].ToString ();
-				StartNumber_script.DynamiteArray[3] = this.gameObject;
+				StartNumber_script.DynamiteArray[2] = this.gameObject;
 				flag=false;
 			}
 		}
