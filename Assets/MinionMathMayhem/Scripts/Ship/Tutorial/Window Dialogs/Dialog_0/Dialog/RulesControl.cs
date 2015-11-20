@@ -18,13 +18,32 @@ namespace MinionMathMayhem_Ship {
 		public static GameObject backward;
 		public static GameObject close;
         public static int iterator = 1;
+        public static RulesControl instance;
 
         // ----------------------------------- Unity Event Functions ----------------------------------- //
         //  ******************************************************************************************** //
 
-        void Awake() {
-			control = true;
-		}
+
+        void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            GetRulesReferences();
+            control = true;
+        }
+
+
+
+        void Start()
+        {
+            RulesPageFlip();
+        }
 
 
         // ----------------------------------- User Defined Functions Private and Public -------------------------- //
@@ -114,6 +133,35 @@ namespace MinionMathMayhem_Ship {
             pg2.SetActive(false);
             pg3.SetActive(false);
             pg4.SetActive(false);
+        }
+
+
+        /// <summary>
+        /// Initializes all rules canvas references
+        /// </summary>
+        private void GetRulesReferences()
+        {
+            pg1 = GameObject.Find("Rules_pg01");
+            if (pg1 != null)
+                Debug.Log("pg1 initialized");
+            pg2 = GameObject.Find("Rules_pg02");
+            if (pg2 != null)
+                Debug.Log("pg2 initialized");
+            pg3 = GameObject.Find("Rules_pg03");
+            if (pg3 != null)
+                Debug.Log("pg3 initialized");
+            pg4 = GameObject.Find("Rules_pg04");
+            if (pg4 != null)
+                Debug.Log("pg4 initialized");
+            forward = GameObject.Find("GoForward");
+            if (forward != null)
+                Debug.Log("forward initialized");
+            backward = GameObject.Find("GoBack");
+            if (backward != null)
+                Debug.Log("backward initialized");
+            close = GameObject.Find("ExitButton");
+            if (close != null)
+                Debug.Log("Close initialized");
         }
     } // End of Class
 } // End of namespace
