@@ -12,6 +12,8 @@ namespace MinionMathMayhem_Ship {
 		
 		public GameObject pg1;
 		public GameObject pg2;
+        public GameObject pg3;
+        public GameObject pg4;
 		public GameObject forward;
 		public GameObject backward;
 		public GameObject close;
@@ -34,6 +36,8 @@ namespace MinionMathMayhem_Ship {
             yield return null;
 			pg1.SetActive(true);
 			pg2.SetActive(true);
+            pg3.SetActive(true);
+            pg4.SetActive(true);
 			forward.SetActive(true);
 			backward.SetActive(true);
 			close.SetActive(true);
