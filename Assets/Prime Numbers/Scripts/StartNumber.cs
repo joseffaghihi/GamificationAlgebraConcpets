@@ -57,6 +57,7 @@ namespace PrimeNumbers
 
 		void Start () 
 		{			
+			remainingNumbers = new int[2];
 			CameraPosition = MainCamera.transform.position;
 			RN = Random.Range(1,100);
 
@@ -67,7 +68,7 @@ namespace PrimeNumbers
 					RN = Random.Range (1, 100);
 				} while(isPrime (RN)==true);
 			}
-			RN = 56;
+			RN = 96;
 			Debug.Log ("SN=" + RN);
 			
 			//Display the starting number on starting cube.
@@ -101,7 +102,10 @@ namespace PrimeNumbers
 						cubePosition[usersChoiceCounter].y -= 6f;
 						cubePosition[usersChoiceCounter].z =7f;
 						cubePosition[usersChoiceCounter].x+=.8f;
+						print("Remaining Numbers: "+remainingNumbers[usersChoiceCounter]);
 						usersChoiceCounter++;
+
+				
 					}
 				}
 				
@@ -112,13 +116,13 @@ namespace PrimeNumbers
 					//check to see if the left number is prime and the right is not
 					if(isPrime(remainingNumbers[0])==true)
 					{
-						FactorIsPrime=0;
+						/*FactorIsPrime=0;
 						CameraPosition = MainCamera.transform.position;
 						CameraPosition.x = CameraPosition.x -13;
 						CameraPosition.y = CameraPosition.y +5-spacing;;
 						CameraPosition.z = CameraPosition.z +11;
 						Instantiate(CubePreFab,CameraPosition,CubePreFab.transform.rotation);
-						spacing=spacing + 2;
+						spacing=spacing + 2;*/
 					}
 					else if(isPrime(remainingNumbers[0])==false)
 					{
@@ -130,20 +134,23 @@ namespace PrimeNumbers
 						ShuffleArray(DisplayedNumbers);
 						Instantiate(FiveDynamitePreFab,cubePosition[0],FiveDynamitePreFab.transform.rotation);
 					}
-
+					print("Remaining Numbers BEFORE: "+remainingNumbers[1]);
 					//check to see if the left number is prime and the right is not
 					if(isPrime(remainingNumbers[1])==true)
 					{
+						Debug.Log ("Thinks it is prime");
+						/*
 						FactorIsPrime=1;
 						CameraPosition = MainCamera.transform.position;
 						CameraPosition.x = CameraPosition.x -13;
 						CameraPosition.y = CameraPosition.y +5-spacing;
 						CameraPosition.z = CameraPosition.z +11;
 						Instantiate(CubePreFab,CameraPosition,CubePreFab.transform.rotation);
-						spacing=spacing + 2;
+						spacing=spacing + 2;*/
 					}
 					else if(isPrime(remainingNumbers[1])==false)
 					{
+						Debug.Log ("made it");
 						RN=remainingNumbers[1];
 						getFacters(remainingNumbers[1]);
 						makeChoices (); 
@@ -241,7 +248,7 @@ namespace PrimeNumbers
 				}
 			}
 			DynamitesRemaining = new bool[5];
-			remainingNumbers = new int[2];
+			//remainingNumbers = new int[2];
 			
 			for (int i =0; i<5; i++) 
 			{
