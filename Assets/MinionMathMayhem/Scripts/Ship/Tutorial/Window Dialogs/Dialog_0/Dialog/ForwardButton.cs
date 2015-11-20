@@ -3,52 +3,36 @@ using System.Collections;
 
 namespace MinionMathMayhem_Ship
 {
-	public class ForwardButton : MonoBehaviour {
+    public class ForwardButton : MonoBehaviour
+    {
 
-		// GameObject References
-		// private GameObject forwardButton;	// reference to the gameObject this script is on
-		private GameObject backButton;		// refernece to the backButton gameObject
-		private GameObject rulesPgOne;		// reference to the Rules_pg01 gameObject	
-		private GameObject rulesPgTwo;		// reference to the Rules_pg02 gameObject
+        // Data Members private and public ***************************************** //
 
-		public AudioSource clickSource;		// refernce to audio source with click sound
+        public AudioSource clickSource;             // refernce to audio source with click sound
 
-		// Use this for initialization
-		void Awake () {
-			// Initializing GameObject references and checking if they are filled
-			// forwardButton = GameObject.Find ("GoForward");
-			// if(forwardButton == null)
-				// Debug.Log ("forwardButton was not initialized");
-			backButton = GameObject.Find ("GoBack");
-			if(backButton == null)
-				Debug.Log ("backButton was not initialized");
-			rulesPgOne = GameObject.Find("Rules_pg01");
-			if(rulesPgOne == null)
-				Debug.Log ("rulesPgOne was not initialized");
-			rulesPgTwo = GameObject.Find ("Rules_pg02");
-			if(rulesPgTwo == null)
-				Debug.Log ("rulesPgTwo was not initialized");
-            if (rulesPgOne != null)
-                Debug.Log("Ok, the initializations are working!");
-		}
+        // User-Defined Methods **************************************************** //
 
-
-		void OnTriggerEnter()
-		{
-			PressForward();
-		}
-
+        /// <summary>
+        ///	Public function to give access to call PressForward()
+        /// </summary>
         public void Press()
         {
             PressForward();
         }
 
-		private void PressForward()
-		{
-			clickSource.Play ();			// Plays click sound
-			rulesPgOne.SetActive(false);	// Deactivates 'rulesPgOne'
-			rulesPgTwo.SetActive (true);	// Activates 'rulesPgTwo'
-		}
-
-	} // end class
+        /// <summary>
+        /// Increments iterator and calls the function that will 
+        /// Set the rules page to be displayed to the next page
+        /// Like turning pages
+        /// </summary>
+        private void PressForward()
+        {
+            clickSource.Play();
+            if (RulesControl.iterator >= 1 && RulesControl.iterator < 4)
+            {
+                RulesControl.iterator++;
+                RulesControl.RulesPageFlip();
+            }
+        }
+    } // end class
 } // end namespace
