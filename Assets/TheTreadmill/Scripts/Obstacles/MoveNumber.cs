@@ -6,7 +6,7 @@ public class MoveNumber : MonoBehaviour
 {
 	public float speed = 20;
     int num;
-
+    
     //Convert the number to a string
     void Start()
     {
