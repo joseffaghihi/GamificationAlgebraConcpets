@@ -431,9 +431,9 @@ namespace MinionMathMayhem_Ship
         private void ForcibleKillSignal(bool tutorialMovie, bool tutorialWindow, int index)
         {
             if (tutorialMovie)
-                tutorialMovieArray[index].GetComponent<TutorialMovie_BridgeScript>().Access_Destroy();
+                ToggleObjectActiveState(false, tutorialMovieArray[index]);
             if (tutorialWindow)
-                tutorialWindowArray[index].GetComponent<TutorialWindow_BridgeScript>().Access_Destroy();
+                ToggleObjectActiveState(false, tutorialWindowArray[index]);
         } // ForcibleKillSignal()
 
 
@@ -449,7 +449,7 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void TutorialMain_Play_Movie(int playIndex, bool randomIndex)
         {
-            tutorialMovieArray[playIndex].GetComponent<TutorialMovie_BridgeScript>().ActivateTutorial();
+            ToggleObjectActiveState(true, tutorialMovieArray[playIndex]);
         } // TutorialMain_Play_Movie()
 
 
@@ -465,7 +465,7 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void TutorialMain_Play_Window(int playIndex, bool randomIndex)
         {
-            tutorialWindowArray[playIndex].GetComponent<TutorialWindow_BridgeScript>().ActivateTutorial();
+            ToggleObjectActiveState(true, tutorialWindowArray[playIndex]);
         } // TutorialMain_Play_Window()
 
 
@@ -572,6 +572,23 @@ namespace MinionMathMayhem_Ship
         {
             tutorialExecutionState = !tutorialExecutionState;
         } // ToggleTutorialState()
+
+
+
+        /// <summary>
+        ///     When true, this will enable the targetted object.
+        ///     When false, this will disable the targetted object.
+        /// </summary>
+        /// <param name="state">
+        ///     Toggles the state inwhich to either enable or disable the targetted object.
+        /// </param>
+        /// <param name="obj">
+        ///     The targetted game object.
+        /// </param>
+        private void ToggleObjectActiveState(bool state, GameObject obj)
+        {
+            obj.SetActive(state);
+        } // ToggleObjectActiveState()
 
 
 
