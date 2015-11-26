@@ -36,17 +36,14 @@ namespace MinionMathMayhem_Ship
                 private bool spawnMinions = false;
             // [GameManager] Tutorial Ended switch
                 private bool gameTutorialEnded = false;
-			//  Rules Control on the rulesCanvas GameObject  
-
-				private RulesControl rulesControl;
+            // [GameManager] Game Manager Function via Interface
+                private static IEnumerator gameManager;
 
             // Accessors and Communication
                 // Win/Lose HUD Message
                     public Text textWinOrLose;
                 // Scores
                     public Score scriptScore;
-                // Tutorial
-                    public VoiceOver scriptTutorial;
                 // Game Controller
                     public GameEvent scriptGameEvent;
                 // Tutorial State
@@ -62,34 +59,31 @@ namespace MinionMathMayhem_Ship
                 // Game Restarted
                     public delegate void GameStateEventRestart();
                     public static event GameStateEventRestart GameStateRestart;
-                // Spawn Controller
-                    public SpawnController scriptSpawnController;
                 // Request Grace-Time Period; Broadcast Event
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;
                 // Tutorial
-                    public delegate void TutorialSequenceSig(bool tutorialMovie, bool tutorialWindow, int playIndex, bool randomIndex);
+                    public delegate void TutorialSequenceSig(bool tutorialMovie, bool tutorialWindow, int playIndex, bool randomIndex, bool randomTutorialType = false);
                     public static event TutorialSequenceSig TutorialSequence;
 
             // Debug Tools
                 // Heartbeat Timer
                     public bool heartbeat = false;
                     public float heartbeatTimer = 1f;
-
-            // GameObjects
-                // Tutorial
-                    public GameObject objectTutorial_Movie;
-                    public GameObject objectTutorial_Canvas;
-                    public GameObject objectTutorial_SkipButton;
-				// Rules
-					public GameObject rulesCanvas;
+        // ----
 
 
 
-		private void Awake()
-		{
-			rulesControl = rulesCanvas.GetComponent<RulesControl>();
-		}
+        /// <summary>
+        ///     Internal Constructor
+        /// </summary>
+        private GameController()
+        {
+            // Spine of the game
+                gameManager = GameManager();
+        } // INTERNAL CONSTRUCTOR
+
+
 
         // Signal Listener: Detected
         private void OnEnable()
@@ -132,8 +126,33 @@ namespace MinionMathMayhem_Ship
             // Debug Timer; when enabled, this can slow down the heartbeat of the game.
                 StartCoroutine(HeartbeatTimer());
             // Start the main game manager
-                StartCoroutine(GameManager());
+                StartCoroutine(FirstRun());
         } // Start()
+
+
+
+        /// <summary>
+        ///     Start up sequence for the game environment
+        /// </summary>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator FirstRun()
+        {
+            // Execute the Tutorial
+                yield return (StartCoroutine(GameExecute_Tutorial(true, true, 0, false)));
+            // Display the animations and environment settings at the very start of the game
+                scriptGameEvent.Access_FirstRun_Animations();
+            // Initiate the wait delay on the spawners
+                RequestGraceTime();
+            // ----
+
+            // Start the GameManager
+                StartCoroutine(gameManager);
+
+            // Finished
+                yield break;
+        } // FirstRun()
 
 
 
@@ -227,16 +246,11 @@ namespace MinionMathMayhem_Ship
         private IEnumerator GameManager()
         {
                 yield return null;
-            // ----
-            // Execute the Tutorial
-                 yield return (StartCoroutine(GameExecute_Tutorial(true, true, 0, false)));
-            // Display the animations and environment settings at the very start of the game
-	                scriptGameEvent.Access_FirstRun_Animations();
-	            // Initiate the wait delay on the spawners
-	                RequestGraceTime();
-	            // ----
 	            while (true) // Always check the state of the game.
 	            {
+                    // If the tutorial is running, pause
+                        if (!gameTutorialEnded)
+                            StartCoroutine(GameExecute_Tutorial_ScanSignal());
                     // Fetch the scores and compute the scores, iif the game is not over
                         if (!gameOver)
                             CheckScores();
@@ -257,6 +271,7 @@ namespace MinionMathMayhem_Ship
 
                     // Brief wait time to ease the CPU
                         yield return new WaitForSeconds(0.5f);
+                Debug.Log("GAMEMANAGER: Looping");
             } // while loop
         } // GameManager()
 
@@ -271,8 +286,13 @@ namespace MinionMathMayhem_Ship
         {
             // DEBUG
                 Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
+            // Stop the GameManager with this variable
+                TutorialMode_Ended();
+                Debug.Log("TutorialMode = " + gameTutorialEnded);
+            // Kill Game Manager
+                StopCoroutine(gameManager);
             // Execute the backend
-                StartCoroutine(GameExecute_Tutorial(true, true, 0, true));
+                StartCoroutine(GameExecute_Tutorial(true, true, 0, true, true));
         } // GamePlay_Tutorial()
 
 
@@ -368,10 +388,10 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     Nothing useful
         /// </returns>
-        private IEnumerator GameExecute_Tutorial(bool tutorialMovie, bool tutorialWindow, int tutorialIndexSelect, bool randomSwitch=false)
+        private IEnumerator GameExecute_Tutorial(bool tutorialMovie, bool tutorialWindow, int tutorialIndexSelect, bool randomSwitch=false, bool randomTutorialType=false)
         {
             // Activate the tutorials
-                TutorialSequence(tutorialMovie, tutorialWindow, tutorialIndexSelect, randomSwitch);
+                TutorialSequence(tutorialMovie, tutorialWindow, tutorialIndexSelect, randomSwitch, randomTutorialType);
 
             // Wait for the tutorials to end
                 yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
@@ -485,10 +505,6 @@ namespace MinionMathMayhem_Ship
         {
             if (scriptScore == null)
                 MissingReferenceError("Score");
-            if (scriptTutorial == null)
-                MissingReferenceError("Tutorial");
-            if (objectTutorial_Movie == null)
-                MissingReferenceError("Tutorial Actor");
             if (scriptGameEvent == null)
                 MissingReferenceError("Game Event");
             if (textWinOrLose == null)
