@@ -34,7 +34,7 @@ namespace MinionMathMayhem_Ship
             // Enable Feature
                 public bool enableForceTimeOut = true;
             // Minutes to forcibly time out
-                public float timedOut_Minutes = 210f;
+                public float timedOut_Seconds = 210f;
         // Accessors and Communication
             // Finished tutorial sequence signal
                 public delegate void TutorialSequenceFinishedSig();
@@ -396,7 +396,7 @@ namespace MinionMathMayhem_Ship
                     yield break; // Stop
 
             // Wait for the requested timed-out time schedule
-                yield return new WaitForSeconds(timedOut_Minutes);
+                yield return new WaitForSeconds(timedOut_Seconds);
 
             // Is the tutorials still running?
             if (tutorialExecutionState)
