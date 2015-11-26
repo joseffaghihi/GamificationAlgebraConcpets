@@ -333,18 +333,26 @@ namespace MinionMathMayhem_Ship
         {
             // Declarations and intializations
             // ----
+                GameObject tutorialObject = tutorialMovie ? tutorialMovieArray[index] : tutorialWindowArray[index];
+                IEnumerator checkActiveStatus = CheckActiveStatus(tutorialObject);
                 IEnumerator timeOutScheduler = TimedOutFunction(tutorialMovie, tutorialWindow, index);
                 IEnumerator runTimeExecutionState = RunTimeExecution_StatusCheck();
+                
             // ----
 
             // Start the coroutines
-                StartCoroutine(timeOutScheduler);
+                StartCoroutine(timeOutScheduler); // Run the time out scheduler
+                StartCoroutine(checkActiveStatus); // Check status of the tutorial; is it active or disabled?
 
             yield return StartCoroutine(runTimeExecutionState);
 
-            // if the Timed-Out scheduler is running, destroy the instance
+            // Terminate active coroutines
+                StopCoroutine(checkActiveStatus);
+
+                // if the Timed-Out scheduler is running, destroy the instance
                 if (enableForceTimeOut)
                     StopCoroutine(timeOutScheduler);
+            
             
             // Finished
                 yield break;
@@ -413,6 +421,30 @@ namespace MinionMathMayhem_Ship
             else
                 yield break;
         } // TimedOutFunction()
+
+
+
+        /// <summary>
+        ///     Monitors the state of the object if it's active; this function will self terminate once the targetted object is diabled from the hierarchy.
+        /// </summary>
+        /// <param name="tutorialObject">
+        ///     Targgeted object to monitor
+        /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator CheckActiveStatus(GameObject tutorialObject)
+        {
+            do
+            {
+                yield return new WaitForSeconds(0.5f);
+            } while (tutorialObject.activeInHierarchy);
+
+            // Flip the tutorial state variable to signify that the tutorial has finished
+                ToggleTutorialState();
+
+            yield break;
+        } // CheckActiveStatus()
 
 
 
