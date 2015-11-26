@@ -19,26 +19,26 @@ namespace MinionMathMayhem_Ship
          */
 
 
-
+            
         // Declarations and Initializations
         // ---------------------------------
-        // Tutorial Arrays
-            // Window
-                public List<GameObject> tutorialWindowArray = new List<GameObject>();
-            // Movie
-                public List<GameObject> tutorialMovieArray = new List<GameObject>();
-        // Switches
-            // This variable will help assure the state of the tutorial execution.
-                private bool tutorialExecutionState = false;
-        // Timed-Out Controlls
-            // Enable Feature
-                public bool enableForceTimeOut = true;
-            // Minutes to forcibly time out
-                public float timedOut_Seconds = 210f;
-        // Accessors and Communication
-            // Finished tutorial sequence signal
-                public delegate void TutorialSequenceFinishedSig();
-                public static event TutorialSequenceFinishedSig TutorialFinished;
+            // Tutorial Arrays
+                // Window
+                    public List<GameObject> tutorialWindowArray = new List<GameObject>();
+                // Movie
+                    public List<GameObject> tutorialMovieArray = new List<GameObject>();
+            // Switches
+                // This variable will help assure the state of the tutorial execution.
+                    private bool tutorialExecutionState = false;
+            // Timed-Out Controlls
+                // Enable Feature
+                    public bool enableForceTimeOut = true;
+                // Minutes to forcibly time out
+                    public float timedOut_Seconds = 210f;
+            // Accessors and Communication
+                // Finished tutorial sequence signal
+                    public delegate void TutorialSequenceFinishedSig();
+                    public static event TutorialSequenceFinishedSig TutorialFinished;
         // ---------------------------------
 
 
