@@ -27,7 +27,7 @@ namespace MinionMathMayhem_Ship
                 //  Rules Control on the rulesCanvas GameObject
                     public RulesControl rulesControl;
                 // Critical components; used for activating and deactivating the objects
-                    public List<GameObject> tutorialObjectArray;
+                    public List<GameObject> tutorialObjectArray = new List<GameObject>();
         // ---------------------------------
 
 
