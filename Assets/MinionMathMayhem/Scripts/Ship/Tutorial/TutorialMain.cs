@@ -19,26 +19,26 @@ namespace MinionMathMayhem_Ship
          */
 
 
-
+            
         // Declarations and Initializations
         // ---------------------------------
-        // Tutorial Arrays
-            // Window
-                public List<GameObject> tutorialWindowArray = new List<GameObject>();
-            // Movie
-                public List<GameObject> tutorialMovieArray = new List<GameObject>();
-        // Switches
-            // This variable will help assure the state of the tutorial execution.
-                private bool tutorialExecutionState = false;
-        // Timed-Out Controlls
-            // Enable Feature
-                public bool enableForceTimeOut = true;
-            // Minutes to forcibly time out
-                public float timedOut_Minutes = 210f;
-        // Accessors and Communication
-            // Finished tutorial sequence signal
-                public delegate void TutorialSequenceFinishedSig();
-                public static event TutorialSequenceFinishedSig TutorialFinished;
+            // Tutorial Arrays
+                // Window
+                    public List<GameObject> tutorialWindowArray = new List<GameObject>();
+                // Movie
+                    public List<GameObject> tutorialMovieArray = new List<GameObject>();
+            // Switches
+                // This variable will help assure the state of the tutorial execution.
+                    private bool tutorialExecutionState = false;
+            // Timed-Out Controlls
+                // Enable Feature
+                    public bool enableForceTimeOut = true;
+                // Minutes to forcibly time out
+                    public float timedOut_Seconds = 210f;
+            // Accessors and Communication
+                // Finished tutorial sequence signal
+                    public delegate void TutorialSequenceFinishedSig();
+                    public static event TutorialSequenceFinishedSig TutorialFinished;
         // ---------------------------------
 
 
@@ -108,10 +108,14 @@ namespace MinionMathMayhem_Ship
         /// <param name="randomIndex">
         ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
         /// </param>
+        /// <param name="randomTutorialType">
+        ///     When true, this will randomly select the other tutorial types in which to play or display.  This requires atleast two or more tutorial types.
+        /// </param>
         private void TutorialMain_Driver_Accessor(bool tutorialMovie = false,
                                         bool tutorialWindow = false,
                                         int PlayIndex = 0,
-                                        bool randomIndex = false)
+                                        bool randomIndex = false,
+                                        bool randomTutorialType = false)
         {
             StartCoroutine(TutorialMain_Driver(tutorialMovie, tutorialWindow, PlayIndex, randomIndex));
         } // TutorialMain_Driver_Accessor()
@@ -139,24 +143,77 @@ namespace MinionMathMayhem_Ship
         private IEnumerator TutorialMain_Driver(bool tutorialMovie = false,
                                         bool tutorialWindow = false,
                                         int PlayIndex = 0,
-                                        bool randomIndex = false)
-        {
+                                        bool randomIndex = false,
+                                        bool randomTutorialType = false)
+        {           
             // Make sure there is no errors
             if (TutorialMain_CheckErrors(tutorialMovie, tutorialWindow, PlayIndex))
                 yield break;
             // ----
 
-            // Play the tutorials as requested
-            if (tutorialMovie)
-                yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Movie(PlayIndex, randomIndex)));
-
-            if (tutorialWindow)
-                yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Window(PlayIndex, randomIndex)));
-            // ----
+            // If randomized tutorial type was requested
+            if (randomTutorialType && (tutorialMovie && tutorialWindow))
+            {
+                
+                if (System.Convert.ToBoolean(UnityEngine.Random.Range(0, 2)))
+                    // Movie
+                    yield return (StartCoroutine(TutorialMain_Driver_Play_Movie(PlayIndex, randomIndex)));
+                else
+                    // Window
+                    yield return (StartCoroutine(TutorialMain_Driver_Play_Window(PlayIndex, randomIndex)));
+            }
+            // If randomized tutorial was not requested
+            else
+            {
+                // Play the tutorials as requested
+                    if (tutorialMovie)
+                        yield return (StartCoroutine(TutorialMain_Driver_Play_Movie(PlayIndex, randomIndex)));
+                    if (tutorialWindow)
+                        yield return (StartCoroutine(TutorialMain_Driver_Play_Window(PlayIndex, randomIndex)));
+            }
+            
 
             // Finished tutorial
                 TutorialMain_FinishedSignal();
         } // TutorialMain_Driver()
+
+
+
+        /// <summary>
+        ///     Execute the movie tutorial protocol
+        /// </summary>
+        /// <param name="PlayIndex">
+        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        /// </param>
+        /// <param name="randomIndex">
+        ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
+        /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator TutorialMain_Driver_Play_Movie(int PlayIndex, bool randomIndex)
+        {
+            yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Movie(PlayIndex, randomIndex)));
+        } // TutorialMain_Driver_Play_Movie()
+
+
+
+        /// <summary>
+        ///     Execute the window dialog tutorial protocol
+        /// </summary>
+        /// <param name="PlayIndex">
+        ///     Forcibly play or display the window within the exact index.  Default is 0.
+        /// </param>
+        /// <param name="randomIndex">
+        ///     When true, this will randomize what tutorials (movie and/or window) is to be played; if part of the index array.  Default is false.
+        /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator TutorialMain_Driver_Play_Window(int PlayIndex, bool randomIndex)
+        {
+            yield return (StartCoroutine(TutorialMain_Driver_RunTutorial_Window(PlayIndex, randomIndex)));
+        } // TutorialMain_Driver_Play_Window()
 
 
 
@@ -276,18 +333,26 @@ namespace MinionMathMayhem_Ship
         {
             // Declarations and intializations
             // ----
+                GameObject tutorialObject = tutorialMovie ? tutorialMovieArray[index] : tutorialWindowArray[index];
+                IEnumerator checkActiveStatus = CheckActiveStatus(tutorialObject);
                 IEnumerator timeOutScheduler = TimedOutFunction(tutorialMovie, tutorialWindow, index);
                 IEnumerator runTimeExecutionState = RunTimeExecution_StatusCheck();
+                
             // ----
 
             // Start the coroutines
-                StartCoroutine(timeOutScheduler);
+                StartCoroutine(timeOutScheduler); // Run the time out scheduler
+                StartCoroutine(checkActiveStatus); // Check status of the tutorial; is it active or disabled?
 
             yield return StartCoroutine(runTimeExecutionState);
 
-            // if the Timed-Out scheduler is running, destroy the instance
+            // Terminate active coroutines
+                StopCoroutine(checkActiveStatus);
+
+                // if the Timed-Out scheduler is running, destroy the instance
                 if (enableForceTimeOut)
                     StopCoroutine(timeOutScheduler);
+            
             
             // Finished
                 yield break;
@@ -339,7 +404,7 @@ namespace MinionMathMayhem_Ship
                     yield break; // Stop
 
             // Wait for the requested timed-out time schedule
-                yield return new WaitForSeconds(timedOut_Minutes);
+                yield return new WaitForSeconds(timedOut_Seconds);
 
             // Is the tutorials still running?
             if (tutorialExecutionState)
@@ -360,6 +425,30 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
+        ///     Monitors the state of the object if it's active; this function will self terminate once the targetted object is diabled from the hierarchy.
+        /// </summary>
+        /// <param name="tutorialObject">
+        ///     Targgeted object to monitor
+        /// </param>
+        /// <returns>
+        ///     Nothing useful
+        /// </returns>
+        private IEnumerator CheckActiveStatus(GameObject tutorialObject)
+        {
+            do
+            {
+                yield return new WaitForSeconds(0.5f);
+            } while (tutorialObject.activeInHierarchy);
+
+            // Flip the tutorial state variable to signify that the tutorial has finished
+                ToggleTutorialState();
+
+            yield break;
+        } // CheckActiveStatus()
+
+
+
+        /// <summary>
         ///     When a timeout occurs, this function will signal the running tutorial to terminate.
         /// </summary>
         /// <param name="tutorialMovie">
@@ -374,9 +463,9 @@ namespace MinionMathMayhem_Ship
         private void ForcibleKillSignal(bool tutorialMovie, bool tutorialWindow, int index)
         {
             if (tutorialMovie)
-                tutorialMovieArray[index].GetComponent<TutorialMovie_BridgeScript>().Access_Destroy();
+                ToggleObjectActiveState(false, tutorialMovieArray[index]);
             if (tutorialWindow)
-                tutorialWindowArray[index].GetComponent<TutorialWindow_BridgeScript>().Access_Destroy();
+                ToggleObjectActiveState(false, tutorialWindowArray[index]);
         } // ForcibleKillSignal()
 
 
@@ -392,7 +481,7 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void TutorialMain_Play_Movie(int playIndex, bool randomIndex)
         {
-            tutorialMovieArray[playIndex].GetComponent<TutorialMovie_BridgeScript>().ActivateTutorial();
+            ToggleObjectActiveState(true, tutorialMovieArray[playIndex]);
         } // TutorialMain_Play_Movie()
 
 
@@ -408,7 +497,7 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private void TutorialMain_Play_Window(int playIndex, bool randomIndex)
         {
-            tutorialWindowArray[playIndex].GetComponent<TutorialWindow_BridgeScript>().ActivateTutorial();
+            ToggleObjectActiveState(true, tutorialWindowArray[playIndex]);
         } // TutorialMain_Play_Window()
 
 
@@ -515,6 +604,23 @@ namespace MinionMathMayhem_Ship
         {
             tutorialExecutionState = !tutorialExecutionState;
         } // ToggleTutorialState()
+
+
+
+        /// <summary>
+        ///     When true, this will enable the targetted object.
+        ///     When false, this will disable the targetted object.
+        /// </summary>
+        /// <param name="state">
+        ///     Toggles the state inwhich to either enable or disable the targetted object.
+        /// </param>
+        /// <param name="obj">
+        ///     The targetted game object.
+        /// </param>
+        private void ToggleObjectActiveState(bool state, GameObject obj)
+        {
+            obj.SetActive(state);
+        } // ToggleObjectActiveState()
 
 
 

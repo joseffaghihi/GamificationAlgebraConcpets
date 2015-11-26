@@ -7522,7 +7522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d40677d659f7740aef9d2125cab690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableAIKeyFeatures: 0
+  enableAIKeyFeatures: 1
   scriptAI_UserMastery: {fileID: 1208330403}
   scriptAI_UserResponse: {fileID: 1208330402}
   scriptAI_SpawnServicer: {fileID: 1208330406}
@@ -9541,15 +9541,9 @@ MonoBehaviour:
   maxScoreFail: 5
   textWinOrLose: {fileID: 1398285122}
   scriptScore: {fileID: 1430447471}
-  scriptTutorial: {fileID: 33354903}
   scriptGameEvent: {fileID: 1430447472}
-  scriptSpawnController: {fileID: 1430447473}
   heartbeat: 0
   heartbeatTimer: 2
-  objectTutorial_Movie: {fileID: 964868980}
-  objectTutorial_Canvas: {fileID: 1923049301}
-  objectTutorial_SkipButton: {fileID: 231372669}
-  rulesCanvas: {fileID: 648950075}
 --- !u!114 &1430447471
 MonoBehaviour:
   m_ObjectHideFlags: 0
