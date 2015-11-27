@@ -51,8 +51,6 @@ namespace MinionMathMayhem_Ship
         private void OnEnable()
         {
             GameController.TutorialSequence += TutorialMain_Driver_Accessor;
-            TutorialMovie_BridgeScript.TutorialEnded += ToggleTutorialState;
-            TutorialWindow_BridgeScript.TutorialEnded += ToggleTutorialState;
         } // OnEnable()
 
 
@@ -64,8 +62,6 @@ namespace MinionMathMayhem_Ship
         private void OnDisable()
         {
             GameController.TutorialSequence -= TutorialMain_Driver_Accessor;
-            TutorialMovie_BridgeScript.TutorialEnded -= ToggleTutorialState;
-            TutorialWindow_BridgeScript.TutorialEnded -= ToggleTutorialState;
         } // OnDisable()
 
 
