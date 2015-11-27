@@ -34,7 +34,7 @@ namespace MinionMathMayhem_Ship
             // Listen for tutorial sequence started
                 GameController.TutorialStateStart += MusicTurner_Reduce;
             // Listen for tutorial sequence stopped
-                MoviePlay.TutorialStateEnded += MusicTurner_Return;
+                TutorialMovie_0.TutorialStateEnded += MusicTurner_Return;
         } // OnEnable()
 
 
@@ -45,7 +45,7 @@ namespace MinionMathMayhem_Ship
             // Listen for tutorial sequence started
                 GameController.TutorialStateStart -= MusicTurner_Reduce;
             // Listen for tutorial sequence stopped
-                MoviePlay.TutorialStateEnded -= MusicTurner_Return;
+                TutorialMovie_0.TutorialStateEnded -= MusicTurner_Return;
         } // OnDisable()
 
 
