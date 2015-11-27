@@ -6935,7 +6935,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 964868980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e82e318e69584d96bf7c1983b28b5ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 233d143063d0e184fa06dfae1665ba3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movieRenderer: {fileID: 0}
@@ -7199,6 +7199,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1023917451}
+  - 114: {fileID: 1023917452}
   m_Layer: 0
   m_Name: Movie_0
   m_TagString: Untagged
@@ -7220,6 +7221,17 @@ Transform:
   - {fileID: 1923049302}
   m_Father: {fileID: 1397695629}
   m_RootOrder: 0
+--- !u!114 &1023917452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1023917450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60237e09c9e3a9844adc0e128efcf971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1046607954
 GameObject:
   m_ObjectHideFlags: 0
@@ -7295,7 +7307,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1059013159}
-  - 114: {fileID: 1059013160}
   m_Layer: 0
   m_Name: Windows
   m_TagString: Untagged
@@ -7316,19 +7327,6 @@ Transform:
   - {fileID: 665352034}
   m_Father: {fileID: 918589594}
   m_RootOrder: 1
---- !u!114 &1059013160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1059013158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39b79774814b984994a80049abde781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rulesCanvas: {fileID: 648950075}
-  viewTutorialAgainCanvas: {fileID: 1834801678}
 --- !u!1 &1087691905
 GameObject:
   m_ObjectHideFlags: 0
@@ -8110,7 +8108,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1397695629}
-  - 114: {fileID: 1397695630}
   m_Layer: 0
   m_Name: Movies
   m_TagString: Untagged
@@ -8131,20 +8128,6 @@ Transform:
   - {fileID: 1023917451}
   m_Father: {fileID: 918589594}
   m_RootOrder: 0
---- !u!114 &1397695630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1397695628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49dfdf533b76294593ff9125cf43278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectTutorial_Movie: {fileID: 964868980}
-  objectTutorial_Canvas: {fileID: 1923049301}
-  objectTutorial_SkipButton: {fileID: 231372669}
 --- !u!1 &1398285120
 GameObject:
   m_ObjectHideFlags: 0
@@ -14077,8 +14060,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066281924}
-  m_LocalRotation: {x: .0461521409, y: -.0305594821, z: .00141251332, w: .998465896}
-  m_LocalPosition: {x: .504253209, y: -1.98418176, z: -32.9825401}
+  m_LocalRotation: {x: -.0329922773, y: -.011992964, z: .000393932045, w: -.999383569}
+  m_LocalPosition: {x: -.319467336, y: -3.72008705, z: -24.6829472}
   m_LocalScale: {x: .319887102, y: .319887012, z: .319887012}
   m_Children: []
   m_Father: {fileID: 871709228}
