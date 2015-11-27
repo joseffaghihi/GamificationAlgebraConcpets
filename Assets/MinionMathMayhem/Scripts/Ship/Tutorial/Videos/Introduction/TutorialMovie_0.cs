@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace MinionMathMayhem_Ship
 {
-    public class MoviePlay : MonoBehaviour
+    public class TutorialMovie_0 : MonoBehaviour
     {
         /*                          TUTORIAL MOVIE
          * This script will run the movie tutorial when activated - automatically
@@ -30,10 +31,9 @@ namespace MinionMathMayhem_Ship
                 public Renderer movieRenderer;
             // Movie Texture
                 public MovieTexture movieTexture;
-
-            // Tutorial State: Finished
-                public delegate void TutorialStateEventEnded();
-                public static event TutorialStateEventEnded TutorialStateEnded;
+            // Accessors and Communication
+                public delegate void TutorialStateEndedEvent();
+                public static event TutorialStateEndedEvent TutorialStateEnded;
         // ---------------------------------
 
 
@@ -48,11 +48,11 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            // Execute the routine check-up; assure that the tutorial is playing
-                StartCoroutine(Movie_RoutineCheckup());
-            
             // Play the move
                 Movie_Play();
+
+            // Execute the routine check-up; assure that the tutorial is playing
+                StartCoroutine(Movie_RoutineCheckup());
         } // OnEnable()
 
 
@@ -119,7 +119,7 @@ namespace MinionMathMayhem_Ship
                 yield return new WaitForSeconds(.3f);
             } while (movieTexture.isPlaying);
 
-            // Close the tutorial
+            // When the movie has ended, broadcast event that this tutorial has ended.
                 TutorialStateEnded();
         } // Movie_RoutineCheckup()
     } // End of Class
