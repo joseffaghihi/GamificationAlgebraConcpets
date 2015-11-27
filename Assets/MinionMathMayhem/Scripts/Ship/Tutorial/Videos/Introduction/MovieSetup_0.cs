@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace MinionMathMayhem_Ship
 {
@@ -14,6 +15,12 @@ namespace MinionMathMayhem_Ship
          */
 
 
+        #region Declarations and Initializations
+            public List<GameObject> tutorialObjectArray = new List<GameObject>();
+        #endregion
+
+
+
         /// <summary>
         ///     Built-In Unity Function
         ///     Automatically executes as soon as the actor is activated within the virtual world.
@@ -24,6 +31,7 @@ namespace MinionMathMayhem_Ship
         {
             TutorialSkipButton.SkipTutorialDemand += Kill;
             TutorialMovie_0.TutorialStateEnded += Kill;
+            ToggleGameObjects_Array(true);
         } // OnEnable()
 
 
@@ -38,7 +46,25 @@ namespace MinionMathMayhem_Ship
         {
             TutorialSkipButton.SkipTutorialDemand -= Kill;
             TutorialMovie_0.TutorialStateEnded -= Kill;
+            ToggleGameObjects_Array(false);
         } // OnDisable()
+
+
+
+        /// <summary>
+        ///     Activates the essential tutorial components necessary for the functionality to work as intended.
+        /// </summary>
+        /// <param name="state">
+        ///     When true, enables all of the listed GameObjects tied into the array.
+        ///     When false, disables all of the listed GameObjects tied into the array.
+        /// </param>
+        private void ToggleGameObjects_Array(bool state)
+        {
+            for (int i = 0; i < tutorialObjectArray.Count; i++)
+            {
+                tutorialObjectArray[i].SetActive(state);
+            }
+        } // ToggleGameObjects_Array()
 
 
 
