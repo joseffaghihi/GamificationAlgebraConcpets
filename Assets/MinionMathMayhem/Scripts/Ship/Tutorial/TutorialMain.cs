@@ -409,8 +409,8 @@ namespace MinionMathMayhem_Ship
                 TutorialMain_Error(4);
 
                 // Flip the tutorial execution state
-                if (tutorialExecutionState)
-                    ToggleTutorialState();
+                //if (tutorialExecutionState)
+                //    ToggleTutorialState();
             }
 
             // No tutorials are running, stop.
