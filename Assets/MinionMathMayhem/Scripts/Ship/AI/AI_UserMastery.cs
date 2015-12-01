@@ -113,13 +113,7 @@ namespace MinionMathMayhem_Ship
                 {
                     // DEBUG MODE
                     if (_debugMode_ == true)
-                    {
-                        // Debug Stats
-                        Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
-                        Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
-                        Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
-                        Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
-                    } // DEBUG MODE
+                        DebugUserStats();
 
 
                     // User understands the material thus far
@@ -131,6 +125,19 @@ namespace MinionMathMayhem_Ship
                         TutorialSession();
                 } // if AI active and monitoring
         } // Main()
+
+
+
+        /// <summary>
+        ///     This function will merely spit out information about the user's current score and statistics were available
+        /// </summary>
+        private void DebugUserStats()
+        {
+            Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
+            Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
+            Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
+            Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
+        } // DebugUserStats()
 
 
 
