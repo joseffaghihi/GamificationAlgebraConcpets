@@ -113,7 +113,7 @@ namespace MinionMathMayhem_Ship
                                         bool randomIndex = false,
                                         bool randomTutorialType = false)
         {
-            StartCoroutine(TutorialMain_Driver(tutorialMovie, tutorialWindow, PlayIndex, randomIndex));
+            StartCoroutine(TutorialMain_Driver(tutorialMovie, tutorialWindow, PlayIndex, randomIndex, randomTutorialType));
         } // TutorialMain_Driver_Accessor()
 
 
@@ -150,7 +150,6 @@ namespace MinionMathMayhem_Ship
             // If randomized tutorial type was requested
             if (randomTutorialType && (tutorialMovie && tutorialWindow))
             {
-                
                 if (System.Convert.ToBoolean(UnityEngine.Random.Range(0, 2)))
                     // Movie
                     yield return (StartCoroutine(TutorialMain_Driver_Play_Movie(PlayIndex, randomIndex)));
