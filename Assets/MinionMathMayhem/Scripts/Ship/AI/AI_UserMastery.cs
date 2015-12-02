@@ -47,6 +47,10 @@ namespace MinionMathMayhem_Ship
                 private static short userPrefArrayIndexSize = 3;
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
                 private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
+            // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
+                public short scanUserStatsTries = 5;
+            // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
+                private int userPrefNextScan = 0;
             // Challenge Game Environment
                 // BITFIELD EMULATED IDENTIFIER
                     // 0 - Empty or Default
@@ -109,7 +113,7 @@ namespace MinionMathMayhem_Ship
         public void Main()
         {
                 // Only run when the possible points has reached a certain value and if the game isn't over.
-                if (userPrefScorePossible >= userPrefScorePossible_EnableAI && !gameOver)
+                if ((userPrefScorePossible >= userPrefScorePossible_EnableAI && !gameOver) && ((userPrefNextScan == userPrefScorePossible) || userPrefNextScan == 0))
                 {
                     // DEBUG MODE
                     if (_debugMode_ == true)
@@ -123,6 +127,9 @@ namespace MinionMathMayhem_Ship
                     // User may not understand the material
                     else
                         TutorialSession();
+
+                    // Update when the next scan should take place
+                        userPrefNextScan = userPrefScorePossible + scanUserStatsTries;
                 } // if AI active and monitoring
         } // Main()
 
