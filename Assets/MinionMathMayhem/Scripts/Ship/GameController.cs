@@ -285,8 +285,6 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void AI_OnDemandRequest_Tutorial()
         {
-            // DEBUG
-                Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
             // Stop the GameManager with this variable
                 TutorialMode_Ended();
             // Kill Game Manager
