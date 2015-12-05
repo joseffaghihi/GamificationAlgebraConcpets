@@ -34,6 +34,8 @@ namespace MinionMathMayhem_Ship
                 private Text letterBox;
             // Selected Index
                 private char indexChar;
+            // Previous random number
+                private int oldRand;
         // ----
 
 
@@ -61,7 +63,7 @@ namespace MinionMathMayhem_Ship
         private void Generate()
         {
             // Use the randomized var to choose which index to select
-            switch (Random.Range(1, 4))
+            switch (MoreRandomWithRandomThatIsRandom())
             {
                 case 1:
                     letterBox.text = "A";
@@ -82,6 +84,37 @@ namespace MinionMathMayhem_Ship
                     break;
             } // Switch
         } // Generate()
+
+
+
+        /// <summary>
+        ///     This function will avoid repetition with the previous old random generated sequence
+        /// </summary>
+        /// <param name="randMin">
+        ///     Minimum integer value for random range
+        /// </param>
+        /// <param name="randMax_EXCLUSIVE">
+        ///     Maximum [EXCLUSIVE] integer value for the random range
+        /// </param>
+        /// <returns>
+        ///     Returns a new random value that shouldn't be the 
+        /// </returns>
+        private int MoreRandomWithRandomThatIsRandom(int randMin = 1, int randMax_EXCLUSIVE = 4)
+        {
+            int newRand;
+
+            // Make sure that the previously generated random number does is not the same as the newly generated number
+            do
+            {
+                newRand = Random.Range(randMin, randMax_EXCLUSIVE);
+
+            } while (newRand == oldRand);
+
+            // Store the new value to the previously generated sequence
+                oldRand = newRand;
+
+            return oldRand;
+        } // MoreRandomWithRandomThatIsRandom()
 
 
 

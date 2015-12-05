@@ -96,6 +96,8 @@ namespace MinionMathMayhem_Ship
                 FinalDestroyer.GameEventSignal += Driver;
             // Kill minion's from the scene
                 GameController.GameStateEnded += MinionGenocide;
+            // Kill minion's from the scene [x2]
+                GameController.KillMinionsDemand += MinionGenocide;
         } // OnEnable()
 
 
@@ -107,6 +109,8 @@ namespace MinionMathMayhem_Ship
                 FinalDestroyer.GameEventSignal -= Driver;
             // Kill minion's from the scene
                 GameController.GameStateEnded -= MinionGenocide;
+            // Kill minion's from the scene [x2]
+                GameController.KillMinionsDemand -= MinionGenocide;
         } // OnDisable()
 
 

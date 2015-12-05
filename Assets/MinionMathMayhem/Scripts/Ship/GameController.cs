@@ -35,7 +35,7 @@ namespace MinionMathMayhem_Ship
             // [GameManager] Enables or disables the spawners
                 private bool spawnMinions = false;
             // [GameManager] Tutorial Ended switch
-                private bool gameTutorialEnded = false;
+                private bool gameTutorialEnded = true;
             // [GameManager] Game Manager Function via Interface
                 private static IEnumerator gameManager;
 
@@ -56,6 +56,9 @@ namespace MinionMathMayhem_Ship
                 // Game Over
                     public delegate void GameStateEventEnded();
                     public static event GameStateEventEnded GameStateEnded;
+                // Kill Minions on Demand
+                    public delegate void KillMinionsDemandEvent();
+                    public static event KillMinionsDemandEvent KillMinionsDemand;
                 // Game Restarted
                     public delegate void GameStateEventRestart();
                     public static event GameStateEventRestart GameStateRestart;
@@ -271,24 +274,18 @@ namespace MinionMathMayhem_Ship
 
                     // Brief wait time to ease the CPU
                         yield return new WaitForSeconds(0.5f);
-                Debug.Log("GAMEMANAGER: Looping");
             } // while loop
         } // GameManager()
 
 
 
-
-        // TODO: When activated: Stop spawner, Break from Spine, then Resume game once deactivated
         /// <summary>
         ///     When the AI Mastery reports that the user needs more re-enforcement demonstrations; backend-protocol
         /// </summary>
         private void AI_OnDemandRequest_Tutorial()
         {
-            // DEBUG
-                Debug.Log("AI MASTERY REPORTED THAT THE USER NEEDS HELP!");
             // Stop the GameManager with this variable
                 TutorialMode_Ended();
-                Debug.Log("TutorialMode = " + gameTutorialEnded);
             // Kill Game Manager
                 StopCoroutine(gameManager);
             // Execute the backend
@@ -390,15 +387,54 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private IEnumerator GameExecute_Tutorial(bool tutorialMovie, bool tutorialWindow, int tutorialIndexSelect, bool randomSwitch=false, bool randomTutorialType=false)
         {
+            // Signify that the tutorial is running; used internally in this class
+                if (gameTutorialEnded)
+                    TutorialMode_Ended(); // Make sure that the variable is false
+
+            // Change the scene state to 'Clear'
+                SceneState(true);
+
             // Activate the tutorials
                 TutorialSequence(tutorialMovie, tutorialWindow, tutorialIndexSelect, randomSwitch, randomTutorialType);
 
             // Wait for the tutorials to end
                 yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
 
+            // Restore the scene state back to normal
+                SceneState(false);
+
             // End
-                TutorialStateEnd();
+                TutorialStateEnd(); // Globally in this scene
         } // GameExecute_Tutorial()
+
+
+
+        /// <summary>
+        ///     Changes the state of the scene automatically by either clearing the scene of minions
+        ///         and changing the state of the minion spawner.
+        /// </summary>
+        /// <param name="mode">
+        ///     0 = Clear the scene: Stop minion spawner, kill minions
+        ///     1 = Resume game: Revert minion spawner state.
+        /// </param>
+        private void SceneState(bool mode)
+        {
+            if (mode)
+            {
+                // Stop the Spawners if active
+                    if (spawnMinions)
+                        FlipMinionSpawner();
+
+                // Kill any minions from the scene (if any)
+                    KillMinionsDemand();
+            }
+            else
+            {
+                // Stop the Spawners if active
+                    if (!spawnMinions)
+                        FlipMinionSpawner();
+            }
+        } // SceneState()
 
 
 

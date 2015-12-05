@@ -42,12 +42,15 @@ namespace MinionMathMayhem_Ship
             // Activate this AI component when the possible score has reached been reached by specific value
                 // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
                 //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
-                //          Set to -1 to disable the AI component or unlink from AI Main.
                 private static short userPrefScorePossible_EnableAI = 10;
             // User Performance Array
                 private static short userPrefArrayIndexSize = 3;
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
                 private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
+            // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
+                public short scanUserStatsTries = 5;
+            // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
+                private int userPrefNextScan = 0;
             // Challenge Game Environment
                 // BITFIELD EMULATED IDENTIFIER
                     // 0 - Empty or Default
@@ -109,21 +112,12 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         public void Main()
         {
-            // If the AI Component is turned on
-            if (userPrefScorePossible_EnableAI != -1)
-            {
                 // Only run when the possible points has reached a certain value and if the game isn't over.
-                if (userPrefScorePossible >= userPrefScorePossible_EnableAI && !gameOver)
+                if ((userPrefScorePossible >= userPrefScorePossible_EnableAI && !gameOver) && ((userPrefNextScan == userPrefScorePossible) || userPrefNextScan == 0))
                 {
                     // DEBUG MODE
                     if (_debugMode_ == true)
-                    {
-                        // Debug Stats
-                        Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
-                        Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
-                        Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
-                        Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
-                    } // DEBUG MODE
+                        DebugUserStats();
 
 
                     // User understands the material thus far
@@ -133,9 +127,24 @@ namespace MinionMathMayhem_Ship
                     // User may not understand the material
                     else
                         TutorialSession();
+
+                    // Update when the next scan should take place
+                        userPrefNextScan = userPrefScorePossible + scanUserStatsTries;
                 } // if AI active and monitoring
-            } // If AI component is enabled
         } // Main()
+
+
+
+        /// <summary>
+        ///     This function will merely spit out information about the user's current score and statistics were available
+        /// </summary>
+        private void DebugUserStats()
+        {
+            Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
+            Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
+            Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
+            Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
+        } // DebugUserStats()
 
 
 
