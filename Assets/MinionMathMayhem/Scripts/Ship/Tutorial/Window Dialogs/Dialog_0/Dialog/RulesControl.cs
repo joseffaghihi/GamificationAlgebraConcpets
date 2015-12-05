@@ -35,7 +35,6 @@ namespace MinionMathMayhem_Ship {
                 Destroy(gameObject);
             }
             GetRulesReferences();
-            control = true;
         }
 
 
@@ -43,6 +42,13 @@ namespace MinionMathMayhem_Ship {
         void Start()
         {
             RulesPageFlip();
+        }
+
+
+        void OnEnable()
+        {
+            // This variable must be true at start-up; everytime when the GameObject parent is active in the scene.  [NG]
+            control = true;
         }
 
 
