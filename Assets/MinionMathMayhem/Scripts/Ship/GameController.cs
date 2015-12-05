@@ -274,7 +274,6 @@ namespace MinionMathMayhem_Ship
 
                     // Brief wait time to ease the CPU
                         yield return new WaitForSeconds(0.5f);
-                Debug.Log("GAMEMANAGER: Looping");
             } // while loop
         } // GameManager()
 
