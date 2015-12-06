@@ -40,6 +40,11 @@ namespace MinionMathMayhem_Ship
                            maxValue;
             // Accessors and Communication
                 private Text problemBox;
+            // Check if all indexes are in one side or mixed
+                // 0 = Mixed
+                // 1 = Left
+                // 2 = Right
+                    private short complexitySorting = 0;
             // Complexity Level
                 // False: No terms shift to the right, all terms stay on the left.
                 // True: All terms can shift left or right
@@ -110,6 +115,8 @@ namespace MinionMathMayhem_Ship
                 Generate_Indexes();
             // Disallow all indexes to be 'zero'
                 Prevent_NoEquation();
+            // Check if the equation is on the left side, right side, or mixed.
+                CheckIndexesSorting();
             // Translate the Indexes
                 Generate_TranslateIndexes();
             // Sort the indexes in cached arrays
@@ -132,6 +139,24 @@ namespace MinionMathMayhem_Ship
         // ==================================================
         // --------------------------------------------------
 
+
+        /// <summary>
+        ///     This function will determine which 
+        /// </summary>
+        private void CheckIndexesSorting()
+        {
+            // Is the index sorting on the 'Left' side?
+            if (((char)index_A_Prop[1] == 'L') && ((char)index_B_Prop[1] == 'L') && ((char)index_C_Prop[1] == 'L'))
+                complexitySorting = 1;
+            // Is the index sorting on the 'Right' side?
+            else if (((char)index_A_Prop[1] == 'R') && ((char)index_B_Prop[1] == 'R') && ((char)index_C_Prop[1] == 'R'))
+                complexitySorting = 2;
+            // Assume the index sorting is mixed.
+            else
+                complexitySorting = 0;
+
+            Debug.Log("Complexity Sorting: " + complexitySorting);
+        } // CheckIndexesSorting()
 
 
 
@@ -336,21 +361,24 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Translate the index properties into the index variables for ready use.
-        // NOTE: Remember that the variables 'index_[A|B|C]' are for the minions for checking the answer.
+        /// <summary>
+        ///     Translate the index properties into the index variables for ready use; but if the indexes are -
+        ///         all on the left or right side, do not negate the values.
+        ///     NOTE: Remember that the variables 'index_[A|B|C]' are for the minions for checking the answer.
+        /// </summary>
         private void Generate_TranslateIndexes()
         {
-            if ((char)index_A_Prop[1] == (char)'R')
+            if (((char)index_A_Prop[1] == (char)'R') && complexitySorting == 0)
                 index_A = -((int)index_A_Prop[0]);
             else
                 index_A = ((int)index_A_Prop[0]);
 
-            if ((char)index_B_Prop[1] == (char)'R')
+            if (((char)index_B_Prop[1] == (char)'R') && complexitySorting == 0)
                 index_B = -((int)index_B_Prop[0]);
             else
                 index_B = ((int)index_B_Prop[0]);
 
-            if ((char)index_C_Prop[1] == (char)'R')
+            if (((char)index_C_Prop[1] == (char)'R') && complexitySorting == 0)
                 index_C = -((int)index_C_Prop[0]);
             else
                 index_C = ((int)index_C_Prop[0]);
