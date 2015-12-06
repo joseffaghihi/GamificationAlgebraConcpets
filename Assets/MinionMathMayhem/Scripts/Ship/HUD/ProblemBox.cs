@@ -108,6 +108,8 @@ namespace MinionMathMayhem_Ship
                 InitializeIndexProp();
             // Generate the new equation indexes
                 Generate_Indexes();
+            // Disallow all indexes to be 'zero'
+                Prevent_NoEquation();
             // Translate the Indexes
                 Generate_TranslateIndexes();
             // Sort the indexes in cached arrays
@@ -152,6 +154,25 @@ namespace MinionMathMayhem_Ship
                 index_C_Prop[0] = ((int)GetRandomNumber());
                 index_C_Prop[1] = ((char)GetRandomPosition());
         } // Generate_Indexes()
+
+
+
+        /// <summary>
+        ///     Prevent all indexes to be zero; thus giving us no equation at all
+        /// 
+        ///     CRITICAL ATTENTION:
+        ///         This function has the potential to kill Unity's main working thread!
+        ///         If the Quadratic Indexes continue to be set as '0, 0, 0', this function will continue to loop until atleast one index is not '0'.
+        /// </summary>
+        private void Prevent_NoEquation()
+        {
+            while (((int)index_A_Prop[0] == 0) && ((int)index_B_Prop[0] == 0) && ((int)index_C_Prop[0] == 0))
+            {
+                Debug.LogWarning("[WARNING] Regenerating algebratic equation!" + "\n" +
+                    "If Unity stops responding, this is likely the cause.");
+                Generate_Indexes();
+            } // Prevent 0's
+        } // Prevent_NoEquation()
 
 
 
