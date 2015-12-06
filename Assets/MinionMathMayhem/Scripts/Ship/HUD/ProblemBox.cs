@@ -219,42 +219,50 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Evaluate the index fields
-        // This will pre-determine the possible combinations
+        /// <summary>
+        ///     Evaluates the index fields
+        ///     This will try to pre-determine the possible combinations of the algebratic expression from one side, and also try to not display a zero coefficient.
+        /// </summary>
+        /// <param name="listIndexField">
+        ///     Number set array
+        /// </param>
+        /// <returns>
+        ///     String pattern of the algebratic expression from a specific side.
+        /// </returns>
         private string EvaluateIndexFields(List<int?> listIndexField)
         {
             //Check combinations for: Index A
             // Ax^2 + Bx + C
-                if (listIndexField[0] != null && listIndexField[1] != null && listIndexField[2] != null)
+                if ((listIndexField[0] != null && listIndexField[0] != 0) && (listIndexField[1] != null && listIndexField[1] != 0) && (listIndexField[2] != null && listIndexField[2] != 0))
                     return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[1]) + " " + Generate_Display_TranslateValues(listIndexField[1]) + "x" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
 
             // Ax^2 + Bx
-                else if (listIndexField[0] != null && listIndexField[1] != null)
+                else if ((listIndexField[0] != null && listIndexField[0] != 0) && (listIndexField[1] != null && listIndexField[1] != 0))
                     return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[1]) + " " + Generate_Display_TranslateValues(listIndexField[1]) + "x";
 
             // Ax^2 + C
-                else if (listIndexField[0] != null && listIndexField[2] != null)
+                else if ((listIndexField[0] != null && listIndexField[0] != 0) && (listIndexField[2] != null && listIndexField[2] != 0))
                     return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
 
             // Ax^2
-                else if (listIndexField[0] != null)
+                else if ((listIndexField[0] != null && listIndexField[0] != 0))
                     return listIndexField[0].ToString() + "x^2";
             // -----------
 
 
             // Check combinations for: Index B
             // Bx + C
-                if (listIndexField[1] != null && listIndexField[2] != null)
+                if ((listIndexField[1] != null && listIndexField[1] != 0) && (listIndexField[2] != null && listIndexField[2] != 0))
                     return listIndexField[1].ToString() + "x" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
             // Bx
-                else if (listIndexField[1] != null)
+                else if ((listIndexField[1] != null && listIndexField[1] != 0))
                     return listIndexField[1].ToString() + "x";
             // -----------
 
 
             // Check combinations for: Index C
             // c
-                if (listIndexField[2] != null)
+                if ((listIndexField[2] != null && listIndexField[2] != 0))
                     return listIndexField[2].ToString();
             // -----------
 
