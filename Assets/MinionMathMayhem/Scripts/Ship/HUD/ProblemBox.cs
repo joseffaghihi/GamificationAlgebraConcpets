@@ -154,8 +154,6 @@ namespace MinionMathMayhem_Ship
             // Assume the index sorting is mixed.
             else
                 complexitySorting = 0;
-
-            Debug.Log("Complexity Sorting: " + complexitySorting);
         } // CheckIndexesSorting()
 
 
