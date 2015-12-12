@@ -35,6 +35,12 @@ namespace MinionMathMayhem_Ship
             private static short[] numberSetArray = new short[20];
         // Highlight Array Index
             private static short arrayCounter = 0;
+        // OPTIONS
+            // Do not allow the answer to be repeated
+                public bool optRepeatedAnswers = false;
+                private static bool optRepeatedAnswers_Internal;
+            // Original answer never placed at the begnning of array
+                public bool optAnswerInBeginning = false;
         // Objects
             // Problem Box - To fetch random number
                 private static ProblemBox scriptProblemBox;
@@ -77,6 +83,7 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private static void FillArray()
         {
+
             // Fill the array
             for (short i = 0; i < numberSetArray.Length; i++)
             {
@@ -91,6 +98,20 @@ namespace MinionMathMayhem_Ship
             Debug.Log("Answer was selected at index: " + randKey);
             Output();
         } // FillArray()
+
+
+
+        /// <summary>
+        ///     Place the answer within the array
+        ///     But hopefully place the answer not at the 
+        /// </summary>
+        private static void FillArray_AnswerPlacement()
+        {
+            //if (optAnswerInBeginning)
+            //{
+
+            //}
+        }
 
 
 
