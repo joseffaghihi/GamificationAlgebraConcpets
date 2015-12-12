@@ -30,7 +30,9 @@ namespace MinionMathMayhem_Ship
 
         #region Declaration and Initializations
         // Number set array
-            private int[] numberSetArray = new int[20];
+            private static int[] numberSetArray = new int[20];
+        // Highlight Array Index
+            private static short arrayCounter = 0;
 
         #endregion
     }
