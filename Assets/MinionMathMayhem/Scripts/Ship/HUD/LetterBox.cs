@@ -36,6 +36,8 @@ namespace MinionMathMayhem_Ship
                 private char indexChar;
             // Previous random number
                 private int oldRand;
+            // Accessors and Communication
+                private GameController scriptGameController;
         // ----
 
 
@@ -46,15 +48,6 @@ namespace MinionMathMayhem_Ship
             // Reference initialization
                 letterBox = GetComponent<Text>();
         } // Awake()
-
-
-
-        // Use this for initialization
-        private void Start()
-        {
-            // Select an index address
-                Generate();
-        } // Start()
 
 
 
@@ -123,6 +116,7 @@ namespace MinionMathMayhem_Ship
         {
             Generate();
         } // Access_Generate()
+
 
 
         // This function will allow other scripts to determine what index is selected.

@@ -80,10 +80,13 @@ namespace MinionMathMayhem_Ship
                 // Request Grace-Time Period; Broadcast Event
                     public delegate void RequestGraceTimePeriodSig();
                     public static event RequestGraceTimePeriodSig RequestGraceTime;
-		public GameObject scoreText;
-		public GameObject wrongScoreText;
-		private Animator scoreTextAnim;
-		private Animator wrongScoreTextAnim;
+                // Minion Random Number Set
+                    private Minion_RandomSetNumbers scriptMinion_RandomSetNumbers;
+                // HUD Elements
+		            public GameObject scoreText;
+		            public GameObject wrongScoreText;
+		            private Animator scoreTextAnim;
+		            private Animator wrongScoreTextAnim;
         // ----
 
 
@@ -129,11 +132,13 @@ namespace MinionMathMayhem_Ship
             // feedback animation
                     feedbackAnims = feedbackController.GetComponent<FeedbackAnimations>(); // -------DC------- // 9/11/15
 			// score and wrongScore animator initializations;
-					scoreAnim = score.GetComponent<Animator>();
-					wrongScoreAnim = wrongScore.GetComponent<Animator>();
+				scoreAnim = score.GetComponent<Animator>();
+				wrongScoreAnim = wrongScore.GetComponent<Animator>();
 			// score and wrongScore animators
-			scoreTextAnim = scoreText.GetComponent<Animator>();
-			wrongScoreTextAnim = wrongScoreText.GetComponent<Animator>();
+			    scoreTextAnim = scoreText.GetComponent<Animator>();
+			    wrongScoreTextAnim = wrongScoreText.GetComponent<Animator>();
+            // Minion Random Number Set
+                scriptMinion_RandomSetNumbers = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_RandomSetNumbers>();
         } // Awake()
 
 
@@ -141,11 +146,30 @@ namespace MinionMathMayhem_Ship
         // This function is immediately executed once the actor is in the game scene.
         private void Start()
         {
+            // Sequentialized Order Elements [Generating equation, index letter, minion's rand num set]
+                FirstRun();
             // Reference initialization
                 whatIsDisplay = GetComponent<WhatIsDisplay>();
             // First make sure that all the scripts and actors are properly linked
                 CheckReferences();
         } // Start()
+
+
+
+        /// <summary>
+        ///     This function helps resolve un-sequatial issues by enforcing sequential execution
+        ///         This will generate the equation, randomly select an Quadratic Index, and any
+        ///         other elements as needed.
+        /// </summary>
+        private void FirstRun()
+        {
+            // Create a new equation via Problem Box
+                scriptProblemBox.Access_Generate();
+            // Randomly select index
+                scriptLetterBox.Access_Generate();
+            // Set the randomized number sets for the minions
+                scriptMinion_RandomSetNumbers.Access_FillArray();
+        } // FirstRun()
 
 
 
@@ -263,6 +287,7 @@ namespace MinionMathMayhem_Ship
                 // Generate a new equation
                     scriptProblemBox.Access_Generate();
                     scriptLetterBox.Access_Generate();
+                    scriptMinion_RandomSetNumbers.Access_FillArray();
                 // Notify the user of index update
             } // If
         } // AnswerCorrect_Generate()
@@ -329,7 +354,6 @@ namespace MinionMathMayhem_Ship
 
         private int GetQuadraticEquation_Index()
         {
-
             switch (scriptLetterBox.Access_SelectedIndex)
             {
                 case 'A':
@@ -342,6 +366,19 @@ namespace MinionMathMayhem_Ship
                     return 9999;
             } // Switch
         } // GetQuadraticEquation_Index()
+
+
+
+        /// <summary>
+        ///     Fetch the correct answer expected from the end user
+        /// </summary>
+        /// <returns>
+        ///     Expected answer
+        /// </returns>
+        public int Access_GetQuadraticEquation_Index()
+        {
+            return (GetQuadraticEquation_Index());
+        } // Access_GetQuadraticEquation_Index()
 
 
 

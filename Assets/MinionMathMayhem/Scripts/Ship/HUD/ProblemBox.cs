@@ -62,15 +62,6 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // This script is called once, after the actor has been placed in the scene
-        private void Start()
-        {
-            // Initialize the Quadratic Equation indexes
-                Generate();
-        } // Start()
-
-
-
         // Initialize the required indexes that will be used for the index properties.
         private void InitializeIndexProp()
         {
