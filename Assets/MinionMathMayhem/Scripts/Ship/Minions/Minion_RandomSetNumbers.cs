@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace MinionMathMayhem_Ship
 {
-    public class Minion_RandomSetNumbers : MonoBehaviour
+    public class Minion_RandomSetNumbers
     {
         /*                          MINION RANDOM SET NUMBERS
          *  This class is designed to generate a specific set of numbers that each minion will be assigned.
