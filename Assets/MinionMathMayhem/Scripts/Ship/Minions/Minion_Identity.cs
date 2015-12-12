@@ -30,8 +30,8 @@ namespace MinionMathMayhem_Ship
                 public Text numText;
 
             // Accessors and Communication
-                // Use the RNG from ProblemBox as contains the boundary limit.
-                    private ProblemBox problemBox;
+                // Hook onto the Randomization Number Set to retrive a unique number
+                    //private Minion_RandomSetNumbers scriptMinion_RandomSetNumbers;
         // ----
 
 
@@ -43,7 +43,7 @@ namespace MinionMathMayhem_Ship
             // Initialize the component
                 numText = GetComponentInChildren<Text>();
             // Find the Problem Box
-                problemBox = GameObject.FindGameObjectWithTag("RandomNumberGenerator").GetComponent<ProblemBox>();
+                //scriptMinion_RandomSetNumbers = GameObject.FindGameObjectWithTag("GameController").GetComponent<Minion_RandomSetNumbers>();
         } // Awake()
 
 
@@ -52,7 +52,7 @@ namespace MinionMathMayhem_Ship
         private void Start()
         {
             // Fetch a random number from the Problem Box script.
-                number = problemBox.Access_GetRandomNumber();
+                number = Minion_RandomSetNumbers.Access_GetNumber();
             // Put the self-assigned unique number on the minion's back
                 numText.text = number.ToString();
         } // Start()

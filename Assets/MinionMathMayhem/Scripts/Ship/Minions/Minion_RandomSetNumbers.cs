@@ -83,23 +83,14 @@ namespace MinionMathMayhem_Ship
                 numberSetArray[i] = (short)scriptProblemBox.Access_GetRandomNumber();
             }
 
+            // Fetch a random index
             int randKey = Random.Range(0, numberSetArray.Length);
+            // Set the answer to the highlighted index
             numberSetArray[randKey] = FetchAnswer();
 
             Debug.Log("Answer was selected at index: " + randKey);
             Output();
         } // FillArray()
-
-
-
-        /// <summary>
-        ///     Allow other classes to call this function to access the 
-        ///         FillArray() function.  Which generates the randomization set
-        /// </summary>
-        public void Access_FillArray()
-        {
-            FillArray();
-        } // Access_FillArray()
 
 
 
@@ -113,5 +104,51 @@ namespace MinionMathMayhem_Ship
         {
             return (short)scriptGameEvent.Access_GetQuadraticEquation_Index();
         } // FetchAnswer()
+
+
+
+        /// <summary>
+        ///     Retrieve the array elements and pass it to the minions
+        /// </summary>
+        /// <returns>
+        ///     Randomized number from the array
+        /// </returns>
+        private static int GetNumber()
+        {
+            if (numberSetArray.Length == arrayCounter)
+            {
+                // Refill the array
+                arrayCounter = 0;
+                FillArray();
+            }
+
+            int value = numberSetArray[arrayCounter];
+            arrayCounter++;
+            return value;
+        } // GetNumber()
+
+
+
+        /// <summary>
+        ///     Call a private function to retrieve the array elements and pass it to the minions
+        /// </summary>
+        /// <returns>
+        ///     Randomized number from the array
+        /// </returns>
+        public static int Access_GetNumber()
+        {
+            return GetNumber();
+        } // GetNumber()
+
+
+
+        /// <summary>
+        ///     Allow other classes to call this function to access the 
+        ///         FillArray() function.  Which generates the randomization set
+        /// </summary>
+        public void Access_FillArray()
+        {
+            FillArray();
+        } // Access_FillArray()
     }
 } // 168
