@@ -36,11 +36,10 @@ namespace MinionMathMayhem_Ship
         // Highlight Array Index
             private static short arrayCounter = 0;
         // OPTIONS
-            // Do not allow the answer to be repeated
-                public bool optRepeatedAnswers = false;
-                private static bool optRepeatedAnswers_Internal;
-            // Original answer never placed at the begnning of array
-                public bool optAnswerInBeginning = false;
+            // Allow answers to be repeated by pure luck by the RNG.
+                private static bool option_AnswersRepeated;
+            // Only allow the answer to be at the middle or tail of the array.
+                private static bool option_AnswerTailArray;
         // Objects
             // Problem Box - To fetch random number
                 private static ProblemBox scriptProblemBox;
@@ -81,7 +80,18 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Fill the array with randomized numbers
         /// </summary>
-        private static void FillArray()
+        /// <param name="useLastKnownSettings">
+        ///     When true, use the previous settings as given by the function 'Access_FillArray()'.
+        /// </param>
+        /// <param name="answerTailArray">
+        ///     When true, only allow the answer to be at the middle or tail of the array.
+        ///         Default value is false
+        /// </param>
+        /// <param name="answersRepeated">
+        ///     When true, the answers can be repeated by luck by the RNG.  When false, the repetitive answers given by the RNG will be regenerated.
+        ///         Default value is true
+        /// </param>
+        private static void FillArray(bool useLastKnownSettings, bool answerTailArray = false, bool answersRepeated = true)
         {
 
             // Fill the array
@@ -138,23 +148,33 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private static int GetNumber()
         {
-            // When the array contents has been exhausted, re-generate the array.
-            if (numberSetArray.Length == arrayCounter)
-            {
-                // Reset the highlight back to zero.
-                    arrayCounter = 0;
-                // Regenerate
-                    FillArray();
-            } // if
-
+            // Check to see if the array data has already been exhausted.
+                GetNumber_CheckHighlightPosition();
             // Retrieve the number at array on the highlighted index.
                 int value = numberSetArray[arrayCounter];
             // Increment the index highlighter
                 arrayCounter++;
 
-
             return value;
         } // GetNumber()
+
+
+
+        /// <summary>
+        ///     Check the array index highlighter (or counter) and see if the array elements has been exhausted.
+        ///         If the elements have been exhausted, regenerate the array again.
+        /// </summary>
+        private static void GetNumber_CheckHighlightPosition()
+        {
+            // When the array contents has been exhausted, re-generate the array.
+            if (numberSetArray.Length == arrayCounter)
+            {
+                // Reset the highlight back to zero.
+                    arrayCounter = 0;
+                // Regenerate; using previous configurations
+                    FillArray(true);
+            } // if
+        } // GetNumber_CheckHighlightPosition()
 
 
 
@@ -175,9 +195,17 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Regenerate the Minion's number algorithm
         /// </summary>
-        public void Access_FillArray()
+        /// <param name="answerTailArray">
+        ///     When true, only allow the answer to be at the middle or tail of the array.
+        ///         Default value is false
+        /// </param>
+        /// <param name="answersRepeated">
+        ///     When true, the answers can be repeated by luck by the RNG.  When false, the repetitive answers given by the RNG will be regenerated.
+        ///         Default value is true
+        /// </param>
+        public void Access_FillArray(bool answerTailArray = false, bool answersRepeated = true)
         {
-            FillArray();
+            FillArray(false, answerTailArray, answersRepeated);
         } // Access_FillArray()
     }
 } // 168
