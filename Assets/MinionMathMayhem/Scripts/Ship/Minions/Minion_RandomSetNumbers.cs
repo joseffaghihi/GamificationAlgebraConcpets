@@ -136,6 +136,23 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
+        ///     When called, this function will locate any indexes that contains a duplicated answer, omitting the answer supplied by default.
+        /// </summary>
+        private static void FillArray_CheckDuplicateAnswers(int indexKey)
+        {
+            for (int i = 0; i < numberSetArray.Length; i++)
+            {
+                // Check if the values are the same, and then check if the index highlighted is NOT the one selected to contain the answer
+                if ((numberSetArray[i] == numberSetArray[indexKey]) && (indexKey != i))
+                {
+
+                } // if
+            } // for
+        } // FillArray_CheckDuplicateAnswers()
+
+
+
+        /// <summary>
         ///     Retrive the answer as selected by the generated quadratic equation and selected index.
         /// </summary>
         /// <returns>
