@@ -105,8 +105,9 @@ namespace MinionMathMayhem_Ship
             // Set the answer to the highlighted index
             numberSetArray[randKey] = FetchAnswer();
 
-            Debug.Log("Answer was selected at index: " + randKey);
-            Output();
+            // Debug Stuff
+                Debug.Log("Answer was selected at index: " + randKey);
+                Output();
         } // FillArray()
 
 
@@ -115,13 +116,22 @@ namespace MinionMathMayhem_Ship
         ///     Place the answer within the array
         ///     But hopefully place the answer not at the 
         /// </summary>
-        private static void FillArray_AnswerPlacement()
+        /// <returns>
+        ///     Highlighted Index that stores the answer
+        /// </returns>
+        private static int FillArray_AnswerPlacement(bool answerTailArray)
         {
-            //if (optAnswerInBeginning)
-            //{
+            // Find a location to store the answer
+                int indexHighlight = (answerTailArray) ?
+                (Random.Range((numberSetArray.Length / 2), numberSetArray.Length)) // TRUE: Middle of the array size is now the lower bound, and the upper bound is the array size itself.
+                : (Random.Range(0, numberSetArray.Length)); // FALSE: Lower bound is zero, and the upper bound is the array size.
 
-            //}
-        }
+            //Fetch the answer and store it at the desired index
+                numberSetArray[indexHighlight] = FetchAnswer();
+
+            // Return the selected index that contains the answer
+                return indexHighlight;
+        } // FillArray_AnswerPlacement()
 
 
 
