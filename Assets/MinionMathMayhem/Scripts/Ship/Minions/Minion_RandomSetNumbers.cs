@@ -95,10 +95,7 @@ namespace MinionMathMayhem_Ship
         {
 
             // Fill the array
-            for (short i = 0; i < numberSetArray.Length; i++)
-            {
-                numberSetArray[i] = (short)scriptProblemBox.Access_GetRandomNumber();
-            }
+                
 
             // Fetch a random index
             int randKey = Random.Range(0, numberSetArray.Length);
@@ -145,10 +142,34 @@ namespace MinionMathMayhem_Ship
                 // Check if the values are the same, and then check if the index highlighted is NOT the one selected to contain the answer
                 if ((numberSetArray[i] == numberSetArray[indexKey]) && (indexKey != i))
                 {
-
+                    // Duplicated answer
+                    do
+                        FillArray_Fill(i);
+                    while (numberSetArray[i] == numberSetArray[indexKey]);
                 } // if
             } // for
         } // FillArray_CheckDuplicateAnswers()
+
+
+
+        /// <summary>
+        ///     Fill the array with randomized numbers
+        /// </summary>
+        /// <param name="indexSelected">
+        ///     Only select one index that must be changed.
+        ///         Default value is -255, which signifies the entire array must be changed.
+        /// </param>
+        private static void FillArray_Fill(int indexSelected = -255)
+        {
+            // Selected index only
+            if (indexSelected != -255)
+                numberSetArray[indexSelected] = (short)scriptProblemBox.Access_GetRandomNumber();
+
+            // Entire array
+            else
+                for (short i = 0; i < numberSetArray.Length; i++)
+                    numberSetArray[i] = (short)scriptProblemBox.Access_GetRandomNumber();
+        } // FillArray_Fill()
 
 
 
