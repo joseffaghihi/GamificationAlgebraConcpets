@@ -11,13 +11,19 @@ namespace PrimeNumbers
 
 		private void Awake () 
 		{
-			Nr1 = int.Parse(text.text);
+			// TODO: don't need this fixed below
+			//Nr1 = int.Parse(text.text);
 
 			//Check to see if the random number is prime.
 			/*if (isPrime (Nr1) == true) 
 			{
 
 			}*/
+
+			// TODO: fix to above problem
+			text = GetComponent<TextMesh>();
+			// TODO: Nr1 is set from test script just like you asked
+			text.text = Nr1.ToString ();
 		}
 
 		public bool isPrime(int Nr1)

@@ -59,6 +59,11 @@ namespace PrimeNumbers
 		public TextMesh[] TextMeshArray;
 		public StartNumber StartNumber_script;
 		public int[] ArrayOfFactors = new int[25];
+		// TODO: created this array
+		GameObject[] gs = new GameObject[5];
+		// TODO: created this class refernce
+		GameObject bombs;
+
 
 
 		private void Awake()
@@ -89,18 +94,35 @@ namespace PrimeNumbers
 			setDisplayedNumbers ();
 
 			ShuffleArray(DisplayedNumbers);
-
-			Instantiate(FiveDynamitePreFab,tempLocation,FiveDynamitePreFab.transform.rotation);
-
+			// TODO: set the reference equal to the instantiation and cast the instantiation as a game object
+			// TODO: since 'FiveDynamitePrefab' is a transform variable, i get the gameObject of the transform for the first argument
+			// of the instantiation
+			bombs = Instantiate(FiveDynamitePreFab.gameObject,tempLocation,FiveDynamitePreFab.transform.rotation) as GameObject;//cast instantiation as gameObject
 			//TextMeshArray[0]= 
-				
+			//TODO: Check if bomb is null
+			if(bombs == null) {
+				print ("bombs is null");
+			} else {
+				print ("bombs is not null");
+				print ("The number of children in bombs is:\t" + bombs.transform.childCount);
+				for (int i = 0; i < bombs.transform.childCount; i++) {
+					gs[i] = bombs.transform.GetChild (i).gameObject;
+					print ("child " + i + " is: " + gs[i].name);
+				}
+				for(int i = 0; i < bombs.transform.childCount; i++) {
+					// TODO: I think the null reference exception is here, all of the children need DynamiteSpawnTestTest on them
+					// TODO: also, you spelled the class name TestTest but the file is TextTest for DynamiteSpawnTestTest.
+					gs[i].GetComponent<DynamiteSpawnTestTest>().Nr1 = /*DisplayedNumbers[i]*/ 1;
+				}
+			}
+
 			//displayTextmeshes ();
 		}
-		
-		void Update () 
-		{
-		
-		}
+//		
+//		void Update () 
+//		{
+//		
+//		}
 
 		public int[] getFacters(int nr1)
 		{
