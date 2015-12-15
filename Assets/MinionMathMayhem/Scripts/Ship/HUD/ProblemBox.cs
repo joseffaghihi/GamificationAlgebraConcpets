@@ -40,6 +40,11 @@ namespace MinionMathMayhem_Ship
                            maxValue;
             // Accessors and Communication
                 private Text problemBox;
+            // Check if all indexes are in one side or mixed
+                // 0 = Mixed
+                // 1 = Left
+                // 2 = Right
+                    private short complexitySorting = 0;
             // Complexity Level
                 // False: No terms shift to the right, all terms stay on the left.
                 // True: All terms can shift left or right
@@ -54,15 +59,6 @@ namespace MinionMathMayhem_Ship
             // Reference initialization
                 problemBox = GetComponent<Text>();
         } // Awake()
-
-
-
-        // This script is called once, after the actor has been placed in the scene
-        private void Start()
-        {
-            // Initialize the Quadratic Equation indexes
-                Generate();
-        } // Start()
 
 
 
@@ -108,6 +104,10 @@ namespace MinionMathMayhem_Ship
                 InitializeIndexProp();
             // Generate the new equation indexes
                 Generate_Indexes();
+            // Disallow all indexes to be 'zero'
+                Prevent_NoEquation();
+            // Check if the equation is on the left side, right side, or mixed.
+                CheckIndexesSorting();
             // Translate the Indexes
                 Generate_TranslateIndexes();
             // Sort the indexes in cached arrays
@@ -131,6 +131,22 @@ namespace MinionMathMayhem_Ship
         // --------------------------------------------------
 
 
+        /// <summary>
+        ///     This function will determine which 
+        /// </summary>
+        private void CheckIndexesSorting()
+        {
+            // Is the index sorting on the 'Left' side?
+            if (((char)index_A_Prop[1] == 'L') && ((char)index_B_Prop[1] == 'L') && ((char)index_C_Prop[1] == 'L'))
+                complexitySorting = 1;
+            // Is the index sorting on the 'Right' side?
+            else if (((char)index_A_Prop[1] == 'R') && ((char)index_B_Prop[1] == 'R') && ((char)index_C_Prop[1] == 'R'))
+                complexitySorting = 2;
+            // Assume the index sorting is mixed.
+            else
+                complexitySorting = 0;
+        } // CheckIndexesSorting()
+
 
 
         // Generate the Quadratic Equation Indexes
@@ -152,6 +168,25 @@ namespace MinionMathMayhem_Ship
                 index_C_Prop[0] = ((int)GetRandomNumber());
                 index_C_Prop[1] = ((char)GetRandomPosition());
         } // Generate_Indexes()
+
+
+
+        /// <summary>
+        ///     Prevent all indexes to be zero; thus giving us no equation at all
+        /// 
+        ///     CRITICAL ATTENTION:
+        ///         This function has the potential to kill Unity's main working thread!
+        ///         If the Quadratic Indexes continue to be set as '0, 0, 0', this function will continue to loop until atleast one index is not '0'.
+        /// </summary>
+        private void Prevent_NoEquation()
+        {
+            while (((int)index_A_Prop[0] == 0) && ((int)index_B_Prop[0] == 0) && ((int)index_C_Prop[0] == 0))
+            {
+                Debug.LogWarning("[WARNING] Regenerating algebratic equation!" + "\n" +
+                    "If Unity stops responding, this is likely the cause.");
+                Generate_Indexes();
+            } // Prevent 0's
+        } // Prevent_NoEquation()
 
 
 
@@ -219,42 +254,50 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Evaluate the index fields
-        // This will pre-determine the possible combinations
+        /// <summary>
+        ///     Evaluates the index fields
+        ///     This will try to pre-determine the possible combinations of the algebratic expression from one side, and also try to not display a zero coefficient.
+        /// </summary>
+        /// <param name="listIndexField">
+        ///     Number set array
+        /// </param>
+        /// <returns>
+        ///     String pattern of the algebratic expression from a specific side.
+        /// </returns>
         private string EvaluateIndexFields(List<int?> listIndexField)
         {
             //Check combinations for: Index A
             // Ax^2 + Bx + C
-                if (listIndexField[0] != null && listIndexField[1] != null && listIndexField[2] != null)
+                if ((listIndexField[0] != null && listIndexField[0] != 0) && (listIndexField[1] != null && listIndexField[1] != 0) && (listIndexField[2] != null && listIndexField[2] != 0))
                     return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[1]) + " " + Generate_Display_TranslateValues(listIndexField[1]) + "x" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
 
             // Ax^2 + Bx
-                else if (listIndexField[0] != null && listIndexField[1] != null)
+                else if ((listIndexField[0] != null && listIndexField[0] != 0) && (listIndexField[1] != null && listIndexField[1] != 0))
                     return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[1]) + " " + Generate_Display_TranslateValues(listIndexField[1]) + "x";
 
             // Ax^2 + C
-                else if (listIndexField[0] != null && listIndexField[2] != null)
+                else if ((listIndexField[0] != null && listIndexField[0] != 0) && (listIndexField[2] != null && listIndexField[2] != 0))
                     return listIndexField[0].ToString() + "x^2" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
 
             // Ax^2
-                else if (listIndexField[0] != null)
+                else if ((listIndexField[0] != null && listIndexField[0] != 0))
                     return listIndexField[0].ToString() + "x^2";
             // -----------
 
 
             // Check combinations for: Index B
             // Bx + C
-                if (listIndexField[1] != null && listIndexField[2] != null)
+                if ((listIndexField[1] != null && listIndexField[1] != 0) && (listIndexField[2] != null && listIndexField[2] != 0))
                     return listIndexField[1].ToString() + "x" + " " + Generate_Display_OperatorSign(listIndexField[2]) + " " + Generate_Display_TranslateValues(listIndexField[2]);
             // Bx
-                else if (listIndexField[1] != null)
+                else if ((listIndexField[1] != null && listIndexField[1] != 0))
                     return listIndexField[1].ToString() + "x";
             // -----------
 
 
             // Check combinations for: Index C
             // c
-                if (listIndexField[2] != null)
+                if ((listIndexField[2] != null && listIndexField[2] != 0))
                     return listIndexField[2].ToString();
             // -----------
 
@@ -307,21 +350,24 @@ namespace MinionMathMayhem_Ship
 
 
 
-        // Translate the index properties into the index variables for ready use.
-        // NOTE: Remember that the variables 'index_[A|B|C]' are for the minions for checking the answer.
+        /// <summary>
+        ///     Translate the index properties into the index variables for ready use; but if the indexes are -
+        ///         all on the left or right side, do not negate the values.
+        ///     NOTE: Remember that the variables 'index_[A|B|C]' are for the minions for checking the answer.
+        /// </summary>
         private void Generate_TranslateIndexes()
         {
-            if ((char)index_A_Prop[1] == (char)'R')
+            if (((char)index_A_Prop[1] == (char)'R') && complexitySorting == 0)
                 index_A = -((int)index_A_Prop[0]);
             else
                 index_A = ((int)index_A_Prop[0]);
 
-            if ((char)index_B_Prop[1] == (char)'R')
+            if (((char)index_B_Prop[1] == (char)'R') && complexitySorting == 0)
                 index_B = -((int)index_B_Prop[0]);
             else
                 index_B = ((int)index_B_Prop[0]);
 
-            if ((char)index_C_Prop[1] == (char)'R')
+            if (((char)index_C_Prop[1] == (char)'R') && complexitySorting == 0)
                 index_C = -((int)index_C_Prop[0]);
             else
                 index_C = ((int)index_C_Prop[0]);

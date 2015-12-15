@@ -9,7 +9,15 @@ public class BoardDisplay : MonoBehaviour
 	// Update is called once per frame
 	public void UpdateBoard () 
     {
-        GetComponent<Text>().text = "Lives Left: " + gameController.GetLives()  +
-                                    "\nRound: " + gameController.GetCurrentRound() + "/" + gameController.GetTotalRounds();
-	}
+        GameObject.Find("Lives_Text").GetComponent<Text>().text = "" + gameController.GetLives();
+        GameObject.Find("Lives_Text").GetComponent<Animator>().SetTrigger("Play");
+
+        Invoke("UpdateRounds", 2);
+    }
+
+    public void UpdateRounds()
+    {
+        GameObject.Find("Rounds_Text").GetComponent<Text>().text = gameController.GetCurrentRound() + " / 12";
+        GameObject.Find("Rounds_Text").GetComponent<Animator>().SetTrigger("Play");
+    }
 }

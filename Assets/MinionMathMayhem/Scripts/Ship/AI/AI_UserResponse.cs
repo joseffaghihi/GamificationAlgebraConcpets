@@ -63,7 +63,7 @@ namespace MinionMathMayhem_Ship
                 // ------
 
                 // Calculate the user's current average and previously stored average time.
-                    // CalculateUserAverageTime()
+                    CalculateUserAverageTime();
             } // If
         } // Main()
 
