@@ -93,17 +93,18 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private static void FillArray(bool useLastKnownSettings, bool answerTailArray = false, bool answersRepeated = true)
         {
+            int indexAnswer;
+            // Retrive an answer and set it to the array
+                indexAnswer = FillArray_AnswerPlacement(answerTailArray);
 
-            // Fill the array
-                
+            // Fill the rest of the array
+                FillArray_Fill();
 
-            // Fetch a random index
-            int randKey = Random.Range(0, numberSetArray.Length);
-            // Set the answer to the highlighted index
-            numberSetArray[randKey] = FetchAnswer();
-
+            // Check for duplicated answers within the array
+                FillArray_CheckDuplicateAnswers(indexAnswer);
+            
             // Debug Stuff
-                Debug.Log("Answer was selected at index: " + randKey);
+                Debug.Log("Answer was selected at index: " + indexAnswer);
                 Output();
         } // FillArray()
 
