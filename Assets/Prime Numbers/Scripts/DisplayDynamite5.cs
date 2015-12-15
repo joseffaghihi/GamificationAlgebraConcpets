@@ -7,6 +7,7 @@ namespace PrimeNumbers
 	{
 		public TextMesh text; 
 		public bool flag = true;
+		public int[] Dynamite5Array = new int[25];
 		
 		public StartNumber StartNumber_script;
 		
@@ -20,6 +21,7 @@ namespace PrimeNumbers
 			if (flag) {
 				text.text = StartNumber_script.DisplayedNumbers [4].ToString ();
 				StartNumber_script.DynamiteArray[4] = this.gameObject;
+				Dynamite5Array = StartNumber_script.getFacters (StartNumber_script.DisplayedNumbers [4]);
 				flag=false;
 			}
 		}

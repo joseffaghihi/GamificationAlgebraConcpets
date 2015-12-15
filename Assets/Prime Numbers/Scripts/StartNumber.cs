@@ -75,7 +75,7 @@ namespace PrimeNumbers
 			TextMesh t = (TextMesh)gameObject.GetComponent(typeof(TextMesh));
 			t.text = RN.ToString();
 
-			getFacters (RN); //puts all of the factors in an array
+			FactorArray = getFacters (RN); //puts all of the factors in an array
 
 			makeChoices ();//puts the choices of factors that go together in a 2d array holding the numbers.
 
@@ -104,16 +104,14 @@ namespace PrimeNumbers
 						cubePosition[usersChoiceCounter].x+=.8f;
 						print("Remaining Numbers: "+remainingNumbers[usersChoiceCounter]);
 						usersChoiceCounter++;
-
-				
 					}
 				}
-				
+
 				if(checkProduct(remainingNumbers[0],remainingNumbers[1])==true)//if the two factors == the startnumber
 				{
 					CameraPosition = MainCamera.transform.position;
 
-					//check to see if the left number is prime and the right is not
+					//check to see if the left number is prime
 					if(isPrime(remainingNumbers[0])==true)
 					{
 						/*FactorIsPrime=0;
@@ -127,18 +125,19 @@ namespace PrimeNumbers
 					else if(isPrime(remainingNumbers[0])==false)
 					{
 						RN=remainingNumbers[0];
-						getFacters(remainingNumbers[0]);
+						FactorArray = getFacters(remainingNumbers[0]);
 						makeChoices(); 
 						getRandomChoices();
 						setDisplayedNumbers();
 						ShuffleArray(DisplayedNumbers);
+						cubePosition[0].x -= 5;//****Moving to the left for test
 						Instantiate(FiveDynamitePreFab,cubePosition[0],FiveDynamitePreFab.transform.rotation);
 					}
-					print("Remaining Numbers BEFORE: "+remainingNumbers[1]);
-					//check to see if the left number is prime and the right is not
+		
+					//check to see if the right number is prime
 					if(isPrime(remainingNumbers[1])==true)
 					{
-						Debug.Log ("Thinks it is prime");
+						//Debug.Log ("Thinks it is prime");
 						/*
 						FactorIsPrime=1;
 						CameraPosition = MainCamera.transform.position;
@@ -150,13 +149,13 @@ namespace PrimeNumbers
 					}
 					else if(isPrime(remainingNumbers[1])==false)
 					{
-						Debug.Log ("made it");
 						RN=remainingNumbers[1];
-						getFacters(remainingNumbers[1]);
+						FactorArray = getFacters(remainingNumbers[1]);
 						makeChoices (); 
 						getRandomChoices ();
 						setDisplayedNumbers ();
 						ShuffleArray(DisplayedNumbers);
+						cubePosition[1].x += 5;//****Moving to the right for test
 						Instantiate(FiveDynamitePreFab,cubePosition[1],FiveDynamitePreFab.transform.rotation);
 					}
 				}	
@@ -221,9 +220,9 @@ namespace PrimeNumbers
 			Instantiate(LoseScreen, CameraPosition,LoseScreen.transform.rotation);
 		}
 		
-		public void getFacters(int nr1)
+		public int[] getFacters(int nr1)
 		{
-			FactorArray = new int[30];
+			int[] localArray = new int[30];
 			//puts all of the factors in an array
 			counter = 0;
 			for(int i=1;i<=nr1;i++)
@@ -232,28 +231,26 @@ namespace PrimeNumbers
 				{
 					if(i*i==nr1)
 					{
-						FactorArray[counter] = i;
-						Debug.Log (FactorArray[counter]);
+						localArray[counter] = i;
 						counter++;
-						FactorArray[counter] = i;
-						Debug.Log (FactorArray[counter]);
+						localArray[counter] = i;
 						counter++;;
 					}
 					else
 					{
-						FactorArray[counter] = i;
-						Debug.Log (FactorArray[counter]);
+						localArray[counter] = i;
 						counter++;
 					}
 				}
 			}
+
 			DynamitesRemaining = new bool[5];
-			//remainingNumbers = new int[2];
-			
 			for (int i =0; i<5; i++) 
 			{
 				DynamitesRemaining [i] = true;
 			}
+
+			return localArray;
 		}
 		
 		public void makeChoices()
