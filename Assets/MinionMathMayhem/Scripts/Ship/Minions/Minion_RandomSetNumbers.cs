@@ -68,8 +68,10 @@ namespace MinionMathMayhem_Ship
         /// 
         ///     Output the contents within the array
         /// </summary>
-        private static void Output()
+        private static void Output(int index)
         {
+            // Output where the answer was stored
+                Debug.Log("Answer was selected at index: " + index);
             // Scan the entire array and output the data on all indexes
             for (short i = 0; i < numberSetArray.Length; i++)
                 Debug.Log("Array RandSet at [" + i + "] set to: " + numberSetArray[i]);
@@ -106,18 +108,12 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private static void FillArray(bool useLastKnownSettings, bool answerTailArray = false, bool answersRepeated = true)
         {
-            //Debug.Log("Executing FullArray +++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             // Update presets
             if (!useLastKnownSettings)
             {
                 option_AnswersRepeated = answersRepeated;
                 option_AnswerTailArray = answerTailArray;
             }
-
-            // DEBUG
-            //option_AnswersRepeated = false;
-            //option_AnswerTailArray = true;
-            // ---
 
             int indexAnswer;
 
@@ -132,8 +128,7 @@ namespace MinionMathMayhem_Ship
                     FillArray_CheckDuplicateAnswers(indexAnswer);
             
             // Debug Stuff
-                Debug.Log("Answer was selected at index: " + indexAnswer);
-                Output();
+                Output(indexAnswer);
             // Settings Debug
                 Output_Settings();
         } // FillArray()
@@ -156,7 +151,7 @@ namespace MinionMathMayhem_Ship
 
             //Fetch the answer and store it at the desired index
                 numberSetArray[indexHighlight] = FetchAnswer();
-            //Debug.Log("Answer is: " + numberSetArray[indexHighlight] + " and stored at index: " + indexHighlight);
+
             // Return the selected index that contains the answer
                 return indexHighlight;
         } // FillArray_AnswerPlacement()
@@ -169,19 +164,12 @@ namespace MinionMathMayhem_Ship
         private static void FillArray_CheckDuplicateAnswers(int indexKey)
         {
             for (int i = 0; i < numberSetArray.Length; i++)
-            {
                 // Check if the values are the same, and then check if the index highlighted is NOT the one selected to contain the answer
                 if ((numberSetArray[i] == numberSetArray[indexKey]) && (indexKey != i))
-                {
                     // Duplicated answer
                     do
-                    {
-                        Debug.Log("Duplicat found: " + i);
                         FillArray_Fill(indexKey, i);
-                    }
                     while (numberSetArray[i] == numberSetArray[indexKey]);
-                } // if
-            } // for
         } // FillArray_CheckDuplicateAnswers()
 
 
@@ -200,21 +188,13 @@ namespace MinionMathMayhem_Ship
         {
             // Selected index only
             if (indexSelected != -255)
-            {
-                //Debug.Log("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf");
                 numberSetArray[indexSelected] = (short)scriptProblemBox.Access_GetRandomNumber();
-            }
 
             // Entire array
             else
                 for (short i = 0; i < numberSetArray.Length; i++)
-                {
-                    Debug.Log("for var = " + i + " and selected index " + answerIndex);
                     if (i != answerIndex) // Make sure the answer doesn't get erased by accident
                         numberSetArray[i] = (short)scriptProblemBox.Access_GetRandomNumber();
-                    else
-                        Debug.Log("================================== ---- ==================================");
-                }
         } // FillArray_Fill()
 
 
