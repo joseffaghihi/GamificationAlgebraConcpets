@@ -112,7 +112,9 @@ namespace PrimeNumbers
 				for(int i = 0; i < bombs.transform.childCount; i++) {
 					// TODO: I think the null reference exception is here, all of the children need DynamiteSpawnTestTest on them
 					// TODO: also, you spelled the class name TestTest but the file is TextTest for DynamiteSpawnTestTest.
-					gs[i].GetComponent<DynamiteSpawnTestTest>().Nr1 = /*DisplayedNumbers[i]*/ 1;
+					DynamiteSpawnTestTest d = gs[i].GetComponent<DynamiteSpawnTestTest>();
+					Debug.Log (d == null? "d not initialized" : "d initialized");
+					d.Nr1 = 1;
 				}
 			}
 
