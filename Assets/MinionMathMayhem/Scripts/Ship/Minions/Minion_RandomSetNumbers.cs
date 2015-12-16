@@ -35,6 +35,11 @@ namespace MinionMathMayhem_Ship
             private static short[] numberSetArray = new short[20];
         // Highlight Array Index
             private static short arrayCounter = 0;
+        // OPTIONS
+            // Allow answers to be repeated by pure luck by the RNG.
+                private static bool option_AnswersRepeated;
+            // Only allow the answer to be at the middle or tail of the array.
+                private static bool option_AnswerTailArray;
         // Objects
             // Problem Box - To fetch random number
                 private static ProblemBox scriptProblemBox;
@@ -55,7 +60,7 @@ namespace MinionMathMayhem_Ship
                 scriptProblemBox = GameObject.FindGameObjectWithTag("RandomNumberGenerator").GetComponent<ProblemBox>();
             // Fetch the Game Event class instance
                 scriptGameEvent = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEvent>();
-        }
+        } // Awake()
 
 
         /// <summary>
@@ -63,9 +68,11 @@ namespace MinionMathMayhem_Ship
         /// 
         ///     Output the contents within the array
         /// </summary>
-        private static void Output()
+        private static void Output(int index)
         {
-            // Scan and output the contents
+            // Output where the answer was stored
+                Debug.Log("Answer was selected at index: " + index);
+            // Scan the entire array and output the data on all indexes
             for (short i = 0; i < numberSetArray.Length; i++)
                 Debug.Log("Array RandSet at [" + i + "] set to: " + numberSetArray[i]);
         } // Output()
@@ -73,67 +80,184 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
+        ///     DEBUG PURPOSES ONLY
+        ///     
+        ///     Output the settings in this class
+        /// </summary>
+        private static void Output_Settings()
+        {
+            Debug.Log("OPTION: Allow repeated answers? - " + option_AnswersRepeated);
+            Debug.Log("OPTION: Only allow answer at the tail or mid of the array? - " + option_AnswerTailArray);
+        } // Output_Settings()
+
+
+
+        /// <summary>
         ///     Fill the array with randomized numbers
         /// </summary>
-        private static void FillArray()
+        /// <param name="useLastKnownSettings">
+        ///     When true, use the previous settings as given by the function 'Access_FillArray()'.
+        /// </param>
+        /// <param name="answerTailArray">
+        ///     When true, only allow the answer to be at the middle or tail of the array.
+        ///         Default value is false
+        /// </param>
+        /// <param name="answersRepeated">
+        ///     When true, the answers can be repeated by luck by the RNG.  When false, the repetitive answers given by the RNG will be regenerated.
+        ///         Default value is true
+        /// </param>
+        private static void FillArray(bool useLastKnownSettings, bool answerTailArray = false, bool answersRepeated = true)
         {
-            // Fill the array
-            for (short i = 0; i < numberSetArray.Length; i++)
+            // Update presets
+            if (!useLastKnownSettings)
             {
-                numberSetArray[i] = (short)scriptProblemBox.Access_GetRandomNumber();
+                option_AnswersRepeated = answersRepeated;
+                option_AnswerTailArray = answerTailArray;
             }
 
-            // Fetch a random index
-            int randKey = Random.Range(0, numberSetArray.Length);
-            // Set the answer to the highlighted index
-            numberSetArray[randKey] = FetchAnswer();
+            int indexAnswer;
 
-            Debug.Log("Answer was selected at index: " + randKey);
-            Output();
+            // Retrive an answer and set it to the array
+                indexAnswer = FillArray_AnswerPlacement(option_AnswerTailArray);
+
+            // Fill the rest of the array
+                FillArray_Fill(indexAnswer);
+
+            // Check for duplicated answers within the array
+                if (!option_AnswersRepeated)
+                    FillArray_CheckDuplicateAnswers(indexAnswer);
+            
+            // Debug Stuff
+                Output(indexAnswer);
+            // Settings Debug
+                Output_Settings();
         } // FillArray()
 
 
 
         /// <summary>
-        ///     Retrives the answer that the user needs to win
+        ///     Place the answer within the array
+        ///     But hopefully place the answer not at the 
         /// </summary>
         /// <returns>
-        ///     Answer
+        ///     Highlighted Index that stores the answer
+        /// </returns>
+        private static int FillArray_AnswerPlacement(bool answerTailArray)
+        {
+            // Find a location to store the answer
+                int indexHighlight = (answerTailArray) ?
+                (Random.Range((numberSetArray.Length / 2), numberSetArray.Length)) // TRUE: Middle of the array size is now the lower bound, and the upper bound is the array size itself.
+                : (Random.Range(0, numberSetArray.Length)); // FALSE: Lower bound is zero, and the upper bound is the array size.
+
+            //Fetch the answer and store it at the desired index
+                numberSetArray[indexHighlight] = FetchAnswer();
+
+            // Return the selected index that contains the answer
+                return indexHighlight;
+        } // FillArray_AnswerPlacement()
+
+
+
+        /// <summary>
+        ///     When called, this function will locate any indexes that contains a duplicated answer, omitting the answer supplied by default.
+        /// </summary>
+        private static void FillArray_CheckDuplicateAnswers(int indexKey)
+        {
+            for (int i = 0; i < numberSetArray.Length; i++)
+                // Check if the values are the same, and then check if the index highlighted is NOT the one selected to contain the answer
+                if ((numberSetArray[i] == numberSetArray[indexKey]) && (indexKey != i))
+                    // Duplicated answer
+                    do
+                        FillArray_Fill(indexKey, i);
+                    while (numberSetArray[i] == numberSetArray[indexKey]);
+        } // FillArray_CheckDuplicateAnswers()
+
+
+
+        /// <summary>
+        ///     Fill the array with randomized numbers
+        /// </summary>
+        /// <param name="answerIndex">
+        ///     The array index address that holds the official answer.
+        /// </param>
+        /// <param name="indexSelected">
+        ///     Only select one index that must be changed.
+        ///         Default value is -255, which signifies the entire array must be changed.
+        /// </param>
+        private static void FillArray_Fill(int answerIndex, int indexSelected = -255)
+        {
+            // Selected index only
+            if (indexSelected != -255)
+                numberSetArray[indexSelected] = (short)scriptProblemBox.Access_GetRandomNumber();
+
+            // Entire array
+            else
+                for (short i = 0; i < numberSetArray.Length; i++)
+                    if (i != answerIndex) // Make sure the answer doesn't get erased by accident
+                        numberSetArray[i] = (short)scriptProblemBox.Access_GetRandomNumber();
+        } // FillArray_Fill()
+
+
+
+        /// <summary>
+        ///     Retrive the answer as selected by the generated quadratic equation and selected index.
+        /// </summary>
+        /// <returns>
+        ///     Index or Answer
         /// </returns>
         private static short FetchAnswer()
         {
-            return (short)scriptGameEvent.Access_GetQuadraticEquation_Index();
+            // Use the already implemented algorithm in GameEvent to get the answer (or Index)
+                return (short)scriptGameEvent.Access_GetQuadraticEquation_Index();
         } // FetchAnswer()
 
 
 
         /// <summary>
-        ///     Retrieve the array elements and pass it to the minions
+        ///     Assign the minion a pre-cached number that was already generated by the array.
+        ///         This will determine if that minion will have the correct answer or not.
         /// </summary>
         /// <returns>
-        ///     Randomized number from the array
+        ///     Cached number from the array
         /// </returns>
         private static int GetNumber()
         {
-            if (numberSetArray.Length == arrayCounter)
-            {
-                // Refill the array
-                arrayCounter = 0;
-                FillArray();
-            }
+            // Check to see if the array data has already been exhausted.
+                GetNumber_CheckHighlightPosition();
+            // Retrieve the number at array on the highlighted index.
+                int value = numberSetArray[arrayCounter];
+            // Increment the index highlighter
+                arrayCounter++;
 
-            int value = numberSetArray[arrayCounter];
-            arrayCounter++;
             return value;
         } // GetNumber()
 
 
 
         /// <summary>
-        ///     Call a private function to retrieve the array elements and pass it to the minions
+        ///     Check the array index highlighter (or counter) and see if the array elements has been exhausted.
+        ///         If the elements have been exhausted, regenerate the array again.
+        /// </summary>
+        private static void GetNumber_CheckHighlightPosition()
+        {
+            // When the array contents has been exhausted, re-generate the array.
+            if (numberSetArray.Length == arrayCounter)
+            {
+                // Reset the highlight back to zero.
+                    arrayCounter = 0;
+                // Regenerate; using previous configurations
+                    FillArray(true);
+            } // if
+        } // GetNumber_CheckHighlightPosition()
+
+
+
+        /// <summary>
+        ///     Assign the minion a pre-cached number that was already generated by the array.
+        ///         This will determine if that minion will have the correct answer or not.
         /// </summary>
         /// <returns>
-        ///     Randomized number from the array
+        ///     Cached number from the array
         /// </returns>
         public static int Access_GetNumber()
         {
@@ -143,12 +267,19 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     Allow other classes to call this function to access the 
-        ///         FillArray() function.  Which generates the randomization set
+        ///     Regenerate the Minion's number algorithm
         /// </summary>
-        public void Access_FillArray()
+        /// <param name="answerTailArray">
+        ///     When true, only allow the answer to be at the middle or tail of the array.
+        ///         Default value is false
+        /// </param>
+        /// <param name="answersRepeated">
+        ///     When true, the answers can be repeated by luck by the RNG.  When false, the repetitive answers given by the RNG will be regenerated.
+        ///         Default value is true
+        /// </param>
+        public void Access_FillArray(bool answerTailArray = false, bool answersRepeated = true)
         {
-            FillArray();
+            FillArray(false, answerTailArray, answersRepeated);
         } // Access_FillArray()
     }
 } // 168
