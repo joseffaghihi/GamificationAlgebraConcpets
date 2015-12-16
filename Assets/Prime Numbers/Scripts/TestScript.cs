@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic; //needed for lists
 
@@ -59,12 +60,10 @@ namespace PrimeNumbers
 		public TextMesh[] TextMeshArray;
 		public StartNumber StartNumber_script;
 		public int[] ArrayOfFactors = new int[25];
-		// TODO: created this array
-		GameObject[] gs = new GameObject[5];
-		// TODO: created this class refernce
-		GameObject bombs;
 
-
+		GameObject[] SpawnedArray = new GameObject[5];//Array holding the 5 spawned dynamites
+		GameObject DynamitesSpawned;
+	//-****************************************************************************************-//
 
 		private void Awake()
 		{
@@ -72,13 +71,11 @@ namespace PrimeNumbers
 			StartNumber_script = GameObject.Find("Start Dynamite").GetComponentInChildren<StartNumber>();
 		}
 
-
 		void Start () 
 		{
 			Vector3 tempLocation = new Vector3(0,0,0);
 			tempLocation = this.transform.position;
 			tempLocation.y -= 5f;
-
 			startNumber = TestScriptText.RN;
 
 			ArrayOfFactors = getFacters (startNumber);
@@ -88,43 +85,35 @@ namespace PrimeNumbers
 			}
 
 			makeChoices (ArrayOfFactors);
-
 			getRandomChoices ();
-
 			setDisplayedNumbers ();
-
 			ShuffleArray(DisplayedNumbers);
+
 			// TODO: set the reference equal to the instantiation and cast the instantiation as a game object
 			// TODO: since 'FiveDynamitePrefab' is a transform variable, i get the gameObject of the transform for the first argument
 			// of the instantiation
-			bombs = Instantiate(FiveDynamitePreFab.gameObject,tempLocation,FiveDynamitePreFab.transform.rotation) as GameObject;//cast instantiation as gameObject
-			//TextMeshArray[0]= 
-			//TODO: Check if bomb is null
-			if(bombs == null) {
+			DynamitesSpawned = Instantiate(FiveDynamitePreFab.gameObject,tempLocation,FiveDynamitePreFab.transform.rotation) as GameObject;//cast instantiation as gameObject
+
+			if(DynamitesSpawned == null)
 				print ("bombs is null");
-			} else {
+			else 
+			{
 				print ("bombs is not null");
-				print ("The number of children in bombs is:\t" + bombs.transform.childCount);
-				for (int i = 0; i < bombs.transform.childCount; i++) {
-					gs[i] = bombs.transform.GetChild (i).gameObject;
-					print ("child " + i + " is: " + gs[i].name);
+				print ("The number of children in bombs is:\t" + DynamitesSpawned.transform.childCount);
+				for (int i = 0; i < DynamitesSpawned.transform.childCount; i++) 
+				{
+					SpawnedArray[i] = DynamitesSpawned.transform.GetChild (i).gameObject;
+					print ("child " + i + " is: " + SpawnedArray[i].name);
 				}
-				for(int i = 0; i < bombs.transform.childCount; i++) {
-					// TODO: I think the null reference exception is here, all of the children need DynamiteSpawnTestTest on them
-					// TODO: also, you spelled the class name TestTest but the file is TextTest for DynamiteSpawnTestTest.
-					DynamiteSpawnTestTest d = gs[i].GetComponent<DynamiteSpawnTestTest>();
+
+				for(int i = 0; i < DynamitesSpawned.transform.childCount; i++) 
+				{
+					DynamiteSpawnTestText d = SpawnedArray[i].GetComponent<DynamiteSpawnTestText>();
 					Debug.Log (d == null? "d not initialized" : "d initialized");
-					d.Nr1 = 1;
+					d.Nr1 = DisplayedNumbers[i];
 				}
 			}
-
-			//displayTextmeshes ();
 		}
-//		
-//		void Update () 
-//		{
-//		
-//		}
 
 		public int[] getFacters(int nr1)
 		{
@@ -149,13 +138,12 @@ namespace PrimeNumbers
 					}
 				}
 			}
-			
+
 			DynamitesRemaining = new bool[5];
 			for (int i =0; i<5; i++) 
 			{
 				DynamitesRemaining [i] = true;
 			}
-			
 			return localArray;
 		}
 
@@ -208,8 +196,8 @@ namespace PrimeNumbers
 			DisplayedNumbers [1] = Choices [RandomChoice1, 1];
 			DisplayedNumbers [2] = Choices [RandomChoice2, 0];
 			DisplayedNumbers [3] = Choices [RandomChoice2, 1];
-			
-			DisplayedNumbers[4] = Random.Range (1,startNumber);
+			DisplayedNumbers [4] = Random.Range (1,startNumber);
+
 			for(int i=0;i<counter+1;i++)
 			{
 				if (DisplayedNumbers[4] == ArrayOfFactors [i]) 
@@ -239,8 +227,6 @@ namespace PrimeNumbers
 				text.text  = DisplayedNumbers[displayCounter].ToString();
 				displayCounter++;
 			}
-
 		}
-
 	}//end of main
 }

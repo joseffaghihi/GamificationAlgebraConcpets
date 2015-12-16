@@ -54,7 +54,7 @@ namespace PrimeNumbers
 		//-****************************************************************************************-//
 
 		public int startNumber;
-		public DynamiteSpawnTestTest DynamiteSpawnTestText_script;
+		public DynamiteSpawnTestText DynamiteSpawnTestText_script;
 		public StartNumber StartNumber_script;
 		public Transform FiveDynamitePreFab;//Acess to Dynamite PreFab
 		public TextMesh[] TextMeshArray;
@@ -63,7 +63,7 @@ namespace PrimeNumbers
 
 		private void Awake()
 		{
-			DynamiteSpawnTestText_script = GameObject.Find("TestDynamite").GetComponentInChildren<DynamiteSpawnTestTest>();
+			DynamiteSpawnTestText_script = GameObject.Find("TestDynamite").GetComponentInChildren<DynamiteSpawnTestText>();
 			StartNumber_script = GameObject.Find("Start Dynamite").GetComponentInChildren<StartNumber>();
 		}
 
