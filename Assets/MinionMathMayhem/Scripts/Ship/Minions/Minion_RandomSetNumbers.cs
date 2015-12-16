@@ -181,6 +181,9 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Fill the array with randomized numbers
         /// </summary>
+        /// <param name="answerIndex">
+        ///     The array index address that holds the official answer.
+        /// </param>
         /// <param name="indexSelected">
         ///     Only select one index that must be changed.
         ///         Default value is -255, which signifies the entire array must be changed.
