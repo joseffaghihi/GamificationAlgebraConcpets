@@ -60,7 +60,7 @@ namespace MinionMathMayhem_Ship
                 scriptProblemBox = GameObject.FindGameObjectWithTag("RandomNumberGenerator").GetComponent<ProblemBox>();
             // Fetch the Game Event class instance
                 scriptGameEvent = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEvent>();
-        }
+        } // Awake()
 
 
         /// <summary>
@@ -74,6 +74,19 @@ namespace MinionMathMayhem_Ship
             for (short i = 0; i < numberSetArray.Length; i++)
                 Debug.Log("Array RandSet at [" + i + "] set to: " + numberSetArray[i]);
         } // Output()
+
+
+
+        /// <summary>
+        ///     DEBUG PURPOSES ONLY
+        ///     
+        ///     Output the settings in this class
+        /// </summary>
+        private static void Output_Settings()
+        {
+            Debug.Log("OPTION: Allow repeated answers? - " + option_AnswersRepeated);
+            Debug.Log("OPTION: Only allow answer at the tail or mid of the array? - " + option_AnswerTailArray);
+        } // Output_Settings()
 
 
 
@@ -93,6 +106,7 @@ namespace MinionMathMayhem_Ship
         /// </param>
         private static void FillArray(bool useLastKnownSettings, bool answerTailArray = false, bool answersRepeated = true)
         {
+            //Debug.Log("Executing FullArray +++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             // Update presets
             if (!useLastKnownSettings)
             {
@@ -106,15 +120,17 @@ namespace MinionMathMayhem_Ship
                 indexAnswer = FillArray_AnswerPlacement(option_AnswerTailArray);
 
             // Fill the rest of the array
-                FillArray_Fill();
+                FillArray_Fill(indexAnswer);
 
             // Check for duplicated answers within the array
-                if (option_AnswersRepeated)
+                if (!option_AnswersRepeated)
                     FillArray_CheckDuplicateAnswers(indexAnswer);
             
             // Debug Stuff
                 Debug.Log("Answer was selected at index: " + indexAnswer);
                 Output();
+            // Settings Debug
+                Output_Settings();
         } // FillArray()
 
 
@@ -135,7 +151,7 @@ namespace MinionMathMayhem_Ship
 
             //Fetch the answer and store it at the desired index
                 numberSetArray[indexHighlight] = FetchAnswer();
-
+            //Debug.Log("Answer is: " + numberSetArray[indexHighlight] + " and stored at index: " + indexHighlight);
             // Return the selected index that contains the answer
                 return indexHighlight;
         } // FillArray_AnswerPlacement()
@@ -169,16 +185,25 @@ namespace MinionMathMayhem_Ship
         ///     Only select one index that must be changed.
         ///         Default value is -255, which signifies the entire array must be changed.
         /// </param>
-        private static void FillArray_Fill(int indexSelected = -255)
+        private static void FillArray_Fill(int answerIndex, int indexSelected = -255)
         {
             // Selected index only
             if (indexSelected != -255)
+            {
+                //Debug.Log("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf");
                 numberSetArray[indexSelected] = (short)scriptProblemBox.Access_GetRandomNumber();
+            }
 
             // Entire array
             else
                 for (short i = 0; i < numberSetArray.Length; i++)
-                    numberSetArray[i] = (short)scriptProblemBox.Access_GetRandomNumber();
+                {
+                    Debug.Log("for var = " + i + " and selected index " + answerIndex);
+                    if (i != answerIndex) // Make sure the answer doesn't get erased by accident
+                        numberSetArray[i] = (short)scriptProblemBox.Access_GetRandomNumber();
+                    else
+                        Debug.Log("================================== ---- ==================================");
+                }
         } // FillArray_Fill()
 
 
