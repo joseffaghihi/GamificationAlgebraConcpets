@@ -114,6 +114,11 @@ namespace MinionMathMayhem_Ship
                 option_AnswerTailArray = answerTailArray;
             }
 
+            // DEBUG
+            //option_AnswersRepeated = false;
+            //option_AnswerTailArray = true;
+            // ---
+
             int indexAnswer;
 
             // Retrive an answer and set it to the array
@@ -170,7 +175,10 @@ namespace MinionMathMayhem_Ship
                 {
                     // Duplicated answer
                     do
-                        FillArray_Fill(i);
+                    {
+                        Debug.Log("Duplicat found: " + i);
+                        FillArray_Fill(indexKey, i);
+                    }
                     while (numberSetArray[i] == numberSetArray[indexKey]);
                 } // if
             } // for
