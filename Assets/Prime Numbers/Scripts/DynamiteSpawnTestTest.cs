@@ -22,8 +22,25 @@ namespace PrimeNumbers
 
 			// TODO: fix to above problem
 			text = GetComponent<TextMesh>();
+		}
+
+		void Start () {
+			StartCoroutine (initNr1());
+		}
+		// TODO:
+		/// <summary>
+		/// Keeps looping unitl Nr1 is 
+		/// Set to a Non-zero number
+		/// </summary>
+		/// <returns>The nr1.</returns>
+		IEnumerator initNr1() {
+			while(Nr1 == 0) {
+				yield return null;
+			}
 			// TODO: Nr1 is set from test script just like you asked
 			text.text = Nr1.ToString ();
+			print ("Nr1 initialized.");
+
 		}
 
 		public bool isPrime(int Nr1)
