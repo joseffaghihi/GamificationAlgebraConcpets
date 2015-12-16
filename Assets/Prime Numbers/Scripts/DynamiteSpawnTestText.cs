@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 namespace PrimeNumbers
@@ -6,12 +7,14 @@ namespace PrimeNumbers
 	public class DynamiteSpawnTestText : MonoBehaviour 
 	{
 
-		public TextMesh text;
+		public Text text;
 		public int Nr1;
 
 		private void Awake () 
 		{
-			text = GetComponent<TextMesh>();
+			// Canvas with text needs to be at the top of the hierarchy
+			text = gameObject.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Text>();
+			Debug.Log (text == null ? "text is null" : "text is not null");
 		}
 
 		void Start () 
