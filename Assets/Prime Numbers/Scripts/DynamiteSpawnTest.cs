@@ -60,7 +60,7 @@ namespace PrimeNumbers
 		public Transform FiveDynamitePreFab;//Acess to Dynamite PreFab
 		public TextMesh[] TextMeshArray;
 		public bool Flag = true;
-		// public string myString;
+
 		public Text text;
 		public string myString;
 
@@ -73,14 +73,8 @@ namespace PrimeNumbers
 
 		void Start () 
 		{
-<<<<<<< HEAD
 			myString = gameObject.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Text>().text;
-=======
-			// myString = textmesh.text; /* changed this line in the line below */
-			myString = GetComponent<TextMesh>().text;
-			// TODO: int.TryParse returns value by reference with 'out' keyword.
-			// startNumber = int.Parse(myString);
->>>>>>> origin/master
+			//myString = GetComponent<TextMesh>().text;
 			int.TryParse (myString, out startNumber);
 			print ("start number: " + startNumber);
 		}
