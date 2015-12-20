@@ -60,6 +60,7 @@ namespace PrimeNumbers
 		public TextMesh[] TextMeshArray;
 		public bool Flag = true;
 		public string myString;
+		public TextMesh textmesh;
 
 
 		private void Awake()
@@ -72,8 +73,8 @@ namespace PrimeNumbers
 		void Start () 
 		{
 			
-			myString = GetComponent<TextMesh>;
-			startNumber = int.TryParse(myString);
+			myString = textmesh.text;
+			startNumber = int.Parse(myString);
 			print ("start number: " + startNumber);
 		}
 
