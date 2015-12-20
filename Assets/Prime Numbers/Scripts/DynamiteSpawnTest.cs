@@ -73,7 +73,7 @@ namespace PrimeNumbers
 
 		void Start () 
 		{
-			// myString = textmesh.text;
+			// myString = textmesh.text; /* changed this line in the line below */
 			myString = GetComponent<TextMesh>().text;
 			// TODO: int.TryParse returns value by reference with 'out' keyword.
 			// startNumber = int.Parse(myString);
