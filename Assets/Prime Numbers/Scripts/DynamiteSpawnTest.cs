@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic; //needed for lists
 
@@ -60,9 +61,8 @@ namespace PrimeNumbers
 		public TextMesh[] TextMeshArray;
 		public bool Flag = true;
 		// public string myString;
-		public TextMesh textmesh;
+		public Text text;
 		public string myString;
-
 
 		private void Awake()
 		{
@@ -73,10 +73,14 @@ namespace PrimeNumbers
 
 		void Start () 
 		{
-			// myString = textmesh.text;
+<<<<<<< HEAD
+			myString = gameObject.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Text>().text;
+=======
+			// myString = textmesh.text; /* changed this line in the line below */
 			myString = GetComponent<TextMesh>().text;
 			// TODO: int.TryParse returns value by reference with 'out' keyword.
 			// startNumber = int.Parse(myString);
+>>>>>>> origin/master
 			int.TryParse (myString, out startNumber);
 			print ("start number: " + startNumber);
 		}
