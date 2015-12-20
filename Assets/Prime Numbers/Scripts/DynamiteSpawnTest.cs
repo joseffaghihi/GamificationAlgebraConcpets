@@ -59,6 +59,8 @@ namespace PrimeNumbers
 		public Transform FiveDynamitePreFab;//Acess to Dynamite PreFab
 		public TextMesh[] TextMeshArray;
 		public bool Flag = true;
+		public string myString;
+		public TextMesh textmesh;
 
 
 		private void Awake()
@@ -70,7 +72,10 @@ namespace PrimeNumbers
 
 		void Start () 
 		{
-			startNumber = DynamiteSpawnTestText_script.Nr1;
+			
+			myString = textmesh.text;
+			startNumber = int.Parse(myString);
+			print ("start number: " + startNumber);
 		}
 
 		void Update () 
