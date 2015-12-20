@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic; //needed for lists
 
@@ -8,12 +9,12 @@ namespace PrimeNumbers
 	{
 		//-****************************************************************************************-//
 		/*public Transform LoseScreen;//to spawn losing screen
-	public Transform CubePreFab;//Acess to cube prefab
-	public Transform FiveDynamitePreFab;//Acess to Dynamite PreFab
-	public GameObject MainCamera;//access to mainCamera
-	public GameObject[] DynamiteArray; //holds the 5 dynamites in an array to keep 
-	//track of which ones have been deleted
-	public TextMesh[] TextMeshArray; //Holds the textMeshes in the inspector in an array*/
+		public Transform CubePreFab;//Acess to cube prefab
+		public Transform FiveDynamitePreFab;//Acess to Dynamite PreFab
+		public GameObject MainCamera;//access to mainCamera
+		public GameObject[] DynamiteArray; //holds the 5 dynamites in an array to keep 
+		//track of which ones have been deleted
+		public TextMesh[] TextMeshArray; //Holds the textMeshes in the inspector in an array*/
 		//-****************************************************************************************-//
 
 
@@ -59,9 +60,9 @@ namespace PrimeNumbers
 		public Transform FiveDynamitePreFab;//Acess to Dynamite PreFab
 		public TextMesh[] TextMeshArray;
 		public bool Flag = true;
-		public string myString;
-		public TextMesh textmesh;
 
+		public Text text;
+		public string myString;
 
 		private void Awake()
 		{
@@ -72,9 +73,8 @@ namespace PrimeNumbers
 
 		void Start () 
 		{
-			
-			myString = textmesh.text;
-			startNumber = int.Parse(myString);
+			myString = gameObject.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Text>().text;
+			int.TryParse (myString, out startNumber);
 			print ("start number: " + startNumber);
 		}
 

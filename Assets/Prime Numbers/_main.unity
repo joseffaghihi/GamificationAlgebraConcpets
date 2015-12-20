@@ -411,16 +411,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fda47914f5a4f4ba2bc90aec6dfff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoseScreen: {fileID: 403764, guid: 46df2209391d34a4bb04e1c07d28390a, type: 2}
-  CubePreFab: {fileID: 495094, guid: 73a41134dcf9e41a1a0a25715c623648, type: 2}
-  FiveDynamitePreFab: {fileID: 443914, guid: 459ccfd9c14d044ef8b23ef1ba9d7e8e, type: 2}
-  MainCamera: {fileID: 1286555779}
-  DynamiteArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  LoseScreen: {fileID: 0}
+  CubePreFab: {fileID: 0}
+  FiveDynamitePreFab: {fileID: 0}
+  MainCamera: {fileID: 0}
+  DynamiteArray: []
   TextMeshArray: []
   FactorArray: 
   remainingNumbers: 
@@ -971,7 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd16cc82bd114b2697395006de77632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrinkSpeed: 0.1
+  shrinkSpeed: 1
   size: 1
 --- !u!33 &1491833205
 MeshFilter:
@@ -1022,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6641d36301acf4ee4993224b7e28e4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1617878897}
+  text: {fileID: 0}
 --- !u!102 &1617878897
 TextMesh:
   serializedVersion: 3
