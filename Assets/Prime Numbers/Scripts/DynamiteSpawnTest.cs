@@ -74,7 +74,6 @@ namespace PrimeNumbers
 		void Start () 
 		{
 			myString = gameObject.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Text>().text;
-			//myString = GetComponent<TextMesh>().text;
 			int.TryParse (myString, out startNumber);
 			print ("start number: " + startNumber);
 		}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 namespace PrimeNumbers
@@ -11,6 +12,7 @@ namespace PrimeNumbers
 
 		private void Awake () 
 		{
+			text = GetComponent<TextMesh> ();
 			RN = Random.Range(1,100);
 			
 			//Check to see if the random number is prime.
