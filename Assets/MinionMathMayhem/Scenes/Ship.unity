@@ -11398,6 +11398,7 @@ MonoBehaviour:
   gameSounds: {fileID: 0}
   failSound: {fileID: 8300000, guid: 255a83748e196450ab7e08826f77aa40, type: 3}
   gameOverSound: {fileID: 8300000, guid: 6b2f4111365644f72b2d2c1f949f9103, type: 3}
+  skipGenerateEquationThreshold: 1
   score: {fileID: 255394972}
   wrongScore: {fileID: 1739067480}
   feedbackAnswer: {fileID: 237376103}
