@@ -391,8 +391,11 @@ namespace MinionMathMayhem_Ship
                 if (gameTutorialEnded)
                     TutorialMode_Ended(); // Make sure that the variable is false
 
+            // For objects listening; notify that a tutorial is currently running
+                TutorialStateStart();
+
             // Change the scene state to 'Clear'
-                SceneState(true);
+            SceneState(true);
 
             // Activate the tutorials
                 TutorialSequence(tutorialMovie, tutorialWindow, tutorialIndexSelect, randomSwitch, randomTutorialType);
