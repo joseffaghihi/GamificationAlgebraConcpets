@@ -402,6 +402,21 @@ namespace MinionMathMayhem_Ship
         // ==================================================
 
 
+        
+        /// <summary>
+        ///     Toggles the DEG to be either difficult or easier
+        /// </summary>
+        /// <param name="complexSwitch">
+        ///     Adjusts the DEG's complexity level.  When true, this enables the equations dynamicness.  However false enforces the equation to follow the standard form of Ax^2 + Bx + C = 0
+        /// </param>
+        public void SwitchComplexityLevel (bool complexSwitch = false)
+        {
+            // Only adjust if they are _NOT_ the same; avoid wasting resources
+            if (complexSwitch != complexLevel)
+                complexLevel = complexSwitch;
+        } // ToggleComplexityLevel ()
+
+
 
         // Generate a randomized number given the [minimal, maximum] range.
         private int GetRandomNumber(bool preventNull = false)

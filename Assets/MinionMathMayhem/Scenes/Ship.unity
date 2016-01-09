@@ -8858,6 +8858,7 @@ GameObject:
   - 114: {fileID: 1208330403}
   - 114: {fileID: 1208330402}
   - 114: {fileID: 1208330406}
+  - 114: {fileID: 1208330407}
   m_Layer: 0
   m_Name: Game AI Hub
   m_TagString: AIHub
@@ -8899,7 +8900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d40677d659f7740aef9d2125cab690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableAIKeyFeatures: 0
+  enableAIKeyFeatures: 1
   scriptAI_UserMastery: {fileID: 1208330403}
   scriptAI_UserResponse: {fileID: 1208330402}
   scriptAI_SpawnServicer: {fileID: 1208330406}
@@ -8930,6 +8931,19 @@ MonoBehaviour:
   gracePeriodTimer: 2.5
   scriptGameController: {fileID: 1430447470}
   scriptGameEvent: {fileID: 1430447472}
+--- !u!114 &1208330407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208330401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77c82c3cdeca384e850c50e2b0199a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexityExecuteGradePass: 1
+  scriptProblemBox: {fileID: 1715427619}
 --- !u!1 &1252846938
 GameObject:
   m_ObjectHideFlags: 0

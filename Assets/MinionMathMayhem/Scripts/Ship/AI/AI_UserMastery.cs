@@ -39,6 +39,8 @@ namespace MinionMathMayhem_Ship
                 private int userPrefScorePossible = 0;
             // Game State; is the game over?
                 private bool gameOver = false;
+            // How many times the user has been graded
+                private int gradeEvaluation = 0;
             // Activate this AI component when the possible score has reached been reached by specific value
                 // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
                 //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
@@ -64,6 +66,12 @@ namespace MinionMathMayhem_Ship
                 // Tutorial session (if the user isn't understanding the material)
                     public delegate void TutorialSessionDelegate();
                     public static event TutorialSessionDelegate TutorialSession;
+                // Report User's Grade
+                    // gradeLetter = Current Grade
+                    // gradePercent = Score (grade) percertage
+                    // gradeEvaluated = How many times the score has been evaluated or checked
+                    public delegate void UserGradedPerformance(char gradeLetter, int gradePercent, int gradeEvaluated);
+                    public static event UserGradedPerformance ReportPlayerGrade;
         // ---------------------------------
         
 
@@ -156,19 +164,33 @@ namespace MinionMathMayhem_Ship
             // DEBUG STUFF
                 string debugString = "failed to initialize";
 
+            // Increment the user's grade count
+                ++gradeEvaluation;
+            // Cached variables; used for reducing redundancy
+                char gradeLetter; // Used for storing the user's grade
+
             // Sorry for this long conditional, I couldn't find a nicer way to do this with a Switch statement :(
             if (95 < userGrade && userGrade <= 100)
             {
                 // Skill Level: Very-High
                 if (_debugMode_ == true)
                     debugString = "Very-High";
+
+
+                gradeLetter = 'A';
+                
             }
+
 
             else if (90 < userGrade && userGrade <= 95)
             {
                 // Skill Level: Medium-High
                 if (_debugMode_ == true)
                     debugString = "Medium-High";
+
+
+                gradeLetter = 'A';
+
             }
 
             else if (85 < userGrade && userGrade <= 90)
@@ -176,6 +198,9 @@ namespace MinionMathMayhem_Ship
                 // Skill Level: Medium
                 if (_debugMode_ == true)
                     debugString = "Medium";
+
+                gradeLetter = 'B';
+
             }
 
             else if (80 < userGrade && userGrade <= 85)
@@ -183,6 +208,9 @@ namespace MinionMathMayhem_Ship
                 //   Skill Level: Medium-Low
                 if (_debugMode_ == true)
                     debugString = "Medium-Low";
+
+                gradeLetter = 'B';
+
             }
 
             else if (75 < userGrade && userGrade <= 80)
@@ -190,6 +218,8 @@ namespace MinionMathMayhem_Ship
                 //  Skill Level: Low
                 if (_debugMode_ == true)
                     debugString = "Low";
+
+                gradeLetter = 'C';
             }
 
             else if (70 < userGrade && userGrade <= 75)
@@ -197,6 +227,8 @@ namespace MinionMathMayhem_Ship
                 //  Skill Level: WeakFoundation - Low
                 if (_debugMode_ == true)
                     debugString = "WeakFoundation - Low";
+
+                gradeLetter = 'C';
             }
 
             else if (65 < userGrade && userGrade <= 70)
@@ -204,6 +236,8 @@ namespace MinionMathMayhem_Ship
                 //  Skill Level: WeakFoundation - Medium
                 if (_debugMode_ == true)
                     debugString = "WeakFoundation - Medium";
+
+                gradeLetter = 'D';
             }
 
             else if (60 < userGrade && userGrade <= 65)
@@ -211,6 +245,8 @@ namespace MinionMathMayhem_Ship
                 //  Skill Level: WeakFoundation - High
                 if (_debugMode_ == true)
                     debugString = "WeakFoundation - High";
+
+                gradeLetter = 'D';
             }
 
             else if (userGrade <= 60)
@@ -218,6 +254,8 @@ namespace MinionMathMayhem_Ship
                 //  Skill Level: WeakFoundation - Failed
                 if (_debugMode_ == true)
                     debugString = "WeakFoundation - Failed";
+
+                gradeLetter = 'F';
             }
 
             else
@@ -225,11 +263,17 @@ namespace MinionMathMayhem_Ship
                 // Incase the grade parameter is something unpredictable, output the error on the terminal.
                 Debug.Log("<!> ATTENTION: RUN AWAY DETECTED <!>");
                 Debug.Log("Using grade value of: " + userGrade);
+
+                gradeLetter = 'X';
             }
 
             // DEBUG
                 if (_debugMode_ == true)
                     Debug.Log("User Master is: " + debugString);
+
+
+            // Report to all listening components of the player's grade and progress
+                ReportPlayerGrade(gradeLetter, userGrade, gradeEvaluation);
         } // PerformanceGradingLibrary()
 
 
