@@ -44,13 +44,13 @@ namespace MinionMathMayhem_Ship
             // Activate this AI component when the possible score has reached been reached by specific value
                 // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
                 //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
-                private static short userPrefScorePossible_EnableAI = 10;
+                private static short userPrefScorePossible_EnableAI = 3;
             // User Performance Array
                 private static short userPrefArrayIndexSize = 3;
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
                 private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
             // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
-                public short scanUserStatsTries = 5;
+                public short scanUserStatsTries = 3;
             // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
                 private int userPrefNextScan = 0;
             // Challenge Game Environment
