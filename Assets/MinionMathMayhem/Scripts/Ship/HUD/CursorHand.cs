@@ -17,7 +17,7 @@ public class CursorHand : MonoBehaviour {
 	}
 	
 	void Start() { 
-		Cursor.visible = false;
+		Cursor.visible = true; // Temporary only; by request [NG]
 		cursorTex = closeFlick;
 	}
 	
