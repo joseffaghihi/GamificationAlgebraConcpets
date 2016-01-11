@@ -34,12 +34,18 @@ namespace MinionMathMayhem_Ship
                     private char previous_GradeLetter;
                 // Old grade percentage (Whole number)
                     private int previous_Percentage;
+            // Challenge Settings
+                // Has the DEG Complexity has ever been set?
+                    private bool DEGComplex = false;
             // Inspector Settings
                 // Run the complexity DEG after so many evaluation passes.
                     public int complexityExecuteGradePass = 1;
             // Communication between actors and components
                 // Problem Box
                     public ProblemBox scriptProblemBox;
+                // Delegates
+                    public delegate void ProblemBox_Complexity(bool random, bool movie = false, bool window = false, int indexKey = 0);
+                    public static event ProblemBox_Complexity ProblemBox_DEGComplexity;
         // ---------------------------------
 
 
@@ -87,7 +93,16 @@ namespace MinionMathMayhem_Ship
             if (complexityExecuteGradePass >= current_EvaluationPasses)
             {
                 if (current_Percentage >= 80)
+                {
+                    // Tutorial purposes
+                    if (!DEGComplex)
+                    {
+                        DEGComplex = true;
+                        ProblemBox_DEGComplexity(false, true, false, 1);
+                    } // Tutorial
+
                     scriptProblemBox.SwitchComplexityLevel(true);
+                }
                 else
                     scriptProblemBox.SwitchComplexityLevel(false);
             } // Evaluation passes

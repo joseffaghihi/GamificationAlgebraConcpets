@@ -44,9 +44,9 @@ namespace MinionMathMayhem_Ship
             // Activate this AI component when the possible score has reached been reached by specific value
                 // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
                 //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
-                private static short userPrefScorePossible_EnableAI = 3;
+                private static short userPrefScorePossible_EnableAI = 4;
             // User Performance Array
-                private static short userPrefArrayIndexSize = 3;
+                private static short userPrefArrayIndexSize = 4;
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
                 private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
             // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
@@ -64,7 +64,7 @@ namespace MinionMathMayhem_Ship
                     public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
                     public static event MinionSpeedDelegate MinionSpeed;
                 // Tutorial session (if the user isn't understanding the material)
-                    public delegate void TutorialSessionDelegate();
+                    public delegate void TutorialSessionDelegate(bool random, bool movie = false, bool window = false, int indexKey = 0);
                     public static event TutorialSessionDelegate TutorialSession;
                 // Report User's Grade
                     // gradeLetter = Current Grade
@@ -134,7 +134,7 @@ namespace MinionMathMayhem_Ship
 
                     // User may not understand the material
                     else
-                        TutorialSession();
+                        TutorialSession(true);
 
                     // Update when the next scan should take place
                         userPrefNextScan = userPrefScorePossible + scanUserStatsTries;

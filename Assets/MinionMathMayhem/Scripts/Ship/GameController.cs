@@ -96,6 +96,8 @@ namespace MinionMathMayhem_Ship
             // AI Listeners
                 // User Mastery
                     AI_UserMastery.TutorialSession += AI_OnDemandRequest_Tutorial;
+                // Game Challenge
+                    AI_GameChallenge.ProblemBox_DEGComplexity += AI_OnDemandRequest_Tutorial;
         } // OnEnable()
 
 
@@ -108,6 +110,8 @@ namespace MinionMathMayhem_Ship
             // AI Listeners
                 // User Mastery
                     AI_UserMastery.TutorialSession -= AI_OnDemandRequest_Tutorial;
+                // Game Challenge
+                    AI_GameChallenge.ProblemBox_DEGComplexity -= AI_OnDemandRequest_Tutorial;
         } // OnDisable()
 
 
@@ -282,14 +286,17 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     When the AI Mastery reports that the user needs more re-enforcement demonstrations; backend-protocol
         /// </summary>
-        private void AI_OnDemandRequest_Tutorial()
+        private void AI_OnDemandRequest_Tutorial(bool random, bool movie = false, bool window = false, int indexKey = 0)
         {
             // Stop the GameManager with this variable
                 TutorialMode_Ended();
             // Kill Game Manager
                 StopCoroutine(gameManager);
             // Execute the backend
+            if (random) // Random ignores all other properties
                 StartCoroutine(GameExecute_Tutorial(true, true, 0, true, true));
+            else
+                StartCoroutine(GameExecute_Tutorial(movie, window, indexKey));
         } // GamePlay_Tutorial()
 
 
