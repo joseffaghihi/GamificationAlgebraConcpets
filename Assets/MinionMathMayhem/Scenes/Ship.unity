@@ -3438,7 +3438,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 19b84786c49644f9eaf2f9f79186e776, type: 2}
+  - {fileID: 2100000, guid: b3051f9dff7f3b84cada2b98b98a4f10, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -8528,7 +8528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &964868981
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15155,7 +15155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1923049302
 RectTransform:
   m_ObjectHideFlags: 0
