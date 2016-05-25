@@ -344,6 +344,33 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
+        ///     This calculates the user's average score and takes this as the grade.
+        ///     Algorithm: ([Index 0] + [Index 1] + [Index 2] + [Index N])/ListSize = Average
+        /// </summary>
+        /// <returns>
+        ///     User's average score
+        /// </returns>
+        private int UserOverAllPerformance_Grade()
+        {
+            // Declarations
+                // The variable is going to contain the user's score and will be calculated
+                //  through-out this function
+                    int grade = 0;
+
+            // Add the user's score through out the List.
+                for (int i = (userOverAllPrefArray.Count - 1); i >= 0; i--)
+                    grade += userOverAllPrefArray[i];
+
+            // Divide the grade by the size of the list
+                grade = grade / userOverAllPrefArray.Count;
+
+            // Return the user's grade average
+                return grade;
+        } // UserOverAllPerformance_Grade()
+
+
+
+        /// <summary>
         ///     Update the correct score for the Daemon service
         /// </summary>
         private void IncrementCorrectScore()
