@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic; // This way we can use use 'List' type
 using System.Collections;
 
 namespace MinionMathMayhem_Ship
@@ -49,6 +50,10 @@ namespace MinionMathMayhem_Ship
                 private static short userPrefArrayIndexSize = 4;
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
                 private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
+            // User Over-All Performance List <array>
+                // Because we don't know how long the user is going to be playing in this map, we're going to need a dynamic array'ish variable type.
+                // This List is going to house the user's score at each index.
+                private  List<int> userOverAllPrefArray = new List<int>();
             // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
                 public short scanUserStatsTries = 3;
             // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
@@ -321,6 +326,20 @@ namespace MinionMathMayhem_Ship
             // Highlight the next index
                 userPrefArrayIndex_HighLight++;
         } // ArrayUpdateField()
+
+
+
+        /// <summary>
+        ///     This function will update the end user's over all performance.
+        /// </summary>
+        /// <param name="grade">
+        ///     The user's percentage score in 'int' form.
+        /// </param>
+        private void UserOverAllPerformance_Update(int grade)
+        {
+            // Update the list to contain the user's new score
+            userOverAllPrefArray.Add(grade);
+        } // UserOverAllPerformance_Update()
 
 
 
