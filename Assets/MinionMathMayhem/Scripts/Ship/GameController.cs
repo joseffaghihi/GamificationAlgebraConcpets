@@ -297,6 +297,8 @@ namespace MinionMathMayhem_Ship
                 StartCoroutine(GameExecute_Tutorial(true, true, 0, true, true));
             else
                 StartCoroutine(GameExecute_Tutorial(movie, window, indexKey));
+            // Restart the GameManager
+                StartCoroutine(gameManager);
         } // GamePlay_Tutorial()
 
 
