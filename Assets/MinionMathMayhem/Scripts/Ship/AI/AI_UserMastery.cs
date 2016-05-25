@@ -345,7 +345,7 @@ namespace MinionMathMayhem_Ship
 
         /// <summary>
         ///     This calculates the user's average score and takes this as the grade.
-        ///     Algorithm: ([Index 0] + [Index 1] + [Index 2] + [Index N])/ListSize = Average
+        ///     Algorithm: ([Index 0] + [Index 1] + [Index 2] + [Index N-1] + [Index N])/ListSize = Average
         /// </summary>
         /// <returns>
         ///     User's average score
