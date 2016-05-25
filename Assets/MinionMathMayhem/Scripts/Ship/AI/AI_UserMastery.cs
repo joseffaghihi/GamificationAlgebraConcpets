@@ -371,6 +371,16 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
+        ///     Thrash the entire elements within the UserOverAllPrefArray List
+        /// </summary>
+        private void UserOverAllPerformance_Flush()
+        {
+            userOverAllPrefArray.Clear();
+        } // UserOverAllPerformance_Flush()
+
+
+
+        /// <summary>
         ///     Update the correct score for the Daemon service
         /// </summary>
         private void IncrementCorrectScore()
