@@ -257,7 +257,8 @@ namespace MinionMathMayhem_Ship
 	            {
                     // If the tutorial is running, pause
                         if (!gameTutorialEnded)
-                            StartCoroutine(GameExecute_Tutorial_ScanSignal());
+                            yield return (StartCoroutine(GameExecute_Tutorial_ScanSignal()));
+
                     // Fetch the scores and compute the scores, iif the game is not over
                         if (!gameOver)
                             CheckScores();
@@ -290,15 +291,11 @@ namespace MinionMathMayhem_Ship
         {
             // Stop the GameManager with this variable
                 TutorialMode_Ended();
-            // Kill Game Manager
-                StopCoroutine(gameManager);
             // Execute the backend
             if (random) // Random ignores all other properties
                 StartCoroutine(GameExecute_Tutorial(true, true, 0, true, true));
             else
                 StartCoroutine(GameExecute_Tutorial(movie, window, indexKey));
-            // Restart the GameManager
-                StartCoroutine(gameManager);
         } // GamePlay_Tutorial()
 
 
