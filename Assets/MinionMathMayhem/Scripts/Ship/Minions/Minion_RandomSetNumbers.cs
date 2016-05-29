@@ -277,7 +277,7 @@ namespace MinionMathMayhem_Ship
         ///     When true, the answers can be repeated by luck by the RNG.  When false, the repetitive answers given by the RNG will be regenerated.
         ///         Default value is true
         /// </param>
-        public void Access_FillArray(bool answerTailArray = false, bool answersRepeated = true)
+        public void Access_FillArray(bool answerTailArray = true, bool answersRepeated = true)
         {
             FillArray(false, answerTailArray, answersRepeated);
         } // Access_FillArray()
