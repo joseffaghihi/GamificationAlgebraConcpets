@@ -126,7 +126,12 @@ namespace MinionMathMayhem_Ship
             // Check for duplicated answers within the array
                 if (!option_AnswersRepeated)
                     FillArray_CheckDuplicateAnswers(indexAnswer);
-            
+
+            // Check to make sure that the array does not contain the answer at the header or before the middle of the array
+            //  when 'answerTailArray' is true and 'answersRepeated' is also true.
+                if (answersRepeated && answerTailArray)
+                    FillArray_CheckAnswersHeaderArray(indexAnswer);
+
             // Debug Stuff
                 Output(indexAnswer);
             // Settings Debug
@@ -171,6 +176,56 @@ namespace MinionMathMayhem_Ship
                         FillArray_Fill(indexKey, i);
                     while (numberSetArray[i] == numberSetArray[indexKey]);
         } // FillArray_CheckDuplicateAnswers()
+
+
+
+        /// <summary>
+        ///     This function will make sure that the answer didn't slip within the beginning of the array instead of the middle or tail of the array.
+        ///     This can occur by pure luck, when the answer is placed within the beginning of the array.  This function will remove contents within the
+        ///     array's index, and replace it with another value.
+        ///     
+        ///     Do note that this assumes, when activated, the answer has to be from the middle or tail of the array.
+        /// </summary>
+        /// <param name="indexKey">
+        ///     Holds the selected answer.
+        /// </param>
+        private static void FillArray_CheckAnswersHeaderArray(int indexKey)
+        {
+            // To avoid finding the length everytime, just place it in a variable
+            int midArray = (numberSetArray.Length) / 2;
+
+            // Scan the array from the beginning to the middle - exactly.
+            for (int i = 0; i <= midArray; i++)
+                // Is the index of the array the answer?  If true, change it
+                if (numberSetArray[i] == numberSetArray[indexKey])
+                    numberSetArray[i] = FillArray_AvoidDuplicate_Refill(indexKey);
+        } // FillArray_CheckAnswersHeaderArray()
+
+
+
+        /// <summary>
+        ///     This function will try to create a new randomized number that is not the duplicated answer.
+        /// </summary>
+        /// <param name="indexKey">
+        ///     The index of the array that contains the answers in which should be avoided; no duplicates
+        /// </param>
+        /// <returns>
+        ///     A different randomized number that is not the duplicated answer
+        /// </returns>
+        private static short FillArray_AvoidDuplicate_Refill(int indexKey)
+        {
+            // Declare a new variable that will hold the new value.
+            short newNumber;
+            // ----
+
+            // Contiously find a new number that is _NOT_ the answer.
+            do
+                newNumber = (short)scriptProblemBox.Access_GetRandomNumber();
+            while (newNumber == numberSetArray[indexKey]);
+
+            // Return the new number to the calling function
+            return newNumber;
+        } // FillArray_AvoidDuplicate_Refill()
 
 
 
