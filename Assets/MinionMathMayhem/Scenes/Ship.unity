@@ -15458,6 +15458,7 @@ MonoBehaviour:
   openFlick: {fileID: 2800000, guid: 1adce9093431673439da3b6b874333dc, type: 3}
   cursorSize: 64
   waitTime: 0.3
+  enableCustomCursor: 1
 --- !u!1001 &1962403907
 Prefab:
   m_ObjectHideFlags: 0

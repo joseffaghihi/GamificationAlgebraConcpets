@@ -10,6 +10,7 @@ public class CursorHand : MonoBehaviour {
 	public Texture2D openFlick;			// reference to open hand sprite
 	public int cursorSize;				// size of the cursor icon
 	public float waitTime;				// time in seconds to wait for hand to close
+    public bool enableCustomCursor = true; // Enable the custom cursor; only works before the game starts. [NG]
 
 	void Awake () {
 		sizeX = cursorSize;
@@ -17,7 +18,7 @@ public class CursorHand : MonoBehaviour {
 	}
 	
 	void Start() { 
-		Cursor.visible = false; // Hide the Host system's mouse cursor
+		
 		cursorTex = closeFlick;
 	}
 	
@@ -31,8 +32,14 @@ public class CursorHand : MonoBehaviour {
 	/// Draws hand cursor on the screen
 	/// </summary>
 	void OnGUI() {
-		GUI.DrawTexture(new Rect(Event.current.mousePosition.x - (cursorSize/2), Event.current.mousePosition.y - (cursorSize / 2), sizeX, sizeY), cursorTex);
-	}
+        if (enableCustomCursor)
+        {
+            Cursor.visible = false; // Hide the Host system's mouse cursor
+            GUI.DrawTexture(new Rect(Event.current.mousePosition.x - (cursorSize / 2), Event.current.mousePosition.y - (cursorSize / 2), sizeX, sizeY), cursorTex);
+        }
+        else
+            Cursor.visible = true; // Enforce the Host system's mouse cursor
+    }
 	
 	/// <summary>
 	/// public access to call _Flick()
