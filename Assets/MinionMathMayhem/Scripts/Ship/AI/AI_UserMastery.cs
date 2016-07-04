@@ -33,9 +33,15 @@ namespace MinionMathMayhem_Ship
         // ---------------------------------
             // DEBUG MODE [INTERNAL]
                 private static bool _debugMode_ = true;
-            // User's current scores
+            // User's current tentative scores
+            //  These scores will be flushed every so often within the game at run time.
+            //  These scores are mainly for progress and comprehension levels.
                 private int userPrefScoreCorrect = 0;
                 private int userPrefScoreWrong = 0;
+            // User's overall score within the game
+            //  These scores monitors the overall progress of the end-users understanding of the material.
+                private int userPrefOverallScoreCorrect = 0;
+                private int userPrefOverallScoreIncorrect = 0;
             // Possible Scores
                 private int userPrefScorePossible = 0;
             // Game State; is the game over?
@@ -350,7 +356,7 @@ namespace MinionMathMayhem_Ship
         /// <returns>
         ///     User's average score
         /// </returns>
-        private int UserOverAllPerformance_Grade()
+        private int UserPerformance_Grade()
         {
             // Declarations
                 // The variable is going to contain the user's score and will be calculated
@@ -373,7 +379,7 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Thrash the entire elements within the UserOverAllPrefArray List
         /// </summary>
-        private void UserOverAllPerformance_Flush()
+        private void UserPerformance_Flush()
         {
             userOverAllPrefArray.Clear();
         } // UserOverAllPerformance_Flush()
