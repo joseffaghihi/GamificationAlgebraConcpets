@@ -27,8 +27,6 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // DEBUG MODE [INTERNAL]
-                private static bool _debugMode_ = true;
             // How many the user got wrong
                 private int gradeIncorrect = 0;
             // How many the user got correcct
