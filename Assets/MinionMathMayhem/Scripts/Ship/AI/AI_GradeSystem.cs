@@ -34,9 +34,6 @@ namespace MinionMathMayhem_Ship
                 private int gradeIncorrect = 0;
             // How many the user got correcct
                 private int gradeCorrect = 0;
-            // Provide a report on the user's graded performance.
-                public delegate void UserGradedPerformance(char gradeLetter, int gradePercent);
-                public static event UserGradedPerformance ReportPlayerGrade;
         // ---------------------------------
 
 
