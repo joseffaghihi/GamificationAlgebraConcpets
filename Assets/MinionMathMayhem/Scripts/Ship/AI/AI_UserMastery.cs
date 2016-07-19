@@ -31,17 +31,11 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // DEBUG MODE [INTERNAL]
-                private static bool _debugMode_ = true;
             // User's current tentative scores
             //  These scores will be flushed every so often within the game at run time.
             //  These scores are mainly for progress and comprehension levels.
                 private int userPrefScoreCorrect = 0;
                 private int userPrefScoreWrong = 0;
-            // User's overall score within the game
-            //  These scores monitors the overall progress of the end-users understanding of the material.
-                private int userPrefOverallScoreCorrect = 0;
-                private int userPrefOverallScoreIncorrect = 0;
             // Possible Scores
                 private int userPrefScorePossible = 0;
             // Game State; is the game over?
@@ -56,20 +50,10 @@ namespace MinionMathMayhem_Ship
                 private static short userPrefArrayIndexSize = 4;
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
                 private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
-            // User Over-All Performance List <array>
-                // Because we don't know how long the user is going to be playing in this map, we're going to need a dynamic array'ish variable type.
-                // This List is going to house the user's score at each index.
-                private  List<int> userOverAllPrefArray = new List<int>();
             // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
                 public short scanUserStatsTries = 3;
             // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
                 private int userPrefNextScan = 0;
-            // Challenge Game Environment
-                // BITFIELD EMULATED IDENTIFIER
-                    // 0 - Empty or Default
-                    // 1 - Minion Speed has changed
-                    // 2 - Spawner Frequency
-                    private short userPrefChallenge = 0;
             // Events and Delegates
                 // Minion Speed
                     public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
@@ -135,16 +119,11 @@ namespace MinionMathMayhem_Ship
                 if ((userPrefScorePossible >= userPrefScorePossible_EnableAI && !gameOver) && ((userPrefNextScan == userPrefScorePossible) || userPrefNextScan == 0))
                 {
                     // DEBUG MODE
-                    if (_debugMode_ == true)
                         DebugUserStats();
 
 
-                    // User understands the material thus far
-                    if (!UserPerformance_Array())
-                        PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
-
-                    // User may not understand the material
-                    else
+                // User may not understand the material
+                if (UserPerformance_Array())
                         TutorialSession(true);
 
                     // Update when the next scan should take place
@@ -164,128 +143,6 @@ namespace MinionMathMayhem_Ship
             Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
             Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
         } // DebugUserStats()
-
-
-
-        /// <summary>
-        ///     This function will scan its internal library and determine how to control the environment based on the user's grade.
-        /// </summary>
-        private void PerformanceGradingLibrary(int userGrade)
-        {
-            // DEBUG STUFF
-                string debugString = "failed to initialize";
-
-            // Increment the user's grade count
-                ++gradeEvaluation;
-            // Cached variables; used for reducing redundancy
-                char gradeLetter; // Used for storing the user's grade
-
-            // Sorry for this long conditional, I couldn't find a nicer way to do this with a Switch statement :(
-            if (95 < userGrade && userGrade <= 100)
-            {
-                // Skill Level: Very-High
-                if (_debugMode_ == true)
-                    debugString = "Very-High";
-
-
-                gradeLetter = 'A';
-                
-            }
-
-
-            else if (90 < userGrade && userGrade <= 95)
-            {
-                // Skill Level: Medium-High
-                if (_debugMode_ == true)
-                    debugString = "Medium-High";
-
-
-                gradeLetter = 'A';
-
-            }
-
-            else if (85 < userGrade && userGrade <= 90)
-            {
-                // Skill Level: Medium
-                if (_debugMode_ == true)
-                    debugString = "Medium";
-
-                gradeLetter = 'B';
-
-            }
-
-            else if (80 < userGrade && userGrade <= 85)
-            {
-                //   Skill Level: Medium-Low
-                if (_debugMode_ == true)
-                    debugString = "Medium-Low";
-
-                gradeLetter = 'B';
-
-            }
-
-            else if (75 < userGrade && userGrade <= 80)
-            {
-                //  Skill Level: Low
-                if (_debugMode_ == true)
-                    debugString = "Low";
-
-                gradeLetter = 'C';
-            }
-
-            else if (70 < userGrade && userGrade <= 75)
-            {
-                //  Skill Level: WeakFoundation - Low
-                if (_debugMode_ == true)
-                    debugString = "WeakFoundation - Low";
-
-                gradeLetter = 'C';
-            }
-
-            else if (65 < userGrade && userGrade <= 70)
-            {
-                //  Skill Level: WeakFoundation - Medium
-                if (_debugMode_ == true)
-                    debugString = "WeakFoundation - Medium";
-
-                gradeLetter = 'D';
-            }
-
-            else if (60 < userGrade && userGrade <= 65)
-            {
-                //  Skill Level: WeakFoundation - High
-                if (_debugMode_ == true)
-                    debugString = "WeakFoundation - High";
-
-                gradeLetter = 'D';
-            }
-
-            else if (userGrade <= 60)
-            {
-                //  Skill Level: WeakFoundation - Failed
-                if (_debugMode_ == true)
-                    debugString = "WeakFoundation - Failed";
-
-                gradeLetter = 'F';
-            }
-
-            else
-            {
-                // Incase the grade parameter is something unpredictable, output the error on the terminal.
-                Debug.Log("<!> ATTENTION: RUN AWAY DETECTED <!>");
-                Debug.Log("Using grade value of: " + userGrade);
-
-                gradeLetter = 'X';
-            }
-
-            // DEBUG
-                if (_debugMode_ == true)
-                    Debug.Log("User Master is: " + debugString);
-
-
-            // Report to all listening components of the player's grade and progress
-                ReportPlayerGrade(gradeLetter, userGrade, gradeEvaluation);
-        } // PerformanceGradingLibrary()
 
 
 
@@ -332,57 +189,6 @@ namespace MinionMathMayhem_Ship
             // Highlight the next index
                 userPrefArrayIndex_HighLight++;
         } // ArrayUpdateField()
-
-
-
-        /// <summary>
-        ///     This function will update the end user's over all performance.
-        /// </summary>
-        /// <param name="grade">
-        ///     The user's percentage score in 'int' form.
-        /// </param>
-        private void UserOverAllPerformance_Update(int grade)
-        {
-            // Update the list to contain the user's new score
-            userOverAllPrefArray.Add(grade);
-        } // UserOverAllPerformance_Update()
-
-
-
-        /// <summary>
-        ///     This calculates the user's average score and takes this as the grade.
-        ///     Algorithm: ([Index 0] + [Index 1] + [Index 2] + [Index N-1] + [Index N])/ListSize = Average
-        /// </summary>
-        /// <returns>
-        ///     User's average score
-        /// </returns>
-        private int UserPerformance_Grade()
-        {
-            // Declarations
-                // The variable is going to contain the user's score and will be calculated
-                //  through-out this function
-                    int grade = 0;
-
-            // Add the user's score through out the List.
-                for (int i = (userOverAllPrefArray.Count - 1); i >= 0; i--)
-                    grade += userOverAllPrefArray[i];
-
-            // Divide the grade by the size of the list
-                grade = grade / userOverAllPrefArray.Count;
-
-            // Return the user's grade average
-                return grade;
-        } // UserOverAllPerformance_Grade()
-
-
-
-        /// <summary>
-        ///     Thrash the entire elements within the UserOverAllPrefArray List
-        /// </summary>
-        private void UserPerformance_Flush()
-        {
-            userOverAllPrefArray.Clear();
-        } // UserOverAllPerformance_Flush()
 
 
 
