@@ -5,7 +5,6 @@ namespace MinionMathMayhem_Ship
 {
     public class AI_GradeSystem : MonoBehaviour
     {
-
         /*
          *                                                   GAME ARTIFICIAL INTELLIGENCE
          *                                                          GRADE SYSTEM
