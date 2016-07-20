@@ -138,11 +138,10 @@ namespace MinionMathMayhem_Ship
 
         /// <summary>
         ///     Update values within the array based on the user's actual performance.
-        /// 
-        ///     Array Index Value Key:
-        ///     True = Correct Answer
-        ///     False = Wrong Answer
         /// </summary>
+        /// <param name="userFeedback">
+        ///     True = Correct Answer; False = Wrong Answer.
+        /// </param>
         private void ArrayUpdateField(bool userFeedback)
         {
             // Make sure that we're not overflowing the array, move the highlight to the start of the index if needed.
@@ -180,15 +179,15 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     This will reset the scores; game restarted
+        ///     At restart, reset the mutable working variables to their default values.
         /// </summary>
         private void ResetScores()
         {
-            // Flip the value
+            // Flip the value of the game over state
             GameState_ToggleGameOver();
             // Reset the Highlighter used in the performance array.
             userPrefArrayIndex_HighLight = 0;
-        } // ResetAllScores()
+        } // ResetScores()
 
 
 
@@ -198,6 +197,6 @@ namespace MinionMathMayhem_Ship
         private void GameState_ToggleGameOver()
         {
             gameOver = !gameOver;
-        } // GameState_GameOver()
+        } // GameState_ToggleGameOver()
     } // End of Class
 } // Namespace
