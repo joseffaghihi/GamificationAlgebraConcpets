@@ -33,6 +33,8 @@ namespace MinionMathMayhem_Ship
         // ---------------------------------
             // Game State; is the game over?
                 private bool gameOver = false;
+            // AI Grading system switch
+                private bool aiSwitch = false;
             // Activate this AI component when the possible score has reached been reached by specific value
                 // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
                 //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
@@ -106,8 +108,34 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         public void Main()
         {
-
+            // Execute the tentative grading system
+            // Periodically check the player's tentative score and determine the state of the game
+            if (aiSwitch && !gameOver && InspectQueries_Ready())
+            {
+                // Mastery: Did the user get all of the answers incorrect?
+                if (UserPerformance_Array())
+                    // Call the tutorial
+                    TutorialSession(true);
+                
+            } // if Grading enabled
         } // Main()
+
+
+
+        /// <summary>
+        ///     When called; this will determine if there is enough data to inspect the user's tentative mastery to the material.
+        /// </summary>
+        /// <returns>
+        ///     True = Ready for inspection
+        ///     False = Not enough data gathered yet.
+        /// </returns>
+        private bool InspectQueries_Ready()
+        {
+            if (userPrefArrayIndex_HighLight > userPrefArrayIndexSize)
+                return true;
+            else
+                return false;
+        } // InspectQueries_Ready()
 
 
 
@@ -198,5 +226,15 @@ namespace MinionMathMayhem_Ship
         {
             gameOver = !gameOver;
         } // GameState_ToggleGameOver()
+
+
+
+        /// <summary>
+        ///     Toggles the aiSwitch variable; useful when the grading part of the AI is active or not.
+        /// </summary>
+        private void AIGrading_ToggleAISwitch()
+        {
+            aiSwitch = !aiSwitch;
+        } // AIGrading_ToggleAISwitch()
     } // End of Class
 } // Namespace
