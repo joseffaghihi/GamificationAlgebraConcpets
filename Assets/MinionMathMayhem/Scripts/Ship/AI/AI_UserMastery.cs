@@ -31,17 +31,8 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // User's current tentative scores
-            //  These scores will be flushed every so often within the game at run time.
-            //  These scores are mainly for progress and comprehension levels.
-                private int userPrefScoreCorrect = 0;
-                private int userPrefScoreWrong = 0;
-            // Possible Scores
-                private int userPrefScorePossible = 0;
             // Game State; is the game over?
                 private bool gameOver = false;
-            // How many times the user has been graded
-                private int gradeEvaluation = 0;
             // Activate this AI component when the possible score has reached been reached by specific value
                 // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
                 //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
@@ -78,10 +69,10 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            Score.ScoreUpdate_Correct += IncrementCorrectScore;
-            Score.ScoreUpdate_Incorrect += IncrementWrongScore;
+            Score.ScoreUpdate_Correct += Update_CorrectScore;
+            Score.ScoreUpdate_Incorrect += Update_IncorrectScore;
             GameController.GameStateEnded += GameState_ToggleGameOver;
-            GameController.GameStateRestart += ResetAllScores;
+            GameController.GameStateRestart += ResetScores;
         } // OnEnable()
 
 
@@ -92,10 +83,10 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-            Score.ScoreUpdate_Correct -= IncrementCorrectScore;
-            Score.ScoreUpdate_Incorrect -= IncrementWrongScore;
+            Score.ScoreUpdate_Correct -= Update_CorrectScore;
+            Score.ScoreUpdate_Incorrect -= Update_IncorrectScore;
             GameController.GameStateEnded -= GameState_ToggleGameOver;
-            GameController.GameStateRestart -= ResetAllScores;
+            GameController.GameStateRestart -= ResetScores;
         } // OnDisable()
 
 
@@ -115,34 +106,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         public void Main()
         {
-                // Only run when the possible points has reached a certain value and if the game isn't over.
-                if ((userPrefScorePossible >= userPrefScorePossible_EnableAI && !gameOver) && ((userPrefNextScan == userPrefScorePossible) || userPrefNextScan == 0))
-                {
-                    // DEBUG MODE
-                        DebugUserStats();
 
-
-                // User may not understand the material
-                if (UserPerformance_Array())
-                        TutorialSession(true);
-
-                    // Update when the next scan should take place
-                        userPrefNextScan = userPrefScorePossible + scanUserStatsTries;
-                } // if AI active and monitoring
         } // Main()
-
-
-
-        /// <summary>
-        ///     This function will merely spit out information about the user's current score and statistics were available
-        /// </summary>
-        private void DebugUserStats()
-        {
-            Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
-            Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
-            Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
-            Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
-        } // DebugUserStats()
 
 
 
@@ -195,55 +160,34 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Update the correct score for the Daemon service
         /// </summary>
-        private void IncrementCorrectScore()
+        private void Update_CorrectScore()
         {
-            userPrefScoreCorrect++;
-
             // Update the array that holds the user performance
                 ArrayUpdateField(true);
-            // Update the possible score
-                UpdatePossibleScore();
-
-        } // IncrementCorrectScore()
+        } // Update_CorrectScore()
 
 
 
         /// <summary>
         ///     Update the incorrect score for the Daemon service
         /// </summary>
-        private void IncrementWrongScore()
+        private void Update_IncorrectScore()
         {
-            userPrefScoreWrong++;
-
             // Update the array that holds the user performance
                 ArrayUpdateField(false);
-            // Update the possible score
-                UpdatePossibleScore();
-        } // IncrementWrongScore()
-
-
-
-        /// <summary>
-        ///     Update the possible score possible by adding the scores.
-        /// </summary>
-        private void UpdatePossibleScore()
-        {
-            userPrefScorePossible = (userPrefScoreCorrect + userPrefScoreWrong);
-        } // UpdatePossibleScore()
+        } // Update_IncorrectScore()
 
 
 
         /// <summary>
         ///     This will reset the scores; game restarted
         /// </summary>
-        private void ResetAllScores()
+        private void ResetScores()
         {
-            userPrefScorePossible = 0;
-            userPrefScoreCorrect = 0;
-            userPrefScoreWrong = 0;
-
             // Flip the value
             GameState_ToggleGameOver();
+            // Reset the Highlighter used in the performance array.
+            userPrefArrayIndex_HighLight = 0;
         } // ResetAllScores()
 
 
