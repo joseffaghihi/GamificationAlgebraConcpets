@@ -110,10 +110,13 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         public void Main()
         {
+            DebugStuff(); // Temporary debug stuff
+
             // Execute the tentative grading system
             // Periodically check the player's tentative score and determine the state of the game
             if (aiSwitch && !gameOver && InspectQueries_Ready() && !lockAI)
             {
+                Debug.Log("OH NOES!!!");
                 // Temporarily lock this function from re-looping
                     lockAI = !lockAI;
 
@@ -126,6 +129,19 @@ namespace MinionMathMayhem_Ship
                 // UserMasteryReport_Precentage();
             } // if Grading enabled
         } // Main()
+
+
+
+        /// <summary>
+        ///     Temporary Debug Stuff ==========================================================================================
+        /// </summary>
+        private void DebugStuff()
+        {
+            Debug.Log("State of AI Lock: " + lockAI);
+            Debug.Log("State of Game Over: " + gameOver);
+            Debug.Log("State of the Queries: " + InspectQueries_Ready());
+            Debug.Log("State of the AI Switch: " + aiSwitch);
+        }
 
 
 
