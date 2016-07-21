@@ -121,7 +121,9 @@ namespace MinionMathMayhem_Ship
                 if (UserPerformance_Array())
                     // Call the tutorial
                     TutorialSession(true);
-                
+
+                // Get the user's percentage rate and determine the game challenge
+                // UserMasteryReport_Precentage();
             } // if Grading enabled
         } // Main()
 
@@ -186,6 +188,38 @@ namespace MinionMathMayhem_Ship
             // Highlight the next index
                 userPrefArrayIndex_HighLight++;
         } // ArrayUpdateField()
+
+
+
+        /// <summary>
+        ///     This function will retrieve the players percentage rate of the queries gathered
+        /// </summary>
+        /// <returns>
+        ///     Percentage in integer form.
+        /// </returns>
+        private int UserMasteryReport_Precentage()
+        {
+            // Declarations and Initializations
+            // --------------------------------
+            // Find out how many the user got correct and not correct
+                int incorrectScore = 0;
+                int correctScore = 0;
+            // --------------------------------
+
+            // Scan the array and determine what the user got right or wrong.
+            //  We're going to need this for statistics purposes.
+            for (int i = 0; i < userPrefArrayIndexSize; i++)
+            {
+                if (userPrefArray[i])
+                    correctScore++;
+                else
+                    incorrectScore++;
+            } // Scan array's queries
+
+
+            // Methodology: (EarnedPoints / PossiblePoints * 100)
+            return ((correctScore / (correctScore + incorrectScore)) * 100);
+        } // UserMasteryReport_Precentage()
 
 
 
