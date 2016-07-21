@@ -35,6 +35,8 @@ namespace MinionMathMayhem_Ship
                 private bool gameOver = false;
             // AI Grading system switch
                 private bool aiSwitch = false;
+            // Temporary lock variable
+                private bool lockAI = false;
             // Activate this AI component when the possible score has reached been reached by specific value
                 // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
                 //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
@@ -110,8 +112,11 @@ namespace MinionMathMayhem_Ship
         {
             // Execute the tentative grading system
             // Periodically check the player's tentative score and determine the state of the game
-            if (aiSwitch && !gameOver && InspectQueries_Ready())
+            if (aiSwitch && !gameOver && InspectQueries_Ready() && !lockAI)
             {
+                // Temporarily lock this function from re-looping
+                    lockAI = !lockAI;
+
                 // Mastery: Did the user get all of the answers incorrect?
                 if (UserPerformance_Array())
                     // Call the tutorial
@@ -191,6 +196,8 @@ namespace MinionMathMayhem_Ship
         {
             // Update the array that holds the user performance
                 ArrayUpdateField(true);
+            // Unlock the grading system; if necessary
+                CheckScore_ToggleLock();
         } // Update_CorrectScore()
 
 
@@ -202,6 +209,8 @@ namespace MinionMathMayhem_Ship
         {
             // Update the array that holds the user performance
                 ArrayUpdateField(false);
+            // Unlock the grading system; if necessary
+                CheckScore_ToggleLock();
         } // Update_IncorrectScore()
 
 
@@ -226,6 +235,18 @@ namespace MinionMathMayhem_Ship
         {
             gameOver = !gameOver;
         } // GameState_ToggleGameOver()
+
+
+
+        /// <summary>
+        ///     Unlocks the tentative grading system if the lock is active.
+        /// </summary>
+        private void CheckScore_ToggleLock()
+        {
+            // Make sure that if the lock has been set, unlock it upon change.
+            if (lockAI)
+                lockAI = !lockAI;
+        } // CheckScore_ToggleLock()
 
 
 
