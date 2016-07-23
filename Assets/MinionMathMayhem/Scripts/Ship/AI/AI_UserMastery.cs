@@ -31,46 +31,46 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // Game State; is the game over?
-                private bool gameOver = false;
-            // AI Grading system switch
-                private bool aiSwitch = false;
-            // Temporary lock variable
-                private bool lockAI = false;
-            // Activate this AI component when the possible score has reached been reached by specific value
-                // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
-                //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
-                private const short userPrefScorePossible_EnableAI = 4;
-                
-            // Adjacent to the AI enable variable; this variable works in conjunction with the above variable.
-            //  After each round or startup, there is a warm up period where the AI grading system does not
-            //  run at all or merely pauses in its current state.
-            //  This variable will increment so many times to match with the above variable, from there - the
-            //  should be enabled.
-                private static short userPrefScorePossible_WarmUp = 0;
-            // User Performance Array
-                private static short userPrefArrayIndexSize = 4;
-                private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
-                private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
-            // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
-                public short scanUserStatsTries = 3;
-            // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
-                private int userPrefNextScan = 0;
-            // Events and Delegates
-                // Minion Speed
-                    public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
-                    public static event MinionSpeedDelegate MinionSpeed;
-                // Tutorial session (if the user isn't understanding the material)
-                    public delegate void TutorialSessionDelegate(bool random, bool movie = false, bool window = false, int indexKey = 0);
-                    public static event TutorialSessionDelegate TutorialSession;
-                // Report User's Grade
-                    // gradeLetter = Current Grade
-                    // gradePercent = Score (grade) percertage
-                    // gradeEvaluated = How many times the score has been evaluated or checked
-                    public delegate void UserGradedPerformance(char gradeLetter, int gradePercent, int gradeEvaluated);
-                    public static event UserGradedPerformance ReportPlayerGrade;
+        // Game State; is the game over?
+        private bool gameOver = false;
+        // AI Grading system switch
+        private bool gradeUserSwitch = false;
+        // Temporary lock variable
+        private bool lockAI = false;
+        // Determines if the newly incoming scores should be ignored; useful for on-screen or interactive tutorials that are self managed.
+        private bool gradeUserHaltSwitch = false;
+        // Activate this AI component when the possible score has reached been reached by specific value
+        // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
+        //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
+        private const short userPrefScorePossible_EnableAI = 4;
+        // Adjacent to the AI activation (see above variable), this variable holds the state of when the AI activates.
+        // The idea of this variable is to allow the user to experience through the warmup phase; once this variable
+        // is equal to or greater than the variable above - then we're finished with the warm up phase.
+        private static short userPrefScorePossible_Monitor = 0;
+
+        // User Performance Array
+        private static short userPrefArrayIndexSize = 4;
+        private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
+        private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
+                                                        // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
+        public short scanUserStatsTries = 3;
+        // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
+        private int userPrefNextScan = 0;
+        // Events and Delegates
+        // Minion Speed
+        public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
+        public static event MinionSpeedDelegate MinionSpeed;
+        // Tutorial session (if the user isn't understanding the material)
+        public delegate void TutorialSessionDelegate(bool random, bool movie = false, bool window = false, int indexKey = 0);
+        public static event TutorialSessionDelegate TutorialSession;
+        // Report User's Grade
+        // gradeLetter = Current Grade
+        // gradePercent = Score (grade) percertage
+        // gradeEvaluated = How many times the score has been evaluated or checked
+        public delegate void UserGradedPerformance(char gradeLetter, int gradePercent, int gradeEvaluated);
+        public static event UserGradedPerformance ReportPlayerGrade;
         // ---------------------------------
-        
+
 
 
 
@@ -80,10 +80,12 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            Score.ScoreUpdate_Correct += Update_CorrectScore;
-            Score.ScoreUpdate_Incorrect += Update_IncorrectScore;
-            GameController.GameStateEnded += GameState_ToggleGameOver;
-            GameController.GameStateRestart += ResetScores;
+            Score.ScoreUpdate_Correct += onCall_ScoreCorrect;
+            Score.ScoreUpdate_Incorrect += onCall_ScoreIncorrect;
+            GameController.GameStateEnded += SignalOnGameOver;
+            GameController.GameStateRestart += SignalOnReset;
+            GameController.TutorialStateStart += SignalTutorial_Enable;
+            GameController.TutorialStateEnd += SignalTutorial_Disable;
         } // OnEnable()
 
 
@@ -94,10 +96,12 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-            Score.ScoreUpdate_Correct -= Update_CorrectScore;
-            Score.ScoreUpdate_Incorrect -= Update_IncorrectScore;
-            GameController.GameStateEnded -= GameState_ToggleGameOver;
-            GameController.GameStateRestart -= ResetScores;
+            Score.ScoreUpdate_Correct -= onCall_ScoreCorrect;
+            Score.ScoreUpdate_Incorrect -= onCall_ScoreIncorrect;
+            GameController.GameStateEnded -= SignalOnGameOver;
+            GameController.GameStateRestart -= SignalOnReset;
+            GameController.TutorialStateStart -= SignalTutorial_Enable;
+            GameController.TutorialStateEnd -= SignalTutorial_Disable;
         } // OnDisable()
 
 
@@ -121,11 +125,11 @@ namespace MinionMathMayhem_Ship
 
             // Execute the tentative grading system
             // Periodically check the player's tentative score and determine the state of the game
-            if (aiSwitch && !gameOver && InspectQueries_Ready() && !lockAI)
+            if (gradeUserSwitch && !gameOver && InspectQueries_Ready() && !gradeUserHaltSwitch)
             {
                 Debug.Log("OH NOES!!!");
                 // Temporarily lock this function from re-looping
-                    lockAI = !lockAI;
+                //lockAI = !lockAI;
 
                 // Mastery: Did the user get all of the answers incorrect?
                 if (UserPerformance_Array())
@@ -147,8 +151,7 @@ namespace MinionMathMayhem_Ship
             Debug.Log("State of AI Lock: " + lockAI);
             Debug.Log("State of Game Over: " + gameOver);
             Debug.Log("State of the Queries: " + InspectQueries_Ready());
-            Debug.Log("State of the AI Switch: " + aiSwitch);
-            Debug.Log("Achived maximum queries: " + userPrefArrayIndex_HighLight);
+            Debug.Log("State of the AI Switch: " + gradeUserSwitch);
         }
 
 
@@ -208,9 +211,9 @@ namespace MinionMathMayhem_Ship
                 userPrefArrayIndex_HighLight = 0;
 
             // Update the array at the highlighted index
-                userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
+            userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
             // Highlight the next index
-                userPrefArrayIndex_HighLight++;
+            userPrefArrayIndex_HighLight++;
         } // ArrayUpdateField()
 
 
@@ -226,8 +229,8 @@ namespace MinionMathMayhem_Ship
             // Declarations and Initializations
             // --------------------------------
             // Find out how many the user got correct and not correct
-                int incorrectScore = 0;
-                int correctScore = 0;
+            int incorrectScore = 0;
+            int correctScore = 0;
             // --------------------------------
 
             // Scan the array and determine what the user got right or wrong.
@@ -250,14 +253,15 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Update the correct score for the Daemon service
         /// </summary>
-        private void Update_CorrectScore()
+        private void onCall_ScoreCorrect()
         {
-            // Update the array that holds the user performance
+            if (!gradeUserSwitch)
+                AI_WarmUpPhase();
+            else if (gradeUserHaltSwitch)
+                return;
+            else
+                // Update the array that holds the user performance
                 ArrayUpdateField(true);
-            // Unlock the grading system; if necessary
-                CheckScore_ToggleLock();
-            // Check for the warm up phase (AI Switch)
-                AIStatus_WarmUpCheck();
         } // Update_CorrectScore()
 
 
@@ -265,25 +269,63 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Update the incorrect score for the Daemon service
         /// </summary>
-        private void Update_IncorrectScore()
+        private void onCall_ScoreIncorrect()
         {
-            // Update the array that holds the user performance
+            if (!gradeUserSwitch)
+                AI_WarmUpPhase();
+            else if (gradeUserHaltSwitch)
+                return;
+            else
+                // Update the array that holds the user performance
                 ArrayUpdateField(false);
-            // Unlock the grading system; if necessary
-                CheckScore_ToggleLock();
-            // Check for the warm up phase (AI Switch)
-                AIStatus_WarmUpCheck();
+
         } // Update_IncorrectScore()
+
+
+
+        /// <summary>
+        ///     Allow the ability to momentarily pause the entire grading system.
+        ///     This can be useful for events that focuses the attention away from
+        ///     the grading the user based on the nature of the game.
+        /// </summary>
+        /// <param name="state">
+        ///     When true, this will pause the grading system - thus if any minions cross the FinalDestroyer line, their result will be ignored.
+        ///     However, when false, the game runs as normal.
+        /// </param>
+        private void AI_PauseToggle(bool stateSwitch)
+        {
+            // Don't flush the state in memory and redo the state
+            if (gradeUserHaltSwitch && stateSwitch)
+                return;
+            else
+                gradeUserHaltSwitch = stateSwitch;
+        } // AI_PauseToggle()
+
+
+
+        /// <summary>
+        ///     Check the status of the AI and determine when the AI grading system should be activated.
+        ///     This functionlaity will allow the user to use the warm-up phase, which the game will
+        ///     just toss a few tutorials at the user and examine the user's input.  After the tutorial (warm up),
+        ///     activate the AI grading system.
+        /// </summary>
+        private void AI_WarmUpPhase()
+        {
+            if (userPrefScorePossible_Monitor >= userPrefScorePossible_EnableAI)
+                gradeUserSwitch = true;
+            else
+                userPrefScorePossible_Monitor++;
+        } // AI_WarmUpPhase()
 
 
 
         /// <summary>
         ///     At restart, reset the mutable working variables to their default values.
         /// </summary>
-        private void ResetScores()
+        private void SignalOnReset()
         {
             // Flip the value of the game over state
-            GameState_ToggleGameOver();
+            SignalOnGameOver();
             // Reset the Highlighter used in the performance array.
             userPrefArrayIndex_HighLight = 0;
         } // ResetScores()
@@ -293,7 +335,7 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Toggles the gameOver variable when the game has reached it's end.
         /// </summary>
-        private void GameState_ToggleGameOver()
+        private void SignalOnGameOver()
         {
             gameOver = !gameOver;
         } // GameState_ToggleGameOver()
@@ -301,40 +343,21 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     Unlocks the tentative grading system if the lock is active.
+        /// 
         /// </summary>
-        private void CheckScore_ToggleLock()
+        private void SignalTutorial_Enable()
         {
-            // Make sure that if the lock has been set, unlock it upon change.
-            if (lockAI)
-                lockAI = !lockAI;
-        } // CheckScore_ToggleLock()
+            AI_PauseToggle(true);
+        } // SignalTutorial_Enable()
 
 
 
         /// <summary>
-        ///     Toggles the aiSwitch variable; useful when the grading part of the AI is active or not.
+        /// 
         /// </summary>
-        private void AIGrading_ToggleAISwitch()
+        private void SignalTutorial_Disable()
         {
-            aiSwitch = !aiSwitch;
-        } // AIGrading_ToggleAISwitch()
-
-
-
-        /// <summary>
-        ///     This function will turn on the AI grading environment after so many passes has occured.
-        ///     This is going to be necessary for start-up tutorials and other purposes where the game
-        ///     itself is not fully ready to challenge the user.
-        /// </summary>
-        private void AIStatus_WarmUpCheck()
-        {
-            if ((userPrefScorePossible_WarmUp <= userPrefScorePossible_EnableAI) && !aiSwitch)
-                userPrefScorePossible_WarmUp++;
-
-
-            else if (!aiSwitch)
-                aiSwitch = !aiSwitch;
-        } // AIStatusEvaluation()
+            AI_PauseToggle(false);
+        } // SignalTutorial_Disable()
     } // End of Class
 } // Namespace
