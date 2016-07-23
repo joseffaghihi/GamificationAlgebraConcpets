@@ -22,7 +22,7 @@ namespace MinionMathMayhem_Ship
          *          |_ GameController [GameController]
          *
          * GOALS:
-         *      Tries to keep the player invulved and motivated
+         *      Tries to keep the player involved and motivated
          *      Requests the environment or game to be more challenging or easier, based on user's mastery.
          *      Tries to make sure that the user understands that material while keeping the game fun.
          */
@@ -44,7 +44,7 @@ namespace MinionMathMayhem_Ship
         //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
         private const short userPrefScorePossible_EnableAI = 4;
         // Adjacent to the AI activation (see above variable), this variable holds the state of when the AI activates.
-        // The idea of this variable is to allow the user to experience through the warmup phase; once this variable
+        // The idea of this variable is to allow the user to experience through the warm-up phase; once this variable
         // is equal to or greater than the variable above - then we're finished with the warm up phase.
         private static short userPrefScorePossible_Monitor = 0;
 
@@ -65,7 +65,7 @@ namespace MinionMathMayhem_Ship
         public static event TutorialSessionDelegate TutorialSession;
         // Report User's Grade
         // gradeLetter = Current Grade
-        // gradePercent = Score (grade) percertage
+        // gradePercent = Score (grade) percentage
         // gradeEvaluated = How many times the score has been evaluated or checked
         public delegate void UserGradedPerformance(char gradeLetter, int gradePercent, int gradeEvaluated);
         public static event UserGradedPerformance ReportPlayerGrade;
@@ -107,8 +107,8 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     This daemon servicer will determine how the game should interact with the player; this is done by anaylizing -
-        ///     the user's score and getting the user's grade (by precentage) and understand how well the end-user understands -
+        ///     This daemon service will determine how the game should interact with the player; this is done by analyse -
+        ///     the user's score and getting the user's grade (by percentage) and understand how well the end-user understands -
         ///     the material presented.
         /// 
         ///     What this Controls:
@@ -305,7 +305,7 @@ namespace MinionMathMayhem_Ship
 
         /// <summary>
         ///     Check the status of the AI and determine when the AI grading system should be activated.
-        ///     This functionlaity will allow the user to use the warm-up phase, which the game will
+        ///     This functionality will allow the user to use the warm-up phase, which the game will
         ///     just toss a few tutorials at the user and examine the user's input.  After the tutorial (warm up),
         ///     activate the AI grading system.
         /// </summary>
