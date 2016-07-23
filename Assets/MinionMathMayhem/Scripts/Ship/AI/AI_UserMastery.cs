@@ -127,7 +127,7 @@ namespace MinionMathMayhem_Ship
             // Periodically check the player's tentative score and determine the state of the game
             if (gradeUserSwitch && !gameOver && InspectQueries_Ready() && !gradeUserHaltSwitch)
             {
-                Debug.Log("OH NOES!!!");
+                Debug.LogError("Developers Developers Developers Developers Developers Developers Developers Developers Developers Developers [...]");
                 // Temporarily lock this function from re-looping
                 //lockAI = !lockAI;
 
