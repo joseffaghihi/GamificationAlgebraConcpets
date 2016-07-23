@@ -162,7 +162,7 @@ namespace MinionMathMayhem_Ship
         /// </returns>
         private bool InspectQueries_Ready()
         {
-            if (userPrefArrayIndex_HighLight > userPrefArrayIndexSize)
+            if (userPrefArrayIndex_HighLight > (userPrefArrayIndexSize - 1))
                 return true;
             else
                 return false;
