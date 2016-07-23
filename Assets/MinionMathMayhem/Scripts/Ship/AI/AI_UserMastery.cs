@@ -40,7 +40,14 @@ namespace MinionMathMayhem_Ship
             // Activate this AI component when the possible score has reached been reached by specific value
                 // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
                 //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
-                private static short userPrefScorePossible_EnableAI = 4;
+                private const short userPrefScorePossible_EnableAI = 4;
+                
+            // Adjacent to the AI enable variable; this variable works in conjunction with the above variable.
+            //  After each round or startup, there is a warm up period where the AI grading system does not
+            //  run at all or merely pauses in its current state.
+            //  This variable will increment so many times to match with the above variable, from there - the
+            //  should be enabled.
+                private static short userPrefScorePossible_WarmUp = 0;
             // User Performance Array
                 private static short userPrefArrayIndexSize = 4;
                 private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
@@ -141,6 +148,7 @@ namespace MinionMathMayhem_Ship
             Debug.Log("State of Game Over: " + gameOver);
             Debug.Log("State of the Queries: " + InspectQueries_Ready());
             Debug.Log("State of the AI Switch: " + aiSwitch);
+            Debug.Log("Achived maximum queries: " + userPrefArrayIndex_HighLight);
         }
 
 
@@ -248,6 +256,8 @@ namespace MinionMathMayhem_Ship
                 ArrayUpdateField(true);
             // Unlock the grading system; if necessary
                 CheckScore_ToggleLock();
+            // Check for the warm up phase (AI Switch)
+                AIStatus_WarmUpCheck();
         } // Update_CorrectScore()
 
 
@@ -261,6 +271,8 @@ namespace MinionMathMayhem_Ship
                 ArrayUpdateField(false);
             // Unlock the grading system; if necessary
                 CheckScore_ToggleLock();
+            // Check for the warm up phase (AI Switch)
+                AIStatus_WarmUpCheck();
         } // Update_IncorrectScore()
 
 
@@ -307,5 +319,22 @@ namespace MinionMathMayhem_Ship
         {
             aiSwitch = !aiSwitch;
         } // AIGrading_ToggleAISwitch()
+
+
+
+        /// <summary>
+        ///     This function will turn on the AI grading environment after so many passes has occured.
+        ///     This is going to be necessary for start-up tutorials and other purposes where the game
+        ///     itself is not fully ready to challenge the user.
+        /// </summary>
+        private void AIStatus_WarmUpCheck()
+        {
+            if ((userPrefScorePossible_WarmUp <= userPrefScorePossible_EnableAI) && !aiSwitch)
+                userPrefScorePossible_WarmUp++;
+
+
+            else if (!aiSwitch)
+                aiSwitch = !aiSwitch;
+        } // AIStatusEvaluation()
     } // End of Class
 } // Namespace
