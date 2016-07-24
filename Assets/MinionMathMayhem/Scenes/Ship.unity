@@ -9440,7 +9440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3dcc5e3eb4b0c4a8c49954ff68a5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanUserStatsTries: 5
 --- !u!114 &1208330404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12006,7 +12005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxScore: 100
-  maxScoreFail: 5
+  maxScoreFail: 1400
   textWinOrLose: {fileID: 1398285122}
   scriptScore: {fileID: 1430447471}
   scriptGameEvent: {fileID: 1430447472}
@@ -15458,7 +15457,7 @@ MonoBehaviour:
   openFlick: {fileID: 2800000, guid: 1adce9093431673439da3b6b874333dc, type: 3}
   cursorSize: 64
   waitTime: 0.3
-  enableCustomCursor: 1
+  enableCustomCursor: 0
 --- !u!1001 &1962403907
 Prefab:
   m_ObjectHideFlags: 0
