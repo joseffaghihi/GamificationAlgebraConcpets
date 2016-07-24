@@ -35,8 +35,6 @@ namespace MinionMathMayhem_Ship
         private bool gameOver = false;
         // AI Grading system switch
         private bool gradeUserSwitch = false;
-        // Temporary lock variable
-        private bool lockAI = false;
         // Determines if the newly incoming scores should be ignored; useful for on-screen or interactive tutorials that are self managed.
         private bool gradeUserHaltSwitch = false;
         // Activate this AI component when the possible score has reached been reached by specific value
