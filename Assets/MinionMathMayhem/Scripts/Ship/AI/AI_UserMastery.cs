@@ -124,16 +124,10 @@ namespace MinionMathMayhem_Ship
             if (gradeUserSwitch && !gameOver && InspectQueries_Ready() && !gradeUserHaltSwitch)
             {
                 Debug.LogError("Developers Developers Developers Developers Developers Developers Developers Developers Developers Developers [...]");
-                // Temporarily lock this function from re-looping
-                //lockAI = !lockAI;
-
-                // Mastery: Did the user get all of the answers incorrect?
-                if (UserPerformance_Array())
+                // Get the user's percentage rate and determine the game challenge
+                if (UserMasteryReport_Precentage() == 0)
                     // Call the tutorial
                     TutorialSession(true);
-
-                // Get the user's percentage rate and determine the game challenge
-                // UserMasteryReport_Precentage();
             } // if Grading enabled
         } // Main()
 
@@ -166,31 +160,6 @@ namespace MinionMathMayhem_Ship
             else
                 return false;
         } // InspectQueries_Ready()
-
-
-
-        /// <summary>
-        ///     Check to make sure that the user understands the material.
-        ///     This is done by managing the array which holds the user's performance
-        /// </summary>
-        /// <returns>
-        ///     True = User did not understand the material\n
-        ///     False = User understands the material
-        /// </returns>
-        private bool UserPerformance_Array()
-        {
-            short userIncorrectAnswers = 0;
-            // Read the array and make sure that the user understands the material
-            for (short i = 0; i <= (userPrefArrayIndexSize - 1); ++i)
-                if (userPrefArray[i] == false)
-                    userIncorrectAnswers++;
-
-            // User may not have understood the material or is having difficulties
-            if (userIncorrectAnswers == userPrefArrayIndexSize)
-                return true;
-            else
-                return false;
-        } // UserPerformance_Array()
 
 
 
