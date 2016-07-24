@@ -47,15 +47,11 @@ namespace MinionMathMayhem_Ship
         // The idea of this variable is to allow the user to experience through the warm-up phase; once this variable
         // is equal to or greater than the variable above - then we're finished with the warm up phase.
         private static short userPrefScorePossible_Monitor = 0;
-
         // User Performance Array
         private static short userPrefArrayIndexSize = 4;
         private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
         private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
                                                         // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
-        public short scanUserStatsTries = 3;
-        // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
-        private int userPrefNextScan = 0;
         // Events and Delegates
         // Minion Speed
         public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
