@@ -311,10 +311,10 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void AI_WarmUpPhase()
         {
-            if (userPrefScorePossible_Monitor >= userPrefScorePossible_EnableAI)
-                gradeUserSwitch = true;
-            else
+            if (userPrefScorePossible_Monitor < (userPrefScorePossible_EnableAI - 1))
                 userPrefScorePossible_Monitor++;
+            else
+                gradeUserSwitch = true;
         } // AI_WarmUpPhase()
 
 
