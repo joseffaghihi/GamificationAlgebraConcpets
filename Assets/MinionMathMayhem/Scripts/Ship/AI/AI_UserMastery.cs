@@ -124,6 +124,7 @@ namespace MinionMathMayhem_Ship
             if (gradeUserSwitch && !gameOver && InspectQueries_Ready() && !gradeUserHaltSwitch)
             {
                 Debug.LogError("Developers Developers Developers Developers Developers Developers Developers Developers Developers Developers [...]");
+                userPrefArrayIndex_HighLight = 0;
                 // Get the user's percentage rate and determine the game challenge
                 if (UserMasteryReport_Precentage() == 0)
                     // Call the tutorial
