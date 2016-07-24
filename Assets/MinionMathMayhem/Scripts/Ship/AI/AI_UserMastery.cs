@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic; // This way we can use use 'List' type
 using System.Collections;
 
 namespace MinionMathMayhem_Ship
