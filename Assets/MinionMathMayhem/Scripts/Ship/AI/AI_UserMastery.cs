@@ -21,7 +21,7 @@ namespace MinionMathMayhem_Ship
          *          |_ GameController [GameController]
          *
          * GOALS:
-         *      Tries to keep the player invulved and motivated
+         *      Tries to keep the player involved and motivated
          *      Requests the environment or game to be more challenging or easier, based on user's mastery.
          *      Tries to make sure that the user understands that material while keeping the game fun.
          */
@@ -30,42 +30,40 @@ namespace MinionMathMayhem_Ship
 
         // Declarations and Initializations
         // ---------------------------------
-            // DEBUG MODE [INTERNAL]
-                private static bool _debugMode_ = true;
-            // User's current scores
-                private int userPrefScoreCorrect = 0;
-                private int userPrefScoreWrong = 0;
-            // Possible Scores
-                private int userPrefScorePossible = 0;
-            // Game State; is the game over?
-                private bool gameOver = false;
-            // Activate this AI component when the possible score has reached been reached by specific value
-                // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
-                //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
-                private static short userPrefScorePossible_EnableAI = 10;
-            // User Performance Array
-                private static short userPrefArrayIndexSize = 3;
-                private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
-                private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
-            // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
-                public short scanUserStatsTries = 5;
-            // Next scan to compare with the Possible Score variable; this variable determines when the next scan should take place.
-                private int userPrefNextScan = 0;
-            // Challenge Game Environment
-                // BITFIELD EMULATED IDENTIFIER
-                    // 0 - Empty or Default
-                    // 1 - Minion Speed has changed
-                    // 2 - Spawner Frequency
-                    private short userPrefChallenge = 0;
-            // Events and Delegates
-                // Minion Speed
-                    public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
-                    public static event MinionSpeedDelegate MinionSpeed;
-                // Tutorial session (if the user isn't understanding the material)
-                    public delegate void TutorialSessionDelegate();
-                    public static event TutorialSessionDelegate TutorialSession;
+        // Game State; is the game over?
+        private bool gameOver = false;
+        // AI Grading system switch
+        private bool gradeUserSwitch = false;
+        // Determines if the newly incoming scores should be ignored; useful for on-screen or interactive tutorials that are self managed.
+        private bool gradeUserHaltSwitch = false;
+        // Activate this AI component when the possible score has reached been reached by specific value
+        // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
+        //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
+        private const short userPrefScorePossible_EnableAI = 4;
+        // Adjacent to the AI activation (see above variable), this variable holds the state of when the AI activates.
+        // The idea of this variable is to allow the user to experience through the warm-up phase; once this variable
+        // is equal to or greater than the variable above - then we're finished with the warm up phase.
+        private static short userPrefScorePossible_Monitor = 0;
+        // User Performance Array
+        private static short userPrefArrayIndexSize = 4;
+        private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
+        private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
+                                                        // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
+        // Events and Delegates
+        // Minion Speed
+        public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
+        public static event MinionSpeedDelegate MinionSpeed;
+        // Tutorial session (if the user isn't understanding the material)
+        public delegate void TutorialSessionDelegate(bool random, bool movie = false, bool window = false, int indexKey = 0);
+        public static event TutorialSessionDelegate TutorialSession;
+        // Report User's Grade
+        // gradeLetter = Current Grade
+        // gradePercent = Score (grade) percentage
+        // gradeEvaluated = How many times the score has been evaluated or checked
+        public delegate void UserGradedPerformance(char gradeLetter, int gradePercent, int gradeEvaluated);
+        public static event UserGradedPerformance ReportPlayerGrade;
         // ---------------------------------
-        
+
 
 
 
@@ -75,10 +73,12 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            Score.ScoreUpdate_Correct += IncrementCorrectScore;
-            Score.ScoreUpdate_Incorrect += IncrementWrongScore;
-            GameController.GameStateEnded += GameState_ToggleGameOver;
-            GameController.GameStateRestart += ResetAllScores;
+            Score.ScoreUpdate_Correct += onCall_ScoreCorrect;
+            Score.ScoreUpdate_Incorrect += onCall_ScoreIncorrect;
+            GameController.GameStateEnded += SignalOnGameOver;
+            GameController.GameStateRestart += SignalOnReset;
+            GameController.TutorialStateStart += SignalTutorial_Enable;
+            GameController.TutorialStateEnd += SignalTutorial_Disable;
         } // OnEnable()
 
 
@@ -89,17 +89,19 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-            Score.ScoreUpdate_Correct -= IncrementCorrectScore;
-            Score.ScoreUpdate_Incorrect -= IncrementWrongScore;
-            GameController.GameStateEnded -= GameState_ToggleGameOver;
-            GameController.GameStateRestart -= ResetAllScores;
+            Score.ScoreUpdate_Correct -= onCall_ScoreCorrect;
+            Score.ScoreUpdate_Incorrect -= onCall_ScoreIncorrect;
+            GameController.GameStateEnded -= SignalOnGameOver;
+            GameController.GameStateRestart -= SignalOnReset;
+            GameController.TutorialStateStart -= SignalTutorial_Enable;
+            GameController.TutorialStateEnd -= SignalTutorial_Disable;
         } // OnDisable()
 
 
 
         /// <summary>
-        ///     This daemon servicer will determine how the game should interact with the player; this is done by anaylizing -
-        ///     the user's score and getting the user's grade (by precentage) and understand how well the end-user understands -
+        ///     This daemon service will determine how the game should interact with the player; this is done by analyse -
+        ///     the user's score and getting the user's grade (by percentage) and understand how well the end-user understands -
         ///     the material presented.
         /// 
         ///     What this Controls:
@@ -112,160 +114,43 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         public void Main()
         {
-                // Only run when the possible points has reached a certain value and if the game isn't over.
-                if ((userPrefScorePossible >= userPrefScorePossible_EnableAI && !gameOver) && ((userPrefNextScan == userPrefScorePossible) || userPrefNextScan == 0))
-                {
-                    // DEBUG MODE
-                    if (_debugMode_ == true)
-                        DebugUserStats();
-
-
-                    // User understands the material thus far
-                    if (!UserPerformance_Array())
-                        PerformanceGradingLibrary((userPrefScoreCorrect / userPrefScorePossible * 100));
-
-                    // User may not understand the material
-                    else
-                        TutorialSession();
-
-                    // Update when the next scan should take place
-                        userPrefNextScan = userPrefScorePossible + scanUserStatsTries;
-                } // if AI active and monitoring
+            // Execute the tentative grading system
+            // Periodically check the player's tentative score and determine the state of the game
+            if (gradeUserSwitch && !gameOver && InspectQueries_Ready() && !gradeUserHaltSwitch)
+            {
+                userPrefArrayIndex_HighLight = 0;
+                // Get the user's percentage rate and determine the game challenge
+                if (UserMasteryReport_Precentage() == 0)
+                    // Call the tutorial
+                    TutorialSession(true);
+            } // if Grading enabled
         } // Main()
 
 
 
         /// <summary>
-        ///     This function will merely spit out information about the user's current score and statistics were available
-        /// </summary>
-        private void DebugUserStats()
-        {
-            Debug.Log("AI Mastery_Correct: " + userPrefScoreCorrect);
-            Debug.Log("AI Mastery_Incorrect: " + userPrefScoreWrong);
-            Debug.Log("AI Mastery_Possible Score: " + userPrefScorePossible);
-            Debug.Log("AI Mastery_User's Score: " + string.Format("{0:0.00}", ((float)userPrefScoreCorrect / (float)userPrefScorePossible * 100)));
-        } // DebugUserStats()
-
-
-
-        /// <summary>
-        ///     This function will scan its internal library and determine how to control the environment based on the user's grade.
-        /// </summary>
-        private void PerformanceGradingLibrary(int userGrade)
-        {
-            // DEBUG STUFF
-                string debugString = "failed to initialize";
-
-            // Sorry for this long conditional, I couldn't find a nicer way to do this with a Switch statement :(
-            if (95 < userGrade && userGrade <= 100)
-            {
-                // Skill Level: Very-High
-                if (_debugMode_ == true)
-                    debugString = "Very-High";
-            }
-
-            else if (90 < userGrade && userGrade <= 95)
-            {
-                // Skill Level: Medium-High
-                if (_debugMode_ == true)
-                    debugString = "Medium-High";
-            }
-
-            else if (85 < userGrade && userGrade <= 90)
-            {
-                // Skill Level: Medium
-                if (_debugMode_ == true)
-                    debugString = "Medium";
-            }
-
-            else if (80 < userGrade && userGrade <= 85)
-            {
-                //   Skill Level: Medium-Low
-                if (_debugMode_ == true)
-                    debugString = "Medium-Low";
-            }
-
-            else if (75 < userGrade && userGrade <= 80)
-            {
-                //  Skill Level: Low
-                if (_debugMode_ == true)
-                    debugString = "Low";
-            }
-
-            else if (70 < userGrade && userGrade <= 75)
-            {
-                //  Skill Level: WeakFoundation - Low
-                if (_debugMode_ == true)
-                    debugString = "WeakFoundation - Low";
-            }
-
-            else if (65 < userGrade && userGrade <= 70)
-            {
-                //  Skill Level: WeakFoundation - Medium
-                if (_debugMode_ == true)
-                    debugString = "WeakFoundation - Medium";
-            }
-
-            else if (60 < userGrade && userGrade <= 65)
-            {
-                //  Skill Level: WeakFoundation - High
-                if (_debugMode_ == true)
-                    debugString = "WeakFoundation - High";
-            }
-
-            else if (userGrade <= 60)
-            {
-                //  Skill Level: WeakFoundation - Failed
-                if (_debugMode_ == true)
-                    debugString = "WeakFoundation - Failed";
-            }
-
-            else
-            {
-                // Incase the grade parameter is something unpredictable, output the error on the terminal.
-                Debug.Log("<!> ATTENTION: RUN AWAY DETECTED <!>");
-                Debug.Log("Using grade value of: " + userGrade);
-            }
-
-            // DEBUG
-                if (_debugMode_ == true)
-                    Debug.Log("User Master is: " + debugString);
-        } // PerformanceGradingLibrary()
-
-
-
-        /// <summary>
-        ///     Check to make sure that the user understands the material.
-        ///     This is done by managing the array which holds the user's performance
+        ///     When called; this will determine if there is enough data to inspect the user's tentative mastery to the material.
         /// </summary>
         /// <returns>
-        ///     True = User did not understand the material\n
-        ///     False = User understands the material
+        ///     True = Ready for inspection
+        ///     False = Not enough data gathered yet.
         /// </returns>
-        private bool UserPerformance_Array()
+        private bool InspectQueries_Ready()
         {
-            short userIncorrectAnswers = 0;
-            // Read the array and make sure that the user understands the material
-            for (short i = 0; i <= (userPrefArrayIndexSize - 1); ++i)
-                if (userPrefArray[i] == false)
-                    userIncorrectAnswers++;
-
-            // User may not have understood the material or is having difficulties
-            if (userIncorrectAnswers == userPrefArrayIndexSize)
+            if (userPrefArrayIndex_HighLight > (userPrefArrayIndexSize - 1))
                 return true;
             else
                 return false;
-        } // UserPerformance_Array()
+        } // InspectQueries_Ready()
 
 
 
         /// <summary>
         ///     Update values within the array based on the user's actual performance.
-        /// 
-        ///     Array Index Value Key:
-        ///     True = Correct Answer
-        ///     False = Wrong Answer
         /// </summary>
+        /// <param name="userFeedback">
+        ///     True = Correct Answer; False = Wrong Answer.
+        /// </param>
         private void ArrayUpdateField(bool userFeedback)
         {
             // Make sure that we're not overflowing the array, move the highlight to the start of the index if needed.
@@ -273,75 +158,153 @@ namespace MinionMathMayhem_Ship
                 userPrefArrayIndex_HighLight = 0;
 
             // Update the array at the highlighted index
-                userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
+            userPrefArray[userPrefArrayIndex_HighLight] = userFeedback;
             // Highlight the next index
-                userPrefArrayIndex_HighLight++;
+            userPrefArrayIndex_HighLight++;
         } // ArrayUpdateField()
+
+
+
+        /// <summary>
+        ///     This function will retrieve the players percentage rate of the queries gathered
+        /// </summary>
+        /// <returns>
+        ///     Percentage in integer form.
+        /// </returns>
+        private int UserMasteryReport_Precentage()
+        {
+            // Declarations and Initializations
+            // --------------------------------
+            // Find out how many the user got correct and not correct
+            int incorrectScore = 0;
+            int correctScore = 0;
+            // --------------------------------
+
+            // Scan the array and determine what the user got right or wrong.
+            //  We're going to need this for statistics purposes.
+            for (int i = 0; i < userPrefArrayIndexSize; i++)
+            {
+                if (userPrefArray[i])
+                    correctScore++;
+                else
+                    incorrectScore++;
+            } // Scan array's queries
+
+
+            // Methodology: (EarnedPoints / PossiblePoints * 100)
+            return ((correctScore / (correctScore + incorrectScore)) * 100);
+        } // UserMasteryReport_Precentage()
 
 
 
         /// <summary>
         ///     Update the correct score for the Daemon service
         /// </summary>
-        private void IncrementCorrectScore()
+        private void onCall_ScoreCorrect()
         {
-            userPrefScoreCorrect++;
-
-            // Update the array that holds the user performance
+            if (!gradeUserSwitch)
+                AI_WarmUpPhase();
+            else if (gradeUserHaltSwitch)
+                return;
+            else
+                // Update the array that holds the user performance
                 ArrayUpdateField(true);
-            // Update the possible score
-                UpdatePossibleScore();
-
-        } // IncrementCorrectScore()
+        } // Update_CorrectScore()
 
 
 
         /// <summary>
         ///     Update the incorrect score for the Daemon service
         /// </summary>
-        private void IncrementWrongScore()
+        private void onCall_ScoreIncorrect()
         {
-            userPrefScoreWrong++;
-
-            // Update the array that holds the user performance
+            if (!gradeUserSwitch)
+                AI_WarmUpPhase();
+            else if (gradeUserHaltSwitch)
+                return;
+            else
+                // Update the array that holds the user performance
                 ArrayUpdateField(false);
-            // Update the possible score
-                UpdatePossibleScore();
-        } // IncrementWrongScore()
+
+        } // Update_IncorrectScore()
 
 
 
         /// <summary>
-        ///     Update the possible score possible by adding the scores.
+        ///     Allow the ability to momentarily pause the entire grading system.
+        ///     This can be useful for events that focuses the attention away from
+        ///     the grading the user based on the nature of the game.
         /// </summary>
-        private void UpdatePossibleScore()
+        /// <param name="state">
+        ///     When true, this will pause the grading system - thus if any minions cross the FinalDestroyer line, their result will be ignored.
+        ///     However, when false, the game runs as normal.
+        /// </param>
+        private void AI_PauseToggle(bool stateSwitch)
         {
-            userPrefScorePossible = (userPrefScoreCorrect + userPrefScoreWrong);
-        } // UpdatePossibleScore()
+            // Don't flush the state in memory and redo the state
+            if (gradeUserHaltSwitch && stateSwitch)
+                return;
+            else
+                gradeUserHaltSwitch = stateSwitch;
+        } // AI_PauseToggle()
 
 
 
         /// <summary>
-        ///     This will reset the scores; game restarted
+        ///     Check the status of the AI and determine when the AI grading system should be activated.
+        ///     This functionality will allow the user to use the warm-up phase, which the game will
+        ///     just toss a few tutorials at the user and examine the user's input.  After the tutorial (warm up),
+        ///     activate the AI grading system.
         /// </summary>
-        private void ResetAllScores()
+        private void AI_WarmUpPhase()
         {
-            userPrefScorePossible = 0;
-            userPrefScoreCorrect = 0;
-            userPrefScoreWrong = 0;
+            if (userPrefScorePossible_Monitor < (userPrefScorePossible_EnableAI - 1))
+                userPrefScorePossible_Monitor++;
+            else
+                gradeUserSwitch = true;
+        } // AI_WarmUpPhase()
 
-            // Flip the value
-            GameState_ToggleGameOver();
-        } // ResetAllScores()
+
+
+        /// <summary>
+        ///     At restart, reset the mutable working variables to their default values.
+        /// </summary>
+        private void SignalOnReset()
+        {
+            // Flip the value of the game over state
+            SignalOnGameOver();
+            // Reset the Highlighter used in the performance array.
+            userPrefArrayIndex_HighLight = 0;
+        } // ResetScores()
 
 
 
         /// <summary>
         ///     Toggles the gameOver variable when the game has reached it's end.
         /// </summary>
-        private void GameState_ToggleGameOver()
+        private void SignalOnGameOver()
         {
             gameOver = !gameOver;
-        } // GameState_GameOver()
+        } // GameState_ToggleGameOver()
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SignalTutorial_Enable()
+        {
+            AI_PauseToggle(true);
+        } // SignalTutorial_Enable()
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SignalTutorial_Disable()
+        {
+            AI_PauseToggle(false);
+        } // SignalTutorial_Disable()
     } // End of Class
 } // Namespace

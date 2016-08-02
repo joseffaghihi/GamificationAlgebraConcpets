@@ -42,6 +42,10 @@ namespace MinionMathMayhem_Ship
 			//score and wrongScore animator components
 					private Animator scoreAnim;
 					private Animator wrongScoreAnim;
+            // Skip Equation Generate; useful for allowing the end-user to re-use the same equation and evaluate its indexes.
+                public short skipGenerateEquationThreshold = 0;
+            // Skip Equation Generate internal
+                private short skipGenerateEquationInternal = 0;
 
             // GameObjects
 		// Score GameObject
@@ -284,8 +288,18 @@ namespace MinionMathMayhem_Ship
             // If the game is not over, generate a new equation
             if (scriptGameController.GameOver == false)
             {
-                // Generate a new equation
-                    scriptProblemBox.Access_Generate();
+
+                    // Should the user continue to evaluate the equation again?
+                    if (skipGenerateEquationInternal < skipGenerateEquationThreshold)
+                        // Yes, do not re-generate the quation
+                        ++skipGenerateEquationInternal; // Update the internal counter
+                    else
+                    {
+                        // Generate a new equation
+                        scriptProblemBox.Access_Generate();
+                        skipGenerateEquationInternal = 0;  // Reset the counter
+                    }
+                    
                     scriptLetterBox.Access_Generate();
                     scriptMinion_RandomSetNumbers.Access_FillArray();
                 // Notify the user of index update
