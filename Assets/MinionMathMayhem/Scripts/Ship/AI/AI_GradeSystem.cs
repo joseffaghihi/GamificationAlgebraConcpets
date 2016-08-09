@@ -41,8 +41,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnEnable()
         {
-            Score.ScoreUpdate_Correct += Update_CorrectScore;
-            Score.ScoreUpdate_Incorrect += Update_IncorrectScore;
+            // Update the score managed within the game
+            AI_UserMastery.ReportOverallGradeUpdate += ScoreUpdate;
             GameController.GameStateRestart += ResetScores;
         } // OnEnable()
 
@@ -54,8 +54,8 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void OnDisable()
         {
-            Score.ScoreUpdate_Correct -= Update_CorrectScore;
-            Score.ScoreUpdate_Incorrect -= Update_IncorrectScore;
+            // Update the score managed within the game
+            AI_UserMastery.ReportOverallGradeUpdate -= ScoreUpdate;
             GameController.GameStateRestart -= ResetScores;
         } // OnDisable()
 
@@ -126,22 +126,19 @@ namespace MinionMathMayhem_Ship
 
 
         /// <summary>
-        ///     Increment the correct score
+        ///     This function will adjust the overall grade that the user earned
+        ///     This requires the tentative grading system [AI_UserMastery].
+        ///         This dependency makes sure that we only capture the data that
+        ///         is important - and not from the tutorial sections or other means
+        ///         that could hurt the user's score.
         /// </summary>
-        private void Update_CorrectScore()
+        private void ScoreUpdate(bool score)
         {
-            gradeCorrect++;
-        } // Update_CorrectScore()
-
-
-
-        /// <summary>
-        ///     Increment the incorrect score
-        /// </summary>
-        private void Update_IncorrectScore()
-        {
-            gradeIncorrect++;
-        } // Update_IncorrectScore()
+            if (score)
+                gradeCorrect++;
+            else
+                gradeIncorrect++;
+        } // ScoreUpdate()
 
 
 

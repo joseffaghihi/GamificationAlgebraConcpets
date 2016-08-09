@@ -62,6 +62,10 @@ namespace MinionMathMayhem_Ship
         // gradeEvaluated = How many times the score has been evaluated or checked
         public delegate void UserGradedPerformance(char gradeLetter, int gradePercent, int gradeEvaluated);
         public static event UserGradedPerformance ReportPlayerGrade;
+
+        // Overall grading system
+        public delegate void UserOverallGradePerformance(bool score);
+        public static event UserOverallGradePerformance ReportOverallGradeUpdate;
         // ---------------------------------
 
 
@@ -207,8 +211,12 @@ namespace MinionMathMayhem_Ship
             else if (gradeUserHaltSwitch)
                 return;
             else
+            {
                 // Update the array that holds the user performance
                 ArrayUpdateField(true);
+                // Notify the overall grading system
+                ReportOverallGradeUpdate(true);
+            }
         } // Update_CorrectScore()
 
 
@@ -223,8 +231,12 @@ namespace MinionMathMayhem_Ship
             else if (gradeUserHaltSwitch)
                 return;
             else
+            {
                 // Update the array that holds the user performance
                 ArrayUpdateField(false);
+                // Notify the overall grading system
+                ReportOverallGradeUpdate(false);
+            }
 
         } // Update_IncorrectScore()
 
