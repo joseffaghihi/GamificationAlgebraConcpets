@@ -45,7 +45,7 @@ namespace MinionMathMayhem_Ship
         // is equal to or greater than the variable above - then we're finished with the warm up phase.
         private static short userPrefScorePossible_Monitor = 0;
         // User Performance Array
-        private static short userPrefArrayIndexSize = 4;
+        private static short userPrefArrayIndexSize = 3;
         private bool[] userPrefArray = new bool[userPrefArrayIndexSize];
         private short userPrefArrayIndex_HighLight = 0; // Use for scanning array
                                                         // Scan User Performance in 'x' tries - well after the AI does its first initial scan.
