@@ -53,14 +53,10 @@ namespace MinionMathMayhem_Ship
         // Minion Speed
         public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
         public static event MinionSpeedDelegate MinionSpeed;
-        // Tutorial session (if the user isn't understanding the material)
-        public delegate void TutorialSessionDelegate(bool random, bool movie = false, bool window = false, int indexKey = 0);
-        public static event TutorialSessionDelegate TutorialSession;
+
         // Report User's Grade
-        // gradeLetter = Current Grade
-        // gradePercent = Score (grade) percentage
-        // gradeEvaluated = How many times the score has been evaluated or checked
-        public delegate void UserGradedPerformance(char gradeLetter, int gradePercent, int gradeEvaluated);
+        //   gradePercent = Score (grade) percentage
+        public delegate void UserGradedPerformance(int gradePercent);
         public static event UserGradedPerformance ReportPlayerGrade;
 
         // Overall grading system
@@ -124,9 +120,7 @@ namespace MinionMathMayhem_Ship
             {
                 userPrefArrayIndex_HighLight = 0;
                 // Get the user's percentage rate and determine the game challenge
-                if (UserMasteryReport_Precentage() == 0)
-                    // Call the tutorial
-                    TutorialSession(true);
+                ReportPlayerGrade(UserMasteryReport_Precentage());
             } // if Grading enabled
         } // Main()
 

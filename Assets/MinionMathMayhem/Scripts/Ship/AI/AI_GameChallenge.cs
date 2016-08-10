@@ -46,6 +46,9 @@ namespace MinionMathMayhem_Ship
                 // Delegates
                     public delegate void ProblemBox_Complexity(bool random, bool movie = false, bool window = false, int indexKey = 0);
                     public static event ProblemBox_Complexity ProblemBox_DEGComplexity;
+                // Tutorial session (if the user isn't understanding the material)
+                    public delegate void TutorialSessionDelegate(bool random, bool movie = false, bool window = false, int indexKey = 0);
+                    public static event TutorialSessionDelegate TutorialSession;
         // ---------------------------------
 
 
@@ -102,9 +105,13 @@ namespace MinionMathMayhem_Ship
                     } // Tutorial
 
                     scriptProblemBox.SwitchComplexityLevel(true);
-                }
+                } // Grade 80 or above
                 else
+                {
                     scriptProblemBox.SwitchComplexityLevel(false);
+                    if (current_Percentage == 0)
+                        TutorialSession(true);
+                } // Grade 79 or less
             } // Evaluation passes
         } // Challenge_DEG_Critria ()
 
@@ -113,21 +120,14 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Inspects the user's performance and determines how to control the game's environment; should the game be easier or harder?
         /// </summary>
-        /// <param name="gradeLetter">
-        ///     Holds the user's letter grade
-        /// </param>
         /// <param name="gradePercent">
         ///     Holds the user's grade precentage (Whole number)
         /// </param>
-        /// <param name="gradeEvaluated">
-        ///     How many times the user's performance has been graded
-        /// </param>
-        private void Inspector_UserGrade(char gradeLetter, int gradePercent, int gradeEvaluated)
+        private void Inspector_UserGrade(int gradePercent)
         {
             // Get all of the information that is needed
-                current_GradeLetter = gradeLetter;
                 current_Percentage = gradePercent;
-                current_EvaluationPasses = gradeEvaluated;
+                current_EvaluationPasses++;
             // ---
 
             // Adjust the game's performance based on user's performance
