@@ -39,7 +39,7 @@ namespace MinionMathMayhem_Ship
                     private bool DEGComplex = false;
             // Inspector Settings
                 // Run the complexity DEG after so many evaluation passes.
-                    public int complexityExecuteGradePass = 1;
+                    public int complexityExecuteGradePass = 3;
             // Communication between actors and components
                 // Problem Box
                     public ProblemBox scriptProblemBox;
@@ -93,9 +93,9 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void Challenge_DEG_Critria()
         {
-            if (complexityExecuteGradePass >= current_EvaluationPasses)
+            if (current_Percentage >= 80)
             {
-                if (current_Percentage >= 80)
+                if (complexityExecuteGradePass <= current_EvaluationPasses)
                 {
                     // Tutorial purposes
                     if (!DEGComplex)
@@ -105,14 +105,12 @@ namespace MinionMathMayhem_Ship
                     } // Tutorial
 
                     scriptProblemBox.SwitchComplexityLevel(true);
-                } // Grade 80 or above
-                else
-                {
-                    scriptProblemBox.SwitchComplexityLevel(false);
-                    if (current_Percentage == 0)
-                        TutorialSession(true);
-                } // Grade 79 or less
-            } // Evaluation passes
+                } // if DEG Toggle
+            } // if: grade >= 80
+
+
+            if (current_Percentage <= 0)
+                TutorialSession(true);
         } // Challenge_DEG_Critria ()
 
 
