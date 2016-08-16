@@ -39,7 +39,7 @@ namespace MinionMathMayhem_Ship
         // Activate this AI component when the possible score has reached been reached by specific value
         // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
         //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
-        private const short userPrefScorePossible_EnableAI = 4;
+        private const short userPrefScorePossible_EnableAI = 0;
         // Adjacent to the AI activation (see above variable), this variable holds the state of when the AI activates.
         // The idea of this variable is to allow the user to experience through the warm-up phase; once this variable
         // is equal to or greater than the variable above - then we're finished with the warm up phase.
