@@ -39,7 +39,7 @@ namespace MinionMathMayhem_Ship
         // Activate this AI component when the possible score has reached been reached by specific value
         // NOTES: Higher the value, the longer it takes for the AI to run and monitor the user's performance.
         //          Shorter the value, the quicker it takes for the AI to run and monitor the user's performance.
-        private const short userPrefScorePossible_EnableAI = 4;
+        private const short userPrefScorePossible_EnableAI = 0;
         // Adjacent to the AI activation (see above variable), this variable holds the state of when the AI activates.
         // The idea of this variable is to allow the user to experience through the warm-up phase; once this variable
         // is equal to or greater than the variable above - then we're finished with the warm up phase.
@@ -53,14 +53,10 @@ namespace MinionMathMayhem_Ship
         // Minion Speed
         public delegate void MinionSpeedDelegate(float runningSpeed, float climbingSpped);
         public static event MinionSpeedDelegate MinionSpeed;
-        // Tutorial session (if the user isn't understanding the material)
-        public delegate void TutorialSessionDelegate(bool random, bool movie = false, bool window = false, int indexKey = 0);
-        public static event TutorialSessionDelegate TutorialSession;
+
         // Report User's Grade
-        // gradeLetter = Current Grade
-        // gradePercent = Score (grade) percentage
-        // gradeEvaluated = How many times the score has been evaluated or checked
-        public delegate void UserGradedPerformance(char gradeLetter, int gradePercent, int gradeEvaluated);
+        //   gradePercent = Score (grade) percentage
+        public delegate void UserGradedPerformance(int gradePercent);
         public static event UserGradedPerformance ReportPlayerGrade;
 
         // Overall grading system
@@ -124,9 +120,7 @@ namespace MinionMathMayhem_Ship
             {
                 userPrefArrayIndex_HighLight = 0;
                 // Get the user's percentage rate and determine the game challenge
-                if (UserMasteryReport_Precentage() == 0)
-                    // Call the tutorial
-                    TutorialSession(true);
+                ReportPlayerGrade(UserMasteryReport_Precentage());
             } // if Grading enabled
         } // Main()
 

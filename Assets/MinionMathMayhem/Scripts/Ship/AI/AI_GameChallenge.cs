@@ -39,13 +39,16 @@ namespace MinionMathMayhem_Ship
                     private bool DEGComplex = false;
             // Inspector Settings
                 // Run the complexity DEG after so many evaluation passes.
-                    public int complexityExecuteGradePass = 1;
+                    public int complexityExecuteGradePass = 3;
             // Communication between actors and components
                 // Problem Box
                     public ProblemBox scriptProblemBox;
                 // Delegates
                     public delegate void ProblemBox_Complexity(bool random, bool movie = false, bool window = false, int indexKey = 0);
                     public static event ProblemBox_Complexity ProblemBox_DEGComplexity;
+                // Tutorial session (if the user isn't understanding the material)
+                    public delegate void TutorialSessionDelegate(bool random, bool movie = false, bool window = false, int indexKey = 0);
+                    public static event TutorialSessionDelegate TutorialSession;
         // ---------------------------------
 
 
@@ -90,9 +93,9 @@ namespace MinionMathMayhem_Ship
         /// </summary>
         private void Challenge_DEG_Critria()
         {
-            if (complexityExecuteGradePass >= current_EvaluationPasses)
+            if (current_Percentage >= 80)
             {
-                if (current_Percentage >= 80)
+                if (complexityExecuteGradePass <= current_EvaluationPasses)
                 {
                     // Tutorial purposes
                     if (!DEGComplex)
@@ -102,10 +105,12 @@ namespace MinionMathMayhem_Ship
                     } // Tutorial
 
                     scriptProblemBox.SwitchComplexityLevel(true);
-                }
-                else
-                    scriptProblemBox.SwitchComplexityLevel(false);
-            } // Evaluation passes
+                } // if DEG Toggle
+            } // if: grade >= 80
+
+
+            if (current_Percentage <= 0)
+                TutorialSession(true);
         } // Challenge_DEG_Critria ()
 
 
@@ -113,21 +118,14 @@ namespace MinionMathMayhem_Ship
         /// <summary>
         ///     Inspects the user's performance and determines how to control the game's environment; should the game be easier or harder?
         /// </summary>
-        /// <param name="gradeLetter">
-        ///     Holds the user's letter grade
-        /// </param>
         /// <param name="gradePercent">
         ///     Holds the user's grade precentage (Whole number)
         /// </param>
-        /// <param name="gradeEvaluated">
-        ///     How many times the user's performance has been graded
-        /// </param>
-        private void Inspector_UserGrade(char gradeLetter, int gradePercent, int gradeEvaluated)
+        private void Inspector_UserGrade(int gradePercent)
         {
             // Get all of the information that is needed
-                current_GradeLetter = gradeLetter;
                 current_Percentage = gradePercent;
-                current_EvaluationPasses = gradeEvaluated;
+                current_EvaluationPasses++;
             // ---
 
             // Adjust the game's performance based on user's performance

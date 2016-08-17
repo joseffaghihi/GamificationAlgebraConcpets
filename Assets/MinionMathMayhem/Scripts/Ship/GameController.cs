@@ -95,7 +95,7 @@ namespace MinionMathMayhem_Ship
                 TutorialMain.TutorialFinished += TutorialMode_Ended;
             // AI Listeners
                 // User Mastery
-                    AI_UserMastery.TutorialSession += AI_OnDemandRequest_Tutorial;
+                    AI_GameChallenge.TutorialSession += AI_OnDemandRequest_Tutorial;
                 // Game Challenge
                     AI_GameChallenge.ProblemBox_DEGComplexity += AI_OnDemandRequest_Tutorial;
         } // OnEnable()
@@ -109,7 +109,7 @@ namespace MinionMathMayhem_Ship
                 TutorialMain.TutorialFinished -= TutorialMode_Ended;
             // AI Listeners
                 // User Mastery
-                    AI_UserMastery.TutorialSession -= AI_OnDemandRequest_Tutorial;
+                    AI_GameChallenge.TutorialSession -= AI_OnDemandRequest_Tutorial;
                 // Game Challenge
                     AI_GameChallenge.ProblemBox_DEGComplexity -= AI_OnDemandRequest_Tutorial;
         } // OnDisable()
