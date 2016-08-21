@@ -142,7 +142,7 @@ namespace MinionMathMayhem_Ship
 
         /// <summary>
         ///     Place the answer within the array
-        ///     But hopefully place the answer not at the 
+        ///     But hopefully place the answer not at the beginning of the array depending on the 'answerTailArray'
         /// </summary>
         /// <returns>
         ///     Highlighted Index that stores the answer
